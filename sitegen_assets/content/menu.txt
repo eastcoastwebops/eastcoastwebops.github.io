@@ -3,7 +3,7 @@ Site News|news,
 About,
 Sample Page>
 Sub Page one,
-Nice Page Name|sub page two<
+Nice Page Name|sub_page_two<
 Gallery|gallery&gallery=demo_gallery>
 Demo Gallery|gallery&gallery=demo_gallery,
 City Gallery|gallery&gallery=cities,

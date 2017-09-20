@@ -4,7 +4,7 @@ All code copyright 2017, EKHolbrook.
 SiteGen Version 2.0
 
 ******/
-webtitle = 'Development of Web.';
+webtitle = 'East Coast Web Operations';
 imagloc = '';
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
@@ -124,7 +124,7 @@ $(this).css('background-image','url("sitegen_assets/site-images/'+bg_img+'")' );
          $("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
          //   $('#title').addClass("loaded").removeClass("unloaded")
          $('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
-         $("body").delay(250).fadeIn(1500, 'swing');
+         $("body").delay(450).fadeIn(1700, 'swing');
          $('.sitetitletext').delay(1000).animate({
             //'left' : "-=70%",
             'opacity': '+=1'
