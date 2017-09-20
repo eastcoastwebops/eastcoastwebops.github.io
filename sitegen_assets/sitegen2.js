@@ -5,6 +5,7 @@ SiteGen Version 2.0
 
 ******/
 webtitle = 'Development of Web.';
+imagloc = '';
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -76,10 +77,28 @@ $(document).ready(function() {
    cssstring += '#entry' + article + '{display:block;}';
    cssstring += "</style>";
    $('.cssstyle').replaceWith(cssstring); // build dynamic css based on # of menu items
+	 
    function loadPage(whichpage) {
       $("body").hide(0, function() {
          var content = 'sitegen_assets/content/' + whichpage + '.html';
-         $("#content").load(content, function() {
+				 $("#content").load(content, function() {
+					 
+//replace all image urls so that one can edit content html alone, but then this fixes all urls.					 
+			//		 var replaced = $("#content").html().replace(new RegExp("../site-images", "igm"),'sitegen_assets/site-images');
+//$("#content").html(replaced);
+
+$('.full-bg-image').each(function() {
+	
+	var bg_img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1').split('/').pop();
+	console.log(bg_img);
+	
+$(this).css('background-image','url("sitegen_assets/site-images/'+bg_img+'")' );
+
+	
+})
+
+				///	 $('../site-images').replaceWith('images');
+					 
             $('body').attr('id', whichpage);
             setTimeout(function() {
                if (ios() != false) {
@@ -115,6 +134,8 @@ $(document).ready(function() {
          }, 2200, 'swing');
       });
    }
+	 
+	 
    loadPage(whichpage);
    $("body").on("click", "#menu li a, #footermenu li a, #content a.intlink", function(e) {
       var whichthis = $(this);
