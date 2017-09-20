@@ -13,7 +13,7 @@ $(document).ready(function() {
     for (i = 0; i < howmany; i++) {
         html += "<li>";
         name = $.trim(imagelist[i]);
-        html += '<a href=\"gallery/' + whichimages + '/full/' + name +'" data-imagelightbox="c" caption="test">';
+        html += '<a href=\"sitegen_assets/gallery/' + whichimages + '/full/' + name +'" data-imagelightbox="c" caption="test">';
 				html+='<img src="sitegen_assets/gallery/' + whichimages + '/thumb/' + name + '" alt="test"></a>';
         html += '</li>';
     }
