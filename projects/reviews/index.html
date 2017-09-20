@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../scripts/jquery.1.11.0.min.js"></script>
+<script src = "reviewData.js"></script>
+<script src = "reviewEngine.js"></script>
+<link rel="stylesheet" href="reviews.css" />
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+</head>
+
+<body>
+<div id="reviewpage" class="row">
+<h2>Customer Reviews</h2>
+
+<div class="leave">Leave A Review</div>
+<br style="clear: both;" />
+<div id="topratings">
+<div class="numreviews">&nbsp;</div>
+<div class="stars5">&nbsp;</div>
+<div class="stars4">&nbsp;</div>
+<div class="stars3">&nbsp;</div>
+<div class="stars2">&nbsp;</div>
+<div class="stars1">&nbsp;</div>
+</div>
+<div class="filterrating">Showing <select id="stars" class="select-list" name="rating">
+<option selected="selected" value="all">All stars</option>
+<option value="5">5 stars</option>
+<option value="4">4 stars</option>
+<option value="3">3 stars</option>
+<option value="2">2 stars</option>
+<option value="1">1 stars</option>
+</select></div>
+<div class="showing">&nbsp;</div>
+<div class="navbuttons clearfix"><span class="back">Back</span><span class="forward">Next</span></div>
+<br style="clear: both; height: 0px;" />
+<div id="reviews">&nbsp;</div>
+<div class="showing">&nbsp;</div>
+<div class="navbuttons clearfix"><span class="back">Back</span><span class="forward">Next</span></div>
+<br style="clear: both; height: 0px;" />
+<!-- end review block --></div>
+<h2><!-- end comments box --></h2>
+<ul id="pagin"></ul>
+
+<div id="screenfill" class="showlight op" style="display:none;">
+	<div id="pop">
+					<div id="popcontent" class="op" style="">
+							<div class="closepop"></div>
+							<div class="mid">Write A Review Form Goes Here
+							</div>
+					</div>
+			</div>
+</div>
+
+</body>
+</html>
+
+
+
+

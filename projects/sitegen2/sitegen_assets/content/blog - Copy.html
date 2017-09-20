@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jquery.rss example</title>
+    <script src="../../scripts/jquery-1.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="../src/jquery.rss.js"></script>
+    <script>
+   
+        $("#rss-feeds").rss("http://ekholbrook.blogspot.com/feeds/posts/default?alt=rss", {
+          limit: 15,
+          effect: 'slideSynced',
+            entryTemplate: '<h3>{title}</h3><div>{date}<a href="{url}" target="_blank">{shortBody}</a></div>',
+					dateFormat: 'dddd MMMM Do, YYYY',
+        })
+    
+    </script>
+
+  </head>
+  <body>
+
+      <div id="rss-feeds"></div>
+  </body>
+</html>

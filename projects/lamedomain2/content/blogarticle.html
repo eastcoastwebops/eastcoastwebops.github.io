@@ -1,0 +1,75 @@
+﻿<style type="text/css">#rss .feedEkList > li{display:none;}
+</style>
+<h2 class="articletitle">The Article</h2>
+ 
+<div id="rss"></div>
+<div id="rssclass"></div>
+ 
+ 
+
+<script type="text/javascript">
+//alert (article);
+var item=article;	
+// we'll need some way to pass this on
+	
+	function makeid()
+	{
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		
+		for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+		
+		return text;
+	}	
+	
+	var cha=makeid();
+	
+	
+	
+  
+
+function writeblog() {
+        $('#rss').FeedEk({
+            FeedUrl: "https://ekholbrook.blogspot.com/feeds/posts/default?alt=rss&check="+cha,
+            MaxCount: 50,
+            ShowDesc: true,
+            ShowPubDate: true,
+			DateFormat: 'MM-DD-YYYY HH:mm'
+           } ) ;
+		
+}	
+
+function showonly() {
+	window.rssclass = "<style type=\"text/css\">"; // now write out custom css
+	window.rssclass += '#rss .feedEkList > li.item'+item+' {display:block;}\n';
+	window.rssclass += "</style>";
+ $('#rssclass').replaceWith(rssclass);
+}
+
+
+
+$.when(writeblog()).then(showonly() );
+
+
+
+	
+	 $(document).ready(function () {
+	 
+	 	 var $reptitle;
+
+		 
+		 $reptitle = $('li.item10 a').text();
+		 $('h2.articletitle').text($reptitle);
+	
+	 
+	
+	 });
+
+	
+	
+	
+	
+	
+
+</script>

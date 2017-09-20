@@ -1,0 +1,111 @@
+
+body {font-family:sans-serif;
+overflow:hidden;
+padding:0px;
+margin:0px;
+}
+
+
+#main{background-image:url('paws.png');
+background-position:center center;
+background-size:auto 95%;
+background-repeat:no-repeat;
+position:relative;
+
+height:100%;
+width:100%;
+
+}
+
+
+.black{background-color:#000000;}
+.white{background-color:#ffffff;}
+
+#content{position:absolute;
+height:100%;
+width:100%;
+top:0;
+left:0;
+z-index:100;}
+
+
+table{border:solid 0px;
+width:100%;
+  border-spacing: 0;
+  border-collapse: separate;
+height:100%;
+z-index:1000;
+
+}
+
+td{padding:5px;
+margin:0px;border:solid 0px #ff0000;
+width:20%;}
+
+.category{cursor:pointer;}
+
+.start{height:95%;
+border:0px #ffffff;
+opacity:0;
+text-align:center;
+overflow:hidden;
+border-radius:200px;
+position:relative;
+
+}
+
+.done{border:solid 5px #ff9900;
+text-align:center;
+border-radius:30px;
+box-shadow:0px 2px 5px #999999;
+padding:5px;
+overflow:hidden;
+background-color:#999999;
+color:#ffffff;
+opacity:.8;
+}
+
+h2{padding:0px;margin:0px;
+font-family:times;
+font-weight:normal;}
+
+.title{font-size:16px;padding:0px;
+margin:0px;color:#ffffff;
+text-shadow:3px 3px 3px #000000;}
+
+.titleover{width:auto;font-size:46px;
+color:#ffffbb;
+text-shadow:3px 3px 3px #000000;}
+
+.category p{font-size:12px;}
+
+.first{margin-left:0px;}
+.last{margin-right:0px;}
+
+.hideme{height:0px;
+opacity:0;
+font-size:500px;
+width:0px;color:#000000;
+overflow:hidden;}
+
+.showme{opacity:1;width:550px;
+text-align:left;
+font-size:13px;
+position:relative;top:0px;
+padding:10px;
+color:#ffffff;}
+
+img.content_mainimage{width:50%;float:right;
+padding:0px;box-shadow:0px 0px 30px #000000;
+margin:10px;
+}
+
+.over{opacity:1.0;background-color:#333333;
+color:#dddddd;border:solid #ffff99;
+box-shadow:0px 0px 100px #ffffff;}
+
+
+.sane{background-image:url('wood.jpg');}
+.gutsy{background-image:url('gutbg.jpg');}
+
+

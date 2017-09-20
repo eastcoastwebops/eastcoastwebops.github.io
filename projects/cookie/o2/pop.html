@@ -1,0 +1,64 @@
+<h2>This is my popup's Title</h2>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+<p>This is my stuff</p>
+
+<style type="text/css">
+
+#screenfill{
+position:fixed;
+border:solid 0px;top:0px;
+left:0px;
+height:100%;width:100%;
+background-image:url('light.png');
+z-index:1000;
+}
+
+#pop{display:table-cell;vertical-align:middle;margin-left:auto;}
+
+#popcontent{
+border:solid 2px;
+border-radius:10px;
+padding:0px;
+height:400px;
+width:700px; /* see position of .closepop below */
+background:#ffffff;
+margin:auto;
+display:table;
+box-shadow:0px 5px 10px #000000;
+}
+
+.closepop{
+left:680px; /* make this .mid padding pixels less than width of #popcontent */
+top:-10px;
+border:solid 0px;
+background:url('closebox.png') no-repeat right;
+width:30px;height:30px;
+cursor:pointer;
+position:relative;
+}
+
+.trans{opacity:0;display:none;}
+.op{opacity:1;display:block;position:relative;top:0px; left:0px;}
+.hidelight{display:none;}
+.showlight{display:table;}
+
+
+/* everything in popup content goes under this class */
+.mid{
+font-family:trebuchet ms;
+padding:20px; /* see above for .closepop position */
+border:solid 0px;
+display:table-cell;
+vertical-align:middle;
+padding-top:0px;}
+
+.new{border:solid 2px #ff0000 !important;
+position:relative;left:-1000px;
+
+}
+
+
+</style>

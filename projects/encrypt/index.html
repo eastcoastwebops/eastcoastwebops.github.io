@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+		
+		<script type="text/javascript" src="jsencryption.js"></script>
+		<script type="text/javascript" src="jsencryptionform.js"></script>
+		
+		<style type="text/css">
+
+#header-logo {
+	position: absolute;
+	width: 152px;
+	height: 100px;
+	left: 0;
+	top: 23px;
+	margin-left: 15px;
+	background: url("img/jsencryption-header-logo.png") 0px 0px no-repeat;
+/*	width: 400px;
+	font-size: 24px;
+	line-height: 28px;
+*/
+}
+
+#submenu {
+	margin-left: 175px;
+}
+
+#content {
+	padding-top: 20px;
+}
+
+#passwordText, #plainText, #cipherText, #codeText {
+	font-family: monospace;
+	color: black;
+	font-size: 24px;
+	width: 100%;
+}
+
+#encryptedTest {
+	margin: 0 auto;
+	width: 100%;
+	padding: 25px;
+}
+
+/*
+textarea.plain, textarea.cipher {
+	height: 180px;
+}
+*/
+
+#passwordText {
+	background-color: #ffffe1;
+	margin-bottom: 0.5em;
+	padding: 3px;
+}
+
+#plainText {
+	background-color: #e1ffe1;
+}
+
+#cipherText {
+	background-color: #ffe1e1;
+}
+
+#codeText {
+	background-color: #e1e1ff;
+}
+
+#encryptedTest {
+	border: 1px solid gray;
+}
+
+
+			
+		</style>
+
+	</head>
+	
+	<body onload="load()">
+		<div id="container">
+			<div id="content-top"></div>
+			<div id="content" style="position: relative">
+				
+				<div id="content-right">
+				
+					<form name="key" action="#" onsubmit="return false;">
+					<h3>Key</h3>
+			
+					<p align="center">
+					<input type="text" name="text" id="passwordText" maxlength="1024" />
+					<br />
+					<input type="button" value=" Random " onclick="document.key.text.value = randomPassword(8);" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.key.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.key.text.select();" />
+					</p>
+					</form>
+					
+					<form name="plain" action="#" onsubmit="return false;">
+					<h3>Plain Text</h3>
+					<p align="center">
+					<textarea name="text" id="plainText" rows="10"></textarea>
+			
+					<br />
+					<input type="button" name="encrypt" value=" Encrypt " onclick="encryptFormText();" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.plain.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.plain.text.select();" />
+					</p>
+					</form>
+					
+					
+					<form name="cipher" action="#" onsubmit="return false;">
+					<h3>Cipher Text</h3>
+					<p align="center">
+					<textarea name="text" id="cipherText" rows="10"></textarea>
+					
+					<br />
+					<input type="button" name="decrypt" value=" Decrypt " onclick="decryptFormText();" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.cipher.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.cipher.text.select();" />
+					</p>
+					</form>
+					
+					<h3>HTML Code</h3>
+					<form name="encryptedCode" action="#" onsubmit="return false;">
+					<p align="center">
+					<textarea name="text" id="codeText" rows="10" wrap="off" readonly="" onclick="this.focus(); this.select();"></textarea>
+					<br />
+					<input type="radio" name="codeType" value="hide" checked onclick="genSampleCode();"> Standard
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="codeType" value="show" onclick="genSampleCode();"> Inline
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="codeType" value="show" onclick="genSampleCode();"> ***
+					</p>
+					</form>
+					
+					<h3>HTML Test</h3>
+					<div id="encryptedTest">&nbsp;</div>
+					
+					<p align="center">See the <a href="instructions.html">instructions</a> for how to use this in your webpage</p>
+				
+				</div>
+				
+				<div id="content-left">
+					
+				</div>
+				
+				<div class="clear"></div>
+				
+				<div style="position:absolute; top: 20px; right: 30px;">
+					<h4><a href="old.html">Old version &raquo;</a></h4>
+				</div>
+				
+				<p style="padding-top: 2em; text-align: center">
+					
+				</p>
+			</div>
+			
+			<div id="content-bottom"></div>
+			
+			<div id="subheader">
+	
+				<div id="submenu">
+					<ul>
+						
+					</ul>
+				</div>
+			</div>
+
+		
+			
+		</div>
+
+	
+	</body>
+</html>

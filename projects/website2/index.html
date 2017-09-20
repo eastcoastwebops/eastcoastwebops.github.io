@@ -1,0 +1,754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>E.K.Holbrook</title>
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/FeedEk.js"></script>
+	</head>
+	<! -- begin template -->
+	<body>
+		<span class="cssstyle"> </span>
+		<div id="slide">slide</div>
+		<div id="container">
+			<div id="siteTitle"></div>
+			<div id="menutrigger"></div>
+			<div id="header">
+				<div id="menu">
+					<ul>
+						<div id="themenu"></div>
+					</ul>
+				</div>
+			</div>
+			<div id="title"><h1></h1></div>
+			<div id="main">
+				<div id="contentmain">
+					<div id="logo"></div>
+					<div id="content"></div>
+				</div>
+				<div class="top"><a href="#top">Back To Top</a></div>
+			</div>
+			<ul id="footermenu">
+				<div id="thefootermenu"></div>
+				<br style="clear:both;"/>
+			</ul>
+			<div id="footer"></div>
+		</div>
+	</body>
+	<! -- end template -->
+</html>
+<script>
+	 // url example index.html?gallery=cities
+	function gup(name) {
+	    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	    var regexS = "[\\?&]" + name + "=([^&#]*)";
+	    var regex = new RegExp(regexS);
+	    var results = regex.exec(window.location.href);
+	    if (results === null) return null;
+	    else return results[1];
+	}
+	var whichpage = gup('page');
+	var article = gup('article');
+	if (whichpage === null) {
+	    whichpage = "home";
+	}
+	var loc = window.location.pathname;
+	var dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
+	 // use dir as root where all files will be referenced from
+	 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx MENU xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->	
+	/*    use this if you want to use external 
+		var data = $.ajax({
+		url: dir + "menu-new.txt",
+		async: false
+		}).responseText;
+	*/
+	 // remove this if external
+	var data = "";
+	data += "Home,";
+	data += "Web Example Gallery,";
+	 //	data +="blog,";
+	data += "Work Resume,";
+	data += "Coding Examples,";
+	data += "To Do,";
+	data += "[,"; // creates submenu begin
+	data += "-Two Column Page,";
+	data += "-Three Column Top,";
+	data += "-Two Columns On Bottom,";
+	data += "],"; // end submenu
+	data += "How It Works,";
+	data += "[,";
+	data += "-Two Column Page,";
+	data += "-Submen tuitemtwo,";
+	data += "-submentuitemthree,";
+	data += "-submentuitemfour,";
+	data += "],";
+	data += "Two Column Page,";
+	data += "Three Column Top,";
+	data += "Two Columns On Bottom";
+	 // remove above for external
+	window.title = data.split(",");
+	window.fileurl = dir;
+	window.folderurl = "content/";
+	window.sitetitle = "Test Beta Page"; //may have to tweak #siteTitle css entry
+	window.sitetitleplus = sitetitle + '<img src=\"' + fileurl +
+	    'logo/sitelogo_rot.png">';
+	window.menusize = title.length; // find out how many titles
+	window.themenu = ""; // define here to keep from undefined;
+	var thelink = "";
+	var thetitle = "";
+	var reducecount = 0;
+	var i = 0;
+	for (i = 0; i < menusize;) {
+	    //theTitle = 
+	    //alert (i);
+	    thelink = title[i].replace(/ /g, "_").toLowerCase(); // needed to 
+	    thelinkb = thelink.replace(/-/g, "").toLowerCase();
+	    thetitle = title[i].replace(/-/g, "");
+	    //if console.log(   thelink.charAt(1) );
+	    if (thelink.indexOf("[") > -1) {
+	        window.themenu += "<ul class='subitem'>";
+	        reducecount++;
+	    } else if (thelink.indexOf("]") > -1) {
+	        window.themenu += "</ul></li>";
+	        reducecount++;
+	    } else {
+	        window.themenu += '<li class=\"' + thelinkb + '\"><a href="?page=' +
+	            thelinkb + '\"><span class=\"placement\">' + thetitle +
+	            '</span></a>';
+	    }
+	    if (thelink.indexOf("-") > -1) {
+	        reducecount++; // keep track of sub items
+	    }
+	    // else {window.themenu += "<li>";}
+	    i = i + 1;
+	}
+	 //alert (reducecount); // brackets
+	window.cssmenu = Math.floor(100 / (menusize - reducecount /* width minus submenus */ ));
+	 // divide this by 100 to get percentage to use for css.
+	 //alert(cssmenu);
+	window.cssstring = "<style type=\"text/css\">"; // now write out custom css
+	window.cssstring += '#menu ul > li {width:' + cssmenu + '%;}\n';
+	window.cssstring += "</style>";
+	$(document).ready(function() {
+	    $('#themenu').replaceWith(themenu); // build menu
+	    //  $('#thefootermenu').replaceWith(themenu);
+	    $('.cssstyle').replaceWith(cssstring); // build dynamic css based on # of menu items
+	    //************************************************** initialize first default page stuff, 
+	    //************************************************** should only happen on a forced page refresh/reload
+	    //************************************************** page starts faded out
+	    $("body").hide(0, function() {
+	        // load content first and because images are not on this domain, go through each and replace with correct URL
+	        //alert (whichpage);
+	        //        $("#content").load(fileurl + folderurl + whichpage + ".html", function() {
+	        // swap this line with below to use external content in /content folder
+	        $("#content").load("index.html #" + whichpage,
+	            function() {
+	                $("#content img").each(function() {
+	                    $(this).attr("src", $(this).attr(
+	                        "src").replace(
+	                        "images", fileurl +
+	                        "images"));
+	                });
+	                $('li.' + whichpage).addClass('menuon'); // activate first menu item (from above)
+	                $page = $('li.' + whichpage).text();
+	                //	$page = "this";
+	                $(document).prop('title', $page);
+	                $('#siteTitle').html(sitetitleplus);
+	                $("h1").text($page);
+	                $('#title').switchClass("unloaded",
+	                    "loaded", 500, "easeInOutQuad").fadeIn(
+	                    1700);
+	                $('#footer').text($page +
+	                    " is (c) 2016, Eric K. Holbrook");
+	                $("body").delay(1000).fadeIn(1200);
+	            }); // complete content and image populate
+	        // load default state on new page LOAD
+	        // finish default state
+	    });
+	    //************************************************** END INITIAL STATE
+	    //************************************************** all the fun click stuff 
+	    $("body").on("click",
+	        "#menu li a, #footermenu li a, #content a.intlink",
+	        function(e) {
+	            var $which = $(this).parent().attr('class').split(' ')[
+	                0];
+	            var $name = $(this).text();
+	            //alert ($name);
+	            e.preventDefault();
+	            $('#footer').fadeTo(100, 0.0);
+	            // get item clicked on and FIRST class, by finding space in class names (if any)
+	            $.ajax({
+	                url: fileurl + 'logo/' + $which + '.png',
+	                type: "HEAD",
+	                success: function() {
+	                    $("#logo").html("<img src=" +
+	                        fileurl + "logo/" + $which +
+	                        ".png>");
+	                },
+	                error: function() {
+	                    $("#logo").html("<img src=" +
+	                        fileurl +
+	                        "logo/no_logo.png>");
+	                }
+	            });
+	           // var $randirection = ['left', 'right', 'up', 'down'];
+				var $randirection = ['up', 'left', 'up', 'right'];
+	            var rand = Math.floor(Math.random() * (4 - 0 + 0)) + 0;
+	            $("h1").text($name).fadeOut(700);
+	            $('#title').switchClass("loaded", "unloaded", 500,
+	                "easeInOutQuad");
+	            $("#main, #slide").hide('slide', {
+	                direction: $randirection[rand],
+	                easing: 'easeInOutQuad'
+	            }, 500, function() {
+	                //********************** Now after everything is fade out, load and fade back in *****
+	                //         $("#content").load(fileurl + folderurl + $which + ".html", function() {
+	                // swap this line with below to use external content in /content folder				
+	                $("#content").load("index.html #" + $which,
+	                    function() {
+	                        $("#content img").each(
+	                            function() {
+	                                $(this).attr("src",
+	                                    $(this).attr(
+	                                        "src")
+	                                    .replace(
+	                                        "images",
+	                                        fileurl +
+	                                        "images"
+	                                    ));
+	                            });
+	                     //   var $randirection = ['left', 'right', 'left', 'right'  ];
+	                       var rand = Math.floor(Math.random() * (4 - 0 + 0)) + 0;
+	                        //alert (rand);
+	                        //*************** Once content loaded fade back in ******************
+	                        $("#main, #slide").delay(90).show(
+	                            'slide', {
+	                                direction: $randirection[
+	                                    rand],
+	                                easing: 'easeInOutQuad'
+	                            }, 900, function() {
+	                                $("h1").text($name)
+	                                    .fadeIn(700);
+	                                $('#title').switchClass(
+	                                    "unloaded",
+	                                    "loaded",
+	                                    1000,
+	                                    "easeInOutQuad"
+	                                );
+	                                $('#footer').delay(
+	                                    500).text(
+	                                    $page +
+	                                    " is (c) 2015: Eric K. Holbrook"
+	                                ).fadeTo(1000,
+	                                    1.0);
+	                            });
+	                    });
+	                //********************************** end fade everything back in
+	            });
+	            history.pushState({}, '', '?page=' + $which); // push html name to address bar
+	            $(this).parent().parent().find('.menuon').removeClass(
+	                'menuon'); // disable other menu items
+	            $(this).parent().removeClass('menuon'); // disable other menu items
+	            //alert(this);
+	            $(this).parent().addClass('menuon'); // activate correct menu
+	            $page = $(this).text(); // get new page name
+	            $(document).prop('title', $page); // write to meta/title tag the new title
+	        });
+	    //********************************************************* end all the click stuff
+	    $("a[href='#top']").click(function() {
+	        $("html, body").animate({
+	            scrollTop: 0
+	        }, "fast");
+	    });
+	    // mobile and small screen checks
+	    var isMobile = {
+	        Android: function() {
+	            return navigator.userAgent.match(/Android/i);
+	        },
+	        BlackBerry: function() {
+	            return navigator.userAgent.match(/BlackBerry/i);
+	        },
+	        iOS: function() {
+	            return navigator.userAgent.match(
+	                /iPhone|iPad|iPod/i);
+	        },
+	        Opera: function() {
+	            return navigator.userAgent.match(/Opera Mini/i);
+	        },
+	        Windows: function() {
+	            return navigator.userAgent.match(/IEMobile/i);
+	        },
+	        any: function() {
+	            return (isMobile.Android() || isMobile.BlackBerry() ||
+	                isMobile.iOS() || isMobile.Opera() ||
+	                isMobile.Windows());
+	        }
+	    };
+	    // turn off all menu items
+	    $("#menu li").addClass(function(i) {
+	        return "menuoff";
+	    });
+	    //		$("#menutrigger").removeClass('on').addClass('off');
+	    //if menu us shown, but click menu thingy, turn back off
+	    $("body").on("click", "#menutrigger", function() {
+	        if ($("#menu li").hasClass("menuoff")) {
+	            $("#menu li").removeClass(function(i) {
+	                return "menuoff";
+	            });
+	            $("#menutrigger").addClass('on').removeClass('off');
+	        } else {
+	            $("#menu li").addClass(function(i) {
+	                return "menuoff";
+	            });
+	            $("#menutrigger").addClass('off').removeClass('on');
+	        }
+	        $("html, body").animate({
+	            scrollTop: 0
+	        }, "fast");
+	    });
+	    $("#menu li").click(function() {
+	        $("#menutrigger").removeClass('on').addClass('off');
+	        $("#menu li").addClass(function(i) {
+	            return "menuoff";
+	        });
+	    });
+	    /*		$("#footermenu li").click(function() {
+			$("#menutrigger").removeClass('on').addClass('off');
+			$("#menu > li").addClass(function(i){return "menuoff" });	
+			});	
+		*/
+	    function checksize() {
+	            if (($(window).width() < 768) || (isMobile.any())) { // do small screen stuff
+	            } // end small device stuff 
+	            else { // do big screen stuff
+	            }
+	        } // end checksize
+	        //initialize
+	    checksize();
+	    //call when the page resizes.
+	    $(window).resize(function() {
+	        checksize();
+	    });
+	    // mobile	
+	    // check height of site title and figure out
+	    //window.cssstring = "<style type=\"text/css\">"; // now write out custom css
+	    //window.cssstring += '#menu ul > li {width:' + cssmenu + '%;}\n';
+	    //window.cssstring += "</style>";
+	    //var sitewidth = $('div#siteTitle').outerWidth(true); //$('#siteTitle').outerWidth(true);
+	    //alert (sitewidth);	
+	}); // end doc ready	
+	function pop(url) {
+	    newwindow = window.open(url, 'name',
+	        'height=600,width=650, top=100, left=400');
+	    if (window.focus) {
+	        newwindow.focus()
+	    }
+	    return false;
+	}
+</script>
+<style>
+#menu ul > li {width:11%;}
+
+html { min-height: 100%; padding-bottom: 1px;
+	//color:#333333;
+	}
+//#main, #title, #footer{display:none!important;}
+/* colors */
+#header {background:#ffffff;bottom:0;left:0;padding:1px;position:fixed;width:auto;z-index:1000;box-shadow:0px -0px 30px #333333;width:100%;}
+body{background:url(images/mmbg3.jpg) center center fixed;
+-moz-background-size:cover;-o-background-size:cover;
+-webkit-background-size:cover;
+background-size:cover;
+font-family:arial;
+margin:0 0 120px;
+min-width:320px;
+padding:0;width:100%;}
+
+#slide{border:solid 1px;
+height:200px;width:auto;
+background:url(images/bg5.jpg) center center;
+-moz-background-size:cover;
+-o-background-size:cover;
+-webkit-background-size:cover;
+background-size:cover;
+border-radius:20px;}
+
+
+#content {color:#333333;}
+#content a{color:#ff6600}
+#content h2{color:#000000;}
+#content h3{color:#000000;}
+#container{margin:auto;max-width:900px;min-width:20px;width:65%}
+#content a{border-bottom:dotted 1px #884400;;padding-left:2px;padding-right:2px;text-decoration:none}
+#main {background-color:#ffffff;color:#000000;}
+#rss > ul > li{background-color:#ffffff;}
+#menu ul li {background:#007700;} /* menu color */
+#menu ul li ul{background:#666666;} /* submenu color */
+#menu ul li a{color:#999999;text-decoration:none;}
+#menu li:hover{background-color:#eeeeee;}
+#menu li:hover{background-color:#eeeeee;}
+#menu li.menuon{background-color:#009966;}
+#menu li.menuon a{color:#ffffff;}
+#menu > ul > li{border:solid 1px #227722;}
+#siteTitle{color:#dddddd;}
+#title h1{color:#dddddd;}
+body{}
+/*---DESKTOP Only---------------------------------- */
+
+@media only screen and (min-width: 769px){
+#header{box-shadow:none;}
+#menu{font-size:14px;margin:0;padding:0;width:100%;
+border-top:solid 0px #dddddd;}
+#menu *{list-style-type:none;margin:0;padding:0;background:none;}
+#menu > ul{width:100%;height:100%;display:table;border-spacing:5px;background:transparent;}
+#menu > ul > li{display:table-cell;text-align:center;vertical-align:middle;border:none;}
+#menu a:hover{color:#666666}
+#menu li{position:relative}
+#menu li.menuon{//border:solid #888888}
+#menu li:hover{}
+#menu ul > li:hover{}
+#menu ul li{font-weight:normal;border-radius:20px;background:#efefef;}
+#menu ul li ul li a{border:solid 1px;color:#ffffff;text-decoration:none;}
+#menu > ul > li > a{border:solid 0px;display:table;height:100%;width:100%;}
+#menu a .placement{border:solid 0px;padding:10px;display:table-cell;vertical-align:middle !important;}
+#menu ul li ul li{border:none;width:auto;z-index:1;background:#efefef;}
+#menu ul li ul li a{display:block;font:14px arial;color:#999999;
+font-variant:small-caps;font-weight:400;padding:5px;border:0px;}
+#menu ul li ul,
+#menu:hover ul li ul,
+#menu:hover ul li:hover ul li ul{background:none;display:none;list-style-type:none}
+#menu:hover ul li:hover ul{margin-top:1px;position:absolute}
+#menu:hover ul li:hover ul li:hover ul{position:absolute;}
+#menu:hover ul li:hover ul,
+#menu:hover ul li:hover ul li:hover ul{display:block}
+#menu>ul>li:hover>ul{border-bottom:1px solid transparent;bottom:100%}
+#title h1{border:solid 0;font-size:2.5em;height:50px;width:600px;}
+#title.loaded{-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);-webkit-transform:rotate(90deg);position:fixed;right:-270px;top:270px;z-index:100}
+#title.unloaded{-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);-webkit-transform:rotate(90deg);position:fixed;right:-270px;top:-200px;z-index:100}
+}
+/* ------------ end desktop only -----------------*/
+#content{font-size:16px;overflow:hidden}
+#content .col1-2 img{box-shadow:none;float:left;margin:0 10px 0 0;padding:5px;width:45%}
+#content .col1-3 h3{margin:0;padding:0}
+#content .col1-3,.col2-3,.col3-3{float:left;width:30%}
+#content h2{font-size:1.7em;margin:0;padding:0;text-align:center;width:95%}
+#content h3{font-size:1.6em;font-weight:400;margin:0;padding:0;width:85%}
+#content h3 .smallheadline{font-size:.5em}
+#content img{background-color:#ffffff;border:solid 2px #dddddd;border-radius:7px;box-shadow:0 0 10px #666666;float:right;margin-bottom:20px;margin-left:30px;margin-top:10px;padding:10px 10px 30px;width:55%}
+#footer{color:#ffffff;margin-top:10px;text-align:center}
+#footermenu,.top{display:none}
+#logo{position:absolute;right:0;top:0;width:100px}
+#logo img{width:100px}
+#main{margin-top:30px;position:relative}
+#rss{position:relative}
+#rss .itemDate{color:#666666;position:absolute;right:10px;text-align:center;top:5px}
+#rss .itemTitle{font-size:1.4em;font-weight:700;text-align:center}
+#rss > ul{list-style-type:none;margin:0;padding:0}
+#rss > ul > li{margin-bottom:15px;padding:25px;position:relative}
+#rss h2{color:#000000;font-size:1em;font-weight:400;text-shadow:none}
+#siteTitle{-moz-transform:rotate(-90deg);
+-ms-transform:rotate(-90deg);
+-o-transform:rotate(-90deg);
+-webkit-transform:rotate(-90deg);
+border:solid 0px;font-size:2.1em;
+height:100px;left:-96px;position:
+fixed;top:150px;width:auto;z-index:100}
+#siteTitle img{margin-left:30px;
+position:relative;width:100px;
+display:table-cell;vertical-align:middle;}
+.col1-2,.col2-2{float:left;font-size:.9em;margin-right:5%;width:45%}
+.col1-3 p{padding:5px}
+.lyrics{font-size:1.4em;margin:auto;width:75%}
+.points li{margin-bottom:15px}
+.points li p{color:#999999;font-size:.8em;margin:0}
+.resumelist li{float:left;margin-right:20px}
+.small{font-size:.7em}
+blockquote{background:#f6f6f6;border:solid 1px #dddddd;font-family:times;font-style:italic;margin:20px auto;padding:10px;text-align:center;width:80%}
+ul.resumelist{clear:both;margin:0;padding:0}
+
+/*---------------------- MOBILE  ---------------------------------------*/
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+body{background:none;background-image:none;border:inset 0 #ff0000;margin:0 0 10px;overflow-x:hidden;padding:0;width:99.9%}
+#slide{margin-bottom: -80px;margin-top: 92px;}
+#container{border:inset 0 #000000;margin:0;padding:0;
+width:100%}
+#title h1{font-size:1em;margin:0;overflow:hidden;padding:0;position:relative;top:90;color:#000000;z-index:2000;}
+#siteTitle{-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);-o-transform:rotate(0deg);
+-webkit-transform:rotate(0deg);background:#008800;color:#ffff00;font-size:1.9em;font-weight:400;height:70px;left:0;letter-spacing:0;margin:0;padding:20px 0 0;position:fixed;text-align:left;text-shadow:none;top:0;width:100%;z-index:1000}
+#menutrigger{background:url(images/9890-70-n.png) no-repeat center center;border:solid 0;cursor:pointer;height:89px;position:fixed;right:5px;top:0;width:70px;z-index:1000}
+#siteTitle img{-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);float:left;margin:0 10px 0 0;top:-10px;width:75px}
+#content h1{text-align:center}
+#content h2{font-size:1.2em;text-align:center;width:auto}
+#content h3{font-size:1.5em;font-weight:400;margin:0;padding:0;text-align:center;width:99.5%}
+#header{background:none;border:solid 0 #ff0000;border-top:solid 0 #888888;border-top-left-radius:0;border-top-right-radius:0;box-shadow:0 0 0;margin:0;padding:0;position:relative;width:auto;z-index:100}
+#main{border:none;border-radius:0;box-shadow:none;padding:10px;width:auto;margin-top:0px;}
+#menu >ul{border-spacing:0;
+display:block;list-style-type:none;
+margin:90px auto auto;padding:0;width:100%}
+#menu a{font-size:3em;text-decoration:none}
+#menu ul li{border:solid 0 #000000;border-bottom:solid 1px #000000;border-radius:0;border-top:solid 2px #000000;display:block;padding:8px 0 0;text-align:center;width:100%!important}
+#menu ul li ul{border:solid 0 #ff0000;border-bottom:solid 1px #000000;border-radius:0;border-top:solid 1px #000000;display:block;padding:0;position:relative!important;text-align:center;width:100%!important}
+#menu ul li ul li{font-size:.8em;font-style:italic;opacity:0.5}
+#menu li.menuon{border:solid 0 #ff0000;border-radius:0;display:block;margin-left:0;padding-right:3px}
+#menu li:hover{box-shadow:none;cursor:pointer}
+#menu li.menuoff{display:none}
+#menu li.menuon a{font-weight:400}
+#logo{margin:auto;position:relative;width:150px}
+#logo img{width:150px;display:none;}
+#content{font-size:1.5em;overflow:hidden}
+#content img{background-color:#ffffff;border:solid 2px #999999;border-radius:7px;box-shadow:none;float:none;margin:2%;padding:5px;width:90%}
+.col1-2{float:none;font-size:1em;margin:0;width:100%}
+#content .col1-2 img{clear:both;float:none;margin-bottom:20px;width:95%}
+#content .col1-3{float:none;width:100%}
+#content .col1-3 h3{margin:20px 0 0;padding:0;text-align:left}
+.col1-3 p{margin:0;padding:0}
+.top{background-color:#111111;border:solid 0;border-radius:10px;box-shadow:inset 0 0 10px #999999;display:block;font-size:1.5em;font-weight:700;margin:auto;padding:10px;text-align:center;width:55%}
+.top a{color:#ffffff;display:block;text-decoration:none;text-shadow:3px 3px 3px #999999}
+.top:hover{background-color:#ff9900}
+#footermenu{clear:all;display:block;list-style-type:none;text-align:center}
+#footermenu li{border-left:solid 1px #666666;float:left;font-size:1.5em;margin-left:5px;padding-left:5px}
+#footermenu a{color:#999999;text-decoration:none}
+#footermenu li:first-child{border:none}
+.lyrics{font-size:.8em;margin:auto;width:100%}
+#menutrigger:hover,#menu{cursor:pointer}
+#menu li.blog{display:none}
+} 
+/*--------------- SMALL MOBILE -----------------------*/
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+body{min-width:320px}
+#slide{margin-top: 61px;}
+#siteTitle{font-size:1.3em;font-weight:400;height:40px;letter-spacing:0;min-width:320px;padding:15px 0 5px;position:fixed;text-align:left;text-indent:12px;width:100%;z-index:1000}
+#siteTitle img{display:none;margin-left:5px;position:absolute;top:10px;width:30px}
+#menutrigger{
+background:url(images/9890-50-n.png) no-repeat center center;
+border:solid 0;height:60px;position:fixed;right:12px;width:50px;z-index:1000}
+#menu{margin-top:-30px;}
+#menu a{font-size:2em}
+#content img{background-color:#ffffff;border:solid 2px #999999;border-radius:7px;box-shadow:0 0 0 #666666;float:none;margin-bottom:30px;margin-left:3%;margin-top:10px;width:90%}
+.col1-2{float:none;font-size:.9em;margin:0;width:100%}
+#content .col1-2 img{box-shadow:none;clear:both;float:none;margin:0 0 20px;padding:5px;width:95%}
+	}
+
+</style>
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX CONTENT GOES HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<span style="display:none;">
+	<!-- Page Start -->
+<div id="to_do">
+	<h2>Things To Work On Next:</h2>
+	<ul type="square" class="todolist">  
+		<li ><input type="checkbox" checked="checked">4/8/15 - code to import my blogger rss feed
+			<ul><li ><input type="checkbox" >from blog excerpt list, jump to actual article within THIS site</li></ul>
+		</li>
+		<li class="done"><input type="checkbox" checked="checked">4/7/15 -  Re work code to allow for url parameters to determine which content is requested. Based on parameter (page = xyz), load via ajax that content. This allows a user (or search engine to link to a given virtual page</li>
+		<li ><input type="checkbox">Contemplate sub-menu potential, difficulties</li>
+		<li ><input type="checkbox">4/7/15 - Contemplate better mobile design, if only the colors</li>
+		<li class="done"><input type="checkbox" checked="checked">4/7/15 -  Allow for independent content name vs displayed title on side and menu</li>
+		<li class="done"><input type="checkbox" checked="checked">3/15/15 - Allow for in-content internal links</li>
+		<li class="done"><input type="checkbox" checked="checked">Update part of code the displays individual page image such that a single &quot;no image.png&quot; can be used if page cannot find corresponding image file
+		</li>
+	</ul>
+</div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Page Start xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+	<div id="home">
+		<h2>Welcome</h2>
+		<h3>I am a web developer and this is my personal website project. Emphasis on "project".</h3>
+		<p>The site is a work in progress, so it's not meant to appear as anything really except as a laboratory to experiment with some of my personal programming ideas.</p>
+		<p>This site is built in a slightly different way than your average website. (For more technical explanation, step by step (although not complete), of how this site is put together, <strong><a href="#" class="how_it_works intlink">click here - HOW IT WORKS</a></strong>
+		</p>
+		<p>Suffice to say that 100% of what you see, including all the content, is running off of, and editable directly via a folder on my dropbox account. </p>
+		<ol>
+			<li>
+			An index.html file hosted on godaddy where the domain name and hosting account is located. Pretty much like every other site on the planet. </li>
+			<li>Except my index.html file has only one line of code and all it does is to load a script which is in fact an html template in the form of a variable which is then written to the DOM and becomes a virtual HTML page. </li>
+			<li>This virtual html page is really like most HTML pages in that it loads a stylesheet, some more scripts, has some place holders for content, etc.</li>
+			<li>One of the scripts it loads is the &quot;Engine&quot; where all my code really is and all the variables and contols and stuff are and this last script then generates a menu, determines where content is, where images are and where to take the user to view what they request next. </li>
+		</ol>
+		<div id="rsshome">
+			<h2>Recent Article</h2>
+			<div id="rss"></div>
+		</div>
+		<h2>What is the point?</h2>
+		<p><img class="image" src="images/image2.jpg">At the end of the day, I guess if I had tell you what my point was it was to learn something new and to perfect my programming skills.</p>
+		<p>I also like the idea of a &quot;template&quot; and &quot;content&quot; being separate items, where the &quot;content&quot; is very minimalistic HTML but is enhanced and loaded into the template.&nbsp; The template is programmed to know what to do with different parts of the content, even if the user or CM may not.</p>
+		<p>I also like the ability to create stuff fast. I don't want to have to figure out what to do with a new page. I just want to create a new page, the site figures out there's a new page and creates the menu and links appropriately. Not much different from a Wordpress or othe CMS type sites, except this is my stuff from scatch. </p>
+		<p>I also took the opportunity to <b>build out this site using responsive / mobile techniques</b> 
+			One of the areas I didn't spend too much time on with this site was the "Design" and instead focused my attention on the "Development."  As time goes on, I find one can get too bogged down in design and color issues and not really accomplish anything useful. I like to figure out how to put stuff together, but not as much anymore with what color paint to put on the walls. 	
+		</p>
+		<ul>
+			<li>I never have to FTP anything or go online to add new content, edit existing content, update the menu or css. I simply go into the folder on my PC (or on my phone), tweak the content</li>
+			<li>Each content page is a unique HTML file, loaded on demand, determined by the name on the menu.</li>
+			<li>The menu is built dynamically based on a list of page titles. The order of the list determines which items appear first (or left) on the menu. The list is as simple as:
+				<blockquote>"Welcome",<br/>
+					"How It Works",</br>
+				"Coding Examples", etc</blockquote>
+			</li>
+			<li>Each menu item then is keyed to look for a particular HTML file based on it's name. Welcome looks for... welcome.html and so on. This keeps the content separate from the template and allows the content to be very easy and simple HTML. To add a new page, you add a new item to the list (a new menu tab will be generated automatically), and you add a corresponding HTML file in the dropdox folder. Simple!<img class="image" src="images/image4.jpg">
+			</li>
+			<li>Each page can have a unique page logo associated with it, and this again is as simple as creating a new image with the same name as the page. If it's found, it will be loaded with the page</li>
+			<li>Last but not least, the site is <b>"responsive"</b> and will flip on or off many items to work with mobile devices</li>
+		</ul>
+	</div>
+	
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Page Start xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+<div id="work_resume">
+	<style type="text/css">
+.resentry{margin-bottom:20px;
+border-bottom:dotted 1px;padding-bottom:20px;}
+.resentry b{display:block;}
+.resentry i{display:block;font-size:.9em;margin-bottom:6px;}
+.toplist{font-size:.9em;margin:0px;padding:25px;
+list-style-type:square}
+.toplist li{margin-bottom:5px;}
+</style>
+<h2>Summary - Eric K. Holbrook</h2>
+<ul class="toplist">
+<li>Quickly develop clean and efficient code using HTML, CSS3, JavaScript</li>
+<li>Out Of The Box type of thinker. There is never just one solution.&nbsp;</li>
+<li>Hands on work with e-commerce sites for Citibank, AARP, Allstate, Verizon and others. </li>
+<li>Problem solving and debugging skills to rapidly identify and fix defects.</li>
+<li>Enjoy to actively participate in design discussions, code reviews and code analysis </li>
+<li>Minimization of repetitive code and improve application design </li>
+<li>Code optimization techniques to improve robustness and performance of software solutions </li>
+<li>Work effectively as a team member within all levels of company </li>
+<li>Enjoy sharing ideas with other team members and sharing knowledge from experience </li>
+<li>Agile and Scrum development practices </li>
+<li>Version control systems, CVS, Subversion / SVN, Git & Git Bash </li>
+<li>Enjoy to research and experiment with new Front End Development libraries and frameworks. </li>
+<li>Dynamic web pages from Photoshop mockups with nothing more than a text editor and web browser.</li>
+</ul>
+<b>Experience</b> 
+<div class="resentry">
+<b> 
+Front End Web Developer & Programmer Analyst at Deluxe Rewards (A Division of Deluxe Corporation - NYSE:DLX) </b>
+<i> August 2013 - Present </i>
+Front end web development within a Java environment working with a team of other front end and back end developers. Now being cross trained and assigned projects in many back-end projects including all required jUnit testing for all new code. Agile development environment, including daily stand ups, planning sessions. Daily work with JavaScript, jQuery, CSS3, HTML5, JSP, SQL, and some light Java for all types of project development on sites and services for Verizon, Citibank, AARP, Allstate and others. 
+</div>
+<div class="resentry">
+<b>Chief Technology Officer &amp; Web Developer at 85 Broads</b>
+<i> March 2012 - August 2013</i>
+Propose and develop new strategies for increased network growth. Retiring old or outdated technologies to be replaced with future technology solutions and concepts. Build out smaller focused websites that ultimately help grow parent website and increase growth.
+</div>
+<div class="resentry">
+<b>Director of Web Development and Graphic Design at SKM Media</b>
+<i> April 2010 - March 2012</i>
+Design, hand code, then deploy and manage 30+ websites for company and company clients using php,mysql, javascript, html and css2 / css3. Design print and email marketing campaigns for clients (postcards, full page ads, brochures). Typical includes building the email, landing page, form and capture application. Maintain and upgrade existing company websites. Build javascript and php based forms, wizards, calculators, walkthoughs and other dynamic online media that could be plugged into new or existing&nbsp;websites.
+</div>
+<div class="resentry">
+<b>Internet Marketing Specialist at LaBovick &amp; LaBovick, PA</b>
+<i> December 2009 - April 2010 (5 months) </i>
+Design, Develop, Program and Build websites (html, css, php, javascript). Graphic Design &amp; layout for various book or ebook covers and brochures, audio &amp; video editing
+</div>
+<div class="resentry">
+<b>Web Development Consultant</b>
+<i> March 2009 - December 2009 (10 months) </i>
+</div>
+<div class="resentry">
+<b>Web and Multimedia Manager at Jewish Federation of South Palm Beach County</b>
+<i> October 2008 - March 2009 (6 months) </i>
+</div>
+<div class="resentry">
+<b>Web Developer at 85 Broads and Milestone Capital Management (Current Name: Elevate)</b>
+<i> August 2003 - November 2008 (5 years 4 months) </i> [This is my first session with company]
+Build Corporate and Social Media Websites
+</div>
+<div class="resentry">
+<b>Web Developer at Neuberger Berman</b>
+<i> May 2000 - November 2001 (1 year 7 months) </i>
+</div>
+<div class="resentry">
+<b>Web Developer and Designer at BestWeb Corporation</b>
+<i> April 1999 - May 2000 (1 year 2 months) </i>
+</div>
+<div class="resentry">
+<b>Senior CAD Systems Operator at Carrington Associates, Architects, P.C.</b>
+<i> August 1987 - August 1989 (2 years 1 month) </i>
+Research and recomend first CAD system for company, Teach and Train each Architect on it's use over several months.
+</div>
+<div class="resentry">
+<b> Skills and Expertise </b>
+3d Graphic Design &amp; Rendering, Adobe Creative Suite (specifically Photoshop and Illustrator), Ajax, A/V editing, Css3, Eclipse, Flash, Hand coding of Html / Html5, It Management, Javascript, Jquery, Jsp Development, JSTL Concepts, Mysql, PHP (Non-Framework based), Powerpoint, SEO, Sql Server Management Studio, Svn, User Interface Design, Wordpress self hosting setup including management or content plugins and code and programming, Xml
+</div>
+Education
+Bennington College
+Bachelor's degree, 1987 - 1991
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Page Start xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+<div id="web_example_gallery">
+<h2>Snapshots of Websites</h2>
+<br/>
+<a href="https://goo.gl/photos/kqpnF9PSGRb2HaLV8" target="
+_blank" onclick="return pop('https://goo.gl/photos/kqpnF9PSGRb2HaLV8')"><img class="image center" src="images/webgallery.jpg"></a>
+I've provided screengrabs from the various websites.
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Page Start xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+<div id="coding_examples">
+<h2>Recent Work, Projects</h2>
+<ul class="points">
+	<li><a href="https://citieasydeals.com/Learnmore" target="_blank">https://citieasydeals.com/Learnmore</a><p>Most challenging part of project was to gather information about each slide's veritical position for navigation purposes and to write code that would intelligently parse out what you clicked on, what slide, button, what you opened, and send data for tracking.</p>
+</li>
+	<li><b>Modified version of CED</b> micro site for <a href="https://dl.dropboxusercontent.com/u/508866/webcode/cookie/index.html" target="_blank">dynamic use</a><p>The goal of this excerise was to take base concept of slide content above but make all the slides dynamically generated and let the user position them and have this position stored in a cookie. So based on proving a list of names, a menu would be created, and the slides would be created and positioned. (Try dragging a slide around, then reload the page)</p></li>
+<li><b>"Gutsy Gals" demo</b> micro site<a href="https://dl.dropboxusercontent.com/u/508866/webcode/gutsy/index.html" target="_blank">Gutsy Gals (1)</a><p>The goal of this excerise was to create a nice micro / info site or landing page with some animation</p>				
+</li>
+
+<li>
+<a href="https://dl.dropboxusercontent.com/u/508866/webcode/ekhgallery/index.html?gallery=websiteportfolio" target="_blank">Photo Gallery One (some current web snapshots - Allstate and Verizon)</a><p>Javascript Photo Gallery Project using parameters to determine folder/imagesInvolves reading in parameter which determines which file to load to read images and then which folders to use.  So 2 things going on here: The gallery was coded by me (specifically the ability to use parameters to choose different galleries). And 2, I cannot provide logins for current sites as they are private ecommerce sites. I can only provide snapshots. Sorry. </p>
+</li>
+<li><a href="https://www.dropbox.com/sc/r2hzw376j3q6gu0/AADs-49n1bRWALuDbM-1QZPDa" target="_blank">Designs Created for Work/Clients</a><p>A dropbox photo gallery with snapshots of websites, posters, mailers, created for work related projects. </p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/ekhgallery/alternate.html" target="_blank">JS Gallery Type Two</a><p>Similar to the above and with my same core script to determine which file/folders/images to display and build html for, this is an alternate layout version. Same URL/parameter principal, but different layout concept - </p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/popup4wire/poplocaltest.html" target="_blank">Site independent Popup with lightbox effect</a> <p>Need to wait a few seconds until this kicks in. This script was created out of the need to work in a rather complex Wordpress site that did not like it's template or code modified overly much. I did not want to add anything permanent to the site if possible, did not want to modifiy the HTML or the template. <br/><br>So I came up with the idea of simply embedding a 'trigger' type script that would load the REAL script that was hosted on another site which itself build some temporary HTML into the DOM, and then go away after it was clicked on. <br/><br>You view the REAL site with popup at <a href="http://plantingpeace.org" target="_blank">Planting Peace.ORG</a> although please note that this version uses cookies to let the popup only appear once per day and only on the home page</p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/xmlthing/xmlview.html" target="_blank">Quick XML view of 3200</a> records in text file
+<br>View the data - <a href="https://dl.dropboxusercontent.com/u/508866/webcode/xmlthing/items2.xml" target="_blank">The XML Records</a>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/stick/quote.html" target="_blank">Sticky Note</a> <p>Early Version - This project started out of a desired to (a) read in an external set of data (the quotes), and then (b) DO something with them kind of fun and (c) allow easy editing or adding of new notes by simply editing a text file in dropbox. Each page load randomizes the notes, the font, the rotation and various other little pieces of the css. Mission accomplished </p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/darknotev2/index.html?t=dark&c=quotes" target="_blank">Sticky Note With parameters</a><p>An alternative version that accepts url parameters for theme "t" and content "c". There's actually only 2 themes and 2 sets of data but that was enough for building. <br/><br/>Try: <a href="https://dl.dropboxusercontent.com/u/508866/webcode/darknotev2/index.html?t=light&c=tips" target="_blank">index.html?t=light&c=tips</a> for the "light" version loading the data file called "tips" </p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/math/projected.html" target="_blank">Projected Math</a>&nbsp;- Basic example to project how X numbers over Y iterations and predict average
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/story/storygen-final.html" target="_blank">Random Poem Generator</a>&nbsp;- <p>Goal was to build a random "story" type generator but with a twist in that it actually can create rhyming verses and repeatable elements. (note: images are samples only and many are not in place as this was for proof of concept only)</p>
+</li>
+<li>Project IRS tax wizard created for customer - <a href="https://dl.dropboxusercontent.com/u/508866/webcode/wizard/index.html" target="_blank"><p>multi page JS form</a> that does calculations as you go- This is the "test" version that does not submit but shows debug information.</p>
+</li>
+<li><a href="https://dl.dropboxusercontent.com/u/508866/webcode/ekhslide/index.html" target="_blank">Slide format website concept - WIP</a></li>
+</ul>
+</div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Page Start xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+
+<div id="two_column_page">
+	<h2>Lots Of Merchandise</h2>
+<h3>Ridiculus Magna Etiam Dignissim Et Arcu Cras</h3>
+
+<div class="col1-2">
+
+<p>Fermentum lectus donec fusce cubilia sagittis dolor morbi <em>vivamus</em> libero tincidunt scelerisque ipsum <em>faucibus</em> nullam ligula conubia sagittis. Est. Platea velit cum, magna mauris vitae. Suspendisse gravida libero. Scelerisque phasellus montes laoreet eget.</p>
+
+<p>Ac purus donec congue blandit enim primis feugiat ultricies arcu Fermentum habitasse lectus dignissim, netus aliquet feugiat diam <em>nonummy</em> malesuada quam.</p>
+
+<p><img class="image" src="images/image6.jpg">Ac purus donec congue blandit enim primis feugiat ultricies arcu Fermentum habitasse lectus dignissim, netus aliquet feugiat diam <em>nonummy</em> malesuada quam. Ac purus donec congue blandit enim primis feugiat ultricies arcu Fermentum habitasse lectus dignissim, netus aliquet feugiat diam <em>nonummy</em> malesuada quam.</p>
+
+</div>
+
+	<div class="col1-2">
+
+	<p><img class="image" src="images/image2.jpg">Consequat class iaculis laoreet, massa. Fusce ante lorem mauris commodo porta sit nam suspendisse malesuada viverra enim ultricies. Primis id vulputate cursus curae;.</p>
+
+	<p>Ultricies litora dui curae; habitasse quam vulputate fames, faucibus blandit nostra scelerisque montes lorem donec. Tincidunt. Nibh, platea. Conubia, consequat sem integer conubia. Ultricies litora dui curae; habitasse quam vulputate fames, faucibus blandit nostra scelerisque montes lorem donec. Tincidunt. Nibh, platea. Conubia, consequat sem integer conubia.</p>
+
+	</div>
+
+</div>
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Content End xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+</span>

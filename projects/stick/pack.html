@@ -1,0 +1,118 @@
+<!doctype html>
+
+
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<title>Sticky Quotes</title>
+
+		
+		<link rel="stylesheet" href="stylepack.css"/>
+
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-ui.min.js"></script>
+		<script type="text/javascript" src="quotelist.js"></script>
+		<script type="text/javascript" src="packery.js"></script>
+		<script type="text/javascript" src="draggabilly.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+		
+	<script>
+	
+
+
+
+
+
+
+var randomquotes = quotes.sort(function() {return 0.5 - Math.random()});
+var howmany=randomquotes.length;	
+
+	$(document).ready(function() 
+	
+	{
+
+		var back = ["#ffff99","#ffffee","#ffffdd","#eeeeff","#ffee99","#eeffee","#ffffff"]; // colors for notes
+		for (i=0;i<howmany;i++) 
+		{
+			var w = 4 * (parseInt(Math.random() * 50) + 30),
+				h = 4 * (parseInt(Math.random() * 80) + 30),
+				sa = Math.random() * 1.2 +.65,
+				sb = sa * .80;
+			var rand = back[Math.floor(Math.random() * back.length)]; // choose random background color
+			var thumb = Math.floor(Math.random() * 6) + 1 // chosoe random thumb image (only 3 so far)
+			var parts = randomquotes[i].split("|");
+			var second = parts[1].split("-");
+			var thumbtransform = Math.floor(Math.random()*20) - 10;
+			
+			$('<div class="content" style=";background-color:'+rand+';"><p><span style=\'font-weight:bold;font-size:'+sa+'em;\'>'+parts[0]+'</span><span style=\'font-size:'+sb+'em;\'>'+second[0]+'</span> - <span class=\'author\' style=\'font-size:'+sb+'em;\'>'+second[1]+'</span></p><div class=\"thumb\" style=\"background:url(\'thumb'+thumb+'.png\') top right no-repeat;transform: rotate('+thumbtransform+'deg);-webkit-transform: rotate('+thumbtransform+'deg);-moz-transform: rotate('+thumbtransform+'deg);\"></div></div>').width(w).appendTo('.demoa');
+		}
+		
+
+
+
+
+var $container = $('#demo');
+// init
+$container.packery({
+  itemSelector: '.content',
+  gutter: 10,
+  transitionDuration:"1.0s"
+
+});
+
+
+$container.find('.content').each( function( i, itemElem ) {
+  // make element draggable with Draggabilly
+  var draggie = new Draggabilly( itemElem );
+  // bind Draggabilly events to Packery
+  $container.packery( 'bindDraggabillyEvents', draggie );
+});
+
+
+		
+/*
+	  setTimeout(function() {
+         $('.demoa').freetile({
+		animate: true,
+		elementDelay: 200,
+        });
+    }, 500);	
+	
+
+
+
+*/
+$('.content').hover(function () {
+
+
+  
+   $(this).toggleClass('scaleup');
+   
+
+});	
+	
+	
+	
+	
+	});
+	       
+</script>		
+
+	</head>
+
+	<body lang="en">
+
+		<div id="demo">
+
+			<h4>Things To Do Today</h4>
+			<div class="demoa"></div>
+
+		</div>
+
+	</body>
+
+</html>

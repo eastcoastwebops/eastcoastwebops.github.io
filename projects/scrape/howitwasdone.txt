@@ -1,0 +1,88 @@
+"The Challenege" 
+
+The Client is company that sells products online and they have numberous competitors. Initially they wanted to look at two main competitors and keep track of prices compared to their own for about 200 particular key products.
+
+First step was to decide what language to write this in: PHP, Node, or Python.  Of the 3, I was only familiar with PHP but I decided to try my hand at Node.js, something I had little experience with (except that I know Javascript very well) but figured this would give me a crash course introduction. Python seemed to me to be not as mainsteam, and that was part of my thinking too. In anycase, I had no idea how this really would work but I decided to start.
+
+I installed Node, and dabbled around for about 30 minutes to make sure it was all working and example scripts could run. 
+My first challenge or goal was write something super simple that could goto a url, grab a price and then do something.  
+
+But I didn't know anything about Node or how to write code for it or anything or would it even be suitable. My head told me to use PHP since I was more familiar with the basic server setup, coding, and whatnot, but I pushed on with Node for a few hours. The problem with PHP was that getting DOM related entities would be much much harder whereas from what I could tell with Node is that basically it was Javascript and JS is super easy to manipulate and deal with web related content. So I stuck with Node. 
+
+The first part was simply to just understand how to use Node to "go out" to a website, grab data from some defined part of a page on a website, and return the value. I managed to do this within about another 30 minutes after the initial setup, and I was soon able to accomplish this trial task of simply getting the price from a product based on a link to the url. 
+
+"The Concepts Are In Place"
+
+Since most ecommerce websites layout their product pages the same across their entire site (meaning underlying CSS classes and HTML doesn't vary or at least key elements are always present), it was pretty easy to then determine how X website placed their pricing HTML code, inside what kind of span and class and so one. So for example on WebsiteA, all the prices where located within a target of span[class^='price-val'] and all the titles and other data about the product followed similar structure (although for my project I simply wanted price and title).
+
+The next step of my testing was to setup a loop, provide a few hard coded URLS of some products on this remote competitor website, and see if I could grab all the prices and titles, based on known elements on their product pages, and write the grabbed date out to a file. A quick bit of research showed me how to open and define a file, write data or append to it, and then close it.
+
+Great! Within about 3 hours of starting Node, I had all the pieces or concepts I thought I needed to get step one of my project done: I could provide a url, provide the script with where the price might be on that url for that domain, grab the price, and return the values. It was beginning to come together. 
+ 
+Next thing was that I knew I would want a separate file that contained all the URLS to products to be looked up. Anyone could edit this. This would contain the Product Name (whatever named we wanted to call it internally), our cost, and then the urls of our product, competitor #1 and competitor #2 and so on.
+
+Format looked like this:
+
+#PPmmm00
+$248
+http://www.websiteone/product/45
+http://www.ourwebsite/proudcu/34234
+http://www.websitetwo/peroduc/34545345
+
+#next product
+$300
+http://www.ourwebsite/proudcu/34234
+http://www.websiteone/product/45
+http://www.websitetwo/peroduc/34545345
+
+
+The order of the URLs is unimportant as the code would parse the domain name and based on the domain, would determine which DOM element to find the price.
+
+So the next part (but really the first) part of my Node script would be to read in this file "url.txt" file, line by line and separate out each line and figure out what to do with it.
+
+It would gather the product name, our cost, then based on the domain name, run through logic to know how to use the full url to get the price and title off the URL provided. It would then  gather the price, and title, and url and write this line out to a CSV file. One line for each URL entry
+
+So in the above example I would end up with 6 lines of data that could be viewed in excel.
+
+"Hitting A Wall"
+
+I was thinking of leaving my project there because in a sense, it did the entire job. You just execute the price grab script, wait a second or two to gather the data, and one could import in to a CSV file and basically just deal with it. I was done, right?  I knew if I went further this would get harder and harder and it was at this point I wrote somewhere that I had hit a wall. I just didn't know where to go. Perhaps deep down I guess I wanted a better visual view of all the final data. The biggest issue is that I didn't like with the excel/csv view of the data was that there were 3 rows of data for any given product or a Row for each product on each website. 
+
+"Inspiration"
+
+I put the project away for about 2 weeks although occasionly I'd tweak a few bits of code. My project consisted of an input file (the urls), the script to read the urls, gather the data, and write out to a CSV file. The CSV was bugging me because having this open in Excel, if new data was written, causes issues since the file was locked.
+
+I decided I wanted an HTML view of all this, which would also be easier to present to viewers and so forth, and I so I began to write a simple html and javscript file to read in the CSV data and display in a table, nice stylnig and all. 
+
+The problem is, it was STILL the same 3 lines per each product and I knoew what I really needed was 1 row for each product, with columns with all the data such as:
+Product Name, Cost, Our Price, Competitor Price #1, Competitor Price #2, and so on. Next Row/Product.
+
+This meant obviously determining which entries or rows of data were the same product, and group these together. This sounds simple except, I had no idea how to do this. Do I do this in the Node script or on the display side when it read in the CSV data?
+
+I decide to leave the Node.js, gathering/writing script alone since that was basically doing everything correctly. I mean, it had to create an entry for each bit of data/url it gathered, so it made sense the way I had it. I focused on the display script instead and in theory it seemed like it should or would be easy to sort the data by product, then read in each row and... well I don't know... do SOMEthing. 
+
+I tried dozens of methods that all basically failed and essential which involved first sorting the rows, reading in each line and if the product before matched the current, then count as the same product... or try the other way, if the product ahead matched the current and then... well... It's not working.
+
+Suffice to say these all failed miserably and I knew deep down what I needed was a way to read in each line into an array of some sort, with the key being the product name and so on. I spent a few days trying to read up on how best to do this, find some examples that matched what I had in mind. What I ended up with for the core functionality was to 
+
+1) create an empty array,
+2) read in X line of the CSV file, call it item[x]
+3) grab the product name.
+4) Check if item[x].product exists. 
+4) If not, add item[x].product:it's name. item[x].cost:it's cost, item[x].competitorname:price
+5) read next line and repeat. 
+
+Eventually I'll end up with a multidimensional array holding all the products, but only 1 of each product and inside each product will be data for cost, competitor 1, competitor 2, and so on. 
+
+Based on this new array, I then iterate through and build a table and set of rows and columns and do some final calculations that determine who has the lowest and highest price, the difference in price, etc.
+
+The result is the web page you see in my screenshot below. Updated each time the underlying node script is executed. Adding new products to watch is as simple as entering a new name, add the cost (or zero if unknown), and the URL to locate this product online.
+
+Adding a new competitor column/price is as easy as going to their website, make note of the selectors where the price can be found on a given product page, and add it into the switch domain logic I wrote. 
+
+The last updates I made were to make this a windows shortcut that runs the Node.js script, runs a node http local server, opens a browsers to the page, and displays the resulting data as I'm anticipating most people won't want to run a CMD window and start tying in commands. 
+
+
+
+
+

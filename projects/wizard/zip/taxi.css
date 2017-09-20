@@ -1,0 +1,122 @@
+body{width:320px;
+font-family:arial;
+font-size:12px;
+background-color:#000000;
+color:#555555;
+border:solid 0px;
+padding:0px;
+margin:0px;
+}
+
+
+.total{border:none;
+margin-left:10px;
+font-weight:bold;
+color:#ff9900;
+background-color:#ffffff;
+border-bottom:solid 1px;
+text-align:right;
+padding:0px;
+padding-right:5px;
+float:right;
+}
+
+#taxform .realtotal{color:#990000;}
+
+.questionbox{border:solid 5px #2288dd;
+padding:10px;
+background-color:#ffffff;
+margin-left:auto;
+margin-right:auto;
+}
+
+.question{
+font-weight:bold;
+color:#336699;
+border-bottom:solid 1px #cccccc;
+font-family:trebuchet ms;}
+
+.subquestion{
+padding:0px;
+padding:10px;
+padding-top:0px;
+margin-left:20px;
+border-left:solid 0px #dddddd;
+margin-bottom:10px;}
+
+
+
+input{font-size:12px;}
+
+.callus{color:#ff0000;
+font-weight:bold;
+margin-bottom:10px;}
+
+.choices{font-weight:bold;}
+
+.qnumber{background-color:#999999;
+color:#ffffff;
+padding:4px;
+float:left;
+margin-right:10px;
+
+border:solid 1px #000000;
+margin-bottom:0px;}
+
+.datedrop{font-size:12px;width:65px;
+background-color:#eeeeee;
+border:solid 1px #dddddd;
+color:#666666;
+padding:0px;
+margin-right:10px;}
+
+.navbox{border:solid 0px #000000;
+font-weight:bold;
+text-align:center;
+padding:2px;
+margin-top:10px;}
+
+.navbox a{color:#ffffff;
+background-color:#3399dd;
+border:solid 2px #999999;
+padding:3px;
+padding-left:10px;
+padding-right:10px;
+text-decoration:none;
+}
+
+.navbox a:hover{background-color:#ff9900;
+color:#ffffdd;}
+
+.progressbar{border:solid 1px #dddddd;text-align:right;
+font-size:10px;font-weight:bold;height:15px;}
+
+.percent{background-color:#009900;height:15px;
+float:left;}
+
+#status{font-weight:bold;
+margin-left:25px;color:#4499ff;}
+
+.item{width:145px;float:left;
+font-weight:bold;border-bottom:solid 1px #dddddd;}
+.answers{clear:right;}
+
+.textbox{width:290px;height:150px;
+border:solid 2px #dddddd;background-color:#eeeeee;}
+
+#showsummary{height:200px;
+border:dotted 1px;margin-top:20px;
+padding:20px;}
+
+#taxform a.go{background-color:#006600;color:#ffff00;}
+#taxform a.go:hover{background-color:#ff6600;color:#ffff00;}
+#taxform a.review{background-color:#990000;}
+
+.smallfont{font-size:9px;}
+#styleswitch {color:#ffffff;font-size:9px;
+margin-left:40px;}
+
+#styleswitch {color:#ffffff;font-size:9px;
+margin-left:40px;}
+.iphonecss{display:none;}
+#zip{width:20px;}

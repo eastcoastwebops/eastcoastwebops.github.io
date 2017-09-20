@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Learn More</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<link href="css/ui-lightness/jquery-ui-1.10.4.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="sandbox.css">
+	
+<script>
+
+</script>	
+	
+	
+<script>
+
+
+
+window.title=[
+"How It Works",
+"Deals Near You",
+"Gift Card Deals",
+"Merchandise Deals",
+"Travel Deals",
+"Package Deals n Stuff",
+"Cowfarms And Beef",
+"The Last Chapter"
+];
+
+window.menusize=title.length;
+window.cssmenu=Math.floor(100/menusize);
+//alert(cssmenu);
+	window.cssstring="<style type=\"text/css\">";
+	window.cssstring+='#menu li {width:'+cssmenu+'%;}\n';
+	window.cssstring+="</style>";
+
+
+
+window.themenu ="";// define here to keep from undefined;
+var thelink="";
+		$.each(title ,function(i)  { 
+
+				thelink = title[i].replace(/ /g,"_").toLowerCase();
+				window.themenu +='<li class=\"'+thelink+'\"><a href="'+thelink+'\">'+ title[i] + '</a></li>';
+				
+			
+		});
+//alert(themenu);
+
+
+$(document).ready(function(){
+	$('#themenu').replaceWith(themenu);	
+	$('.cssstyle').replaceWith(cssstring);
+
+$(function() {
+	$( "#slider" ).slider({
+			//range: true,
+			min:500,
+			max:1200,
+		values: [ 850 ],
+		 slide: function( event, ui ) {
+		$( "#amount" ).val('pixels wide: '+ ui.values[ 0 ]  );
+		$newwidth = $( "#slider" ).slider( "values", 0 ) ;
+		$( "#container" ).css("width", $newwidth+"px"  );
+		//console.log($newwidth);
+		}
+	});
+
+ $( "#amount" ).val( 'pixels wide: '+ $( "#slider" ).slider( "values", 0 )  );
+
+
+ 
+});
+
+	//$( ".menuitem" ).eq( 5 ).addClass('red');
+	$('#content' ).load('how_it_works.html' );
+	$('li.how_it_works').addClass('menuon'); // activate first menu item (from above)
+	$page = (title[0]);	// get first page title (from menu above)
+	$('h1').text($page);	// write out initial title
+	
+		$('#menu li').click(function (e) {
+		e.preventDefault();
+		var $which = $(this).attr('class').split(' ')[0];
+		
+	
+
+	
+		$("#content").slideUp(600,'swing',function(){
+		$("#content").load( $which+'.html').delay(300);
+		$("#content").slideDown(700,'swing'); 
+	
+		
+		
+		});
+		
+		
+		
+		history.pushState({}, '', $which+'.html');
+		
+		$(this).addClass('menuon');
+		$(this).siblings().removeClass('menuon');
+		
+		
+		$page = $(this).text();	
+		//alert ($page);
+		$('h1').text($page);	
+		
+		}); 
+
+		
+		
+		
+	
+});
+		
+
+		
+		
+		
+		
+		
+</script>	
+	
+</head>
+<body>
+	<span class="cssstyle"> </span>
+	<div id="controls">
+	<input type="text" id="amount">
+	<div id="slider"></div>
+	<br style="clear:both;"/>
+	</div>
+  	<div id="container">
+		<div id="header">
+
+
+				<ul id="menu">
+					<div id="themenu"></div>
+				</ul>
+
+		</div>
+	  <div id="title"><h1></h1></div>
+		<div id="main">
+			
+			<div id="content"></div>
+		</div>
+		
+		
+		<div id="footer"></div>
+	</div>
+
+
+	
+	
+	
+  </body>
+</html>

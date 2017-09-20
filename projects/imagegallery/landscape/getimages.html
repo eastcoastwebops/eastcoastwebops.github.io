@@ -1,0 +1,31 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<script>
+
+
+var dir = "https://dl.dropboxusercontent.com/u/508866/webcode/landscape";
+    var fileextension=".jpg";
+      $.ajax({
+         //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+            url: dir,
+            success: function (data) {
+                //Lsit all png file names in the page
+                $(data).find("a:contains(" + fileextension + ")").each(function () {
+                    var filename = this.href.replace(window.location.host, "").replace("http:///","");               
+                    $("body").append($("<img src=" + Dir + filename + "></img>"));
+                });
+            }
+        });
+
+
+
+</script>
+
+</head>
+<body>This is the page
+</body>
+
+</html>

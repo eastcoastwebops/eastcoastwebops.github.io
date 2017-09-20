@@ -1,0 +1,197 @@
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
+
+body{}
+
+	@page {
+	margin: 0.5cm;
+	}
+	
+
+		@media screen, print{
+	
+	body {line-height: 1.1;border:solid 0px #00ff00;
+	font-size:10pt;font-family: 'PT Sans', sans-serif;}
+	
+#main{border:solid 0px;margin:auto;width:750px;}
+
+#top{border:solid 0px;}
+
+#logo{width:200px;float:left;}
+#logo img{width:100%;}
+
+#top_left{width:250px;float:left;
+border:solid 0px;margin-left:25px;
+margin-top:30px;color:#848484;
+font-size:15px;}
+
+#top_left h1, 
+#top_left h2{font-size:15px;color:#333333;
+margin:0px;}
+
+#top_left h2{color:#848484;font-weight:normal;
+margin-bottom:40px;}
+
+#cust_info{}
+#cust_info span,
+#info span{color:#2b2b2b;font-weight:bold;}
+
+
+#top_right{width:230px;float:right;
+border:solid 0px;margin-left:20px;
+margin-top:25px;color:#848484;
+font-size:15px;
+border:solid 2px #eeeeee;
+padding:10px;
+height:144px;}
+
+#info span{float:right;}
+.balance_date{margin-bottom:20px;}
+.body_points{border-bottom:dashed 1px;
+margin-bottom:15px;padding-bottom:10px;}
+
+.total_points{color:#2b2b2b;}
+
+.total_wrapper{margin-left:10px;
+	border:solid 1px #dddddd;
+font-size:20px;float:right;position:relative;
+width:80px;height:30px;top:-6px;
+color:#2b2b2b;font-weight:normal;}
+	
+
+.total_total{position:absolute;top:2px;right:6px;}
+	
+/***************** MIDDLE SECTION */
+	
+#mid{border:solid 0px;
+width:95%;
+margin:auto;
+margin-top:45px;}
+
+
+#intro{font-size:16.5px;color:#848484;
+width:595px;margin:auto;
+margin-bottom:35px;margin-left:95px;}
+
+#intro .fname,
+#intro .rewards_site{color:#2b2b2b;font-weight:bold;}
+
+	
+	.mid_entry{border:solid 0px #ff00ff;}
+	
+	
+	.mid_left {float:left;padding-right:20px;}
+	.mid_right {}
+	
+	.mid_left img{width:75px;background-color:#999999;}
+	.mid_right{}
+	
+	.topline{border:solid 0px #ff0000;
+	margin-top:10px;
+	height:20px;}
+	
+	.topline_left{font-weight:bold;
+	float:left;}
+	
+	.topline_left .title{
+background-color:#ffffff;
+	padding-right:10px;
+font-size:20.5px;color:#2b2b2b;
+font-weight:normal;}
+	
+	.topline_left:before {
+	z-index:-1;
+	position:absolute;
+	font-weight:normal;
+color:#cccccc;
+font-size:9px;margin-top:8px;
+	content: "______________________________________________________________________________________________________________________________________________" }
+
+	
+	
+	.topline_right{float:right;padding-left:10px;
+	background-color:#ffffff;
+	
+	font-size:15px;position:relative;top:3px;
+color:#2b2b2b;width:190px;
+	}
+	
+	.points_earned{margin-left:10px;
+	border:solid 1px #dddddd;
+font-size:20px;float:right;position:relative;
+width:80px;height:30px;top:-6px;font-weight:normal;
+color:#2b2b2b;}
+
+
+
+
+
+.points{position:absolute;top:2px;right:6px;}
+
+
+	
+.description{margin-top:20px;font-size:14px;color:#777777;
+}
+
+/***************** BOTTOM SECTION */
+
+#bot{border-top:solid 1px #dddddd;}
+
+.bot_entry{
+border:solid 0px;
+font-size:15px;color:#777777;
+margin-top:30px;
+}
+
+.bot_left{width:200px;float:left;
+border:solid 0px;
+border-right:dashed 1px;padding-right:20px;
+text-align:center;padding-top:20px;}
+
+
+.bot_right{margin-left:20px;
+border:solid 0px;
+width:500px;float:left;}
+
+.bot_right_left{width:340px;float:left;}
+.bot_title{background-color:#ffffff;
+	padding-right:10px;font-size:20.5px;color:#2b2b2b;}
+
+.bot_right_right{float:right;color:#2b2b2b;font-weight:bold;
+margin-top:3px;margin-right:10px;}
+
+.bot_points_earned{
+border:solid 1px #dddddd;
+font-size:20px;float:right;position:relative;
+width:45px;height:30px;top:4px;font-weight:normal;
+color:#2b2b2b;right:30px;}
+
+.bot_points{position:absolute;top:2px;right:18px;}
+
+#footer{margin-top:60px;font-size:10.5px;margin:auto;text-align:center;
+color:#8b8b8b;}
+	
+	} 
+
+	
+	
+	/* this allows grey printing for select items. Not perfect but it works 99% of time */
+@media print{
+
+#top_left h2,
+#intro,
+label,
+.description,
+.bot_desc,
+#footer{opacity: 0.6;}
+}
+
+
+@media print and (-webkit-min-device-pixel-ratio:0)
+{
+	#top_left h2,
+	label,
+	.description,
+	.bot_desc,
+	#footer{opacity: 1.0;}
+}

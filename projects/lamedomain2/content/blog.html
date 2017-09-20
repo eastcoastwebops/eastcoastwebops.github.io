@@ -1,0 +1,42 @@
+﻿<h2>From ekholbrook.blogspot.com</h2>
+<p>This page uses JS to pull in my RSS feed from blogger.com (<a href="http://ekholbrook.blogspot.com" target="_blank">ekholbrook.blogspot.com</a>). Clicking on an article to read it, let's you also read IN this site. Still working on better ajax functionality for this part however as currently it loads new physical page. Not bad, but not as slick</p>
+
+<div id="rss"></div>
+
+
+ 
+
+<script type="text/javascript">
+	var bl=0; // reset blog article counter to 0
+	
+	
+	function makeid()
+	{
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		
+		for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+		
+		return text;
+	}	
+	
+	var cha=makeid();
+	
+	
+	
+    $(document).ready(function () {
+
+alert ('hi');
+        $('#rss').FeedEk({
+            FeedUrl: "https://ekholbrook.blogspot.com/feeds/posts/default?alt=rss&check="+cha,
+            MaxCount: 50,
+            ShowDesc: true,
+            ShowPubDate: true,
+			DateFormat: 'MM-DD-YYYY HH:mm',
+            DescCharacterLimit: 180
+        });
+
+    });
+
+</script>

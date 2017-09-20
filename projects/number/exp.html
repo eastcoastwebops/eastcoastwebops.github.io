@@ -1,0 +1,60 @@
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+<script>
+
+/* Method for adding commas in decimal number */
+function addCommaInDecimal(decNumber) {
+    var components = decNumber.toString().split(".");
+    if (components.length === 1)
+        components[0] = decNumber;
+    components[0] = components[0].replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (components.length === 2)
+        components[1] = components[1].replace(/\D/g, "");
+    return components.join(".");
+}
+
+
+$( function() {
+    $('.twodigits').keyup(function(){
+        if($(this).val().indexOf('.')!=-1){         
+            if($(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+});
+
+
+
+
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+var writenice = 0;
+
+	$("#enternumber").keyup(function() {
+	
+	writenice = parseFloat(  $("#enternumber").val() );
+	//writenice = (  $("#enternumber").val() );
+	writenice = writenice.toFixed(2);
+	$('#number').html("$" + addCommaInDecimal( writenice   ));
+
+	});
+
+});
+
+</script>
+
+
+<html>
+<input type="text" id="enternumber" class="twodigits">
+<div id="number"></div>
+
+</html>

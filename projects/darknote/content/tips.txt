@@ -1,0 +1,3 @@
+Tip 1 | is always wrong - unknown#
+tip 2 | there's no way to understand - unknown#
+Define Author Color | add new variable line - me

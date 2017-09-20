@@ -1,0 +1,12 @@
+*.bak
+*.classpath
+*.class
+*.MF
+*.properties
+*.prefs
+*.tern-project
+*.container
+*.name
+*.component
+*.jsdtscope
+*law2test
