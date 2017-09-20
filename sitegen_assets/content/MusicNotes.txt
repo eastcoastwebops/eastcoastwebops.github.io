@@ -1,0 +1,91 @@
+﻿++ Music Notes
+[:rel: back]
+
+
++Graphics:
+
+Fascination with distance, mountains, landscape. A sense of being a rather small creature in a much larger world. Some of which I've seen, most of which I could only dream, imagine, or ... create. 
+
+Computer graphics, especially 3D, pulled me in very early. 
+
+It was the dynamic, or lossless aspect I found appealing. Instead of "Drawing" a scene or object, I could "Build" a scene or object... and walk around it.
+
+Drawing or painting a 2D image to me felt very final. 
+When you were done, that was it, you hung it on the wall.
+
+3D graphics was a way to build and create these landscape "scenes", stage sets, but without them being static: I could adjust the sunlight, make the mountains taller, plant trees, move around them, put characters in them and when I had that perfect angle or shot, render the image. (and touch it up in photoshop)
+
+Then do it again.
+
+
+1) symbolic use of Roads and mountains to provide sense of distance, somewhere to travel. 
+
+"I am here. I want to go there."
+"There" being the future, or simply further ahead. 
+"What is over there?"
+
+2) Mountains and landscape provide a sense of scale. There's really nothing quite like spending several hours climbing up a 4,000 or 5,000 foot mountain, watching how the vegetation changes and finally disappears and turns into rocky outcroppings, the wind whistling around your head. You turn around and look down and out across the vast world below you. You simply never forget it. 
+
+I try to capture that to some degree.
+
+A story. In the back of my mind as I'm building a scene, there's a little story going in my head. I'm not so much trying to create a pretty picture to look at, but an interesting story to look at.
+
++Music:
+Started playing and writing very simple songs. I am not a musician. I cannot really sing very well. I do play guitar and keyboards and (try) to sing. But only out of necessity.
+
+What does that mean?
+
+My thinking is, if I don't do it, if I don't create it, play it, who will? Am I going to ask the neighbor or some person in a band downtown, "hey, I have this idea, can you do it for me?"
+
+Of course not. 
+
+So... If I want the "Story" told, the one I'm thinking of, >I< have to do it, as best I can. 
+
+
+A phrase will suddenly come to mind, I'll toss it around or write it down. Usually just one or two sentences.
+
+I'll pick up my guitar or keyboard (now the ipad usually) and plunk out the first basic track, the underlying concept. Usually no more than 4 or 5 chords. 
+
+I'll then drop into the editor. And add another track. Drums or bass. Or guitar. Whatever seems to strike me at the moment. I might take a break from it for several months. I have a backlog of both lyrics and songs, but none go together quite right for the other. Yet. 
+
+For a given song, 
+Eventually I'll get all the "pieces" I think I need or want and then start moving them around, figure out which instrument, track should come in first, then the next and so on.
+
+The video is basically a recent song I put together with this phrase I was tossing around in my mind. 
+
+I don't know what im looking for
+I search every night and each day
+I cant see what may be in front of me
+Only what has had passed away.
+
+
+Tossed this around for a few months, the idea came to me beef up the front and back, needed a story. 
+
+Enter John and Mary.
+John was basically stuck in life, felt like there was "something" out there he needed to see or find.
+
+Mary was like, "ok, whatever. See ya."
+
+John leaves. Goes traveling the world, he starts to write Mary every night about his travels but never actually sends his letters and throws them away.
+
+Time goes on and both begin to realize that what they were searching for had always been there right in front of them. But it wasn't until they were apart, going in different directions, that they realized what it was.
+
+So the video you are seeing is a couple of things going on
+
+1) The actual pieces of the music as I put it together in the actual editor I use. The State of the song as seen in this video took probably about 2 months to get to this final state. playing it over and over and adjusting effects sliding tracks in or out, cutting things up.
+
+2) I debated using this song at all, partly because it's not one of my better ones (musically or vocally) and partly because my singing is pretty awful although it does get better as the song goes along. I had a cold, I was singing/recording into my android phone. And I just hadn't actually sung a new song in about a year.
+
+But I do like the actual words and imagery the song brings to mind. 
+
+3)Watching the audio tracks obviously gets rather boring so I dropped in (very quickly) some of the 3D images I've rendered over the past couple years.
+
+4) But that too can get tedious to watch so to lighten up the whole thing I also quickly mixed in an animation I had created for another project using some demo software (muvizu - thus the watermark). I'm not a big animation person because of the time involved (I prefer the music and 3D non-animation graphics as a pastime). But a friend of mine argued that (another) song I did would be great on YouTube... but it needed video. So I spent a few sycing all the movement tracks of the chacters with this software.
+
+It let me control each character, their movements, walk. So everything in this animation is basically me controlling their actions, eye movements. This took about 2 weeks. Note that this animation was NOT created with this song in mind and was "played" to another song I wrote, thus the movements are not totally in sync for this particular piece. 
+
+But I liked how it fit anyway.
+
+
+See Also:
+[:rel: parents; aslist]
