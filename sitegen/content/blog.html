@@ -345,7 +345,7 @@
 	
         $("#rss-feeds").rss("https://ekholbrook.blogspot.com/feeds/posts/default?alt=rss", {
           effect: 'slideSynced',
-            entryTemplate: '<h3><a href="index.html?page=blogarticle&article={index}">{title}</a></h3><div>{date} <br/>{shortBody}...</div>',
+            entryTemplate: '<div class="blogentry row"><h3><a href="index.html?page=blogarticle&article={index}">{title}</a></h3><div class="blogdate">{date}</div><div class="teaserimage col-xs-3">{teaserImage}</div><div class="snippet col-xs-9">{shortBody}...</div><div>',
 					dateFormat: 'dddd MMMM Do, YYYY',
         }),
 				$('#rss-feeds h3').each(function() {
@@ -360,5 +360,8 @@
     </script>
 		
 
-<h1>The Defined Variable</h1>
+<!--<h1>Articles From "It's Not Rocket Science"</h1>-->
+
+<h1>Title Of The Entries</h1>
+<h3 style="text-align:center;">ekholbrook.blogspot.com</h3>
       <div id="rss-feeds" class="container"></div>
