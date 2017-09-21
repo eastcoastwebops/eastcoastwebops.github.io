@@ -87,11 +87,9 @@ $(document).ready(function() {
 			//		 var replaced = $("#content").html().replace(new RegExp("../site-images", "igm"),'sitegen_assets/site-images');
 //$("#content").html(replaced);
 
-$('.full-bg-image').each(function() {
+$('.full-bg-image.fix').each(function() {
 	
 	var bg_img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1').split('/').pop();
-	console.log(bg_img);
-	
 $(this).css('background-image','url("sitegen_assets/site-images/'+bg_img+'")' );
 
 	
