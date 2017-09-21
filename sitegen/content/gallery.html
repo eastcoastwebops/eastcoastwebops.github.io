@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="sitegen_assets/css/gallery.css"/>
-<script src="sitegen_assets/src/imagelightbox.js"></script>
+<link rel="stylesheet" href="sitegen/css/gallery.css"/>
+<script src="sitegen/src/imagelightbox.js"></script>
 <script>
 
 $(document).ready(function() {
     html = '<ul class="image-gallery">';
     var data = $.ajax({
-        url: 'sitegen_assets/gallery/'+whichimages + '.txt',
+        url: 'sitegen/gallery/'+whichimages + '.txt',
         async: false
     }).responseText;
     var imagelist = data.split(","); //content
@@ -13,8 +13,8 @@ $(document).ready(function() {
     for (i = 0; i < howmany; i++) {
         html += "<li>";
         name = $.trim(imagelist[i]);
-        html += '<a href=\"sitegen_assets/gallery/' + whichimages + '/full/' + name +'" data-imagelightbox="c" caption="test">';
-				html+='<img src="sitegen_assets/gallery/' + whichimages + '/thumb/' + name + '" alt="test"></a>';
+        html += '<a href=\"sitegen/gallery/' + whichimages + '/full/' + name +'" data-imagelightbox="c" caption="test">';
+				html+='<img src="sitegen/gallery/' + whichimages + '/thumb/' + name + '" alt="test"></a>';
         html += '</li>';
     }
     html += '</ul>';
@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 
 </script>
-<script src="sitegen_assets/src/gallerylayout.js"></script>
+<script src="sitegen/src/gallerylayout.js"></script>
 
 
 

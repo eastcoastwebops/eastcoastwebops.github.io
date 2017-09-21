@@ -32,7 +32,7 @@ loc = window.location.pathname;
 dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
 var data = "";
 data = $.ajax({
-   url: dir + "sitegen_assets/content/menu.txt",
+   url: dir + "sitegen/content/menu.txt",
    async: false,
    contentType: "text",
    dataType: 'html'
@@ -80,22 +80,17 @@ $(document).ready(function() {
 	 
    function loadPage(whichpage) {
       $("body").hide(0, function() {
-         var content = 'sitegen_assets/content/' + whichpage + '.html';
+         var content = 'sitegen/content/' + whichpage + '.html';
 				 $("#content").load(content, function() {
 					 
-//replace all image urls so that one can edit content html alone, but then this fixes all urls.					 
-			//		 var replaced = $("#content").html().replace(new RegExp("../site-images", "igm"),'sitegen_assets/site-images');
-//$("#content").html(replaced);
-
+/* doesn't work with ios safari so disable for now... 
 $('.full-bg-image.fix').each(function() {
-	
-	var bg_img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1').split('/').pop();
-$(this).css('background-image','url("sitegen_assets/site-images/'+bg_img+'")' );
-
+		var bg_img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1').split('/').pop();
+$(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
 	
 })
+*/
 
-				///	 $('../site-images').replaceWith('images');
 					 
             $('body').attr('id', whichpage);
             setTimeout(function() {
