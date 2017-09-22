@@ -144,11 +144,37 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
       if (wwidth <= 700) {
          $('#menu').slideUp();
       }
+			
+			
+/*
+
+function isTouchDevice(){
+    return typeof window.ontouchstart !== 'undefined';
+}
+
+jQuery(document).ready(function(){
+    /* If mobile browser, prevent click on parent nav item from redirecting to URL 
+    if(isTouchDevice()) {
+        // 1st click, add "clicked" class, preventing the location change. 2nd click will go through.
+        jQuery("#menu-main-menu > li > a").click(function(event) {
+            // Perform a reset - Remove the "clicked" class on all other menu items
+            jQuery("#menu-main-menu > li > a").not(this).removeClass("clicked");
+            jQuery(this).toggleClass("clicked");
+            if (jQuery(this).hasClass("clicked")) {
+                event.preventDefault();
+            }
+        });
+    }
+});
+
+*/			
+			
+			
       $("body").delay(300).fadeOut(600, 'swing').promise().done(function() {
        //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
 				 
 				 $('#menu').find('.menuon').removeClass('menuon');
-				  $('#menu').find('.subitem').css('display','none');
+			//	 $('#menu').find('.subitem').css('display','none');
          
 				 $(whichthis).parent().parent().closest('li').addClass('menuon');
          $(whichthis).parent().addClass('menuon');
