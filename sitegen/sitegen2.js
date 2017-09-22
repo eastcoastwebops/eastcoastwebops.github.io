@@ -133,7 +133,7 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
    $("body").on("click", "#menu li a, #footermenu li a, #content a.intlink", function(e) {
       var whichthis = $(this);
       var $which = $(whichthis).parent().attr('class').split(' ')[0];
-      special = false;
+      special = false; // if one of the gallery pages with parameters, force a reload
       if ($which.indexOf('&') >= 0) {
          special = true;
       }
@@ -145,8 +145,12 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
          $('#menu').slideUp();
       }
       $("body").delay(300).fadeOut(600, 'swing').promise().done(function() {
-         $(whichthis).closest('#menu').find('.menuon').removeClass('menuon');
-         $(whichthis).parent().parent().closest('li').addClass('menuon');
+       //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
+				 
+				 $('#menu').find('.menuon').removeClass('menuon');
+				  $('#menu').find('.subitem').css('display','none');
+         
+				 $(whichthis).parent().parent().closest('li').addClass('menuon');
          $(whichthis).parent().addClass('menuon');
          //			console.log($which);
          var $name = $(whichthis).text();
