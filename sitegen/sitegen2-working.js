@@ -5,7 +5,6 @@ SiteGen Version 2.0
 
 ******/
 webtitle = 'East Coast Web Operations';
-webtitle = 'ECWO';
 imagloc = '';
 version=14;//
 //document.addEventListener('contextmenu', event => event.preventDefault());
@@ -162,17 +161,7 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
 //}, false);
 
 
-   $("body").on("mouseover", "#menu ul li", function(e) {
-		// console.log(this);
-$(this).find('ul').fadeIn();
-	 });	
-
-   $("body").on("mouseleave", "#menu ul li", function(e) {
-		// console.log(this);
-$(this).find('ul').fadeOut();
-	 });	
-
-	 
+ 
    $("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
  
 		 
@@ -195,12 +184,14 @@ $(this).find('ul').fadeOut();
          $('#menu').slideUp();
       }
 
-		
+
+		$('body').bind('touchstart', function() {});
+			
       $("body").delay(300).fadeOut(600, 'swing').promise().done(function() {
        //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
 				 
 				 $('#menu').find('.menuon').removeClass('menuon');
-
+			  $('#menu').find('.needtap').find('.subitem').fadeOut();
          
 				 $(whichthis).parent().parent().closest('li').addClass('menuon');
          $(whichthis).parent().addClass('menuon');

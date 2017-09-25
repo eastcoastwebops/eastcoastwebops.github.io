@@ -162,10 +162,10 @@ box-shadow:0px -55px 50px #ffffff;}
 #menu li > ul > li.menuon a{background:#999999;color:#ffffff;}
 
 #menu:hover ul li.notap:hover ul{
-//display:block !important;}
+display:block !important;}
 
 #menu:hover ul li.needtap:hover ul{
-//display:block !important;}
+display:block !important;}
 
 /*
 #menu:hover ul li:hover ul li:hover ul{position:absolute;}
