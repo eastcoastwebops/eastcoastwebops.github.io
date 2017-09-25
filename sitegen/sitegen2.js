@@ -4,7 +4,7 @@ All code copyright 2017, EKHolbrook.
 SiteGen Version 2.0
 
 ******/
-webtitle = 'Think Vac Blog';
+webtitle = 'East Coast Web Operations';
 imagloc = '';
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
@@ -153,18 +153,15 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
 }, false);
 
 
-	 
-	 
+ 
    $("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
+ 
 		 
-		 
-		 window.addEventListener('touchstart', function() {
+ window.addEventListener('touchstart', function() {
   // the user touched the screen!
 	alert ('touched');
 });	
-		 
-		 
-		 
+ 
       var whichthis = $(this);
       var $which = $(whichthis).parent().attr('class').split(' ')[0];
       special = false; // if one of the gallery pages with parameters, force a reload
@@ -178,34 +175,9 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
       if (wwidth <= 700) {
          $('#menu').slideUp();
       }
-			
-			
 
-			
-			
+
 		
-			
-
-
-
-/*
-jQuery(document).ready(function(){
-    /* If mobile browser, prevent click on parent nav item from redirecting to URL 
-    if(isTouchDevice()) {
-        // 1st click, add "clicked" class, preventing the location change. 2nd click will go through.
-        jQuery("#menu-main-menu > li > a").click(function(event) {
-            // Perform a reset - Remove the "clicked" class on all other menu items
-            jQuery("#menu-main-menu > li > a").not(this).removeClass("clicked");
-            jQuery(this).toggleClass("clicked");
-            if (jQuery(this).hasClass("clicked")) {
-                event.preventDefault();
-            }
-        });
-    }
-});
-
-*/			
-			
 			
       $("body").delay(300).fadeOut(600, 'swing').promise().done(function() {
        //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
@@ -222,6 +194,11 @@ jQuery(document).ready(function(){
          loadPage($which);
       });
    });
+	 
+	 
+	 
+	 
+	 
    $('a[href="#top"], #menutrigger').click(function() {
       $(window).scrollTop(0);
    });
