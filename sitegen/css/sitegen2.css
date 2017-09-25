@@ -19,7 +19,7 @@ url('../fonts/raleway-regular.ttf') format('woff2');
 
 
 #dim{
-display:none;
+//display:none;
 position:fixed;top:50%;left:10px;
 z-index:10000;color:#ffff00;
 background:#000000;padding:3px;}
