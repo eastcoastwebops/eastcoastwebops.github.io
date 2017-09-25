@@ -4,7 +4,7 @@ All code copyright 2017, EKHolbrook.
 SiteGen Version 2.0
 
 ******/
-webtitle = 'East Coast Web Operations';
+webtitle = 'Think Vac Blog';
 imagloc = '';
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
@@ -55,8 +55,15 @@ for (i = 0; i < menusize;) {
    thelink = alllinks[0].replace(/ /g, "_").toLowerCase(); // needed to 	
    thelinkb = thelinkb.replace(/>|-|</g, "").toLowerCase();
    thetitle = alllinks[0].replace(/>|-|</g, "");
-   themenu += '<li class=\"' + thelinkb + '\"><a href="index.html?page=' + thelinkb + '\">' + thetitle + '</a>';
-   menucheck = alllinks[0] + alllinks[1];
+	 needtap=" notap"; 
+	 
+	 menucheck = alllinks[0] + alllinks[1];
+	    if (menucheck.indexOf(">") > -1) {
+   needtap=" needtap";
+   }
+	 
+   themenu += '<li class=\"' + thelinkb + needtap+ '\"><a href="index.html?page=' + thelinkb + '\">' + thetitle + '</a>';
+  
    if (menucheck.indexOf(">") > -1) {
       themenu += "<ul class='subitem'>";
    } else if (menucheck.indexOf("<") > -1) {
@@ -67,9 +74,15 @@ for (i = 0; i < menusize;) {
    i = i + 1;
 }
 themenu += '<li class="rightspacer">&nbsp;</li></ul>';
+
 $(document).ready(function() {
    $('#menu').html(themenu); // build menu
-   reducecount = $("ul.toplevel > li").length;
+
+
+
+   
+	 reducecount = $("ul.toplevel > li").length;
+	 
    cssmenu = Math.floor(100 / (reducecount /* width minus submenus */ ));
    cssstring = "<style type=\"text/css\">"; // now write out custom css
    cssstring += '#menu > ul > li {width:' + cssmenu + '%;}\n';
@@ -130,7 +143,28 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
 	 
 	 
    loadPage(whichpage);
-   $("body").on("click", "#menu li a, #footermenu li a, #content a.intlink", function(e) {
+	 
+	 
+	 window.addEventListener('mouseover', function onFirstHover() {
+  window.USER_CAN_HOVER = true;
+	
+	console.log('hover');
+  window.removeEventListener('mouseover', onFirstHover, false);
+}, false);
+
+
+	 
+	 
+   $("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
+		 
+		 
+		 window.addEventListener('touchstart', function() {
+  // the user touched the screen!
+	alert ('touched');
+});	
+		 
+		 
+		 
       var whichthis = $(this);
       var $which = $(whichthis).parent().attr('class').split(' ')[0];
       special = false; // if one of the gallery pages with parameters, force a reload
@@ -146,12 +180,15 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
       }
 			
 			
+
+			
+			
+		
+			
+
+
+
 /*
-
-function isTouchDevice(){
-    return typeof window.ontouchstart !== 'undefined';
-}
-
 jQuery(document).ready(function(){
     /* If mobile browser, prevent click on parent nav item from redirecting to URL 
     if(isTouchDevice()) {

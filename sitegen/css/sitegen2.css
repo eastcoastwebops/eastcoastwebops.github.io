@@ -140,12 +140,16 @@ vertical-align:middle;}
 #menu ul {padding:0px;margin:0px;}
 #menu li{list-style-type:none;text-align:center;padding:0px;margin:0px;}
 #menu li a{display:block;padding:3px;color:#000000;}
+
 #menu ul li > ul{
-background:none;display:none;list-style-type:none;
+display:none;list-style-type:none;
 border:solid 1px #999999;
 position:relative;
 background:#eeeeee;
-box-shadow:3px 3px 3px #999999;}
+box-shadow:3px 3px 3px #999999;
+position:absolute;border:solid 2px;
+width:180px;
+text-indent:10px;}
 
 #menu ul li > ul > li {text-align:left;}
 #menu ul>li.menuon {background:#999999;
@@ -155,15 +159,19 @@ box-shadow:0px -55px 50px #ffffff;}
 #menu ul>li.menuon a{color:#ffffff;}
 
 #menu li > ul > li.menuoff a{background:#ffffff;color:#000000;}
-#menu li > ul > li.menuon a{background:#999999;color:#ffffff;
-}
-#menu ul li ul{//display:block}
-#menu:hover ul li:hover ul{position:absolute;border:solid 2px;
-display:block;width:180px;
-text-indent:10px;}
+#menu li > ul > li.menuon a{background:#999999;color:#ffffff;}
+
+#menu:hover ul li.notap:hover ul{
+display:block;}
+
+#menu:hover ul li.needtap:hover ul{
+display:block;}
+
+/*
 #menu:hover ul li:hover ul li:hover ul{position:absolute;}
-#menu:hover ul li:hover ul,
-#menu:hover ul li:hover ul li:hover ul{display:block;}
+#menu:hover ul li.notap:hover ul,
+#menu:hover ul li.notap:hover ul li:hover ul{display:block;}
+*/
 
 #menutrigger {display:none;}
 
