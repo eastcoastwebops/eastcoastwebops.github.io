@@ -6,6 +6,7 @@ SiteGen Version 2.0
 ******/
 webtitle = 'East Coast Web Operations';
 imagloc = '';
+version=14;
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -190,7 +191,7 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
        //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
 				 
 				 $('#menu').find('.menuon').removeClass('menuon');
-			  $('#menu').find('.needtap').find('.subitem').css('display','none');
+			  $('#menu').find('.needtap').find('.subitem').fadeOut();
          
 				 $(whichthis).parent().parent().closest('li').addClass('menuon');
          $(whichthis).parent().addClass('menuon');
@@ -258,7 +259,7 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
       winheight = $(window).height();
       dim = winwidth + ' x ' + winheight;
       //	$('#dim').text(dim);
-				$('#dim').text('v13');
+				$('#dim').text(version);
       if (winwidth > 1400) {
          winwidth = 1400
       }
