@@ -5,9 +5,9 @@ SiteGen Version 2.0
 
 ******/
 webtitle = 'East Coast Web Operations';
-webtitle = 'ECWO';
+//webtitle = 'ECWO';
 imagloc = '';
-version=14;//
+version=15;//
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -57,11 +57,11 @@ for (i = 0; i < menusize;) {
    thelink = alllinks[0].replace(/ /g, "_").toLowerCase(); // needed to 	
    thelinkb = thelinkb.replace(/>|-|</g, "").toLowerCase();
    thetitle = alllinks[0].replace(/>|-|</g, "");
-	 needtap=" notap"; 
+	 needtap=" "; 
 	 
 	 menucheck = alllinks[0] + alllinks[1];
 	    if (menucheck.indexOf(">") > -1) {
-   needtap=" needtap";
+   needtap=" trigger";
    }
 	 
    themenu += '<li class=\"' + thelinkb + needtap+ '\"><a href="index.html?page=' + thelinkb + '\">' + thetitle + '</a>';
@@ -97,22 +97,6 @@ $(document).ready(function() {
       $("body").hide(0, function() {
          var content = 'sitegen/content/' + whichpage + '.html';
 				 $("#content").load(content, function() {
-
-
-
-
-
-
-
-				 
-/* doesn't work with ios safari so disable for now... 
-$('.full-bg-image.fix').each(function() {
-		var bg_img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1').split('/').pop();
-$(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
-	
-})
-*/
-
 					 
             $('body').attr('id', whichpage);
             setTimeout(function() {
@@ -131,7 +115,11 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
                $('#menu').css('display', 'block');
             }
          });
-         $('li.' + whichpage).addClass('menuon'); // activate first menu item (from above)
+				 
+				 
+         $('li.' + whichpage).addClass('active'); 
+				 $('li.' + whichpage).parent().parent().addClass('active');
+				 
          page = $('li.' + whichpage).text();
          $(document).prop('title', page + ' | ' + webtitle);
          $('#sitetitle').html(sitetitle);
@@ -151,64 +139,34 @@ $(this).css('background-image','url("sitegen/site-images/'+bg_img+'")' );
    }
 	 
 	 
-   loadPage(whichpage);
+  loadPage(whichpage);
 	 
-	 
-//	 window.addEventListener('mouseover', function onFirstHover() {
- // window.USER_CAN_HOVER = true;
-	
-	console.log('hover');
- // window.removeEventListener('mouseover', onFirstHover, false);
-//}, false);
-
-
-   $("body").on("mouseover", "#menu ul li", function(e) {
-		// console.log(this);
-$(this).find('ul').fadeIn();
-	 });	
-
-   $("body").on("mouseleave", "#menu ul li", function(e) {
-		// console.log(this);
-$(this).find('ul').fadeOut();
-	 });	
-
-	 
-   $("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
  
-		 
- window.addEventListener('touchstart', function() {
-  // the user touched the screen!
+   $("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
 
-});	
+		 
+	
  
       var whichthis = $(this);
       var $which = $(whichthis).parent().attr('class').split(' ')[0];
       special = false; // if one of the gallery pages with parameters, force a reload
       if ($which.indexOf('&') >= 0) {
          special = true;
+			
       }
-      if (special == false) {
-         e.preventDefault();
-      }
+			
+	 e.preventDefault();
+				 newLocation = this.href;
+			
       wwidth = $(window).width();
       if (wwidth <= 700) {
          $('#menu').slideUp();
       }
 
 		
-      $("body").delay(300).fadeOut(600, 'swing').promise().done(function() {
-       //  $(whichthis).find('#menu').find('.menuon').removeClass('menuon');
-				 
-				 $('#menu').find('.menuon').removeClass('menuon');
-
-         
-				 $(whichthis).parent().parent().closest('li').addClass('menuon');
-         $(whichthis).parent().addClass('menuon');
-         //			console.log($which);
-         var $name = $(whichthis).text();
-         history.pushState({}, '', '?page=' + $which); // push html name to address bar 
-         page = $(whichthis).text(); // get new page name
-         loadPage($which);
+      $("body").delay(200).fadeOut(800, 'swing').promise().done(function() {
+window.location = newLocation;
+	
       });
    });
 	 
@@ -228,9 +186,13 @@ $(this).find('ul').fadeOut();
          $('#menu').slideDown();
       }
    });
+	
+/*	
    $("#menu li").addClass(function(i) {
       return "menuoff";
    });
+	 
+*/	 
    $("body").on("click", "#menutrigger", function() {
       $("html, body").animate({
          scrollTop: 0

@@ -156,22 +156,17 @@ text-indent:10px;}
 border-bottom-left-radius:4px;
 border-bottom-right-radius:4px;
 box-shadow:0px -55px 50px #ffffff;}
-#menu ul>li.menuon a{color:#ffffff;}
 
-#menu li > ul > li.menuoff a{background:#ffffff;color:#000000;}
-#menu li > ul > li.menuon a{background:#999999;color:#ffffff;}
 
-#menu:hover ul li.notap:hover ul{
-//display:block !important;}
+#menu .active a{
+background:#999999;color:#ffffff;}
+#menu .subitem a{background:#ffffff;color:#000000;}
+#menu .subitem .active a{background:#666666;color:#ffffff;}
 
-#menu:hover ul li.needtap:hover ul{
-//display:block !important;}
 
-/*
-#menu:hover ul li:hover ul li:hover ul{position:absolute;}
-#menu:hover ul li.notap:hover ul,
-#menu:hover ul li.notap:hover ul li:hover ul{display:block;}
-*/
+#menu:hover ul li.trigger:hover ul{
+display:block;}
+
 
 #menutrigger {display:none;}
 
@@ -196,12 +191,9 @@ opacity:1;
 color:#333333;
 }
 
-
-
 .full-bg-image{
 border-top:solid 3px #000000;
 }
-
 
 
 .callout{display:table-cell;
@@ -295,10 +287,13 @@ border-top:solid 1px #336633;}
 #menu ul > li a:hover{background:#338833}
 //#menu ul > li > ul >li:hover{background:#00ff00;}
 #menu li > ul > li.menuoff a{}
-#menu > ul > li.menuon > a {background:#74AB04;color:#ffffff;}
-#menu li > ul > li.menuon a{background:#99aa04;color:#ffffff;}
 
-#menu a{color:#ffffee;text-decoration:none;display:block;
+#menu .active a{
+background:#74AB04;color:#ffffff;}
+#menu .subitem a{background:none;}
+#menu .subitem .active a{background:#629003;color:#ffffff;}
+
+#menu a{color:#ffffff;text-decoration:none;display:block;
 border:solid 0px;font-size:20px;}
 #main{position:relative;top:60px;}
 
