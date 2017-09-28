@@ -7,7 +7,7 @@ SiteGen Version 2.0
 webtitle = 'East Coast Web Operations';
 //webtitle = 'ECWO';
 imagloc = '';
-version = 15; //
+version = 16; //
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -123,7 +123,9 @@ $(document).ready(function() {
 			}, 2200, 'swing');
 		});
 	}
+	
 	loadPage(whichpage);
+	
 	$("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
 		var whichthis = $(this);
 		var $which = $(whichthis).parent().attr('class').split(' ')[0];
