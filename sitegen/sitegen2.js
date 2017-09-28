@@ -198,7 +198,7 @@ $(document).ready(function() {
 		winheight = $(window).height();
 		dim = winwidth + ' x ' + winheight;
 		//	$('#dim').text(dim);
-		$('#dim').text(version);
+		//$('#dim').text(version);
 		if (winwidth > 1400) {
 			winwidth = 1400
 		}
