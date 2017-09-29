@@ -4,8 +4,13 @@ All code copyright 2017, EKHolbrook.
 SiteGen Version 2.0
 
 ******/
+if(location.hostname == "eastcoastwebops.com"){
 webtitle = 'East Coast Web Operations';
-//webtitle = 'ECWO';
+}
+
+else {
+webtitle = 'ECWO';
+}
 imagloc = '';
 version = 16; //
 //document.addEventListener('contextmenu', event => event.preventDefault());
