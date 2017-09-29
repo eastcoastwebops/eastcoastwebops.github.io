@@ -104,8 +104,21 @@ $(document).ready(function() {
 					$('#menu').css('display', 'block');
 				}
 			});
+			
+			
+			
+			if (whichpage == 'gallery') {
+		//	alert ('yes');
+		//	whichpage = (whichpage + '&gallery=' + whichimages);
+			}
+			console.log(whichpage);
+			// need way to get class of galleries
+			
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('active');
+			
+			
+			
 			page = $('li.' + whichpage).text();
 			$(document).prop('title', page + ' | ' + webtitle);
 			$('#sitetitle').html(sitetitle);

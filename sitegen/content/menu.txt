@@ -6,7 +6,7 @@ Work<
 Sample Page>
 Sub Page one,
 Nice Page Name|sub_page_two<
-Gallery|gallery>
+Galleries>
 Demo Gallery|gallery&gallery=demo_gallery,
 City Gallery|gallery&gallery=cities,
 Web Design Snapshots|gallery&gallery=websiteportfolio<
