@@ -13,7 +13,7 @@
     this.options = $.extend({
       ssl: true,
       host: 'www.feedrapp.info',
-      limit: null,
+      limit: 2000,
       key: null,
       layoutTemplate: '<ul>{entries}</ul>',
       entryTemplate: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>',
@@ -345,7 +345,7 @@
 	
         $("#rss-feeds").rss("https://ekholbrook.blogspot.com/feeds/posts/default?alt=rss", {
           effect: 'slideSynced',
-            entryTemplate: '<div class="blogentry row"><h3><a href="index.html?page=blogarticle&article={index}">{title}</a></h3><div class="blogdate">{date}</div><div class="teaserimage col-xs-3">{teaserImage}</div><div class="snippet col-xs-9">{shortBody}...</div><div>',
+            entryTemplate: '<div class="blogentry row"><a href="index.html?page=blogarticle&article={index}"><h3>{title}</h3><div class="blogdate">{date}</div><div class="teaserimage col-xs-3">{teaserImage}</div><div class="snippet col-xs-9">{shortBody}...</div></a><div>',
 					dateFormat: 'dddd MMMM Do, YYYY',
         }),
 				$('#rss-feeds h3').each(function() {

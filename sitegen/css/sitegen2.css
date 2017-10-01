@@ -13,7 +13,7 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 #dim {
-	//display:none;
+	display:none;
 	position: fixed;
 	top: 50%;
 	left: 10px;
@@ -124,8 +124,10 @@ body {
 	margin-top: 8px;
 }
 .blogentry .teaserimage img {
-	width: 100%;
+	width: 150px;
 	height: auto;
+  border:solid 2px; border-radius:10px;
+  box-shadow:3px 3px 3px #999999;
 }
 #content h1 {
 	margin-top: 10px;
