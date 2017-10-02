@@ -1,8 +1,7 @@
 Home,
-Site News|news>
+Site News|news,
+Code Portfolio|portfolio,
 About,
-Portfolio,
-Work<
 Sample Page>
 Sub Page one,
 Nice Page Name|sub_page_two<

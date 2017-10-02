@@ -258,11 +258,13 @@ margin-top:5px;
 		position: relative;
 		z-index: 10;
 	}
-	#content h1, #content h2, #content h3, #content h4 {
+	#content h1 {
 		padding: 0px;
-		margin: 0px;
+		margin-top: 20px;
+  margin-bottom:10px;
 		color: #333333;
 	}
+
 	.full-bg-image {
 		border-top: solid 3px #000000;
 	}
