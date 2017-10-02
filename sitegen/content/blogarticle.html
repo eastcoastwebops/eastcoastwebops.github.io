@@ -15,7 +15,7 @@
       host: 'www.feedrapp.info',
       limit: 2000,
       key: null,
-      layoutTemplate: '<ul>{entries}</ul>',
+      layoutTemplate: '{entries}',
       entryTemplate: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>',
       tokens: {},
       outputMode: 'json',
@@ -342,7 +342,7 @@
       jQuery(function($) {
         $("#rss-feeds").rss("https://ekholbrook.blogspot.com/feeds/posts/default?alt=rss", {
          // effect: 'slideSynced',
-            entryTemplate: '<div id="entry{index}" class="article"><h1>{title}</h1><div>{date} <br/>{body}...</div></div>',
+            entryTemplate: '<div id="entry{index}" class="article"><h1>{title}</h1><div class="date">{date}</div><div class="body">{body}</div></div>',
 					dateFormat: 'dddd MMMM Do, YYYY',
         })
       })
