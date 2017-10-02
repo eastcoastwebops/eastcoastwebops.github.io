@@ -1,7 +1,7 @@
 Home,
 Site News|news,
 Code Portfolio|portfolio,
-About,
+About Me|about,
 Sample Page>
 Sub Page one,
 Nice Page Name|sub_page_two<
