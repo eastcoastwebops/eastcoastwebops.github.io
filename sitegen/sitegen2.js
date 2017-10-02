@@ -4,15 +4,16 @@ All code copyright 2017, EKHolbrook.
 SiteGen Version 2.0
 
 ******/
-if(location.hostname == "eastcoastwebops.com"){
+if(location.hostname == "eastcoastwebops.github.io"){
 webtitle = 'East Coast Web Operations';
 }
 
 else {
 webtitle = 'ECWO';
 }
+
 imagloc = '';
-version = 16; //
+version = 17; //
 //document.addEventListener('contextmenu', event => event.preventDefault());
 function gup(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
