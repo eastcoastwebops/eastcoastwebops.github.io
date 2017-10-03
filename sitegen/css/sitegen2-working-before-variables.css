@@ -1,24 +1,4 @@
-:root {
---docbg: #000000;
---pagebg: #ffffff;
---hcolor: #000000;
---pcolor:#444444;
---deskmenulink:#000000;
---deskmenulinkactive:#ffffff;
---deskmenubg:#dddddd;
---deskmenubghover:#999999;
---deskmenuactive:#666666;
-
---hamburger:#ff6600;
---mobilemenubg:#77AA00;
---mobilemenulink:#ffff66;
---mobilemenuactivebg:#449944;
---mobilemenuactivelink:#ffffff;
-}
-
-
-
-@font-face {
+	@font-face {
 	font-family: 'Raleway';
 	font-style: normal;
 	font-weight: 400;
@@ -49,15 +29,11 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-
-
 html {
-	background: var(--docbg);
-	
+	background: #000000;
 }
 #container {
-	background: var(--pagebg);
+	background: #ffffff;
 }
 .container-fluid {
 	padding: 0px;
@@ -72,13 +48,12 @@ body {
 	margin: 0px;
 	padding: 0;
 	width: auto;
-	background: var(--pagebg);
 }
 #container {
 	display: relative;
 }
 #sitetitle {
-//	background: #ff0000;
+	background: #000000;
 	color: #ffffff;
 	font-size: 30px;
 }
@@ -170,15 +145,12 @@ text-align:center;
 figure.alignleft{float:left;margin-right:10px;}
 figure.alignright{float:right;margin-left:10px;}
 
-#content {color:var(--pcolor);}
 #content h1 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
 	font-weight: bold;
-	color:var(--hcolor);
 }
-
 
 /* desktop */
 
@@ -210,7 +182,7 @@ figure.alignright{float:right;margin-left:10px;}
 		position: fixed;
 		top: 10px;
 		right: 10px;
-		color: #ffffff; // here
+		color: #ffffff;
 		z-index: 10;
 		font-weight: bold;
 		opacity: 0.0;
@@ -239,20 +211,15 @@ figure.alignright{float:right;margin-left:10px;}
 	#menu li a {
 		display: block;
 		padding: 3px;
-		color: var(--deskmenulink);
+		color: #000000;
 	}
-	
-		#menu li:hover {
-		background: var(--deskmenubghover);
-	}
-	#menu li > a:hover{color: var(--deskmenulinkactive);}
-	
 	#menu ul li>ul {
 		display: none;
 		list-style-type: none;
 		border: solid 1px #999999;
 		position: relative;
-			box-shadow: 3px 3px 3px #999999;
+		background: #eeeeee;
+		box-shadow: 3px 3px 3px #999999;
 		position: absolute;
 		border: solid 2px;
 		width: 180px;
@@ -261,28 +228,23 @@ figure.alignright{float:right;margin-left:10px;}
 	#menu ul li>ul>li {
 		text-align: left;
 	}
-	#menu ul>li.active {
-		background: var(--deskmenuactive);
+	#menu ul>li.menuon {
+		background: #999999;
 		border-bottom-left-radius: 4px;
 		border-bottom-right-radius: 4px;
 		box-shadow: 0px -55px 50px #ffffff;
 	}
-	#menu .active > a {
-	background: var(--deskmenuactive);
-				color: var(--deskmenulinkactive);
+	#menu .active a {
+		background: #999999;
+		color: #ffffff;
 	}
-	
-	#menu ul.subitem{
-		background: var(--deskmenubg);
-		
-		}
-		
 	#menu .subitem a {
-		color: var(--deskmenulink);
+		background: #ffffff;
+		color: #000000;
 	}
 	#menu .subitem .active a {
-		
-		color: var(--deskmenulinkactive);
+		background: #666666;
+		color: #ffffff;
 	}
 	#menu:hover ul li.trigger:hover ul {
 		display: block;
@@ -311,6 +273,7 @@ figure.alignright{float:right;margin-left:10px;}
 		padding: 0px;
 		margin-top: 20px;
   margin-bottom:10px;
+		color: #333333;
 	}
 
 	.full-bg-image {
@@ -330,11 +293,6 @@ figure.alignright{float:right;margin-left:10px;}
 }
 
 /* end desktop */
-
-
-
-
-
 
 @media only screen and (min-width: 900px) {
 	.full-bg-image {
@@ -385,10 +343,9 @@ color: #ffffff;
 	#menutrigger {
 		display: block;
 		position: absolute;
-		top: -4px;
+		top: -8px;
 		left: 10px;
 		color: #ff9900;
-		color:var(--hamburger);
 		font-size: 48px;
 		z-index: 100;
 		position: fixed;
@@ -424,6 +381,7 @@ background: #77aa00;
 		text-align: left;
 		border: solid 0px;
 		border-top: solid 1px #336633;
+		//border-top: solid 1px #99ff99;
 
 	}
 	#menu ul>li>ul {}
@@ -435,9 +393,10 @@ background: #77aa00;
 	#menu ul>li>ul>li a:before {
 		content: "\000BB";
 		margin-right: 5px;
-		color: var(--mobilemenulink);
+		color: #ffffff;
 	}
 	#menu ul>li a {
+		
 padding:5px 0px 5px 0px;
 padding-left: 10%;
 	}
@@ -451,20 +410,21 @@ padding-left: 10%;
 	}
 	
 	#menu li>ul>li.menuoff a {}
-	#menu .active > a {
-background: var(--mobilemenuactivebg);
+	#menu .active a {
+		background: #449944;
 		
-color: var(--mobilemenuactivelink);
+color: #ffffff;
 	}
 	#menu .subitem a {
 		background: none;
 	}
 	#menu .subitem .active a {
-background: var(--mobilemenuactivebg);
-	//			color: var(--mobilemenuactivelink);
+		background: #629003;
+background: #449944;
+		color: #ffffff;
 	}
 	#menu a {
-		color: var(--mobilemenulink);
+		color: #ffffff;
 		text-decoration: none;
 		display: block;
 		border: solid 0px;
