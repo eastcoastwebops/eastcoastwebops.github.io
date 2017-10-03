@@ -1,13 +1,15 @@
-Home,
-Site News|news,
-Code Portfolio|portfolio,
-About Me|about,
-Sample Page>
-Sub Page one,
-Nice Page Name|sub_page_two<
-Galleries>
+Home>
+About Me|about<
+Site News|news>
+News,
+Sample Page<
+Articles|blog,
+Lyrics>
+Ballad Of John & Mary|lyrics_johnmary<
+Portfolio Of Work|portfolio>
+Code|portfolio,
+Galleries,
 Demo Gallery|gallery&gallery=demo_gallery,
 City Gallery|gallery&gallery=cities,
 Web Design Snapshots|gallery&gallery=websiteportfolio<
-Blog,
 Contact
