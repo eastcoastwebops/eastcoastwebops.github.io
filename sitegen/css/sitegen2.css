@@ -1,5 +1,5 @@
 :root {
-	--docbg: #333333;
+	--docbg: #ff6600;
 	--pagebg: #ffffff;
 	--hcolor: #000000;
 	--pcolor:#666666;
@@ -62,6 +62,7 @@ body {
 	width: auto;
 	background-color: var(--pagebg);
 	height:auto;
+  min-height:100%;    
 }
 #container {
 	background: var(--pagebg);
