@@ -50,7 +50,7 @@ title = data.split(">").join(">,").split("<").join("<,").split(",");
 //console.log (title);
 sitetitle = '<div class="sitetitletext">' + webtitle + '</div>'; //may have to tweak #siteTitle css entry
 menusize = title.length; // find out how many titles
-themenu = '<ul class="toplevel"><li class="leftspacer">&nbsp;</li>';
+themenu = '<ul class="toplevel"><li class="spacer">&nbsp;</li>';
 thelink = thetitle = '';
 var i = 0;
 for (i = 0; i < menusize;) {
@@ -78,7 +78,7 @@ for (i = 0; i < menusize;) {
 	}
 	i = i + 1;
 }
-themenu += '<li class="rightspacer">&nbsp;</li></ul>';
+themenu += '<li class="spacer">&nbsp;</li></ul>';
 $(document).ready(function() {
 	$('#menu').html(themenu); // build menu
 	reducecount = $("ul.toplevel > li").length;
@@ -123,9 +123,9 @@ $(document).ready(function() {
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('active');
 			
+			console.log (whichpage);
 			
-			
-			page = $('li.' + whichpage).text();
+			page = $('li.' + whichpage + ' > a:first').text();
 			$(document).prop('title', page + ' | ' + webtitle);
 			$('#sitetitle').html(sitetitle);
 			nicename = whichpage.replace(/_/g, ' ');
