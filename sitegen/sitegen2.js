@@ -9,7 +9,9 @@ webtitle = 'East Coast Web Operations';
 }
 
 else {
+	
 webtitle = 'ECWO';
+//webtitle = 'Think Vacuu Web Operations';
 }
 
 imagloc = '';
@@ -211,14 +213,14 @@ $(window).on("load",function() {
 		winwidth = $(window).width();
 		winheight = $(window).height();
 		dim = winwidth + ' x ' + winheight;
-		//		$('#dim').text(dim);
+				$('#dim').text(dim);
 	});
 	$(window).scroll(function() {
 		mul = -1;
 		winwidth = $(window).width();
 		winheight = $(window).height();
 		dim = winwidth + ' x ' + winheight;
-		//	$('#dim').text(dim);
+			$('#dim').text(dim);
 		//$('#dim').text(version);
 		if (winwidth > 1400) {
 			winwidth = 1400

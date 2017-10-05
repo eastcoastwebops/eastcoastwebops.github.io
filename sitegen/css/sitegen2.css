@@ -16,7 +16,7 @@
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
 	--basefontsize:1.6vw;
-  --mobilebasefontsize:3.5vw;
+  --mobilebasefontsize:3.8vw;
 }
 @font-face {
 	font-family: 'Raleway';
@@ -33,14 +33,17 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 #dim {
-	display:none;
+	//display:none;
 	position: fixed;
-	top: 50%;
-	left: 10px;
+font-size:10px;
+	bottom: 0%;
+	left: 0%;
 	z-index: 10000;
-	color: #ffff00;
-	background: #000000;
-	padding: 3px;
+	color: #000000;
+	background: #ffffff;
+opacity:.5;
+	padding: 1px 3px 1px 3px;
+font-weight:bold;
 }
 html, body {
 	margin: 0px;
@@ -362,13 +365,14 @@ figure.alignright{
 		background: var(--mobilesitebg);
 		color: var(--sitetitlecolor);
 		font-weight:bold;
-		font-size: 24px;
+    font-size:calc( var(--basefontsize) + 3vw);
 		box-shadow: 3px 3px 5px #333333;
 		position: fixed;
 		width: 100%;
 		z-index: 100;
 		opacity: .9;
 		border-bottom: solid 2px #000000;
+      height:55px;overflow:hidden;
 	}
 	#title {
 		display: none;
@@ -378,7 +382,7 @@ figure.alignright{
 		top: -8px;
 		left: 10px;
 		color:var(--hamburger);
-		font-size: 58px;
+		font-size: 48px;
 		z-index: 100;
 		position: fixed;
 		width:80%;
@@ -395,7 +399,7 @@ figure.alignright{
 	#menu {
 		width: 100%;
 		position: relative;
-		top: 66px;
+		top: 54px;
 	}
 	#menu ul {
 		padding: 0px;
@@ -464,17 +468,20 @@ figure.alignright{
 	}
 
 #content {font-size: var(--mobilebasefontsize);}
-#content h1{font-size:calc( var(--mobilebasefontsize) + 3vw);}
-#content h2{font-size:calc( var(--mobilebasefontsize) + 2vw);}
-	#content p{
+#content h1{font-size:calc( var(--mobilebasefontsize) + 4vw);}
+#content h2{font-size:calc( var(--mobilebasefontsize) + 3vw);}
+#content h3{font-size:calc( var(--mobilebasefontsize) + 2vw);
+ padding:0px;margin:5px 0px 5px 0px;}
+#content p{
 		font-size: var(--mobilebasefontsize);
+    padding:0px;
 	}
 
 	#content ul {
 		margin-left: 30px;
 		padding: 0px;
 		font-size:calc( var(--mobilebasefontsize)  - 0.5vw);
-	//	list-style-position: inside;}
+	}
 	}
 	.full-bg-image {
 		height: 300px;
