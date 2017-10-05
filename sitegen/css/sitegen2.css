@@ -11,12 +11,12 @@
 	--menuhoverfontcolor:#ffffaa;
 	--menuactivebg:#449944;
 	--sitetitlecolor:#0099ff;
-	--pagetitlecolor:#0099ff;
+	--pagetitlecolor:#ffff00;
 	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
 	--basefontsize:1.6vw;
-  --mobilebasefontsize:3.8vw;
+  --mobilebasefontsize:4vw;
 }
 @font-face {
 	font-family: 'Raleway';
@@ -359,9 +359,10 @@ figure.alignright{
 		transform: unset !important;
 	}
 	#sitetitle {
+display:table;
 		width: auto;
 		border: solid 0px;
-		padding: 15px 10px 15px 10px;
+		padding: 0px;
 		background: var(--mobilesitebg);
 		color: var(--sitetitlecolor);
 		font-weight:bold;
@@ -389,6 +390,8 @@ figure.alignright{
 	}
 	.sitetitletext{
 		text-align:right;
+display:table-cell;
+vertical-align:middle;padding-right:10px;
 	}
 	#menutrigger:hover {
 		cursor: pointer;
@@ -400,6 +403,9 @@ figure.alignright{
 		width: 100%;
 		position: relative;
 		top: 54px;
+box-shadow:0px 3px 15px #999999;
+border-bottom:solid 3px var(--menulinkcolor);
+
 	}
 	#menu ul {
 		padding: 0px;
@@ -416,6 +422,7 @@ figure.alignright{
 		text-align: left;
 		border: solid 0px;
 		border-top: solid 1px #336633;
+
 	}
 	#menu ul>li>ul {
 	}
@@ -432,9 +439,10 @@ figure.alignright{
 	#menu ul>li a {
 		padding:5px 0px 5px 0px;
 		padding-left: 10%;
+font-size:calc( var(--mobilebasefontsize) + 1.5vw);
 	}
 	#menu ul>li>ul>li a {
-		padding-left: 25%;
+	padding-left:calc( var(--mobilebasefontsize) + 15vw)
 	}
 	#menu ul>li a:hover {
 		background: var(--menuhoverbg);
@@ -468,8 +476,8 @@ figure.alignright{
 	}
 
 #content {font-size: var(--mobilebasefontsize);}
-#content h1{font-size:calc( var(--mobilebasefontsize) + 4vw);}
-#content h2{font-size:calc( var(--mobilebasefontsize) + 3vw);}
+#content h1{font-size:calc( var(--mobilebasefontsize) + 3vw);}
+#content h2{font-size:calc( var(--mobilebasefontsize) + 2.5vw);}
 #content h3{font-size:calc( var(--mobilebasefontsize) + 2vw);
  padding:0px;margin:5px 0px 5px 0px;}
 #content p{

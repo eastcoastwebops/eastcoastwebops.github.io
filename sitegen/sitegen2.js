@@ -11,7 +11,7 @@ webtitle = 'East Coast Web Operations';
 else {
 	
 webtitle = 'ECWO';
-//webtitle = 'Think Vacuu Web Operations';
+webtitle = 'Think Vacu Isolated Web Operations';
 }
 
 imagloc = '';
