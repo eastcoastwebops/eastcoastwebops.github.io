@@ -15,6 +15,8 @@
 	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
+	--basefontsize:1.6vw;
+  --mobilebasefontsize:3.5vw;
 }
 @font-face {
 	font-family: 'Raleway';
@@ -78,7 +80,7 @@ body {
 	font-size: 30px;
 }
 #content {
-	font-size: 1.25em;
+	font-size:calc( var(--basefontsize) );
 	word-wrap: break-word;
 }
 .top, #footer {
@@ -173,6 +175,7 @@ figure.alignright{
 	color:var(--pcolor);
 }
 #content h1 {
+	font-size:calc( var(--basefontsize) + 2.5vw);
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
@@ -216,7 +219,7 @@ figure.alignright{
 		position: fixed;
 		top: 125px;
 		opacity: 0.0;
-		font-size: 30px
+		font-size:calc( var(--basefontsize) + 2vw);
 }
 	#title {
 		position: fixed;
@@ -234,6 +237,7 @@ figure.alignright{
 		width: 100%;
 	}
 	#menu>ul>li {
+				font-size:calc( var(--basefontsize) - .4vw);
 		border: solid 0px;
 		display: table-cell;
 		vertical-align: middle;
@@ -459,16 +463,18 @@ figure.alignright{
 		top: 60px;
 	}
 
-#content {font-size:4vw;}
-#content h1{font-size:5vw;}
-#content h2{font-size:4vw;}
-	#content p, #content li {
+#content {font-size: var(--mobilebasefontsize);}
+#content h1{font-size:calc( var(--mobilebasefontsize) + 3vw);}
+#content h2{font-size:calc( var(--mobilebasefontsize) + 2vw);}
+	#content p{
+		font-size: var(--mobilebasefontsize);
 	}
 
 	#content ul {
-		margin-left: 10px;
+		margin-left: 30px;
 		padding: 0px;
-		font-size:3.5vw;
+		font-size:calc( var(--mobilebasefontsize)  - 0.5vw);
+	//	list-style-position: inside;}
 	}
 	.full-bg-image {
 		height: 300px;

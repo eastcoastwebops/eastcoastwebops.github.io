@@ -79,7 +79,9 @@ for (i = 0; i < menusize;) {
 	i = i + 1;
 }
 themenu += '<li class="spacer">&nbsp;</li></ul>';
-$(document).ready(function() {
+
+//$(document).ready(function() {
+$(window).on("load",function() {
 	$('#menu').html(themenu); // build menu
 	reducecount = $("ul.toplevel > li").length;
 	cssmenu = Math.floor(100 / (reducecount /* width minus submenus */ ));
