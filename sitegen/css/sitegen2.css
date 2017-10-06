@@ -16,7 +16,7 @@
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
 	--basefontsize:1.6vw;
-  --mobilebasefontsize:4vw;
+        --mobilebasefontsize:4vw;
 }
 @font-face {
 	font-family: 'Raleway';
@@ -185,6 +185,38 @@ figure.alignright{
 	font-weight: bold;
 	color:var(--hcolor);
 }
+
+
+
+#menu .active > a {
+		background: var(--menuactivebg);
+		color: var(--menulinkactive);
+filter:brightness(120%);
+	}
+	
+	#menu .semiactive a{
+		background: var(--menuactivebg);
+		color: var(--menulinkactive);
+	}
+
+	#menu .semiactive {
+		background: var(--menuactivebg);
+		color: var(--menulinkactive);
+	}
+
+	#menu .subitem a {
+		background: none;
+color: var(--menulinkcolor);
+	}
+	#menu .subitem .active a {
+                 color: var(--menulinkactive);
+background: var(--menuactivebg);
+	filter:brightness(100%);
+}
+
+
+
+
 /* desktop */
 @media only screen and (min-width: 701px) {
 	#container {
@@ -280,25 +312,13 @@ figure.alignright{
 	#menu ul li>ul>li {
 		text-align: left;
 	}
-	#menu ul>li.active {
-		background: var(--menuactivebg);
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
-		box-shadow: 0px -55px 50px #ffffff;
-	}
-	#menu .active > a {
-		background: var(--menuactivebg);
-		color: var(--menulinkactive);
-	}
+
+
 	#menu ul.subitem{
 		background: var(--menubgdrop);
 	}
-	#menu .subitem a {
-		color: var(--menulinkcolor);
-	}
-	#menu .subitem .active a {
-		color: var(--menulinkactive);
-	}
+
+
 	#menu ul li.trigger:hover > a{
 		color:var(--menuhoverfontcolor);
 	}
@@ -448,16 +468,22 @@ font-size:calc( var(--mobilebasefontsize) + 1.5vw);
 		background: var(--menuhoverbg);
 		color:var(--menuhoverfontcolor);
 	}
-	#menu li>ul>li.menuoff a {
-	}
+
 	#menu .active > a {
 		background: var(--menuactivebg);
 		color: var(--menulinkactive);
+filter:brightness(120%);
 	}
+	
+
+
 	#menu .subitem a {
 		background: none;
 	}
 	#menu .subitem .active a {
+                 color: var(--menulinkactive);
+filter:brightness(120%);
+
 		background: var(--menuactivebg);
 	}
 	#menu ul li.trigger:hover > a{

@@ -125,7 +125,7 @@ $(window).on("load",function() {
 			// need way to get class of galleries
 			
 			$('li.' + whichpage).addClass('active');
-			$('li.' + whichpage).parent().parent().addClass('active');
+			$('li.' + whichpage).parent().parent().addClass('semiactive');
 			
 			console.log (whichpage);
 			
