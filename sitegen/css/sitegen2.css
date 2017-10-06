@@ -194,15 +194,13 @@ figure.alignright{
 filter:brightness(120%);
 	}
 	
-	#menu .semiactive a{
+	#menu .semiactive,
+#menu .semiactive a{
 		background: var(--menuactivebg);
 		color: var(--menulinkactive);
 	}
 
-	#menu .semiactive {
-		background: var(--menuactivebg);
-		color: var(--menulinkactive);
-	}
+
 
 	#menu .subitem a {
 		background: none;
