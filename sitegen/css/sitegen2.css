@@ -382,6 +382,7 @@ background: var(--menuactivebg);
 }
 /* ------------ end desktop only -----------------*/
 /*---------------------- MOBILE ---------------------------------------*/
+
 @media only screen and (max-width: 700px) {
 	* {
 		transform: unset !important;
@@ -459,18 +460,23 @@ border-bottom:solid 3px var(--menulinkcolor);
 		border-top: solid 1px #336633;
 		border-top: solid 1px #666666;
 	}
-	#menu ul>li>ul>li a:before {
+	#menu ul>li>ul>li.active a:before {
 		content: "\000BB";
 		margin-right: 5px;
-		color: var(--menulinkcolor);
+		color: var(--menulinkactive);
 	}
 	#menu ul>li a {
 		padding:5px 0px 5px 0px;
 		padding-left: 10%;
 font-size:calc( var(--mobilebasefontsize) + 1.5vw);
+font-weight:bold;
 	}
+
 	#menu ul>li>ul>li a {
-	padding-left:calc( var(--mobilebasefontsize) + 15vw)
+	padding-left:calc( var(--mobilebasefontsize) + 15vw);
+font-weight:normal !important;
+filter:brightness(85%);
+
 	}
 	#menu ul>li a:hover {
 		background: var(--menuhoverbg);
@@ -480,18 +486,16 @@ font-size:calc( var(--mobilebasefontsize) + 1.5vw);
 	#menu .active > a {
 		background: var(--menuactivebg);
 		color: var(--menulinkactive);
-filter:brightness(120%);
+filter:brightness(10%);
 	}
 	
-
 
 	#menu .subitem a {
 		background: none;
 	}
 	#menu .subitem .active a {
                  color: var(--menulinkactive);
-filter:brightness(120%);
-
+filter:brightness(110%);
 		background: var(--menuactivebg);
 	}
 	#menu ul li.trigger:hover > a{
@@ -574,6 +578,8 @@ filter:brightness(120%);
 }
 }
 /* end media */
+
+
 @media only screen and (max-width: 480px) {
 	#sitetitle {
 		font-size: 15px;
@@ -586,9 +592,8 @@ filter:brightness(120%);
 		top: 53px;
 		border:solid 1px;
 	}
-	#menu ul>li>a {
-		padding-left: 10px;
-	}
+
+
 	#menu ul>li>ul>li a {
 		padding-left: 20px;
 	}
@@ -628,6 +633,7 @@ filter:brightness(120%);
 		font-size: 1.2em;
 	}
 }
+
 /* ios image */
 .iosimage {
 	width: 95%;
