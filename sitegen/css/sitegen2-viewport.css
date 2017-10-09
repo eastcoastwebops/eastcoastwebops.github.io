@@ -1,5 +1,5 @@
 :root {
-	--docbg: #ffff00;
+	--docbg: #444444;
 	--pagebg: #ffffff;
 	--hcolor: #000000;
 	--pcolor:#666666;
@@ -15,8 +15,8 @@
 	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
-	--basefontsize:16px;
-  --mobilebasefontsize:12px;
+	--basefontsize:1.9vw;
+  --mobilebasefontsize:4.5vw;
 	
 }
 @font-face {
@@ -179,7 +179,7 @@ figure.alignright{
 	color:var(--pcolor);
 }
 #content h1 {
-	font-size:calc( var(--basefontsize) + 20px);
+	font-size:calc( var(--basefontsize) + 2.5vw);
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
@@ -253,7 +253,7 @@ background: var(--menuactivebg);
 		position: fixed;
 		top: 125px;
 		opacity: 0.0;
-		font-size:calc( var(--basefontsize) + 20px);
+		font-size:calc( var(--basefontsize) + 2vw);
 }
 	#title {
 		position: fixed;
@@ -271,11 +271,10 @@ background: var(--menuactivebg);
 		width: 100%;
 	}
 	#menu>ul>li {
-				font-size:calc( var(--basefontsize) - 1px);
+				font-size:calc( var(--basefontsize) - .4vw);
 		border: solid 0px;
 		display: table-cell;
 		vertical-align: middle;
-  font-weight:bold;
 	}
 	#menu ul {
 		padding: 0px;
@@ -362,7 +361,12 @@ background: var(--menuactivebg);
 		border-top: solid 5px #000000;
 	}
 
-
+#content {
+	font-size:calc( var(--basefontsize) - .5vw);
+}
+#content h1{
+	font-size:calc( var(--basefontsize) + 1.5vw);
+}
 
 
 }
@@ -391,7 +395,7 @@ display:table;
 		background: var(--mobilesitebg);
 		color: var(--sitetitlecolor);
 		font-weight:bold;
-    font-size:calc( var(--basefontsize) + 5px);
+    font-size:calc( var(--basefontsize) + 3vw);
 		box-shadow: 3px 3px 5px #333333;
 		position: fixed;
 		width: 100%;
@@ -464,12 +468,12 @@ border-bottom:solid 3px var(--menulinkcolor);
 	#menu ul>li a {
 		padding:5px 0px 5px 0px;
 		padding-left: 10%;
-font-size:calc( var(--mobilebasefontsize) + 10px);
+font-size:calc( var(--mobilebasefontsize) + 1.5vw);
 font-weight:bold;
 	}
 
 	#menu ul>li>ul>li a {
-	padding-left:calc( var(--mobilebasefontsize) + 20px);
+	padding-left:calc( var(--mobilebasefontsize) + 15vw);
 font-weight:normal !important;
 filter:brightness(85%);
 
