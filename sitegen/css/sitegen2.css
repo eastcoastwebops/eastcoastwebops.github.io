@@ -15,8 +15,9 @@
 	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--mobilesitebg:#333333;
-	--basefontsize:1.6vw;
-        --mobilebasefontsize:4vw;
+	--basefontsize:1.9vw;
+  --mobilebasefontsize:4.5vw;
+	
 }
 @font-face {
 	font-family: 'Raleway';
@@ -359,6 +360,15 @@ background: var(--menuactivebg);
 		border-bottom: solid 3px #000000 !important;
 		border-top: solid 5px #000000;
 	}
+
+#content {
+	font-size:calc( var(--basefontsize) - .5vw);
+}
+#content h1{
+	font-size:calc( var(--basefontsize) + 1.5vw);
+}
+
+
 }
 @media only screen and (max-width: 1100px) {
 	#menu .spacer {
