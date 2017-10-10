@@ -1,17 +1,19 @@
 :root {
-	--docbg: #ffff00;
+	--docbg: #ff6600;
 	--pagebg: #ffffff;
 	--hcolor: #000000;
 	--pcolor:#666666;
 	--deskmenubgcolor:#dddddd;
 	--deskmenulink:#000000;
+
 	--menulinkactive:#ffff00;
-	--menubgdrop:#77aa00;
+	--menubgdrop:#333333;
 	--menuhoverbg:#ff6600;
 	--menuhoverfontcolor:#ffffaa;
-	--menuactivebg:#449944;
+	--menuactivebg:#ff9944;
 	--sitetitlecolor:#0099ff;
-	--pagetitlecolor:#ffff00;
+	--subtitlecolor:#00bbff;
+	--pagetitlecolor:#336699;
 	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--menusublinkcolor:#eeeeee;
@@ -86,6 +88,11 @@ body {
 #sitetitle {
 	color: var(--sitetitlecolor);
 	font-size: 30px;
+}
+
+.subtitletext {
+	color: var(--subtitlecolor);
+	font-size: 20px;
 }
 #content {
 	font-size:calc( var(--basefontsize) );
@@ -313,11 +320,13 @@ opacity:.90;
 color: var(--menulinkactive);
 	}
 	
+#menu > li.active{
+		background: var(--menuactivebg);
+	}
 	
 #menu .semiactive,
 #menu .subitem li.active{
 		background: var(--menuactivebg);
-
 	}
 #menu .semiactive a{
 
@@ -402,7 +411,7 @@ display:table;
 		padding: 0px;
 		background: var(--mobilesitebg);
 		color: var(--sitetitlecolor);
-		font-weight:bold;
+		
     font-size:calc( var(--basefontsize) + 5px);
 		box-shadow: 3px 3px 5px #333333;
 		position: fixed;
@@ -412,6 +421,12 @@ display:table;
 		border-bottom: solid 2px #000000;
       height:55px;overflow:hidden;
 	}
+
+.subtitletext {
+	color: var(--subtitlecolor);
+	   font-size:calc( var(--basefontsize) - 2px);
+}
+
 	#title {
 		display: none;
 	}
@@ -430,6 +445,8 @@ display:table;
 display:table-cell;
 vertical-align:middle;padding-right:10px;
 	}
+
+
 	#menutrigger:hover {
 		cursor: pointer;
 	}
@@ -602,8 +619,14 @@ padding:0px;
 
 @media only screen and (max-width: 480px) {
 	#sitetitle {
-		font-size: 15px;
+	font-size:calc( var(--basefontsize) - 2px);
 	}
+
+.subtitletext {
+	color: var(--subtitlecolor);
+	   font-size:calc( var(--basefontsize) - 3px);
+}
+
 	#menutrigger {
 		font-size: 50px;
 		top:-9px;
@@ -622,9 +645,12 @@ font-size:calc( var(--mobilebasefontsize) + 5px);
 font-weight:bold;
 	}
 
-	#menu ul>li>ul>li a {
-		
+
+	#menu .subitem a {
+font-size:calc( var(--mobilebasefontsize) + 5px);
 	}
+
+
 	.full-bg-image {
 		width: 100%;
 		height: 300px !important;

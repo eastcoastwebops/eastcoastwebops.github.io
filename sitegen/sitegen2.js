@@ -6,12 +6,15 @@ SiteGen Version 2.0
 ******/
 if(location.hostname == "eastcoastwebops.github.io"){
 webtitle = 'East Coast Web Operations';
+subtitle = 'Web Development by Eric K. Holbrook';
 }
 
 else {
 	
 webtitle = 'ECWO';
 webtitle = 'East Coast Web Operations';
+subtitle = 'Web Development by Eric K. Holbrook';
+
 }
 
 imagloc = '';
@@ -50,7 +53,7 @@ data = $.ajax({
 data = data.replace(/\r?\n|\r/g, ''); // but then strip out all line breaks
 title = data.split(">").join(">,").split("<").join("<,").split(",");
 //console.log (title);
-sitetitle = '<div class="sitetitletext">' + webtitle + '</div>'; //may have to tweak #siteTitle css entry
+sitetitle = '<div class="sitetitletext">' + webtitle + '<div class="subtitletext">' + subtitle + '</div></div>'; //may have to tweak #siteTitle css entry
 menusize = title.length; // find out how many titles
 themenu = '<ul class="toplevel"><li class="spacer">&nbsp;</li>';
 thelink = thetitle = '';
