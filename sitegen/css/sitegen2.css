@@ -5,11 +5,11 @@
 	--pcolor:#666666;
 	--deskmenubgcolor:#dddddd;
 	--deskmenulink:#000000;
-
 	--menulinkactive:#ffff00;
 	--menubgdrop:#333333;
 	--menuhoverbg:#ff6600;
 	--menuhoverfontcolor:#ffffaa;
+--menutriggeractivebg:#339933;
 	--menuactivebg:#ff9944;
 	--sitetitlecolor:#0099ff;
 	--subtitlecolor:#00bbff;
@@ -301,6 +301,8 @@ opacity:.90;
 
 	}
 
+#menu .trigger.active{
+background: var(--menutriggeractivebg);}
 
 	#menu ul.subitem{
 		background: var(--menubgdrop);
