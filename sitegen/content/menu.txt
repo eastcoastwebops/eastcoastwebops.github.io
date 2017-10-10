@@ -1,8 +1,10 @@
 Home>
 About Me|about<
 Site News|news>
-News,
-Sample Page<
+This,
+That other page,
+Sample Page,
+News<
 Articles|blog,
 Lyrics>
 Ballad Of John & Mary|lyrics_johnmary<
