@@ -301,8 +301,11 @@ opacity:.90;
 
 	}
 
-#menu .trigger.active{
-background: var(--menutriggeractivebg);}
+#menu .trigger.active,
+#menu .active{
+background: var(--menutriggeractivebg);
+}
+
 
 	#menu ul.subitem{
 		background: var(--menubgdrop);
@@ -689,9 +692,6 @@ font-size:calc( var(--mobilebasefontsize) + 5px);
 		font-size: 1.2em;
 	}
 }
-
-
-
 
 
 /* ios image */

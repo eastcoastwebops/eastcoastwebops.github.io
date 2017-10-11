@@ -6,13 +6,13 @@ SiteGen Version 2.0
 ******/
 if(location.hostname == "eastcoastwebops.github.io"){
 webtitle = 'East Coast Web Operations';
-subtitle = 'Web Development by Eric K. Holbrook';
+subtitle = 'Web Development Eric K. Holbrook';
 }
 
 else {
 	
 webtitle = 'ECWO';
-webtitle = 'East Coast Web Operations';
+//webtitle = 'East Coast Web Operations';
 subtitle = 'Web Development by Eric K. Holbrook';
 
 }
