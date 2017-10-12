@@ -66,7 +66,7 @@ data = $.ajax({
 data = data.replace(/\r?\n|\r/g, ''); // but then strip out all line breaks
 title = data.split(">").join(">,").split("<").join("<,").split(",");
 //console.log (title);
-fullsitetitle = '<a href="index.html"><div class="sitetitletext">' + sitetitle + '<div class="subtitletext">' + subtitle + '</div></div></a>'; //may have to tweak #siteTitle css entry
+fullsitetitle = '<a href="index.html?page=home"><div class="sitetitletext">' + sitetitle + '<div class="subtitletext">' + subtitle + '</div></div></a>'; //may have to tweak #siteTitle css entry
 menusize = title.length; // find out how many titles
 themenu = '<ul class="toplevel"><li class="spacer">&nbsp;</li>';
 thelink = thetitle = '';

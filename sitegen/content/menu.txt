@@ -2,8 +2,8 @@ Home>
 About Me|about,
 Site News|news<
 Styling Page|sample_page>
-Dark Theme|theme&t=dark,
-Light Theme|theme&t=light<
+Dark Theme|sample_page&t=dark,
+Light Theme|sample_page&t=light<
 Articles|blog,
 Portfolio Of Work|portfolio>
 Code|portfolio,
