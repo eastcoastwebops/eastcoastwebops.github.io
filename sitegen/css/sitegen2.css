@@ -388,7 +388,6 @@ color: var(--menulinkcolor);
 	#sitetitle {
 display:table;
 		width: auto;
-		border: solid 0px;
 		padding: 0px;
 		background: var(--mobilesitebg);
 		color: var(--sitetitlecolor);
@@ -423,8 +422,7 @@ display:table;
 	}
 	.sitetitletext{
 		text-align:right;
-display:table-cell;
-vertical-align:middle;padding-right:10px;
+padding-right:10px;
 	}
 
 
@@ -603,9 +601,11 @@ padding:0px;
 	font-size:calc( var(--basefontsize) - 2px);
 	}
 
+.sitetitletext{margin-top:5px;}
 .subtitletext {
 	color: var(--subtitlecolor);
 	   font-size:calc( var(--basefontsize) - 3px);
+
 }
 
 	#menutrigger {
