@@ -285,6 +285,7 @@ figure.alignright {
 	#menu>li.active {
 		background: var(--menuactivebg);
 	}
+	
 	#menu .semiactive, #menu .subitem li.active {
 		background: var(--menuactivebg);
 	}
@@ -417,7 +418,7 @@ figure.alignright {
 		background: var(--menubgdrop);
 	}
 	#menu .semiactive {
-		background: var(--menuactivebg);
+		background: var(--menuparentbg);
 	}
 	#menu>ul>li {
 		display: block;
