@@ -1,7 +1,9 @@
 Home>
 About Me|about,
 Site News|news<
-Styling Page|sample_page,
+Styling Page|sample_page>
+Dark Theme|theme&t=dark,
+Light Theme|theme&t=light<
 Articles|blog,
 Portfolio Of Work|portfolio>
 Code|portfolio,

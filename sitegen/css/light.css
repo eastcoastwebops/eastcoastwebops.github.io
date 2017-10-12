@@ -1,20 +1,20 @@
 :root {
-	--docbg: #999999; /* fade color */
-	--pagebg: #000000; 
-	--hcolor: #bbbbbb; /* h tags color */
-	--pcolor:#888888; /* base content font color */
-	--deskmenubgcolor:#222222; /* menu strip - keep same color as page for cleaner look */
-	--deskmenulink:#ffffff;
+	--docbg: #ff6600;
+	--pagebg: #ffffff;
+	--hcolor: #000000;
+	--pcolor:#666666;
+	--deskmenubgcolor:#ffffff;
+	--deskmenulink:#000000;
 	--menulinkactive:#ffff00;
 	--menubgdrop:#333333;
 	--menuhoverbg:#ff6600;
 	--menuhoverfontcolor:#ffffaa;
-  --menutriggeractivebg:#339933;
+--menutriggeractivebg:#339933;
 	--menuactivebg:#ff9944;
 	--sitetitlecolor:#0099ff;
 	--subtitlecolor:#00bbff;
 	--pagetitlecolor:#336699;
-	--hamburger:#ff6600;
+	--hamburger:#77AA00;
 	--menulinkcolor:#ffffff;
 	--menusublinkcolor:#eeeeee;
 	--menubordercolor:solid 1px #446844;

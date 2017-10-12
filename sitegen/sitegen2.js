@@ -5,14 +5,14 @@ SiteGen Version 2.0
 
 ******/
 if(location.hostname == "eastcoastwebops.github.io"){
-webtitle = 'East Coast Web Operations';
+sitetitle = 'East Coast Web Operations';
 subtitle = 'Web Development Eric K. Holbrook';
 }
 
 else {
 	
-webtitle = 'ECWO';
-//webtitle = 'East Coast Web Operations';
+sitetitle = 'ECWO';
+//sitetitle = 'East Coast Web Operations';
 subtitle = 'Web Development by Eric K. Holbrook';
 
 }
@@ -30,30 +30,43 @@ function gup(name) {
 }
 whichpage = gup('page');
 whichimages = gup('gallery');
-//console.log(whichimages);
-if (whichimages == null) {
-	whichimages = "demo_gallery";
-}
+theme = gup('t');
 article = gup('article');
+
+console.log(theme);
+
 if (whichpage === null) {
 	whichpage = "home";
 }
+if (whichimages == null) {
+	whichimages = "demo_gallery";
+}
+
+if (theme === null) {
+	 theme= "light";
+}
+
+
+
 if (article === null) {
 	article = "0";
 }
+
+
+
 loc = window.location.pathname;
 dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
 var data = "";
 data = $.ajax({
 	url: dir + "sitegen/content/menu.txt",
 	async: false,
-	contentType: "text",
+	contentType: "html",
 	dataType: 'html'
 }).responseText;
 data = data.replace(/\r?\n|\r/g, ''); // but then strip out all line breaks
 title = data.split(">").join(">,").split("<").join("<,").split(",");
 //console.log (title);
-sitetitle = '<div class="sitetitletext">' + webtitle + '<div class="subtitletext">' + subtitle + '</div></div>'; //may have to tweak #siteTitle css entry
+fullsitetitle = '<a href="index.html"><div class="sitetitletext">' + sitetitle + '<div class="subtitletext">' + subtitle + '</div></div></a>'; //may have to tweak #siteTitle css entry
 menusize = title.length; // find out how many titles
 themenu = '<ul class="toplevel"><li class="spacer">&nbsp;</li>';
 thelink = thetitle = '';
@@ -73,7 +86,9 @@ for (i = 0; i < menusize;) {
 	if (menucheck.indexOf(">") > -1) {
 		needtap = " trigger";
 	}
-	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="index.html?page=' + thelinkb + '\">' + thetitle + '</a>';
+	// build url
+	url =   'index.html?page=' + thelinkb ;
+	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="'+url+'\">' + thetitle + '</a>';
 	if (menucheck.indexOf(">") > -1) {
 		themenu += "<ul class='subitem'>";
 	} else if (menucheck.indexOf("<") > -1) {
@@ -85,9 +100,15 @@ for (i = 0; i < menusize;) {
 }
 themenu += '<li class="spacer">&nbsp;</li></ul>';
 
+
 //$(document).ready(function() {
 $(window).on("load",function() {
 	$('#menu').html(themenu); // build menu
+
+	
+
+
+	
 	reducecount = $("ul.toplevel > li").length;
 	cssmenu = Math.floor(100 / (reducecount /* width minus submenus */ ));
 	cssstring = "<style type=\"text/css\">"; // now write out custom css
@@ -99,6 +120,18 @@ $(window).on("load",function() {
 	function loadPage(whichpage) {
 		$("body").hide(0, function() {
 			var content = 'sitegen/content/' + whichpage + '.html';
+			themecss = 'sitegen/css/' + theme + '.css';
+	
+		$('<link>')
+  .appendTo('head')
+  .attr({
+      type: 'text/css', 
+      rel: 'stylesheet',
+      href: 'sitegen/css/' + theme + '.css'
+  });
+		
+		
+		
 			$("#content").load(content, function() {
 				$('body').attr('id', whichpage);
 				setTimeout(function() {
@@ -116,6 +149,11 @@ $(window).on("load",function() {
 				} else {
 					$('#menu').css('display', 'block');
 				}
+				
+										$('.sitename').each(function() {
+							$(this).html(sitetitle);
+						});
+				
 			});
 			
 			
@@ -130,15 +168,21 @@ $(window).on("load",function() {
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('semiactive');
 			
-			console.log (whichpage);
+	//		console.log (whichpage);
 			
 			page = $('li.' + whichpage + ' > a:first').text();
-			$(document).prop('title', page + ' | ' + webtitle);
-			$('#sitetitle').html(sitetitle);
+			$(document).prop('title', page + ' | ' + sitetitle);
+			$('#sitetitle').html(fullsitetitle);
 			nicename = whichpage.replace(/_/g, ' ');
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
 			$('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
+			
+				$('a').each(function() {
+href = $(this).attr('href');
+$(this).attr('href',href + '&t='+theme);
+});
+			
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({
 				//'left' : "-=70%",
