@@ -105,6 +105,18 @@ $(window).on("load", function() {
 				href: 'sitegen/css/' + theme + '.css'
 			});
 			$("#content").load(content, function() {
+	
+// start to conform all links on page	
+				$('a').each(function(i) {
+				href = $(this).attr('href');
+	
+				if(href.indexOf('t=') == -1){
+					console.log(href);
+					$(this).attr('href', href + '&t=' + theme);
+             }
+			});
+				
+				
 				$('body').attr('id', whichpage);
 				setTimeout(function() {
 					if (ios() != false) {
@@ -141,10 +153,7 @@ $(window).on("load", function() {
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
 			$('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
-			$('a').each(function() {
-				href = $(this).attr('href');
-				$(this).attr('href', href + '&t=' + theme);
-			});
+			
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({
 				//'left' : "-=70%",
@@ -155,6 +164,7 @@ $(window).on("load", function() {
 			}, 2200, 'swing');
 		});
 	}
+	
 	loadPage(whichpage);
 	$("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
 		var whichthis = $(this);

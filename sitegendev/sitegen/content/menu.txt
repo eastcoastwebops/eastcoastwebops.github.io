@@ -1,17 +1,13 @@
 Home>
-About Me|about<
-Site News|news>
-This,
-That other page,
-Sample Page,
-News<
+About Me|about,
+Site News|news<
+Styling Page|sample_page>
+Dark Theme|sample_page&t=dark,
+Light Theme|sample_page&t=light<
 Articles|blog,
-Lyrics>
-Ballad Of John & Mary|lyrics_johnmary<
 Portfolio Of Work|portfolio>
 Code|portfolio,
 Galleries,
 Demo Gallery|gallery&gallery=demo_gallery,
-City Gallery|gallery&gallery=cities,
 Web Design Snapshots|gallery&gallery=websiteportfolio<
 Contact
