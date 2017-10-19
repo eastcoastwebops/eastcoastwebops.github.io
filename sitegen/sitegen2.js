@@ -95,6 +95,10 @@ $(window).on("load", function() {
 	cssstring += '#entry' + article + '{display:block;}';
 	cssstring += "</style>";
 	$('.cssstyle').replaceWith(cssstring); // build dynamic css based on # of menu items
+	
+
+	
+	
 	function loadPage(whichpage) {
 		$("body").hide(0, function() {
 			var content = 'sitegen/content/' + whichpage + '.html';
@@ -216,6 +220,10 @@ $(window).on("load", function() {
 			scrollTop: 0
 		}, "fast");
 	});
+	
+
+	
+	
 	$(window).on('resize', function() {
 		winwidth = $(window).width();
 		winheight = $(window).height();
