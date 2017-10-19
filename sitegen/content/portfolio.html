@@ -1,6 +1,6 @@
 <style>
-a:hover{cursor:pointer;}
-a{font-weight:bold;padding:10px;}
+ul.points a:hover{cursor:pointer;}
+ul.points a{font-weight:bold;padding:10px;}
 ul.points li{margin-bottom:20px;}
 </style>
 <script>
@@ -153,10 +153,10 @@ This was a test to read in a JSON object containing cruises, display it, and cal
 
 $(document).ready (function() {
 
-$('a').each(function() {
+$('#content a').each(function() {
 //alert ('hi');
   var ref = $(this).attr('href');
-  $(this).attr('onclick', "popit('"+ref+"')" ).removeAttr('href');
+//  $(this).attr('onclick', "popit('"+ref+"')" ).removeAttr('href');
 });
 
 });	
