@@ -941,6 +941,13 @@ jQuery('ul.products-grid').each(function(i) {
       } // e			
     }
   }) // each
+	// move eveything else to end with misc barnner
+	
+	lastbanner = '<div class="base partsbanner clearfix"><a id="misc"></a>Other Replacement Parts for Sanitaire Commercial Vacuums<span class="backtop"><a href="#top">Back To Top</a></span></div>';
+	
+	jQuery (lastbanner).appendTo('.category-products');
+	jQuery ('#base').appendTo('.category-products');
+	
 jQuery('.category-description, .partsbanner').find('a').click(function(e) {
   e.preventDefault();
   var href = jQuery(this).attr('href');

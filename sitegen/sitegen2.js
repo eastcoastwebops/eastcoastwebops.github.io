@@ -174,6 +174,9 @@ $(window).on("load", function() {
 	}
 	
 	loadPage(whichpage);
+	
+	
+	
 	$("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
 		var whichthis = $(this);
 		var $which = $(whichthis).parent().attr('class').split(' ')[0];

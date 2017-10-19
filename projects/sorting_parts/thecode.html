@@ -1,0 +1,51 @@
+
+<pre>
+var entries = [
+  // search term > class > Banner language
+  'Hose>hose>Replacement Hoses for Sanitaire Commercial Vacuums ', 
+	'Roller>roller>Replacement Brush Rollers & Brush Strips for Sanitaire Commercial Vacuums', 
+	'Brush Strips>roller>na', 
+	'Bags>bags>Disposable Bags for Sanitaire Commercial Vacuums', 
+	'Bag>bag>Reusable Bag & Outer Bags for Sanitaire Commercial Vacuums', 
+	'Belt>belt>Replacement Belts for Sanitaire Commercial Vacuums', 
+	'Filter>filter>Replacement Filters for Sanitaire Commercial Vacuums'
+];
+var howmany = entries.length;
+jQuery('ul.products-grid').addClass('initialgrid').attr('id', 'base');
+jQuery('ul.products-grid').each(function(i) {
+    // first apply all classes
+    for (x = 0; x < howmany; x++) {
+      var parts = entries[x].split(">");
+      jQuery(this).find("li:contains(" + parts[0] + ")").each(function(i) {
+        jQuery(this).addClass(parts[1]);
+      })
+    }
+    // now group classes and wrap
+    for (x = 0; x < howmany; x++) {
+      var parts = entries[x].split(">");
+      jQuery(this).find('.' + parts[1]).insertAfter(this).wrapAll('<ul id="' + parts[0] + '"></ul>');
+      // copy class from first ul
+      jQuery('#' + parts[0]).attr('class', (jQuery('#base').attr('class'))).removeClass('initialgrid');
+      if (parts[2] != 'na') {
+        var insert = '<div class="partsbanner clearfix"><a id="' + parts[1] + 'a"></a>' + parts[2] + '<span class="backtop"><a href="#top">Back To Top &#x21A5;</a></span></div>';
+        jQuery(insert).insertBefore('#' + parts[0]);
+      } // e			
+    }
+  }) // each
+	// move eveything else to end with misc barnner
+	
+	lastbanner = '<div class="base partsbanner clearfix"><a id="misc"></a>Other Replacement Parts for Sanitaire Commercial Vacuums<span class="backtop"><a href="#top">Back To Top</a></span></div>';
+	
+	jQuery (lastbanner).appendTo('.category-products');
+	jQuery ('#base').appendTo('.category-products');
+	
+jQuery('.category-description, .partsbanner').find('a').click(function(e) {
+  e.preventDefault();
+  var href = jQuery(this).attr('href');
+  var anchor = jQuery(href).offset();
+  jQuery('html,body').animate({
+    scrollTop: anchor.top - 200
+  }, 1000);
+  return false;
+});
+</pre>
