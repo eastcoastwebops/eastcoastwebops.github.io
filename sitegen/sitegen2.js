@@ -109,11 +109,15 @@ $(window).on("load", function() {
 // start to conform all links on page	
 				$('a').each(function(i) {
 				href = $(this).attr('href');
+	// if page doesn't have page= then skip otherwise
+		if(href.indexOf('page=') != -1){
 	
 				if(href.indexOf('t=') == -1){
 					console.log(href);
 					$(this).attr('href', href + '&t=' + theme);
              }
+			 }			 
+						 
 			});
 				
 				
