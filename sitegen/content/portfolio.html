@@ -26,11 +26,11 @@ ul.points li{margin-bottom:20px;}
 	
 
 
-<li style="list-style-type:none;"><h2>Web Development & Front End</h2></li>
+<li><h2>Web Development & Front End</h2></li>
 
 
 <li>
-<b>E-Commerce Product Sort and Organize</b> (desktop)<br/>
+<h4>E-Commerce Product Sort and Organize</h4> (desktop)<br/>
 This is for an e-commerce I do work on, and the problem presented was that the products listed on this page are scattered all over the place. The goal was to <ol><li>QUICKLY write some code that would... </li>
 <li>Group like items together</li>
 <li>Allow navigation To Each Group</li>
@@ -44,7 +44,7 @@ This is for an e-commerce I do work on, and the problem presented was that the p
 
 
 <li>
-<b>Customer Review</b><br/>
+<h4>Customer Reviews (load, display, organize)</h4>
 <a href="projects/reviews/index.html" >Click Here</a>
 Loads a data file (for demo purposes this is a JS array containing comma separated data). <br/>
 Typical Entry:</br>
@@ -53,40 +53,51 @@ After the data is read in, it is then separated, an animated graph is built, the
 </li>
 
 <li>
-<b>CountDown (to 4pm Today)</b> (desktop)<br/>
+<h4>Scaleable CountDown Clock (to 4pm Today)</h4> (desktop)
 <a href="projects/countdown/index.html" >Click Here</a>
-Simply script to get today's date, then build a countdown from 4pm on the day you are viewing it, whatever day that happens to be. 
+Simple script to get today's date, then build a countdown from 4pm on the day you are viewing it, whatever day that happens to be. 
 </li>
 
-	<li><b>Five Dollar Friday Simulation</b> <a href="projects/5dollar/index.html" >Click Here</a> <br/>
+	<li><h4>Five Dollar Friday Simulation</h4> (desktop)
+	<a href="projects/5dollar/index.html" >Click Here</a> <br/>
 	Sounded like a good learning project to simulate what would happen with (x) amount of people putting in (y) amount of dollars every week for (z) weeks and see who might win and how much they might win. Assign names to each person and track those users over the course of the simulation.
 </li>
 
 
 <li>
-<b>CitiEasyDeals - Learn More Micro Site</b> (Created for CitiBank)<br/>
+<h4>CitiEasyDeals - Learn More Micro Site</h4> (Created for CitiBank)<br/>
 <a href="projects/learnmore/index.html">Citi Learn More</a>
 Most challenging part of project was to gather information about each slide's veritical position for navigation purposes and to write code that would intelligently parse out what you clicked on, what slide, button, what you opened, and send data for tracking. All of the Javascript is my original code, and the entire page was built by me.
 </li>
 
+<li><h4>Natural Language Random Poem Generator</h4> <a href="projects/storygen/storygen2.html" >Click Here</a> <br/>
+	I created out of the desired to do something above and beyond the typical 'ad-lib' kind of story generators. This actually picks appropriate sounding / rhyming words from a pool of sounds, puts them together into a natural (if weird) sounding poem. The 2nd phase of the project was more proof of concept and that was to add images to go along with the poem. This became a challenge in that I personally didn't want to create all the images and simply got sidetracked. 
+</li>
+<li><h4>Sticky NoteS</h4>
+<a href="projects/stick/quote.html" >Click Here </a><p>Random Order and Display each time.  -- Early Version - This project started out of a desired to (a) read in an external set of data (the quotes), and then (b) DO something with them kind of fun and (c) allow easy editing or adding of new notes by simply editing a text file in dropbox. Each page load randomizes the notes, the font, the rotation and various other little pieces of the css. Mission accomplished </p>
+	<p>Try resizing the browser as well to see what happens!</p>
+</li>
 
-<li><b>Modified version of Citi's </b> micro site for <a href="projects/cookie/index.html" >dynamic use</a><p>The goal of this excerise was to take base concept of slide content above but make all the <b>slides dynamically generated</b> and let the user <b>position them and have this position stored in a cookie</b>. So based on proving a list of names, a menu would be created, and the slides would be created and positioned. (Try dragging a slide around, then reload the page)</p>
+<li><h4>Sticky Note With parameters</h4><a href="projects/darknote/index.html?t=dark&c=quotes" >An alternative version</a> that accepts url parameters for theme "t" and content "c". There's actually only 2 themes and 2 sets of data but that was enough for building. <br/><br/>Try: <a href="projects/darknote/index.html?t=light&c=tips" >index.html?t=light&c=tips</a> for the "light" version loading the data file called "tips" 
+</li>
+
+
+
+
+
+<li><h4>Modified version of Citi's </h4> micro site for <a href="projects/cookie/index.html" >dynamic use</a><p>The goal of this excerise was to take base concept of slide content above but make all the <b>slides dynamically generated</b> and let the user <b>position them and have this position stored in a cookie</b>. So based on proving a list of names, a menu would be created, and the slides would be created and positioned. (Try dragging a slide around, then reload the page)</p>
 
 		
-<li><b>"Gutsy Gals" Proof Of Concept</b> micro site<a href="projects/gutsy/index.html" >Gutsy Gals (1)</a><p>The goal of this excerise was to create a nice micro / info site or landing page with some animation</p>		
+<li><h4>"Gutsy Gals" Proof Of Concept micro site</h4> 
+<a href="projects/gutsy/index.html" >Gutsy Gals (1)</a><p>The goal of this excerise was to create a nice micro / info site or landing page with some animation</p>		
 </li>
 
 
 <li><b>THIS Site itself</b><br/>
-	This site is built entirely with Javascript and html and reads in a menu file (a text file). The menu builds out what is needed and how to create the widths for the css and generate submenus. Page links are generated dynamically and as a page is called it is read in from a raw html file and populated with javascript into the page template. <br/><br/>
+	This site is built entirely with Javascript and html and reads all the data externally and writes it out to templates. The menu builds out what is needed and how to create the widths for the css and generate submenus. Page links are generated dynamically and as a page is called it is read in from a raw html file and populated with javascript into the page template. <br/><br/>
 	I created this concept much like I used to create php based sites where the page variable is read in from the URL and then from that, the site code can figure out what to do next, load the content, etc. Except this uses Javascript and can be run without a server and totally offline. I create only a few pages and template pages (2 cols, 3 cols, etc) .
 	
-	<br/><br/> This is also responsive. It is not meant to show off a cool design but rather cool coding. I'll figure out the design later. 
-</li>
-
-
-<li><b>Natural Language Random Poem Generator</b> <a href="projects/storygen/storygen2.html" >Click Here</a> <br/>
-	I created out of the desired to do something above and beyond the typical 'ad-lib' kind of story generators. This actually picks appropriate sounding / rhyming words from a pool of sounds, puts them together into a natural (if weird) sounding poem. The 2nd phase of the project was more proof of concept and that was to add images to go along with the poem. This became a challenge in that I personally didn't want to create all the images and simply got sidetracked. 
+	<br/> This is also responsive. 
 </li>
 
 
@@ -104,20 +115,10 @@ This was a test to read in a JSON object containing cruises, display it, and cal
 </li>
 
 
-<li><a href="projects/popup4wire/poplocaltest.html" >Site independent Popup with lightbox effect</a> <p>Need to wait a few seconds until this kicks in. <br/>This script was created out of the need to work in a rather complex Wordpress site that did not like it's template or code modified overly much. I did not want to add anything permanent to the site if possible, did not want to modifiy the HTML or the template. <br/><br>So I came up with the idea of simply embedding a 'trigger' type script that would load the REAL script that was hosted on another site which itself build some temporary HTML into the DOM, and then go away after it was clicked on. <br/><br/>Thus, all that was needed to do on the clients site was add the following code: <script src="---(myownsite)---/pop_np.js"></script> and this script would build an HTML div internally,  and insert this div, into the page it was loaded from. Without the Div or popup ever having to be added to the page itself. 
-	<br/><br/> View the source of the test page, representing the clients wordpress site. The script builds its own div and content, then inserts itself into this code. It's obviously more impressive across domains, which this demo can't simulate. 
-</li>
-
 <li><a href="projects/xmlthing/xmlview.html" >Quick XML view of 3200</a> records in text file
 <br>View the data - <a href="projects/xmlthing/items2.xml" >The XML Records</a>
 </li>
 
-<li><a href="projects/stick/quote.html" >Sticky Note</a> <p>Early Version - This project started out of a desired to (a) read in an external set of data (the quotes), and then (b) DO something with them kind of fun and (c) allow easy editing or adding of new notes by simply editing a text file in dropbox. Each page load randomizes the notes, the font, the rotation and various other little pieces of the css. Mission accomplished </p>
-	<p>Try resizing the browser as well to see what happens!</p>
-</li>
-
-<li><a href="projects/darknote/index.html?t=dark&c=quotes" >Sticky Note With parameters</a><p>An alternative version that accepts url parameters for theme "t" and content "c". There's actually only 2 themes and 2 sets of data but that was enough for building. <br/><br/>Try: <a href="projects/darknote/index.html?t=light&c=tips" >index.html?t=light&c=tips</a> for the "light" version loading the data file called "tips" </p>
-</li>
 
 <li><a href="projects/math/projected.html" >Projected Math</a>&nbsp;- Basic example to project how X numbers over Y iterations and predict average. Idea came about because of football stats as in, if Running Back Bob ran for  100 yards in game 1, but 50 yards in game 2, over the course of 16 games (meaning average of 75 yards a game, what would he be projected to run for? This is all done in realtime as user fiddles with numbers. In theory, it could work for batting average or pretty much anything.
 </li>
