@@ -22,7 +22,7 @@ ul.points li{margin-bottom:20px;}
 
 <div class="container">
 
-<ul class="points col-sm-10 col-sm-offset-1">
+<ul id="points" class="points col-sm-10 col-sm-offset-1">
 <li><h2>Web Development & Front End</h2></li>
 
 
@@ -147,12 +147,13 @@ This was a test to read in a JSON object containing cruises, display it, and cal
 
 
 <script>
-$(document).ready (function() {
-$('#content a').each(function() {
+
+$('#points a').each(function() {
   var ref = $(this).attr('href');
-$(this).attr('onclick', "popit('"+ref+"')" ).removeAttr('href');
+	console.log(this);
+$(this).attr('onclick', "popit('"+ref+"')" ).attr('href', '#');
 });
-});	
+
 </script>
 
 
