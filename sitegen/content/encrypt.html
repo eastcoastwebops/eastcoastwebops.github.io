@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>E.K.Holbrook</title>
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+
+
+		<script type="text/javascript" src="projects/encrypt/jsencryption.js"></script>
+		<script type="text/javascript" src="projects/encrypt/jsencryptionform.js"></script>
+		<script src="../sitegen/src/jquery2.1.3.min.js"></script>
+		</head>
+		<script>
+		function copyToClipboard(element) {
+		alert ('copied');
+  var $temp = $("<input>");
+  $("body").append($temp);
+  //$temp.val($(element).text()).select();
+  $temp.val($(element).val()).select();
+	
+  document.execCommand("copy");
+  $temp.remove();
+}
+		</script>
+		
+		<style type="text/css">
+body {
+	padding: 5px;
+	margin: 0px;
+	background: #000000;
+	color: #999999;
+	font-family: monospace;
+	font-size: 24px !important;
+}
+textarea, input {
+	font-size: 20px;
+}
+h3, p {
+	padding: 0px;
+	margin: 0px;
+}
+h3 {
+	font-size: 16px;
+	color: #ffffff;
+}
+#passwordText, #plainText, #cipherText, #codeText, #encryptedTest {
+	width: 96%;
+}
+textarea.plain, textarea.cipher {}
+#plainText, #cipherText {
+	height: 200px;
+}
+#passwordText {
+	background-color: #ffff00;
+	padding: 5px;
+}
+#plainText {
+	background-color: #eeeeee;
+	color: #000000
+}
+#cipherText {
+	background-color: #006600;
+	color: #ffff99;
+}
+#codeText {
+	height: 100px;
+}
+@media only screen and (max-width: 320px) {
+	#content {
+		border: solid 1px #ffff00;
+	}
+	textarea, input {
+		font-size: 18px;
+	}
+}
+			
+		</style>
+
+	</head>
+	
+	<body onload="load()">
+		<div id="container">
+		
+			<div id="content" style="position: relative">
+				
+				<div id="content-right">
+				
+					<form name="key" action="#" onsubmit="return false;">
+					<h3>Key</h3>
+			
+					<p align="center">
+					<input type="text" name="text" id="passwordText" maxlength="1024" />
+					<br />
+					<input type="button" value=" Random " onclick="document.key.text.value = randomPassword(8);" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.key.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.key.text.select();" />
+					</p>
+					</form>
+					
+					<form name="plain" action="#" onsubmit="return false;">
+					<h3>Plain Text</h3>
+					<p align="center">
+					<textarea name="text" id="plainText" rows="10"></textarea>
+			
+					<br />
+					<input type="button" name="encrypt" value=" Encrypt " onclick="encryptFormText();" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.plain.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.plain.text.select();" />
+					<input type="button" value=" Copy " onclick = "copyToClipboard ('#plainText')" />
+					</p>
+					</form>
+				
+					
+					<form name="cipher" action="#" onsubmit="return false;">
+					<h3>Cipher Text</h3>
+					<p align="center">
+					
+					<textarea name="text" id="cipherText" rows="10"></textarea>
+					
+					<br />
+					<input type="button" name="decrypt" value=" Decrypt " onclick="decryptFormText();" />
+					&nbsp;
+					<input type="button" value=" Clear " onclick="document.cipher.text.value = '';" />
+					&nbsp;
+					<input type="button" value=" Select " onclick="document.cipher.text.select();" />
+					
+					<input type="button" value=" Copy " onclick = "copyToClipboard ('#cipherText')" />
+					
+					</p>
+					</form>
+					
+					<h3>HTML Code</h3>
+					<form name="encryptedCode" action="#" onsubmit="return false;">
+					<p align="center">
+					<textarea name="text" id="codeText" rows="10" wrap="off" readonly="" onclick="this.focus(); this.select();"></textarea>
+					<br />
+					<input type="radio" name="codeType" value="hide" checked onclick="genSampleCode();"> Standard
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="codeType" value="show" onclick="genSampleCode();"> Inline
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="codeType" value="show" onclick="genSampleCode();"> ***
+					</p>
+					</form>
+					
+					<h3>HTML Test</h3>
+					<div id="encryptedTest">&nbsp;</div>
+					
+				
+				
+				</div>
+				
+	
+				
+				<div class="clear"></div>
+				
+
+				
+
+			</div>
+			
+
+
+		
+			
+		</div>
+		</body>
+		</html>
