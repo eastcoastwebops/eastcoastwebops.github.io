@@ -15,7 +15,7 @@ background: -webkit-radial-gradient(center, ellipse cover, #8e8e8e 0%,#000000 10
 background: radial-gradient(ellipse at center, #8e8e8e 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8e8e8e', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */}
 
-#countdown{font-size:13vw;
+#countdown{font-size:16vw;
 font-family:trebuchet ms;font-weight:bold;
 text-shadow:3px 13px 16px #333333;
  -webkit-text-fill-color: black;
@@ -32,11 +32,19 @@ display:table-cell;
 }
 
 
+
 </style>
 
 
 <script>
 // Set the date we're counting down to which will be today
+time = prompt("When Are You Leaving work?","3");
+time = parseInt(time);
+// we're assuming all times are 1pm are later
+
+time = time + 12;
+time  = time.toString();
+time = time + ":00:00";
 
 var today = new Date();
 var dd = today.getDate();
@@ -50,7 +58,7 @@ if(mm<10) {
 } 
 
 today = mm + '/' + dd + '/' + yyyy;
-var countDownDate = new Date(today+" 15:00:00").getTime();  // today at 4pm
+var countDownDate = new Date(today+' ' + time).getTime();  // today at 4pm
 // Update the count down every 1 second
 var x = setInterval(function() {
   // Get todays date and time
@@ -68,15 +76,18 @@ var x = setInterval(function() {
 		 milliseconds = ('00'+milliseconds).slice(-3);
 
   // Display the result in the element with id="demo"
-  document.getElementById("countdown").innerHTML = '<span class="day">'+days + 'd</span> <span class="hour">' + hours + 'h</span> <span class="minutes">'
-  + minutes + 'm</span> <span class="seconds"> '+ seconds + 's</span> <span class="ms"> '+ milliseconds + 'ms</span> ';
+//  document.getElementById("countdown").innerHTML = '<span class="day">'+days + 'd</span> <span class="hour">' + hours + 'h</span> <span class="minutes">' + minutes + 'm</span> <span class="seconds"> '+ seconds + 's</span> <span class="ms"> '+ milliseconds + 'ms</span> ';
 
+	  // Display the result in the element with id="demo"
+  document.getElementById("countdown").innerHTML = '<span class="hour">' + hours + 'h</span> <span class="minutes">'
+  + minutes + 'm</span> <span class="seconds"> '+ seconds + 's</span> ';
+	
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
-}, 100);
+}, 1000);
 </script>
 
 </body>
