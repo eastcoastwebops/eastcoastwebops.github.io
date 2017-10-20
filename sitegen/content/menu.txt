@@ -2,6 +2,7 @@ Home>
 About Me|about,
 Site News|news<
 Tools>
+Encrypt,
 Styling Page|sample_page,
 Dark Theme|sample_page&t=dark,
 Light Theme|sample_page&t=light<
