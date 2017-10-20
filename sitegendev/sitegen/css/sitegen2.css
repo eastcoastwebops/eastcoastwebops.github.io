@@ -172,6 +172,15 @@ figure.alignright {
 	color: var(--hcolor);
 }
 
+ul.points {list-style-type:none;} 
+.points h4{padding:0px;margin:0px;
+color:var(--deskmenulink);
+border-bottom:solid 1px;margin-bottom:5px;
+}
+ul.points ol li{border:solid 0px;padding:0px;margin:0px;
+font-size:.9em;
+}
+
 /* desktop */
 
 @media only screen and (min-width: 701px) {
@@ -406,7 +415,7 @@ figure.alignright {
 		position: relative;
 		top: 54px;
 		box-shadow: 0px 3px 15px var(--dropshadow);
-		border-bottom: solid 3px var(--menulinkcolor);
+		border-bottom: solid 1px var(--menulinkcolor);
 	}
 	#menu ul {
 		padding: 0px;
@@ -415,7 +424,7 @@ figure.alignright {
 	#menu>ul {
 		display: block;
 		width: 100%;
-		background: var(--menubgdrop);
+		background: var(--mobilemenubgdrop);
 	}
 	#menu .semiactive {
 		background: var(--menuparentbg);

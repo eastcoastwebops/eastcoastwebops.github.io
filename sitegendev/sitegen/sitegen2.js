@@ -26,7 +26,7 @@ whichpage = gup('page');
 whichimages = gup('gallery');
 theme = gup('t');
 article = gup('article');
-console.log(theme);
+//console.log(theme);
 if (whichpage === null) {
 	whichpage = "home";
 }
@@ -72,8 +72,11 @@ for (i = 0; i < menusize;) {
 		needtap = " trigger";
 	}
 	// build url
+	console.log('--'+thelinkb+'--');
 	url = 'index.html?page=' + thelinkb;
+	if (thelinkb !='') {
 	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="' + url + '\">' + thetitle + '</a>';
+	}
 	if (menucheck.indexOf(">") > -1) {
 		themenu += "<ul class='subitem'>";
 	} else if (menucheck.indexOf("<") > -1) {
@@ -95,6 +98,10 @@ $(window).on("load", function() {
 	cssstring += '#entry' + article + '{display:block;}';
 	cssstring += "</style>";
 	$('.cssstyle').replaceWith(cssstring); // build dynamic css based on # of menu items
+	
+
+	
+	
 	function loadPage(whichpage) {
 		$("body").hide(0, function() {
 			var content = 'sitegen/content/' + whichpage + '.html';
@@ -105,6 +112,22 @@ $(window).on("load", function() {
 				href: 'sitegen/css/' + theme + '.css'
 			});
 			$("#content").load(content, function() {
+	
+// start to conform all links on page	
+				$('a').each(function(i) {
+				href = $(this).attr('href');
+	// if page doesn't have page= then skip otherwise
+		if(href.indexOf('page=') != -1){
+	
+				if(href.indexOf('t=') == -1){
+				//	console.log(href);
+					$(this).attr('href', href + '&t=' + theme);
+             }
+			 }			 
+						 
+			});
+				
+				
 				$('body').attr('id', whichpage);
 				setTimeout(function() {
 					if (ios() != false) {
@@ -129,7 +152,7 @@ $(window).on("load", function() {
 				//	alert ('yes');
 				//	whichpage = (whichpage + '&gallery=' + whichimages);
 			}
-			console.log(whichpage);
+		//	console.log(whichpage);
 			// need way to get class of galleries
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('semiactive');
@@ -141,10 +164,7 @@ $(window).on("load", function() {
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
 			$('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
-			$('a').each(function() {
-				href = $(this).attr('href');
-				$(this).attr('href', href + '&t=' + theme);
-			});
+			
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({
 				//'left' : "-=70%",
@@ -155,7 +175,11 @@ $(window).on("load", function() {
 			}, 2200, 'swing');
 		});
 	}
+	
 	loadPage(whichpage);
+	
+	
+	
 	$("body").on("click", "#menu ul li a, #footermenu li a, #content a.intlink", function(e) {
 		var whichthis = $(this);
 		var $which = $(whichthis).parent().attr('class').split(' ')[0];
@@ -202,6 +226,10 @@ $(window).on("load", function() {
 			scrollTop: 0
 		}, "fast");
 	});
+	
+
+	
+	
 	$(window).on('resize', function() {
 		winwidth = $(window).width();
 		winheight = $(window).height();
@@ -239,11 +267,8 @@ $(window).on("load", function() {
 			$('.full-bg-image').css('background-position', 'center  ' + (100 - largeimages) + 'px');
 			//  $('.full-bg-image').css('height', newheight + 'px');
 		} else if ((winwidth < 320) && (ios() == false)) {}
-	});
-}); // end doc ready	
-var timer;
-$(window).scroll(function() {
-	if (timer) {
+		
+			if (timer) {
 		window.clearTimeout(timer);
 	}
 	timer = window.setTimeout(function() {
@@ -255,6 +280,12 @@ $(window).scroll(function() {
 		}
 		//  console.log( "Firing!" );
 	}, 10);
+		
+	});
+}); // end doc ready	
+var timer;
+$(window).scroll(function() {
+
 });
 // scoller
 // check ios
