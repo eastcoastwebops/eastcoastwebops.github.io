@@ -1,7 +1,8 @@
 Home>
 About Me|about,
 Site News|news<
-Styling Page|sample_page>
+Tools>
+Styling Page|sample_page,
 Dark Theme|sample_page&t=dark,
 Light Theme|sample_page&t=light<
 Articles|blog,

@@ -1,9 +1,0 @@
-Home,Welcome,
-How It Works,,
-blog, Site News / Articles,
-Work Resume,Resume,
-Coding Examples,,
-To Do, Site To Do List,
-Two Column Page,Two Column TEST,
-Three Column Top,Three Column TOP TEST,
-Two Columns On Bottom,Two Column on BOTTOM TEST
