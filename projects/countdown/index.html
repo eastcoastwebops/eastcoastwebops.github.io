@@ -50,7 +50,7 @@ if(mm<10) {
 } 
 
 today = mm + '/' + dd + '/' + yyyy;
-var countDownDate = new Date(today+" 16:00:00").getTime();  // today at 4pm
+var countDownDate = new Date(today+" 15:00:00").getTime();  // today at 4pm
 // Update the count down every 1 second
 var x = setInterval(function() {
   // Get todays date and time
@@ -76,7 +76,7 @@ var x = setInterval(function() {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
-}, 10);
+}, 100);
 </script>
 
 </body>
