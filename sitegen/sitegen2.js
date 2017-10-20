@@ -72,8 +72,11 @@ for (i = 0; i < menusize;) {
 		needtap = " trigger";
 	}
 	// build url
+	console.log('--'+thelinkb+'--');
 	url = 'index.html?page=' + thelinkb;
+	if (thelinkb !='') {
 	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="' + url + '\">' + thetitle + '</a>';
+	}
 	if (menucheck.indexOf(">") > -1) {
 		themenu += "<ul class='subitem'>";
 	} else if (menucheck.indexOf("<") > -1) {
@@ -264,11 +267,8 @@ $(window).on("load", function() {
 			$('.full-bg-image').css('background-position', 'center  ' + (100 - largeimages) + 'px');
 			//  $('.full-bg-image').css('height', newheight + 'px');
 		} else if ((winwidth < 320) && (ios() == false)) {}
-	});
-}); // end doc ready	
-var timer;
-$(window).scroll(function() {
-	if (timer) {
+		
+			if (timer) {
 		window.clearTimeout(timer);
 	}
 	timer = window.setTimeout(function() {
@@ -280,6 +280,12 @@ $(window).scroll(function() {
 		}
 		//  console.log( "Firing!" );
 	}, 10);
+		
+	});
+}); // end doc ready	
+var timer;
+$(window).scroll(function() {
+
 });
 // scoller
 // check ios
