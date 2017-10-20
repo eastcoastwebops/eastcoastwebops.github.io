@@ -10,4 +10,3 @@ Code|portfolio,
 Galleries,
 Demo Gallery|gallery&gallery=demo_gallery,
 Web Design Snapshots|gallery&gallery=websiteportfolio<
-Contact

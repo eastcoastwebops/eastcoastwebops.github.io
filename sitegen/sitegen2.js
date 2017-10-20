@@ -26,7 +26,7 @@ whichpage = gup('page');
 whichimages = gup('gallery');
 theme = gup('t');
 article = gup('article');
-console.log(theme);
+//console.log(theme);
 if (whichpage === null) {
 	whichpage = "home";
 }
@@ -117,7 +117,7 @@ $(window).on("load", function() {
 		if(href.indexOf('page=') != -1){
 	
 				if(href.indexOf('t=') == -1){
-					console.log(href);
+				//	console.log(href);
 					$(this).attr('href', href + '&t=' + theme);
              }
 			 }			 
@@ -149,7 +149,7 @@ $(window).on("load", function() {
 				//	alert ('yes');
 				//	whichpage = (whichpage + '&gallery=' + whichimages);
 			}
-			console.log(whichpage);
+		//	console.log(whichpage);
 			// need way to get class of galleries
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('semiactive');

@@ -136,24 +136,16 @@ This was a test to read in a JSON object containing cruises, display it, and cal
 </li>	
 <li><a href="https://goo.gl/photos/ZyAwhbLcSeAAqYhg6" >3D Modeling and Graphic Design</a><p>A  gallery of non-client related 3D Graphic Design and Rendering images. </p>
 </li>
-
-
-
 </ul>
-
-
 </div>
 
 
 
 <script>
-
 $('#points a').each(function() {
   var ref = $(this).attr('href');
-	console.log(this);
 $(this).attr('onclick', "popit('"+ref+"')" ).attr('href', '#');
 });
-
 </script>
 
 
