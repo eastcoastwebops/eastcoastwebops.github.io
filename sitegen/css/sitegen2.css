@@ -181,6 +181,8 @@ ul.points ol li{border:solid 0px;padding:0px;margin:0px;
 font-size:.9em;
 }
 
+h4{font-weight:bold;font-size:1.4em;}
+
 /* desktop */
 
 @media only screen and (min-width: 701px) {
