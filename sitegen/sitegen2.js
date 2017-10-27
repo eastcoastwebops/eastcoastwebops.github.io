@@ -34,7 +34,7 @@ if (whichimages == null) {
 	whichimages = "demo_gallery";
 }
 if (theme === null) {
-	theme = "dark";
+	theme = "light";
 }
 if (article === null) {
 	article = "0";
