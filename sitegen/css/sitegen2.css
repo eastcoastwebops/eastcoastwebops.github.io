@@ -61,11 +61,10 @@ body {
 #container {
 	display: relative;
 }
-#sitetitle{
-	
+#sitetitle {
+	color: var(--sitetitlecolor);
 	font-size: 30px;
 }
-#sitetitle a{color: var(--sitetitlecolor);}
 .subtitletext {
 	color: var(--subtitlecolor);
 	font-size: 20px;
@@ -280,7 +279,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		text-align: left;
 	}
 	#menu .trigger.active, #menu .active {
-		background: var(--menubg);
+		background: var(--menutriggeractivebg);
 	}
 	#menu ul.subitem {
 		background: var(--menubgdrop);
@@ -295,18 +294,18 @@ h4{font-weight:bold;font-size:1.4em;}
 		color: var(--menulinkactive);
 	}
 	#menu>li.active {
-		background: var(--menubg);
+		background: var(--menuactivebg);
 	}
 	
 	#menu .semiactive, #menu .subitem li.active {
-		background: var(--menubg);
+		background: var(--menuactivebg);
 	}
 	#menu .semiactive a {
-		color: var(--menulinkactive);
+		color: var(--menulinkcolor);
 	}
 	#menu .subitem a {
 		background: var(--menubgcolor);
-		color: var(--menulinkactive);
+		color: var(--menulinkcolor);
 	}
 	#menu .subitem .active a {
 		color: var(--menulinkactive);
@@ -397,7 +396,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		display: block;
 		top: -8px;
 		left: 10px;
-		color: var(--menubg);
+		color: var(--hamburger);
 		font-size: 48px;
 		z-index: 100;
 		position: fixed;
@@ -418,7 +417,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		position: relative;
 		top: 54px;
 		box-shadow: 0px 3px 15px var(--dropshadow);
-		border-bottom: solid 1px var(--menulinkactive);
+		border-bottom: solid 1px var(--menulinkcolor);
 	}
 	#menu ul {
 		padding: 0px;
@@ -427,7 +426,7 @@ h4{font-weight:bold;font-size:1.4em;}
 	#menu>ul {
 		display: block;
 		width: 100%;
-		background: var(--menubg);
+		background: var(--mobilemenubgdrop);
 	}
 	#menu .semiactive {
 		background: var(--menuparentbg);
@@ -452,7 +451,7 @@ h4{font-weight:bold;font-size:1.4em;}
 	#menu ul>li a {
 		padding: 5px 0px 5px 0px;
 		padding-left: 10%;
-		font-size: calc( var(--basefontsize) + 10px);
+		font-size: calc( var(--mobilebasefontsize) + 10px);
 		font-weight: bold;
 	}
 	#menu ul>li>ul>li a {
@@ -464,28 +463,28 @@ h4{font-weight:bold;font-size:1.4em;}
 		color: var(--menuhoverfontcolor);
 	}
 	#menu .active>a {
-		background: var(--menuhoverbg);
+		background: var(--menuactivebg);
 		color: var(--menulinkactive);
 	}
 	#menu .subitem a {
 		background: none;
-		color: var(--menulinkactive);
-		font-size: calc( var(--basefontsize) + 8px);
+		color: var(--menusublinkcolor);
+		font-size: calc( var(--mobilebasefontsize) + 8px);
 		padding: 5px 0px 5px 15%;
 	}
 	#menu .semiactive>a {
-		color: var(--menulinkactive);
+		color: var(--menulinkcolor);
 	}
 	#menu .subitem .active a {
 		color: var(--menulinkactive);
 		filter: brightness(110%);
-		background: var(--menuhoverbg);
+		background: var(--menuactivebg);
 	}
 	#menu ul li.trigger:hover>a {
 		color: var(--menuhoverfontcolor);
 	}
 	#menu a {
-		color: var(--menulinkactive);
+		color: var(--menulinkcolor);
 		text-decoration: none;
 		display: block;
 		border: solid 0px;
@@ -496,16 +495,16 @@ h4{font-weight:bold;font-size:1.4em;}
 		top: 60px;
 	}
 	#content {
-		font-size: var(--basefontsize);
+		font-size: var(--mobilebasefontsize);
 	}
 	#content h1 {
-		font-size: calc( var(--basefontsize) + 15px);
+		font-size: calc( var(--mobilebasefontsize) + 15px);
 	}
 	#content h2 {
-		font-size: calc( var(--basefontsize) + 10px);
+		font-size: calc( var(--mobilebasefontsize) + 10px);
 	}
 	#content h3 {
-		font-size: calc( var(--basefontsize) + 5px);
+		font-size: calc( var(--mobilebasefontsize) + 5px);
 		padding: 0px;
 		margin: 5px 0px 5px 0px;
 	}
@@ -515,7 +514,7 @@ h4{font-weight:bold;font-size:1.4em;}
 	#content ul {
 		margin-left: 15px;
 		padding: 0px;
-		font-size: calc( var(--basefontsize) - 1px);
+		font-size: calc( var(--mobilebasefontsize) - 1px);
 	}
 	.full-bg-image {
 		height: 300px;
@@ -568,18 +567,15 @@ h4{font-weight:bold;font-size:1.4em;}
 /* end media */
 
 @media only screen and (max-width: 480px) {
-
 	#sitetitle {
-		font-size: calc( var(--basefontsize) - 1px);
-font-weight:bold;
+		font-size: calc( var(--basefontsize) - 2px);
 	}
 	.sitetitletext {
 		margin-top: 5px;
 	}
 	.subtitletext {
 		color: var(--subtitlecolor);
-		font-size: calc( var(--basefontsize) - 2px);
-font-weight:bold;
+		font-size: calc( var(--basefontsize) - 3px);
 	}
 	#menutrigger {
 		font-size: 50px;
@@ -592,11 +588,11 @@ font-weight:bold;
 	#menu ul>li a {
 		padding: 5px 0px 5px 0px;
 		padding-left: 5%;
-		font-size: calc( var(--basefontsize) + 5px);
+		font-size: calc( var(--mobilebasefontsize) + 5px);
 		font-weight: bold;
 	}
 	#menu .subitem a {
-		font-size: calc( var(--basefontsize) + 4px);
+		font-size: calc( var(--mobilebasefontsize) + 5px);
 	}
 	.full-bg-image {
 		width: 100%;
