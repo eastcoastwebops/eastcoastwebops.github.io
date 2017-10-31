@@ -1,20 +1,27 @@
 :root {
-	--docbg: #999999; /* controls fade color */
-	--pagebg: #444444; /* Main page color */
-	--hcolor: #bbbbbb; /* H tags color */
-	--pcolor:#999999; /* basic font color */
-	--basefontsize:17px;
-	--sitetitlecolor:#ffff33; /* Main site title color */
-	--subtitlecolor:#ff9933; /* Sub title - should be close */
-	--pagetitlecolor:#ffffff; /* Upper right title color */
-	--mobilesitebg:#333333; /* mobile title "bar" color where hamburger is placed */
+	--docbg: #999999; /* fade color */
+	--pagebg: #444444;
 	--dropshadow:#000000;
-	--deskmenubgcolor:#555555; /* strip where menu is held */
-	--deskmenulink:#999999; /*color of inactive links on parent menu */
-	--menulinkactive:#ffffff; /* color of active menu links */
-	--menubgdrop:#777777; /* background of dropdown menu */
-	--menuhoverbg:#994422; /* Hover color desk and mobile */
-	--menubg:#ff9933;	/* desktop menu active table color AND mobile dropdown color */
-	--menuparentbg:#ff6600; /* mobile sub menu bg color */
-	--menubordercolor:solid 1px #222222; /* Mobile menu separator color */
+	--hcolor: #bbbbbb; /* h tags color */
+	--pcolor:#999999; /* base content font color */
+	--deskmenubgcolor:#555555; /* menu strip - keep same color as page for cleaner look */
+	--deskmenulink:#ffffff; 
+	--menulinkactive:#ffff00;
+	--menubgdrop:#333333;
+	--mobilemenubgdrop:#66aa66;
+	--menuhoverbg:#ff6600;
+	--menuhoverfontcolor:#ffffaa;
+  --menutriggeractivebg:#339933;
+	--menuactivebg:#ff9944;
+	 --menuparentbg:#666666;
+	--sitetitlecolor:#0099ff;
+	--subtitlecolor:#00bbff;
+	--pagetitlecolor:#336699;
+	--hamburger:#ff6600;
+	--menulinkcolor:#ffffff;
+	--menusublinkcolor:#eeeeee;
+	--menubordercolor:solid 2px #666666;
+	--mobilesitebg:#333333;
+	--basefontsize:16px;
+  --mobilebasefontsize:14px;
 }
