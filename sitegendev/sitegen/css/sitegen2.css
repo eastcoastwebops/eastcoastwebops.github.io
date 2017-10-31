@@ -1,3 +1,8 @@
+:root {
+	--docbg: #ff0000; /* fade color */
+}
+
+
 @font-face {
 	font-family: 'Raleway';
 	font-style: normal;

@@ -106,7 +106,7 @@ $(window).on("load", function() {
 		$("body").hide(0, function() {
 			var content = 'sitegen/content/' + whichpage + '.html';
 			themecss = 'sitegen/css/' + theme + '.css';
-			$('<link>').appendTo('head').attr({
+			$('<link>').prependTo('head').attr({
 				type: 'text/css',
 				rel: 'stylesheet',
 				href: 'sitegen/css/' + theme + '.css'
