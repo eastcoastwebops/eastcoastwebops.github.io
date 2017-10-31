@@ -1,20 +1,27 @@
 :root {
-	--docbg: #333333; /* controls fade color */
-	--pagebg: #ffffff; /* Main page color */
-	--hcolor: #000000; /* H tags color */
-	--pcolor:#666666; /* basic font color */
-	--basefontsize:17px;
-	--sitetitlecolor:#ffff33; /* Main site title color */
-	--subtitlecolor:#ff9933; /* Sub title - should be close */
-	--pagetitlecolor:#ffffff; /* Upper right title color */
-	--mobilesitebg:#333333; /* mobile title "bar" color where hamburger is placed */
+	--docbg: #ff6600;
+	--pagebg: #ffffff;
+	--hcolor: #000000;
+	--pcolor:#666666;
 	--dropshadow:#000000;
-	--deskmenubgcolor:#ffffff; /* strip where menu is held */
-	--deskmenulink:#000000; /*color of inactive links on parent menu */
-	--menulinkactive:#ffffff; /* color of active menu links */
-	--menubgdrop:#555555; /* background of dropdown menu */
-	--menuhoverbg:#ff6600; /* Hover color desk and mobile */
-	--menubg:#55aa55;	/* desktop menu active table color AND mobile dropdown color */
-	--menuparentbg:#337733; /* mobile sub menu bg color */
-	--menubordercolor:solid 1px #222222; /* Mobile menu separator color */
+	--deskmenubgcolor:#ffffff;
+	--deskmenulink:#000000;
+	--menulinkactive:#ffff00;
+	--menubgdrop:#333333;
+	--mobilemenubgdrop:#66aa66;
+	--menuhoverbg:#ff6600;
+	--menuhoverfontcolor:#ffffaa;
+  --menutriggeractivebg:#339933;
+	--menuactivebg:#ff9944;
+ --menuparentbg:#666666;
+	--sitetitlecolor:#0099ff;
+	--subtitlecolor:#00bbff;
+	--pagetitlecolor:#336699;
+	--hamburger:#77AA00;
+	--menulinkcolor:#ffffff;
+	--menusublinkcolor:#eeeeee;
+	--menubordercolor:solid 2px #444444;
+	--mobilesitebg:#333333;
+	--basefontsize:16px;
+  --mobilebasefontsize:14px;
 }
