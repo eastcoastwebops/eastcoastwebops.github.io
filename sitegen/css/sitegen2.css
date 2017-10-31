@@ -262,7 +262,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		background: var(--menuhoverbg);
 	}
 	#menu li>a:hover {
-		color: var(--menulinkactive);
+		color: var(--menuhoverfontcolor);
 	}
 	#menu ul li>ul {
 		display: none;
@@ -286,7 +286,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		background: var(--menubgdrop);
 	}
 	#menu ul li.trigger:hover>a {
-		color: var(--menulinkactive);
+		color: var(--menuhoverfontcolor);
 	}
 	#menu:hover ul li.trigger:hover ul {
 		display: block;
@@ -461,7 +461,7 @@ h4{font-weight:bold;font-size:1.4em;}
 	}
 	#menu ul>li a:hover {
 		background: var(--menuhoverbg);
-		color: var(--menulinkactive);
+		color: var(--menuhoverfontcolor);
 	}
 	#menu .active>a {
 		background: var(--menuhoverbg);
@@ -482,7 +482,7 @@ h4{font-weight:bold;font-size:1.4em;}
 		background: var(--menuhoverbg);
 	}
 	#menu ul li.trigger:hover>a {
-		color: var(--menulinkactive);
+		color: var(--menuhoverfontcolor);
 	}
 	#menu a {
 		color: var(--menulinkactive);
