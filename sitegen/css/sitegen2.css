@@ -1,3 +1,7 @@
+:root {
+	--docbg: #555555;
+}
+
 @font-face {
 	font-family: 'Raleway';
 	font-style: normal;
@@ -34,6 +38,7 @@ html, body {
 }
 html {
 	background: var(--docbg);
+
 }
 body {
 	font-family: 'Raleway', sans-serif;
@@ -46,6 +51,7 @@ body {
 	padding: 0;
 	width: auto;
 	background-color: var(--pagebg);
+
 	height: auto;
 	min-height: 100%;
 }
