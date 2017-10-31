@@ -1,17 +1,15 @@
 :root {
-	--docbg: #333333;
-	--pagebg: #ffffff;
-	--hcolor: #000000;
-	--pcolor:#666666;
-	
-	--sitetitlecolor:#ffff33;
-	--subtitlecolor:#ff9933;
-	--pagetitlecolor:#ffffff;
-	--mobilesitebg:#333333; /* bg color where mobile title and hamburger is placed */
-	
+	--docbg: #333333; /* controls fade color */
+	--pagebg: #ffffff; /* Main page color */
+	--hcolor: #000000; /* H tags color */
+	--pcolor:#666666; /* basic font color */
+	--basefontsize:17px;
+	--sitetitlecolor:#ffff33; /* Main site title color */
+	--subtitlecolor:#ff9933; /* Sub title - should be close */
+	--pagetitlecolor:#ffffff; /* Upper right title color */
+	--mobilesitebg:#333333; /* mobile title "bar" color where hamburger is placed */
 	--dropshadow:#000000;
 	--deskmenubgcolor:#ffffff; /* strip where menu is held */
-
 	--deskmenulink:#000000; /*color of inactive links on parent menu */
 	--menulinkactive:#ffffff; /* color of active menu links */
 	--menubgdrop:#555555; /* background of dropdown menu */
@@ -19,6 +17,4 @@
 	--menubg:#55aa55;	/* desktop menu active table color AND mobile dropdown color */
 	--menuparentbg:#337733; /* mobile sub menu bg color */
 	--menubordercolor:solid 1px #222222; /* Mobile menu separator color */
-	--basefontsize:17px;
-
 }
