@@ -1,6 +1,5 @@
 Home>
-About Me|about,
-Site News|news<
+About Me|about<
 Tools>
 Encrypt,
 Styling Page|sample_page,
@@ -9,6 +8,7 @@ Light Theme|sample_page&t=light<
 Articles|blog,
 Portfolio Of Work|portfolio>
 Code|portfolio,
+Code Snippets,
 Galleries,
 Demo Gallery|gallery&gallery=demo_gallery,
 Web Design Snapshots|gallery&gallery=websiteportfolio<
