@@ -1,7 +1,6 @@
 :root {
-	--docbg: #ff0000; /* fade color */
+	--docbg: #555555;
 }
-
 
 @font-face {
 	font-family: 'Raleway';
@@ -39,6 +38,7 @@ html, body {
 }
 html {
 	background: var(--docbg);
+
 }
 body {
 	font-family: 'Raleway', sans-serif;
@@ -51,6 +51,7 @@ body {
 	padding: 0;
 	width: auto;
 	background-color: var(--pagebg);
+
 	height: auto;
 	min-height: 100%;
 }
@@ -185,6 +186,11 @@ border-bottom:solid 1px;margin-bottom:5px;
 ul.points ol li{border:solid 0px;padding:0px;margin:0px;
 font-size:.9em;
 }
+
+h4{font-weight:bold;font-size:1.4em;}
+
+pre {font-size:11px;
+overflow:scroll-x;}
 
 /* desktop */
 

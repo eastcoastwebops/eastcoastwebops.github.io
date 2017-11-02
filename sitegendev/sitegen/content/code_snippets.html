@@ -1,0 +1,121 @@
+<div class="col-sm-10 col-sm-offset-1">
+<h2>Check if date is today and hide/show class</h2>   
+
+<pre>
+        var someDate = new Date("1 Nov 2017").toDateString();
+        var today = new Date().toDateString();
+        if (today === someDate) {
+            jQuery('.late').fadeIn();
+            jQuery('.early').fadeOut();
+        } else if (today != someDate) {
+            jQuery('.late').fadeOut();
+            jQuery('.early').fadeIn();
+        }
+</pre>
+
+
+<h2>Location Aware Dropdown menu to link between Brands</h2>
+<pre>
+<xmp>
+<script>
+     jQuery(document).ready(function() {
+       brands = ['Aggresor', 'Air King', 'Airstream', 'AirVac', 'Astrovac',
+         'Beam', 'Black & Decker', 'Broan', 'Brute', 'Budd', 'Cana-Vac',
+         'Centralux', 'Cirrus', 'CV International', 'Dirt Devil',
+         'DrainVac', 'DuoVac', 'DustCare', 'Easy-Flo', 'Electrolux',
+         'Eureka', 'Fasco', 'Filtex', 'Frigidaire', 'Hayden', 'Honeywell',
+         'Hoover', 'Imperium', 'Kenmore', 'MD', 'Nadair', 'NuTone',
+         'Patton', 'PowerStar', 'Pullman-Holt', 'Purvac', 'Riccar',
+         'Royal', 'Sequoia', 'Signature', 'Simplicity', 'Smart',
+         'Vacuflo', 'Vacumaid', 'Valet', 'Vent-A-Vac', 'Walvac',
+         'Whirlpool', 'Zenex'
+       ];
+       var secondbread = jQuery('.breadcrumbs li:eq(1)').text().toLowerCase()
+         .trim();
+       var thirdbread = jQuery('.breadcrumbs li:eq(2)').text().toLowerCase()
+         .trim();
+       var fifthbread = jQuery('.breadcrumbs li:eq(4)').text().toLowerCase()
+         .trim();
+       console.log(fifthbread);
+       if ((secondbread == 'central vacuum') && (thirdbread ==
+           'find your brand') && (fifthbread != '')) {
+         url = window.location.href;
+         var array = url.split('/');
+         var lastsegment = array[array.length - 1];
+         menuinsert = '<div id="dropdown">&nbsp;</div>';
+         existingurl = 'https://thinkvacuums.com/central-vacuums/';
+         list = '<ul>';
+         brandsnew = brands; // copy array to mess around with
+         //lets go through each category and find brands to exlude from showing
+         //in drop down menu. I'm sure there's a more efficient way to do this
+         switch (fifthbread) {
+           case 'complete packages':
+             excluded = ['Aggresor', 'Air King', 'Airstream', 'AirVac',
+               'Astrovac', 'Beam', 'Black & Decker', 'Broan', 'Brute',
+               'Budd', 'Centralux', 'Cirrus', 'CV International',
+               'Dirt Devil', 'DustCare', 'Easy-Flo', 'Fasco', 'Filtex',
+               'Frigidaire', 'Hayden', 'Hoover', 'Imperium', 'Kenmore',
+               'MD', 'Nadair', 'Patton', 'Pullman-Holt', 'Riccar',
+               'Royal', 'Sequoia', 'Signature', 'Simplicity', 'Smart',
+               'Vacuflo', 'Vacumaid', 'Valet', 'Vent-A-Vac', 'Walvac',
+               'Whirlpool', 'Zenex'
+             ];
+             break;
+           case 'bags & filters':
+             excluded = ['Airstream', 'AirVac', 'Astrovac', 'Beam',
+               'Black & Decker', 'Broan', 'Brute', 'Budd', 'Cana-Vac',
+               'Centralux', 'Cirrus', 'CV International', 'Dirt Devil',
+               'DrainVac', 'DuoVac', 'DustCare', 'Easy-Flo', 'Electrolux',
+               'Eureka', 'Fasco', 'Filtex', 'Frigidaire', 'Hayden',
+               'Honeywell', 'Hoover', 'Imperium', 'Kenmore', 'MD',
+               'Nadair', 'NuTone', 'Patton', 'PowerStar', 'Pullman-Holt',
+               'Purvac', 'Riccar', 'Royal', 'Sequoia', 'Signature',
+               'Simplicity', 'Smart', 'Vacuflo', 'Vacumaid', 'Valet',
+               'Vent-A-Vac', 'Walvac', 'Whirlpool', 'Zenex'
+             ];
+             break;
+           case 'motors':
+             excluded = ['Cirrus', 'MD', 'Nadair', 'Patton', 'Riccar',
+               'Simplicity'
+             ];
+             break;
+           default:
+             excluded = [];
+         }
+         for (var x = 0; x < excluded.length; x++) {
+           var i = brandsnew.indexOf(excluded[x]);
+           if (i != -1) {
+             brandsnew.splice(i, 1); // remove this brand from array
+           }
+         }
+         // build menu
+         for (var i = 0; i < brandsnew.length; i++) {
+           urlbrand = brandsnew[i].toLowerCase();
+           if (urlbrand == 'black & decker') {
+             urlbrand = 'black-and-decker';
+           } else if (urlbrand == 'cv international') {
+             urlbrand = 'cv-international';
+           } else if (urlbrand == 'air king') {
+             urlbrand = 'air-king';
+           } else if (urlbrand == 'dirt devil') {
+             urlbrand = 'dirt-devil';
+           }
+           // go through exlude array and check each exluded brand
+           list += '<li><a href="' + existingurl + urlbrand + '/' +
+             lastsegment + '"> ' + brandsnew[i] + '</a></li>'; //Do something
+         }
+         list += '<br style="clear:both;"/></ul>';
+         jQuery(menuinsert).insertAfter('.breadcrumbs');
+         jQuery('#dropdown').html(list);
+         jQuery('.breadcrumbs li:eq(3)').mouseover(function() {
+           jQuery('#dropdown').addClass('show');
+         });
+         jQuery('#dropdown').mouseleave(function() {
+           jQuery('#dropdown').removeClass('show');
+         });
+       } // end if central vacuum brand
+       // end quick drop menu
+     });
+</script>
+</xmp>
+</pre>
