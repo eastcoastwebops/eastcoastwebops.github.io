@@ -1,5 +1,5 @@
 :root {
-/*	--docbg: #555555;*/
+--docbg: #555555;*/
 }
 
 @font-face {
@@ -37,7 +37,6 @@ html, body {
 	-moz-osx-font-smoothing: grayscale;
 }
 html {
-	backgrund:#000000;
 	background: var(--docbg);
 
 }
