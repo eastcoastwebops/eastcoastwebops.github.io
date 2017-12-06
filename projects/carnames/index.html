@@ -50,7 +50,7 @@ var generation = randomNoRepeats ( ['1','4','IX','X','240','360','720','180','40
 
 finalname = $('<li class="name smallest" >'+first()+second()+' ' + model() + ' ' + generation() + '</li>' ).hide();
 $('.name').removeClass('larger',10);
-$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller',200).delay(100).removeClass('larger smallest',400);
+$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller',400).delay(100).removeClass('larger',400);
 }
 
 
@@ -88,9 +88,9 @@ text-align:center;
 font-size:14px;
 padding:0px;list-style-type:none;}
 
-.smallest{font-size:4px;letter-spacing:0px;}
-.smaller{font-size:24px;letter-spacing:0px;color:#000000;}
-.larger{font-size:40px;letter-spacing:25px;color:#3366ff;}
+.smallest{font-size:1px;letter-spacing:20px;}
+.smaller{font-size:24px;letter-spacing:1px;color:#000000;}
+.larger{font-size:30px;color:#3366ff;}
 
 
 #new{border:solid 1px;width:170px;
@@ -101,6 +101,7 @@ font-weight:bold;}
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
 
+.name{text-align:center;}
 
 
 </style>
