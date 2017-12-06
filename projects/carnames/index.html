@@ -48,7 +48,7 @@ var generation = randomNoRepeats ( ['1','4','IX','X','240','360','720','180','40
 // should we do 3rd?
 
 
-finalname = $('<span class="name smallest" >'+first()+second()+' ' + model() + ' ' + generation() + '</span>' ).hide();
+finalname = $('<li class="name smallest" >'+first()+second()+' ' + model() + ' ' + generation() + '</li>' ).hide();
 $('.name').removeClass('larger',10);
 $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller',200).delay(100).removeClass('larger smallest',400);
 }
@@ -66,8 +66,8 @@ generate();
 
 
 </script>
-<h1>Suggest 2019 / 2020 Model Year, New Model Car Name</h1>
-<div id="carname"></div>
+<h1>Suggested 2019 / 2020 Model Year, New Car Name</h1>
+<ul id="carname"></ul>
 <div id="new">See More Names!</div>
 
 
@@ -81,11 +81,12 @@ body {
 	
 	h1{text-align:center;}
 
-#carname {margin:auto;
+ul#carname {margin:auto;
 width:100%;border:solid 0px;
 text-transform:capitalize;
 text-align:center;
-font-size:14px;}
+font-size:14px;
+padding:0px;list-style-type:none;}
 
 .smallest{font-size:4px;letter-spacing:0px;}
 .smaller{font-size:24px;letter-spacing:0px;color:#000000;}
@@ -99,6 +100,8 @@ font-weight:bold;}
 
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
+
+
 
 </style>
 
