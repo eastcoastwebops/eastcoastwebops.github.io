@@ -6,6 +6,7 @@
 <title>UnOfficial Car Names</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
 <script src="../scripts/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <body onLoad="window.scrollTo(0,0);">
@@ -14,7 +15,7 @@
 
 
 
-</body>
+
 
 
 <script type="text/javascript">
@@ -34,11 +35,11 @@ function randomNoRepeats(array) {
 function generate () {
 
 var first = randomNoRepeats ( [
-'de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','Ta','chue','Maser','Na','Alti','Tri','Via'
+'de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','Ta','chue','Maser','Na','Alti','Tri','Via','Mer','Tra','Expo','iCar','auto','tefl'
 ]);
 
 var second = randomNoRepeats ( [
-'vroom','go','tia','blu','cord','zoom','ligo','nali','mali','ru','do','flo','tang','so','erati','gra'
+'vroom','go','tia','blu','cord','zoom','ligo','nali','mali','ru','do','flo','tang','so','erati','gra','ma','zer','core'
 ]);
 
 var model = randomNoRepeats ( ['SS','LR','X','Y','Z','Mark','Series','F','S','M','MX']);
@@ -47,16 +48,15 @@ var generation = randomNoRepeats ( ['1','4','IX','X','240','360','720','180','40
 // should we do 3rd?
 
 
-
-finalname = first()+second()+' ' + model() + '' + generation() + '<br/>';
-$('#carname').append(finalname);
+finalname = $('<span class="name smallest" >'+first()+second()+' ' + model() + ' ' + generation() + '</span>' ).hide();
+$('.name').removeClass('larger',10);
+$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller',200).delay(100).removeClass('larger smallest',400);
 }
 
 
 $( document ).ready(function() {
 generate();
 $('#new').click(function() {
-console.log('clicked');
 generate();
 });
 
@@ -66,25 +66,36 @@ generate();
 
 
 </script>
-
+<h1>Suggest 2019 / 2020 Model Year, New Model Car Name</h1>
 <div id="carname"></div>
 <div id="new">See More Names!</div>
 
+
+</body>
 </html>
 
 <style>
 body {
   padding;0px;margin:0px;
   font-family:helvetica;width:99%;}
+	
+	h1{text-align:center;}
 
 #carname {margin:auto;
-width:200px;border:solid 0px;
+width:100%;border:solid 0px;
 text-transform:capitalize;
-font-size:24px;}
+text-align:center;
+font-size:14px;}
+
+.smallest{font-size:4px;letter-spacing:0px;}
+.smaller{font-size:24px;letter-spacing:0px;color:#000000;}
+.larger{font-size:40px;letter-spacing:25px;color:#3366ff;}
+
 
 #new{border:solid 1px;width:170px;
-padding:5x;text-align:center;
-margin:auto;}
+padding:15px;text-align:center;
+margin:auto;background:#339933;color:#ffffff;
+font-weight:bold;}
 
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
