@@ -6,7 +6,7 @@
 <title>UnOfficial Car Names</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
 <script src="../scripts/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="../scripts/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -29,11 +29,11 @@ function randomNoRepeats(array) {
 function generate () {
 
 var first = randomNoRepeats ( [
-'vra','de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','ta','chue','maser','na','alti','tri','via','mer','tra','expo','iCar','auto','tefl','zre','fue','accor','civi','ravo','jagu','eco','eco-','nure','centra','sento','tefla','testo','contempo','opo','terra','terro','infini'
+'vra','de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','ta','chue','maser','na','alti','tri','via','mer','tra','expo','iCar','auto','tefl','zre','fue','accor','civi','ravo','jagu','eco','eco-','nure','centra','sento','tefla','testo','contempo','opo','terra','terro','infini','quadra'
 ]);
 
 var second = randomNoRepeats ( [
-'vra','mobile','bahn','vroom','go','tia','blu','cord','zoom','ligo','nali','mali','ru','do','flo','tang','so','erati','gra','ma','zer','core','ente','zoro','gro','tro','cha','eabu','liente','blan','bhan','woosh','plipe','ligente','lagento','bali','ster'
+'vra','mobile','bahn','vroom','go','tia','blu','cord','zoom','ligo','nali','mali','ru','do','flo','tang','so','erati','gra','ma','zer','core','ente','zoro','gro','tro','cha','eabu','liente','blan','bhan','woosh','plipe','ligente','lagento','bali','ster','ma','caliente','grande','ro','to'
 ]);
 
 var model = randomNoRepeats ( ['XRS','STX','SS','LR','X','Y','Z','Mark','Series','F','S','M','MX','DX','FX']);
@@ -44,7 +44,7 @@ var type = randomNoRepeats ( ['SUV','Hatchback','Coupe','Roadster','PickUp','Sed
 
 
 var dothree = Math.floor(1 + Math.random() * 10) ;
-console.log(dothree);
+
 var third = '';
 // lets do only 3 sylablils if 9 or 10
 if (dothree >=9)  {
@@ -55,7 +55,6 @@ if (whichthree >=4) {
 third = second();
 }
 else {third = first();
-console.log (third);
 }
 
 }
@@ -73,11 +72,22 @@ $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('s
 
 $( document ).ready(function() {
 generate();
+x=0;
 $('#new').click(function() {
 
-generate();
-$('#carname').scrollTop(999999);
+if (x >=4) {
 
+$('#carname').slideUp(1000,function() {
+$('#carname').empty().show();
+generate();
+x=0;
+});
+
+}
+
+generate();
+x++;
+console.log(x);
 });
 
  
