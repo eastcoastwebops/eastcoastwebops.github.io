@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+<title>UnOfficial Car Names</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+<script src="../scripts/jquery.min.js"></script>
+</head>
+
+<body onLoad="window.scrollTo(0,0);">
+	
+
+
+
+
+</body>
+
+
+<script type="text/javascript">
+
+ 
+function randomNoRepeats(array) {
+  var copy = array.slice(0);
+  return function() {
+    if (copy.length < 1) { copy = array.slice(0); }
+    var index = Math.floor(Math.random() * copy.length);
+    var item = copy[index];
+    copy.splice(index, 1);
+    return item;
+  };
+}
+
+function generate () {
+
+var first = randomNoRepeats ( [
+'de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','Ta','chue','Maser','Na','Alti','Tri','Via'
+]);
+
+var second = randomNoRepeats ( [
+'vroom','go','tia','blu','cord','zoom','ligo','nali','mali','ru','do','flo','tang','so','erati','gra'
+]);
+
+var model = randomNoRepeats ( ['SS','LR','X','Y','Z','Mark','Series','F','S','M','MX']);
+var generation = randomNoRepeats ( ['1','4','IX','X','240','360','720','180','404','1000']);
+
+// should we do 3rd?
+
+
+
+finalname = first()+second()+' ' + model() + '' + generation() + '<br/>';
+$('#carname').append(finalname);
+}
+
+
+$( document ).ready(function() {
+generate();
+$('#new').click(function() {
+console.log('clicked');
+generate();
+});
+
+ 
+}); // end doc ready
+
+
+
+</script>
+
+<div id="carname"></div>
+<div id="new">See More Names!</div>
+
+</html>
+
+<style>
+body {
+  padding;0px;margin:0px;
+  font-family:helvetica;width:99%;}
+
+#carname {margin:auto;
+width:200px;border:solid 0px;
+text-transform:capitalize;
+font-size:24px;}
+
+#new{border:solid 1px;width:170px;
+padding:5x;text-align:center;
+margin:auto;}
+
+#new:hover{cursor:pointer;
+background:#000000;color:#ffffff;}
+
+</style>
+
+
+
+
+
+
+
+
