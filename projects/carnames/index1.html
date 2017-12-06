@@ -29,7 +29,7 @@ function randomNoRepeats(array) {
 function generate () {
 
 var first = randomNoRepeats ( [
-'vra','de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','ta','chue','maser','na','alti','tri','via','mer','tra','expo','iCar','auto','tefl','zre','fue','accor','civi','ravo','jagu','eco','eco-','nure','centra','sento','tefla','testo'
+'vra','de','abu','kine','cha','tia','blu','corv','fue','suba','zoo','cha','ta','chue','maser','na','alti','tri','via','mer','tra','expo','iCar','auto','tefl','zre','fue','accor','civi','ravo','jagu','eco','eco-','nure','centra','sento','tefla','testo','contempo','opo','terra','terro','infini'
 ]);
 
 var second = randomNoRepeats ( [
@@ -38,7 +38,7 @@ var second = randomNoRepeats ( [
 
 var model = randomNoRepeats ( ['XRS','STX','SS','LR','X','Y','Z','Mark','Series','F','S','M','MX','DX','FX']);
 var generation = randomNoRepeats ( ['1','4','IX','X','240','360','720','180','404','1000','98','5.0','3.6']);
-var doors = randomNoRepeats ( ['2 Door','4 Door','3 Door' ]);
+var doors = randomNoRepeats ( ['2 Door','4 Door','3 Door','5 Door' ]);
 var type = randomNoRepeats ( ['SUV','Hatchback','Coupe','Roadster','PickUp','Sedan','Muscle Car','Mini SUV','Sports Car'
 ]);
 
@@ -65,7 +65,7 @@ var price = (price * .01).toFixed(2);
 
 // should we do 3rd?
 
-finalname = $('<li class="name smallest" >'+first()+second()+third+' "' + model() + ' ' + generation() + '"<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $'+price+')</span></li>' ).hide();
+finalname = $('<li class="name smallest" >'+first()+third+second()+' "' + model() + ' ' + generation() + '"<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $'+price+')</span></li>' ).hide();
 $('.name').removeClass('larger',10);
 $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller',400).delay(100).removeClass('larger',400);
 }
