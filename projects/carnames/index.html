@@ -10,11 +10,101 @@
 
 <body>
 <script type="text/javascript">
-function randomNoRepeats(a){var e=a.slice(0);return function(){e.length<1&&(e=a.slice(0));var o=Math.floor(Math.random()*e.length),r=e[o];return e.splice(o,1),r}}function generate(){var a=randomNoRepeats(["vra","de","abu","kine","cha","tia","blu","corv","fue","suba","zoo","cha","ta","chue","maser","na","alti","tri","via","mer","tra","expo","iCar","auto","tefl","zre","fue","accor","civi","ravo","jagu","eco","eco-","nure","centra","sento","tefla","testo","contempo","opo","terra","terro","infini","quadra"]),e=randomNoRepeats(["vra","mobile","bahn","vroom","go","tia","blu","cord","zoom","ligo","nali","mali","ru","do","flo","tang","so","erati","gra","ma","zer","core","ente","zoro","gro","tro","cha","eabu","liente","blan","bhan","woosh","plipe","ligente","lagento","bali","ster","ma","caliente","grande","ro","to"]),o=randomNoRepeats(["XRS","STX","SS","LR","X","Y","Z","Mark","Series","F","S","M","MX","DX","FX"]),r=randomNoRepeats(["1","4","IX","X","240","360","720","180","404","1000","98","5.0","3.6"]),n=randomNoRepeats(["2 Door","4 Door","3 Door","5 Door"]),t=randomNoRepeats(["SUV","Hatchback","Coupe","Roadster","PickUp","Sedan","Muscle Car","Mini SUV","Sports Car"]),l=Math.floor(1+10*Math.random()),i="";if(l>=9){var s=Math.floor(1+10*Math.random());i=s>=4?e():a()}var c=Math.floor(1e6+1e7*Math.random()),c=(.01*c).toFixed(2);finalname=$('<li class="name smallest" >'+a()+i+e()+' "'+o()+" "+r()+'"<br/><span class="type">('+n()+" "+t()+" - MSRP: $"+c+")</span></li>").hide(),$(".name").removeClass("larger",10),$(finalname).appendTo("#carname").fadeIn(10).addClass("larger",300).addClass("smaller",400).delay(100).removeClass("larger",400)}$(document).ready(function(){generate(),x=0,$("#new").click(function(){x>=4&&$("#carname").slideUp(1e3,function(){$("#carname").empty().show(),generate(),x=0}),generate(),x++,console.log(x)})});
+function norepeat(array) {
+    var copy = array.slice(0);
+    return function() {
+        if (copy.length < 1) {
+            copy = array.slice(0);
+        }
+        var index = Math.floor(Math.random() * copy.length);
+        var item = copy[index];
+        copy.splice(index, 1);
+        return item;
+    };
+}
+
+
+var list_a = [
+        'bra','vra', 'de', 'abu', 'kine', 'cha', 'tia', 'blu', 'corv', 'fue', 'suba', 'zoo', 'cha', 'ta', 'chue', 'maser', 'na', 'alti', 'tri', 'via', 'mer', 'tra', 'expo', 'iCar', 'auto', 'tefl', 'zre', 'fue', 'accor', 'civi', 'ravo', 'jagu', 'eco', 'eco-', 'nure', 'centra', 'sento', 'tefla', 'testo', 'contempo', 'opo', 'terra', 'terro', 'infini', 'quadra'
+    ];
+	
+var list_b = [
+        'vra', 'mobile', 'bahn', 'vroom', 'go', 'tia', 'blu', 'cord', 'zoom', 'ligo', 'nali', 'mali', 'ru', 'do', 'flo', 'tang', 'so', 'erati', 'gra', 'ma', 'zer', 'core', 'ente', 'zoro', 'gro', 'tro', 'cha', 'eabu', 'liente', 'blan', 'bhan', 'woosh', 'plipe', 'ligente', 'lagento', 'bali', 'ster', 'ma', 'caliente', 'grande', 'ro', 'to'
+    ];
+
+var list_c = ['','XRS', 'STX', 'SS', 'LR', 'X', 'Y', 'Z', 'Mark', 'Series', 'F', 'S', 'M', 'MX', 'DX', 'FX'];
+var list_d = ['','1', '4', 'IX', 'X', '240', '360', '720', '180', '404', '1000', '98', '5.0', '3.6'];
+var list_e = ['2 Door', '4 Door', '3 Door', '5 Door'];
+var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car'];
+
+combos = (list_a.length * list_b.length * list_c.length);
+console.log(combos);
+	
+function generate() {
+    var first = norepeat(list_a);
+	var second = norepeat(list_b);
+    var model = norepeat(list_c);
+    var generation = norepeat(list_d);
+    var doors = norepeat(list_e);
+    var type = norepeat(list_f);
+
+
+    var dothree = Math.floor(1 + Math.random() * 10);
+
+    var third = '';
+    // lets do only 3 sylablils if 9 or 10
+    if (dothree >= 9) {
+
+        var whichthree = Math.floor(1 + Math.random() * 10);
+        // skew towards 2nd list since they work better I think
+        if (whichthree >= 4) {
+            third = second();
+        } else {
+            third = first();
+        }
+
+    }
+
+    var price = Math.floor(1000000 + Math.random() * 10000000)
+    var price = (price * .01).toFixed(2);
+
+    // should we do 3rd?
+
+    finalname = $('<li class="name smallest" >' + first() + third + second() + ' "' + model() + ' ' + generation() + '"<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
+    $('.name').removeClass('larger', 10);
+    $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
+}
+
+
+$(document).ready(function() {
+
+$('.combo').text(combos);
+
+    generate();
+    x = 0;
+    $('#new').click(function() {
+
+        if (x >= 6) {
+
+            $('#carname').slideUp(1000, function() {
+                $('#carname').empty().show();
+                generate();
+                x = 0;
+            });
+
+        }
+
+        generate();
+        x++;
+      //  console.log(x);
+    });
+
+
+}); // end doc ready
 </script>
 
-<h1>Official Unofficial 2019 / 2020 Model Year Car Name & Pricing Guide</h1>
-	<p>Randomly Generated Automotive Names</p>
+<h1>Eric's Official Unofficial 2019 Model Year Dynamically Generated Car Name & Pricing Guide</h1>
+	<p>There are currently <span class="combo">&nbsp;</span>+ combinations of names</br>Each Car Name is Randomly Formed with Care & Attention To Humor<p>
 	
 	<ul id="carname"></ul><br/>
 <div id="new">See More Names!</div>
@@ -27,10 +117,12 @@ function randomNoRepeats(a){var e=a.slice(0);return function(){e.length<1&&(e=a.
 
 <style>
 body {
-  padding;0px;margin:0px;
+  padding;0px;margin:0px;margin-top:20px;
   font-family:helvetica;width:99%;}
+	h1{font-size:20px;}
 	
 	h1, p{text-align:center;padding:0px;margin:0px;}
+	
 	p {padding:0px;margin:5px;}
 ul#carname {margin:auto;
 width:100%;border:solid 0px;
@@ -43,6 +135,7 @@ padding:0px;list-style-type:none;}
 .smaller{font-size:24px;letter-spacing:1px;color:#008800;}
 .larger{font-size:30px;color:#3366ff;}
 
+.combo {font-weight:bold;}
 
 #new{border:solid 1px;width:170px;
 padding:15px;text-align:center;
@@ -53,7 +146,8 @@ font-weight:bold;}
 background:#000000;color:#ffffff;}
 
 .name{text-align:center;}
-.type{display:block;font-size:.7em;color:#999999;}
+.type{display:block;font-size:.6em;color:#999999;
+margin-bottom:10px;}
 
 
 
