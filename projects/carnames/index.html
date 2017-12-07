@@ -25,26 +25,47 @@ function norepeat(array) {
 
 
 var list_a = [
-        'bra','vra', 'de', 'abu', 'kine', 'cha', 'tia', 'blu', 'corv', 'fue', 'suba', 'zoo', 'cha', 'ta', 'chue', 'maser', 'na', 'alti', 'tri', 'via', 'mer', 'tra', 'expo', 'iCar', 'auto', 'tefl', 'zre', 'fue', 'accor', 'civi', 'ravo', 'jagu', 'eco', 'eco-', 'nure', 'centra', 'sento', 'tefla', 'testo', 'contempo', 'opo', 'terra', 'terro', 'infini', 'quadra'
+        'ac','bra','vra', 'de', 'abu', 'kine', 'cha', 'tia', 'blu', 'corv', 'fue', 'suba', 'zoo', 'cha', 'ta', 'chue', 'maser', 'na', 'alti', 'tri', 'via', 'mer', 'tra', 'expo', 'iCar', 'auto', 'tefl', 'zre', 'fue', 'accor', 'civi', 'ravo', 'jagu', 'eco', 'eco-', 'nure', 'centra', 'sento', 'tefla', 'testo', 'contempo', 'opo', 'terra', 'terro', 'infini', 'quadra','masser'
     ];
 	
 var list_b = [
-        'vra', 'mobile', 'bahn', 'vroom', 'go', 'tia', 'blu', 'cord', 'zoom', 'ligo', 'nali', 'mali', 'ru', 'do', 'flo', 'tang', 'so', 'erati', 'gra', 'ma', 'zer', 'core', 'ente', 'zoro', 'gro', 'tro', 'cha', 'eabu', 'liente', 'blan', 'bhan', 'woosh', 'plipe', 'ligente', 'lagento', 'bali', 'ster', 'ma', 'caliente', 'grande', 'ro', 'to'
+        'vra', 'mobile', 'bahn', 'vroom', 'go', 'tia', 'blu', 'cord', 'zoom', 'ligo', 'nali', 'mali', 'ru', 'do', 'flo', 'tang', 'so', 'erati', 'gra', 'ma', 'zer', 'core', 'ente', 'zoro', 'gro', 'tro', 'cha', 'eabu', 'liente', 'blan', 'bhan', 'woosh', 'plipe', 'ligente', 'lagento', 'bali', 'ster', 'ma', 'caliente', 'grande', 'ro', 'to','atti','ati','adiou'
     ];
 
 var list_c = ['','XRS', 'STX', 'SS', 'LR', 'X', 'Y', 'Z', 'Mark', 'Series', 'F', 'S', 'M', 'MX', 'DX', 'FX'];
 var list_d = ['','1', '4', 'IX', 'X', '240', '360', '720', '180', '404', '1000', '98', '5.0', '3.6'];
 var list_e = ['2 Door', '4 Door', '3 Door', '5 Door'];
-var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car'];
+var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car','Hyrbid'];
 
 combos = (list_a.length * list_b.length * list_c.length);
 console.log(combos);
 	
 function generate() {
     var first = norepeat(list_a);
-	var second = norepeat(list_b);
-    var model = norepeat(list_c);
-    var generation = norepeat(list_d);
+second = norepeat(list_b);
+
+// lets do less generations of model types	
+    var domodel = Math.floor(1 + Math.random() * 10);
+    var model = generation = '';
+	var mod = '';
+    if (domodel >= 5) {	
+	
+    model = norepeat(list_c);
+	generation = norepeat(list_d);
+		// if we generate models, then flip flop model / genertion
+		 var doflip = Math.floor(1 + Math.random() * 2);
+		     if (doflip >= 2) {	
+			 mod = model() +' '+ generation();
+			 }
+			 else {
+			 mod = generation() + ' ' + model();
+			 }
+   
+   
+   
+}
+	
+
     var doors = norepeat(list_e);
     var type = norepeat(list_f);
 
@@ -54,7 +75,6 @@ function generate() {
     var third = '';
     // lets do only 3 sylablils if 9 or 10
     if (dothree >= 9) {
-
         var whichthree = Math.floor(1 + Math.random() * 10);
         // skew towards 2nd list since they work better I think
         if (whichthree >= 4) {
@@ -62,15 +82,17 @@ function generate() {
         } else {
             third = first();
         }
-
     }
 
     var price = Math.floor(1000000 + Math.random() * 10000000)
     var price = (price * .01).toFixed(2);
 
-    // should we do 3rd?
+  
+	// lets gen
+	
+	mod = mod.trim();
 
-    finalname = $('<li class="name smallest" >' + first() + third + second() + ' "' + model() + ' ' + generation() + '"<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
+    finalname = $('<li class="name smallest" >' + first() + third + second() + ' ' + mod +'<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
     $('.name').removeClass('larger', 10);
     $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
 }
@@ -104,7 +126,8 @@ $('.combo').text(combos);
 </script>
 
 <h1>Eric's Official Unofficial A.I. Generated Car Name & Pricing Guide For Next Year</h1>
-	<p>There are currently <span class="combo">&nbsp;</span>+ combinations of names</br>Each Car Name is Generated with Care & Attention To Humor<p>
+	<p>There are currently <span class="combo">&nbsp;</span>+ combinations of names</br>
+	<span style="font-size:.8em;font-style:italic;">Each Car Name is Generated with Automated Care & Attention To Human Pronounciation</span><p>
 	
 	<ul id="carname"></ul><br/>
 <div id="new">See More Names!</div>
@@ -146,7 +169,7 @@ font-weight:bold;}
 background:#000000;color:#ffffff;}
 
 .name{text-align:center;}
-.type{display:block;font-size:.6em;color:#999999;
+.type{display:block;font-size:.7em;color:#999999;
 margin-bottom:10px;}
 
 
