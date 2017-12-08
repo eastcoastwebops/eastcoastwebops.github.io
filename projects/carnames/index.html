@@ -31,6 +31,7 @@ var list_a = a.split(',');
 var list_b = b.split(',');
 var list_c = c.split(',');
 var list_d = d.split(',');
+var count = 1;
 var list_e = ['2 Door', '4 Door', '3 Door', '5 Door'];
 var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car', 'Hyrbid'];
 combos = (list_a.length * list_b.length * list_c.length);
@@ -72,9 +73,10 @@ function generate() {
 	var price = (price * .01).toFixed(2);
 	// lets gen
 	mod = mod.trim();
-	finalname = $('<li class="name smallest" >' + first() + third + second() + ' ' + mod + '<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
+	finalname = $('<li class="name smallest" ><span class="number">#'+count+'</span>' + first() + third + second() + ' ' + mod + '<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
 	$('.name').removeClass('larger', 10);
 	$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
+	count=count+1;
 }
 $(document).ready(function() {
 	$('.combo').text(combos);
@@ -93,7 +95,7 @@ $(document).ready(function() {
 }); // end doc ready
 </script>
 
-<h1>Eric's Official Unofficial A.I. Generated Car Name & Pricing Guide For Next Year</h1>
+<h1>Eric's Official Unofficial A.I. Generated Car Name & Pricing Guide For Next Year</h1> 
 	<p>There are currently <span class="combo">&nbsp;</span>+ combinations of names</br>
 	<span style="font-size:.8em;font-style:italic;">Each Car Name is Generated with Automated Care & Attention To Human Pronounciation</span><p>
 	
@@ -107,6 +109,7 @@ $(document).ready(function() {
 </html>
 
 <style>
+
 body {
   padding;0px;margin:0px;margin-top:20px;
   font-family:helvetica;width:99%;}
@@ -115,12 +118,17 @@ body {
 	h1, p{text-align:center;padding:0px;margin:0px;}
 	
 	p {padding:0px;margin:5px;}
+
 ul#carname {margin:auto;
-width:100%;border:solid 0px;
+width:95%;border:solid 0px;
 text-transform:capitalize;
 text-align:center;
 font-size:14px;
 padding:0px;list-style-type:none;}
+
+ul#carname li:nth-child(odd) {
+background:#eeeeee;
+}
 
 .smallest{font-size:1px;letter-spacing:20px;}
 .smaller{font-size:24px;letter-spacing:1px;color:#008800;}
@@ -136,9 +144,24 @@ font-weight:bold;}
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
 
-.name{text-align:center;font-weight:bold;}
+.name{text-align:center;font-weight:bold;
+position:relative;
+border:solid px;
+overflow:hidden;
+}
+
 .type{display:block;font-size:.7em;color:#999999;font-weight:normal;
 margin-bottom:10px;}
+
+.number{position:relative;
+ float:right;
+font-weight:normal;color:#000000;
+font-size:.6em;
+color:#000000;
+padding-top:20px;
+}
+
+
 
 
 
