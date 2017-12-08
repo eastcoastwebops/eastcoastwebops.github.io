@@ -84,7 +84,7 @@ $(document).ready(function() {
 		setTimeout(generate, 200 * i);
 	}
 	$('#new').click(function() {
-		$('#carname').slideUp(1000, function() {
+		$('#carname').slideUp(500, function() {
 			$('#carname').empty().show();
 			for (var i = 1; i <= 6; i++) {
 				//console.log (i);
@@ -139,7 +139,8 @@ background:#eeeeee;
 #new{border:solid 1px;width:170px;
 padding:15px;text-align:center;
 margin:auto;background:#339933;color:#ffffff;
-font-weight:bold;}
+font-weight:bold;
+border-radius:20px;}
 
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
