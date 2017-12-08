@@ -11,117 +11,85 @@
 <body>
 <script type="text/javascript">
 function norepeat(array) {
-    var copy = array.slice(0);
-    return function() {
-        if (copy.length < 1) {
-            copy = array.slice(0);
-        }
-        var index = Math.floor(Math.random() * copy.length);
-        var item = copy[index];
-        copy.splice(index, 1);
-        return item;
-    };
+	var copy = array.slice(0);
+	return function() {
+		if (copy.length < 1) {
+			copy = array.slice(0);
+		}
+		var index = Math.floor(Math.random() * copy.length);
+		var item = copy[index];
+		copy.splice(index, 1);
+		return item;
+	};
 }
-
-
-var list_a = [
-        'ac','bra','vra', 'de', 'abu', 'kine', 'cha', 'tia', 'blu', 'corv', 'fue', 'suba', 'zoo', 'cha', 'ta', 'chue', 'maser', 'na', 'alti', 'tri', 'via', 'mer', 'tra', 'expo', 'iCar', 'auto', 'tefl', 'zre', 'fue', 'accor', 'civi', 'ravo', 'jagu', 'eco', 'eco-', 'nure', 'centra', 'sento', 'tefla', 'testo', 'contempo', 'opo', 'terra', 'terro', 'infini', 'quadra','masser'
-    ];
-	
-var list_b = [
-        'vra', 'mobile', 'bahn', 'vroom', 'go', 'tia', 'blu', 'cord', 'zoom', 'ligo', 'nali', 'mali', 'ru', 'do', 'flo', 'tang', 'so', 'erati', 'gra', 'ma', 'zer', 'core', 'ente', 'zoro', 'gro', 'tro', 'cha', 'eabu', 'liente', 'blan', 'bhan', 'woosh', 'plipe', 'ligente', 'lagento', 'bali', 'ster', 'ma', 'caliente', 'grande', 'ro', 'to','atti','ati','adiou'
-    ];
-
-var list_c = ['','XRS', 'STX', 'SS', 'LR', 'X', 'Y', 'Z', 'Mark', 'Series', 'F', 'S', 'M', 'MX', 'DX', 'FX'];
-var list_d = ['','1', '4', 'IX', 'X', '240', '360', '720', '180', '404', '1000', '98', '5.0', '3.6'];
+// creating list this way is easier to maintain and add since doesn't require quotes around each item
+a = 'abu,ac,accor,alti,auto,blu,bra,centra,cha,cha,chue,civi,contempo,corv,de,eco,eco-,expo,fue,fue,iCar,infini,jagu,kine,maser,masser,mer,mon,na,nure,opo,quadra,ravo,sa,sento,sor,suba,ta,tefl,tefla,terra,terro,testo,tia,tra,tri,via,vra,zoo,zre';
+b = 'ab,adiou,ati,atti,bahn,bali,bhan,blan,blu,caliente,cha,cord,core,do,eabu,ente,ento,erati,flo,go,gra,grande,gro,lagento,liente,ligente,ligo,ma,ma,mali,mobile,nali,plipe,ro,ru,so,ster,tang,tegro,tia,to,tro,vra,vroom,woosh,zer,zoom,zoro';
+c = ',DX,F,FX,LR,M,MX,Mark,S,SS,STX,Series,X,XRS,Y,Z';
+d = ',1,1000,180,240,3.6,360,4,404,5.0,720,98,IX,X';
+var list_a = a.split(',');
+var list_b = b.split(',');
+var list_c = c.split(',');
+var list_d = d.split(',');
 var list_e = ['2 Door', '4 Door', '3 Door', '5 Door'];
-var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car','Hyrbid'];
-
+var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscle Car', 'Mini SUV', 'Sports Car', 'Hyrbid'];
 combos = (list_a.length * list_b.length * list_c.length);
 console.log(combos);
-	
+
 function generate() {
-    var first = norepeat(list_a);
-second = norepeat(list_b);
-
-// lets do less generations of model types	
-    var domodel = Math.floor(1 + Math.random() * 10);
-    var model = generation = '';
+	var first = norepeat(list_a);
+	second = norepeat(list_b);
+	// lets do less generations of model types	
+	var domodel = Math.floor(1 + Math.random() * 10);
+	var model = generation = '';
 	var mod = '';
-    if (domodel >= 5) {	
-	
-    model = norepeat(list_c);
-	generation = norepeat(list_d);
+	if (domodel >= 5) {
+		model = norepeat(list_c);
+		generation = norepeat(list_d);
 		// if we generate models, then flip flop model / genertion
-		 var doflip = Math.floor(1 + Math.random() * 2);
-		     if (doflip >= 2) {	
-			 mod = model() +' '+ generation();
-			 }
-			 else {
-			 mod = generation() + ' ' + model();
-			 }
-   
-   
-   
-}
-	
-
-    var doors = norepeat(list_e);
-    var type = norepeat(list_f);
-
-
-    var dothree = Math.floor(1 + Math.random() * 10);
-
-    var third = '';
-    // lets do only 3 sylablils if 9 or 10
-    if (dothree >= 9) {
-        var whichthree = Math.floor(1 + Math.random() * 10);
-        // skew towards 2nd list since they work better I think
-        if (whichthree >= 4) {
-            third = second();
-        } else {
-            third = first();
-        }
-    }
-
-    var price = Math.floor(1000000 + Math.random() * 10000000)
-    var price = (price * .01).toFixed(2);
-
-  
+		var doflip = Math.floor(1 + Math.random() * 2);
+		if (doflip >= 2) {
+			mod = model() + ' ' + generation();
+		} else {
+			mod = generation() + ' ' + model();
+		}
+	}
+	var doors = norepeat(list_e);
+	var type = norepeat(list_f);
+	var dothree = Math.floor(1 + Math.random() * 10);
+	var third = '';
+	// lets do only 3 sylablils if 9 or 10
+	if (dothree >= 9) {
+		var whichthree = Math.floor(1 + Math.random() * 10);
+		// skew towards 2nd list since they work better I think
+		if (whichthree >= 4) {
+			third = second();
+		} else {
+			third = first();
+		}
+	}
+	var price = Math.floor(1000000 + Math.random() * 10000000)
+	var price = (price * .01).toFixed(2);
 	// lets gen
-	
 	mod = mod.trim();
-
-    finalname = $('<li class="name smallest" >' + first() + third + second() + ' ' + mod +'<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
-    $('.name').removeClass('larger', 10);
-    $(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
+	finalname = $('<li class="name smallest" >' + first() + third + second() + ' ' + mod + '<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
+	$('.name').removeClass('larger', 10);
+	$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
 }
-
-
 $(document).ready(function() {
-
-$('.combo').text(combos);
-
-    generate();
-    x = 0;
-    $('#new').click(function() {
-
-        if (x >= 6) {
-
-            $('#carname').slideUp(1000, function() {
-                $('#carname').empty().show();
-                generate();
-                x = 0;
-            });
-
-        }
-
-        generate();
-        x++;
-      //  console.log(x);
-    });
-
-
+	$('.combo').text(combos);
+	for (var i = 1; i < 7; i++) {
+		setTimeout(generate, 200 * i);
+	}
+	$('#new').click(function() {
+		$('#carname').slideUp(1000, function() {
+			$('#carname').empty().show();
+			for (var i = 1; i <= 6; i++) {
+				//console.log (i);
+				setTimeout(generate, 200 * i);
+			}
+		});
+	});
 }); // end doc ready
 </script>
 
@@ -168,8 +136,8 @@ font-weight:bold;}
 #new:hover{cursor:pointer;
 background:#000000;color:#ffffff;}
 
-.name{text-align:center;}
-.type{display:block;font-size:.7em;color:#999999;
+.name{text-align:center;font-weight:bold;}
+.type{display:block;font-size:.7em;color:#999999;font-weight:normal;
 margin-bottom:10px;}
 
 
