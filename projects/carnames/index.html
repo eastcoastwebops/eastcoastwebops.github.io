@@ -37,6 +37,10 @@ var list_f = ['SUV', 'Hatchback', 'Coupe', 'Roadster', 'PickUp', 'Sedan', 'Muscl
 combos = (list_a.length * list_b.length * list_c.length);
 console.log(combos);
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 function generate() {
 	var first = norepeat(list_a);
 	second = norepeat(list_b);
@@ -73,7 +77,11 @@ function generate() {
 	var price = (price * .01).toFixed(2);
 	// lets gen
 	mod = mod.trim();
-	finalname = $('<li class="name smallest" ><span class="number">#'+count+'</span>' + first() + third + second() + ' ' + mod + '<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
+	
+	carname = first() + third + second();
+	carname = carname.capitalize();
+	
+	finalname = $('<li class="name smallest" ><span class="number">#'+count+'</span>' + carname + ' ' + mod + '<br/><span class="type">(' + doors() + ' ' + type() + ' - MSRP: $' + price + ')</span></li>').hide();
 	$('.name').removeClass('larger', 10);
 	$(finalname).appendTo('#carname').fadeIn(10).addClass('larger', 300).addClass('smaller', 400).delay(100).removeClass('larger', 400);
 	count=count+1;
@@ -121,7 +129,6 @@ body {
 
 ul#carname {margin:auto;
 width:95%;border:solid 0px;
-text-transform:capitalize;
 text-align:center;
 font-size:14px;
 padding:0px;list-style-type:none;}
@@ -149,7 +156,6 @@ background:#000000;color:#ffffff;}
 position:relative;
 border:solid px;
 overflow:hidden;
-text-transform:capitalize;
 }
 
 .type{display:block;font-size:.7em;color:#999999;font-weight:normal;
