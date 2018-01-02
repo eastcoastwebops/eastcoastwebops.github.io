@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /projects/
+Disallow: /projects/bankrate/
+Disallow: /projects/fortworthdemo/
+Disallow: /projects/plantingpeace/
+Disallow: /projects/bankrate/
+Disallow: /projects/revsite/
