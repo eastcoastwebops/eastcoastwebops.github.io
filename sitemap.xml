@@ -6,6 +6,12 @@
       <loc>https://eastcoastwebops.github.io/</loc>
       <changefreq>weekly</changefreq>
    </url>
+
+ <url>
+      <loc>https://eastcoastwebops.github.io/index.html?page=sitegen</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+
 	 
  <url>
       <loc>https://eastcoastwebops.github.io/index.html?page=about</loc>
