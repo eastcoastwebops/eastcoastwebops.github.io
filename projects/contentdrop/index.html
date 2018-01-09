@@ -1,0 +1,223 @@
+	<script src="../../src/jquery2.1.3.min.js"></script>
+
+	<style>
+.topics {
+	list-style-type: numbers;
+	margin: 0px;
+	font-size: 16px;
+	font-family: arial;
+	columns: auto 6;
+	background: #ffffff;
+	column-gap: 2em;
+padding:0px 30px 0px 30px;
+  border:solid 1px;
+  font-weight:bold;color:#1861BD
+}
+
+.topics li{margin-bottom:.15em;
+/text-align:center;
+}
+.topics li a{display:block;padding:5px;
+font-weight:bold;color:#000000;
+text-decoration:none;
+border-radius:10px;
+}
+
+.topics li a:hover{background:#cccccc;color:#000000;}
+
+
+	</style>
+	
+<div class="thedrop">ThinkVacuum Articles and Blog Posts
+<div class="urls">&amp;nbsp</div>
+</div>
+
+<div class="list">&amp;nbsp</div>
+	
+	<script>
+baseurl = 'https://www.thinkvacuums.com';
+	
+ var links = [
+'Sales And Specials | /tv-sales.html',
+ 'Compare Large Homes | /comparison-large-size-homes',
+ 'Compare Medium Homes | /comparison-medium-size-homes',
+'Compare Smal Homes | /comparison-small-size-homes',
+'Getting Started | /getting-started',
+'Why Central Vacuums? | /whycentralvacuums',
+'How To Compare Central Vacuums | /doublesquare',
+'Bag vs Bagless | /bag-vs-bagless',
+'Definitions | /definitions',
+'FAQ | /centralvacuums-faq',
+'What Is Private Label? | /privatelabel',
+'Compare Motors | /compare_motors',
+'DrainVac & TLC | /drainvac-tlc',
+'Best Sellers | /bestsellers-popup',
+'Consumer Reports | /consumer-reports',
+'Stuff You Didnt Know | /charts-ngbs',
+'Compare Design Features | /centralvacstyles',
+'Page Name | /duovac-features',
+'Page Name | /quotes',
+'Page Name | /install-central-vacuum',
+'Page Name | /central-vacuum-101',
+'Page Name | /going-green',
+'Page Name | /troubleshooting',
+'Page Name | /cyclonic-central-vacuums',
+'Page Name | /central-vacuum-benefits',
+'Page Name | /best-selling-central-vacuums',
+'Page Name | /exhaust',
+'Page Name | /will-old-attachments-works-cv',
+'Page Name | /central-vacuums-importance',
+'Page Name | /faqs4',
+'Page Name | /faq-11',
+'Page Name | /faq-12',
+'Page Name | /faq-13',
+'Page Name | /faq-14',
+'Page Name | /faq-15',
+'Page Name | /motor-news',
+'Page Name | /centralvacstyles_popup',
+'Page Name | /centralvacstyles_popup2',
+'Page Name | /bagless',
+'Page Name | /helpfulltips_popup',
+'Page Name | /central-vacuum-manuals',
+'Page Name | /moreinfo4',
+'Page Name | /shipmap',
+'Page Name | /featured-product',
+'Page Name | /videos-page',
+'Page Name | /central-vacuum-hoses',
+'Page Name | /basic-central-vaccum-hoses',
+'Page Name | /low-voltage-central-vacuum-hoses',
+'Page Name | /electric-central-vacuum-hoses',
+'Page Name | /best_selling_popup_video',
+'Page Name | /bagmore',
+'Page Name | /baglessmore-popup',
+'Page Name | /filtercyclonic',
+'Page Name | /cycloniccentralvacuumspopup',
+'Page Name | /baglessmore-inside-popup',
+'Page Name | /bselldrainvac',
+'Page Name | /iframe_bsc',
+'Page Name | /made-in-usa',
+'Page Name | /hose-connection-popup',
+'Page Name | /landing',
+'Page Name | /central-vacuum-sales',
+'Page Name | /turbocat-pro-advantages-popup',
+'Page Name | /how-to-install-a-central-vacuum-popup',
+'Page Name | /purvac-activac',
+'Page Name | /budd-hose-connection-popup',
+'Page Name | /about-vac-soc-popup',
+'Page Name | /vacuflo-hose-connection-popup',
+'Page Name | /vacuflo-electric-hose-popup',
+'Page Name | /vacuflo-universal-hose-popup',
+'Page Name | /vacuflo-basic-hose-popup',
+'Page Name | /ten_reasons_to_replace_unit',
+'Page Name | /kenmore-hose-connection-popup',
+'Page Name | /why-you-should-invest-in-a-built-in-vacuum-cleaner',
+'Page Name | /how-to-keep-your-built-in-vacuum-cleaner-clean',
+'Page Name | /why-it-is-good-idea-to-invest-in-a-central-vacuum-system',
+'Page Name | /faq-which-central-vacuum-system-should-i-buy',
+'Page Name | /customerreviews',
+'Page Name | /testfeed',
+'Page Name | /hose-connection-popup2',
+'Page Name | /centvac101-work',
+'Page Name | /ultimate-guide-to-purchasing-a-central-vacuum',
+'Page Name | /topsecret',
+'Page Name | /test-reviews-page',
+'Page Name | /how-to-choose-the-best-vacuum-cleaner-for-your-business',
+'Page Name | /bag-vs-bagless-which-way-should-you-go',
+'Page Name | /vacuum-cleaner-filtration-systems',
+'Page Name | /nutone-replacement-parts',
+'Page Name | /biggest-messes-with-best-vacuum-cleaners',
+'Page Name | /choosing-vacuum-industrial-vs-residential',
+'Page Name | /beam-vacuums',
+'Page Name | /quick-guide-to-cleaning-vacuum',
+'Page Name | /central-vacuums-for-home',
+'Page Name | /invest-in-central-vacuums-for-your-home',
+'Page Name | /find_right_attachment_kit',
+'Page Name | /best-vacuum-cleaner-for-your-business',
+'Page Name | /quick-comparison-of-the-three-main-types-of-vacuums',
+'Page Name | /top-accessories-for-central-vacuums',
+'Page Name | /guide-to-replacing-your-household-bathroom',
+'Page Name | /vacuum-parts-people-overlook',
+'Page Name | /why-central-vacuum-cleaners-are-a-must-for-industrial-environments',
+'Page Name | /three-essential-parts-for-vacuum-repair',
+'Page Name | /commercial-vacuum-for-your-business',
+'Page Name | /eliminate-workplace-allergens-with-the-right-central-vacuum-system',
+'Page Name | /central-vacuum-accessories',
+'Page Name | /suction-power',
+'Page Name | /thankyou-bestdeal',
+'Page Name | /accessories-your-vacuum-cleaner-needs',
+'Page Name | /why-central-vacuums-are-the-best-investment-for-your-home',
+'Page Name | /the-most-important-vacuum-maintenance-tips',
+'Page Name | /commercial-vacuum-vs-residential-vacuums',
+'Page Name | /top-three-best-vacuum-brands',
+'Page Name | /install_rules',
+'Page Name | /how-to-choose-a-central-vacuum-for-your-home',
+'Page Name | /common-vacuuming-mistakes',
+'Page Name | /bag-vs-bagless-household-vacuums',
+'Page Name | /nutone-package-for-your-business',
+'Page Name | /ten_reasons',
+'Page Name | /miele-vacuums',
+'Page Name | /sebo-vacuums',
+'Page Name | /pvcpipe',
+'Page Name | /top-signs-you-need-to-replace-your-household-vacuum',
+'Page Name | /things-you-didnt-know-about-central-vacuums',
+'Page Name | /tips-for-choosing-a-new-vacuum-cleaner',
+'Page Name | /how-often-should-you-have-your-vacuum-serviced',
+'Page Name | /guide-to-properly-utilizing-vacuum-cleaner-accessories',
+'Page Name | /easy_helpful_instructions',
+'Page Name | /layout_and_planning',
+'Page Name | /install_tips',
+'Page Name | /central-vacuums-uses-for-hotels-hospitality-industry',
+'Page Name | /wholesale-vacuums-for-builders-construction-sites',
+'Page Name | /industries-in-need-of-a-commercial-vacuum-cleaner',
+'Page Name | /get-a-nutone-central-vacuum-for-the-new-year',
+'Page Name | /how-to-choose-powerhead-for-your-central-vacuum',
+'Page Name | /top-accessories-for-your-beam-vacuums',
+'Page Name | /red_carpet_service',
+'Page Name | /holiday-cleaning-tips',
+'Page Name | /10_best_2018',
+'Page Name | /10_best_2018_attachmentkits_2018'
+ ];
+	
+
+
+
+            // brand dropdown for attachment page
+            urls =
+                '<select class="urldrop" size="1"><option>Jump To Topic</option>';
+						list = '<ul class="topics">';
+           
+            for (var i = 0; i < links.length; i++) {
+            title = links[i].split('|');
+					//	title = title.trim();
+						if (title[0].trim() == 'Page Name') {
+						title[0]= title[1];
+						}
+                urls += '<option value="' + baseurl + title[1].trim() +'">' + title[0].trim() +
+                    '</option>';
+
+              list +='<li><a href="' + baseurl + title[1].trim() +'">' + title[0].trim() +
+                    '</a></li>'
+            }
+            // droplistone += '</select>';
+            jQuery('.urls').html(urls);
+						   jQuery('.list').html(list);
+         
+            jQuery(function() {
+                jQuery('.urldrop').on('change',
+                    function() {
+                        var url = jQuery(this).val(); // get selected value
+                        if (url) { // require a URL
+                            window.location = url; // redirect
+                        }
+                        return false;
+                    });
+            });
+
+
+</script>
+
+
+<span style="display:none;">
+
+
+</span>
