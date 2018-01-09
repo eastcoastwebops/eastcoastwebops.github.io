@@ -8,8 +8,8 @@ if (location.hostname == "eastcoastwebops.github.io") {
 	sitetitle = 'East Coast Web Operations';
 	subtitle = 'Web Development by Eric K. Holbrook';
 } else {
-	sitetitle = 'ECWO';
-	//sitetitle = 'East Coast Web Operations';
+	//sitetitle = 'ECWO';
+	sitetitle = 'East Coast Web Operations';
 	subtitle = 'Web Development by Eric K. Holbrook';
 }
 imagloc = '';
