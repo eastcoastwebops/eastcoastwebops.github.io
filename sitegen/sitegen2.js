@@ -5,12 +5,12 @@ SiteGen Version 2.0
 
 ******/
 if (location.hostname == "eastcoastwebops.github.io") {
-	sitetitle = 'East Coast Web Operations';
-	subtitle = 'Web Development by Eric K. Holbrook';
+	sitetitle = 'East Coast Web Ops';
+	subtitle = 'Web Development & Other Fun Stuff';
 } else {
 	//sitetitle = 'ECWO';
-	sitetitle = 'East Coast Web Operations';
-	subtitle = 'Web Development by Eric K. Holbrook';
+	sitetitle = 'East Coast Web Ops';
+	subtitle = 'Web Development & Other Fun Stuff';
 }
 imagloc = '';
 version = 18; //
