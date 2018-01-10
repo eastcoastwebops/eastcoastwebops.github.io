@@ -1,47 +1,89 @@
 	<script src="../../src/jquery2.1.3.min.js"></script>
 
 	<style>
+#tvarticles{
+	font-family: arial;}
+
 .topics {
 	list-style-type: numbers;
 	margin: 0px;
-	font-size: 16px;
-	font-family: arial;
-	columns: auto 6;
-	background: #ffffff;
-	column-gap: 2em;
-padding:0px 30px 0px 30px;
-  border:solid 1px;
-  font-weight:bold;color:#1861BD
+	font-size: 1.3vw;
+	line-height:1.5vw;
+	columns: auto 4;
+		column-gap: 1.5em;
+padding:0vw 3vw 0vw 3vw;
+  font-weight:bold;color:#1861BD;
+
 }
 
 .topics li{margin-bottom:.15em;
-/text-align:center;
+  
+-webkit-column-break-inside:avoid;
+-moz-column-break-inside:avoid;
+-o-column-break-inside:avoid;
+-ms-column-break-inside:avoid;
+column-break-inside:avoid;  
 }
-.topics li a{display:block;padding:5px;
-font-weight:bold;color:#000000;
+.topics li a{
+font-weight:normal;color:#000000;
 text-decoration:none;
-border-radius:10px;
-}
+  -webkit-column-break-inside:avoid;
+-moz-column-break-inside:avoid;
+-o-column-break-inside:avoid;
+-ms-column-break-inside:avoid;
+column-break-inside:avoid;
 
-.topics li a:hover{background:#cccccc;color:#000000;}
+
+  }
+
+.topics li a:hover{background:#ffff00 !important;color:#000000 ;}
+
+.thedrop{width:460px;
+border:solid 1px;
+margin:auto;
+font-weight:bold;
+text-align:center;}
+
+.search{border:solid 0px;
+width:250px;;
+margin:auto;
+text-align:center;
+font-size:20px;}
+.search input{font-size:20px;background:#eeeeee;
+color:#000000;
+padding:5px;}
+
+
 
 
 	</style>
-	
+<div id="tvarticles">	
 <div class="thedrop">ThinkVacuum Articles and Blog Posts
 <div class="urls">&amp;nbsp</div>
 </div>
 
+<div class="search">Live Search... Start Typing To Search Topics
+ <input type="text" id="searchfor"/>
+</div>
+
 <div class="list">&amp;nbsp</div>
 	
+</div>	
 	<script>
+
+//reset inut
+
+$('#searchfor').val('');
+
+	
+	
 baseurl = 'https://www.thinkvacuums.com';
 	
  var links = [
 'Sales And Specials | /tv-sales.html',
  'Compare Large Homes | /comparison-large-size-homes',
  'Compare Medium Homes | /comparison-medium-size-homes',
-'Compare Smal Homes | /comparison-small-size-homes',
+'Compare Small Homes | /comparison-small-size-homes',
 'Getting Started | /getting-started',
 'Why Central Vacuums? | /whycentralvacuums',
 'How To Compare Central Vacuums | /doublesquare',
@@ -55,42 +97,42 @@ baseurl = 'https://www.thinkvacuums.com';
 'Consumer Reports | /consumer-reports',
 'Stuff You Didnt Know | /charts-ngbs',
 'Compare Design Features | /centralvacstyles',
-'Page Name | /duovac-features',
-'Page Name | /quotes',
-'Page Name | /install-central-vacuum',
-'Page Name | /central-vacuum-101',
-'Page Name | /going-green',
-'Page Name | /troubleshooting',
-'Page Name | /cyclonic-central-vacuums',
-'Page Name | /central-vacuum-benefits',
-'Page Name | /best-selling-central-vacuums',
-'Page Name | /exhaust',
-'Page Name | /will-old-attachments-works-cv',
-'Page Name | /central-vacuums-importance',
+'DuoVac Features | /duovac-features',
+'Quotes | /quotes',
+'Installing Your Central Vacuum | /install-central-vacuum',
+'Top Recommendations | /central-vacuum-101',
+'Going Green | /going-green',
+'TroubleShooting | /troubleshooting',
+'Cyclonic Central Vacuums | /cyclonic-central-vacuums',
+'Benefits of a Central Vacuum | /central-vacuum-benefits',
+'Best Selling Central Vacuums | /best-selling-central-vacuums',
+'Should I Exhaust | /exhaust',
+'Will My Attachments Work | /will-old-attachments-works-cv',
+'Importance Of A Central Vacuum | /central-vacuums-importance',
 'Page Name | /faqs4',
 'Page Name | /faq-11',
 'Page Name | /faq-12',
 'Page Name | /faq-13',
 'Page Name | /faq-14',
 'Page Name | /faq-15',
-'Page Name | /motor-news',
+'Motor News | /motor-news',
 'Page Name | /centralvacstyles_popup',
 'Page Name | /centralvacstyles_popup2',
-'Page Name | /bagless',
-'Page Name | /helpfulltips_popup',
-'Page Name | /central-vacuum-manuals',
+'Bagless | /bagless',
+'Helpful Tips | /helpfulltips_popup',
+'Central Vacuum Manuals | /central-vacuum-manuals',
 'Page Name | /moreinfo4',
-'Page Name | /shipmap',
-'Page Name | /featured-product',
-'Page Name | /videos-page',
-'Page Name | /central-vacuum-hoses',
-'Page Name | /basic-central-vaccum-hoses',
-'Page Name | /low-voltage-central-vacuum-hoses',
-'Page Name | /electric-central-vacuum-hoses',
-'Page Name | /best_selling_popup_video',
-'Page Name | /bagmore',
-'Page Name | /baglessmore-popup',
-'Page Name | /filtercyclonic',
+'Where We Ship | /shipmap',
+'Featured Products | /featured-product',
+'Videos | /videos-page',
+'Central Vacuum Hoses | /central-vacuum-hoses',
+'Basic Central Vacuum Hoses | /basic-central-vaccum-hoses',
+'Low Voltage Hoses | /low-voltage-central-vacuum-hoses',
+'Electric Central Vacuum Hoses | /electric-central-vacuum-hoses',
+'Best Selling Video | /best_selling_popup_video',
+'More Bags | /bagmore',
+'More Bags Popup | /baglessmore-popup',
+'Cyclonic Filters Pt. 2 | /filtercyclonic',
 'Page Name | /cycloniccentralvacuumspopup',
 'Page Name | /baglessmore-inside-popup',
 'Page Name | /bselldrainvac',
@@ -163,28 +205,26 @@ baseurl = 'https://www.thinkvacuums.com';
 'Page Name | /tips-for-choosing-a-new-vacuum-cleaner',
 'Page Name | /how-often-should-you-have-your-vacuum-serviced',
 'Page Name | /guide-to-properly-utilizing-vacuum-cleaner-accessories',
-'Page Name | /easy_helpful_instructions',
-'Page Name | /layout_and_planning',
-'Page Name | /install_tips',
-'Page Name | /central-vacuums-uses-for-hotels-hospitality-industry',
-'Page Name | /wholesale-vacuums-for-builders-construction-sites',
-'Page Name | /industries-in-need-of-a-commercial-vacuum-cleaner',
-'Page Name | /get-a-nutone-central-vacuum-for-the-new-year',
-'Page Name | /how-to-choose-powerhead-for-your-central-vacuum',
-'Page Name | /top-accessories-for-your-beam-vacuums',
-'Page Name | /red_carpet_service',
-'Page Name | /holiday-cleaning-tips',
-'Page Name | /10_best_2018',
-'Page Name | /10_best_2018_attachmentkits_2018'
+'Plan Your Central Vacuum Install Strategy | /easy_helpful_instructions',
+'Layout & Planning | /layout_and_planning',
+'Installation Tips | /install_tips',
+'Central Vacuums For Hotels | /central-vacuums-uses-for-hotels-hospitality-industry',
+'Wholesale Vacuums For Builders | /wholesale-vacuums-for-builders-construction-sites',
+'Industries That Need A Central Vacuum | /industries-in-need-of-a-commercial-vacuum-cleaner',
+'NuTone For The New Year | /get-a-nutone-central-vacuum-for-the-new-year',
+'How To Choose A Powerhead For Your Central Vacuum | /how-to-choose-powerhead-for-your-central-vacuum',
+'Top Accessories For Beam | /top-accessories-for-your-beam-vacuums',
+'Red Carpet Service | /red_carpet_service',
+'Holiday Cleaning Tips | /holiday-cleaning-tips',
+'Top 10 Central Vacuum Systems | /10_best_2018',
+'Top 10 Attachment Kits For Central Vacuums | /10_best_2018_attachmentkits_2018'
  ];
 	
-
-
-
+links.sort();
             // brand dropdown for attachment page
             urls =
                 '<select class="urldrop" size="1"><option>Jump To Topic</option>';
-						list = '<ul class="topics">';
+						list = '<ol class="topics">';
            
             for (var i = 0; i < links.length; i++) {
             title = links[i].split('|');
@@ -195,7 +235,7 @@ baseurl = 'https://www.thinkvacuums.com';
                 urls += '<option value="' + baseurl + title[1].trim() +'">' + title[0].trim() +
                     '</option>';
 
-              list +='<li><a href="' + baseurl + title[1].trim() +'">' + title[0].trim() +
+              list +='<li><a target="_blank" href="' + baseurl + title[1].trim() +'">' + title[0].trim() +
                     '</a></li>'
             }
             // droplistone += '</select>';
@@ -212,12 +252,52 @@ baseurl = 'https://www.thinkvacuums.com';
                         return false;
                     });
             });
+	
+jQuery.expr[':'].icontains = function(a, i, m) {
+  return jQuery(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+};
+	
+$("#searchfor").keyup(function(){
+    var search = $('#searchfor').val();
+	//	search = search.toString();
+		search = search.toLowerCase();
+		
+	
+$( '.topics li a, .topics li').css( {
+'background-color':'transparent',
+'color':'#999999',
+'display':'none'
+} );
 
 
+		$( '.topics li a:icontains("'+search+'")' ).css( {
+	//	'background-color': '#ffff99',
+		'color':'#000000',
+			'display':''
+			});
+			
+					$( '.topics li:icontains("'+search+'")' ).css( {
+		'color':'#1861BD',
+		'display':'',
+
+			});
+
+
+if   (search == '') {
+$( '.topics li a, .topics li').css( {
+'background-color':'',
+
+} );
+$('.topics li a').css({
+'color':'',
+
+});
+}		
+		
+});		
 </script>
 
 
 <span style="display:none;">
-
-
 </span>
