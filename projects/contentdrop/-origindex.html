@@ -1,0 +1,305 @@
+	<script src="../../src/jquery2.1.3.min.js"></script>
+
+	<style>
+#tvarticles{
+	font-family: arial;}
+
+.topics {
+	list-style-type: numbers;
+	margin: 0px;
+	font-size: 1.3vw;
+	line-height:1.5vw;
+	columns: auto 4;
+		column-gap: 1.5em;
+padding:0vw 3vw 0vw 3vw;
+  font-weight:bold;color:#1861BD;
+	font-style:normal;
+
+}
+
+.topics li{margin-bottom:.15em;
+  
+-webkit-column-break-inside:avoid;
+-moz-column-break-inside:avoid;
+-o-column-break-inside:avoid;
+-ms-column-break-inside:avoid;
+column-break-inside:avoid;  
+}
+.topics li a{
+font-weight:normal;color:#000000;
+text-decoration:none;
+  -webkit-column-break-inside:avoid;
+-moz-column-break-inside:avoid;
+-o-column-break-inside:avoid;
+-ms-column-break-inside:avoid;
+column-break-inside:avoid;
+
+
+  }
+
+.topics li a:hover{background:#ffff00 !important;color:#000000 ;}
+
+.thedrop{width:460px;
+border:solid 1px;
+margin:auto;
+font-weight:bold;
+text-align:center;}
+
+.search{border:solid 0px;
+width:250px;;
+margin:auto;
+text-align:center;
+font-size:20px;}
+.search input{font-size:20px;background:#eeeeee;
+color:#000000;
+padding:5px;}
+
+
+
+
+	</style>
+<div id="tvarticles">	
+<div class="thedrop">ThinkVacuum Articles and Blog Posts
+<div class="urls">&amp;nbsp</div>
+</div>
+
+<div class="search">Live Search... Start Typing To Search Topics
+ <input type="text" id="searchfor"/>
+</div>
+
+<div class="list">&amp;nbsp</div>
+	
+</div>	
+	<script>
+
+//reset inut
+
+$('#searchfor').val('');
+
+	
+	
+baseurl = 'https://www.thinkvacuums.com';
+	
+ var links = [
+            '10 Reason To Replace Unit Instead Of Motor | /ten_reasons',
+            'About Beam Vacuums | /beam-vacuums',
+            'Accessories | /top-accessories-for-central-vacuums',
+            'Bag vs Bagless | /bag-vs-bagless',
+            'Bag vs Bagless Household Vacuums | /bag-vs-bagless-household-vacuums',
+            'Bagless | /bagless',
+            'Basic Central Vacuum Hoses | /basic-central-vaccum-hoses',
+            'Bathroom | /guide-to-replacing-your-household-bathroom',
+            'Benefits of a Central Vacuum | /central-vacuum-benefits',
+            'Best Sellers | /bestsellers-popup',
+            'Best Selling Central Vacuums | /best-selling-central-vacuums',
+            'Best Selling Video | /best_selling_popup_video',
+            'Best Vacuum For Your Buesiness | /best-vacuum-cleaner-for-your-business',
+            'Biggest Messes | /biggest-messes-with-best-vacuum-cleaners',
+            'Central Vacuum Accessories | /central-vacuum-accessories',
+            'Central Vacuum Hoses | /central-vacuum-hoses',
+            'Central Vacuum Manuals | /central-vacuum-manuals',
+            'Central Vacuums For Hotels | /central-vacuums-uses-for-hotels-hospitality-industry',
+            'Central Vacuums For Your Home | /central-vacuums-for-home',
+            'Central Vacuums In Industrial Environments | /why-central-vacuum-cleaners-are-a-must-for-industrial-environments',
+            'Commercial Vacuum For Your Business | /commercial-vacuum-for-your-business',
+            'Commercial vs Residential | /commercial-vacuum-vs-residential-vacuums',
+            'Common Mistakes | /common-vacuuming-mistakes',
+            'Compare 3 main types of Vacuums | /quick-comparison-of-the-three-main-types-of-vacuums',
+            'Compare Design Features | /centralvacstyles',
+            'Compare Large Homes | /comparison-large-size-homes',
+            'Compare Medium Homes | /comparison-medium-size-homes',
+            'Compare Motors | /compare_motors',
+            'Compare Small Homes | /comparison-small-size-homes',
+            'Consumer Reports | /consumer-reports',
+            'Cyclonic Central Vacuums | /cyclonic-central-vacuums',
+            'Cyclonic Filters Pt. 2 | /filtercyclonic',
+            'Definitions | /definitions',
+            'DrainVac & TLC | /drainvac-tlc',
+            'DuoVac Features | /duovac-features',
+            'Electric Central Vacuum Hoses | /electric-central-vacuum-hoses',
+            'Eliminate Allergens | /eliminate-workplace-allergens-with-the-right-central-vacuum-system',
+            'FAQ | /centralvacuums-faq',
+            'Featured Products | /featured-product',
+            'Find The Right Attachment | /find_right_attachment_kit',
+            'Getting Started | /getting-started',
+            'Going Green | /going-green',
+            'Guide To Accessories | /guide-to-properly-utilizing-vacuum-cleaner-accessories',
+            'Guide To Cleaning A Vacuum | /quick-guide-to-cleaning-vacuum',
+            'Helpful Tips | /helpfulltips_popup',
+            'Holiday Cleaning Tips | /holiday-cleaning-tips',
+            'How Often To Service | /how-often-should-you-have-your-vacuum-serviced',
+            'How To Choose A Central Vacuum For Your Home | /how-to-choose-a-central-vacuum-for-your-home',
+            'How To Choose A Powerhead For Your Central Vacuum | /how-to-choose-powerhead-for-your-central-vacuum',
+            'How To Compare Central Vacuums | /doublesquare',
+            'Importance Of A Central Vacuum | /central-vacuums-importance',
+            'Industrial vs Residential Vacuums | /choosing-vacuum-industrial-vs-residential',
+            'Industries That Need A Central Vacuum | /industries-in-need-of-a-commercial-vacuum-cleaner',
+            'Installation Rules | /install_rules',
+            'Installation Tips | /install_tips',
+            'Installing Your Central Vacuum | /install-central-vacuum',
+            'Invest In A Central Vacuum For Your Home | /invest-in-central-vacuums-for-your-home',
+            'Layout & Planning | /layout_and_planning',
+            'Low Voltage Hoses | /low-voltage-central-vacuum-hoses',
+            'Maintenance Tips | /the-most-important-vacuum-maintenance-tips',
+            'Miele Vacuums | /miele-vacuums',
+            'More Bags | /bagmore',
+            'More Bags Popup | /baglessmore-popup',
+            'Motor News | /motor-news',
+            'NuTone For The New Year | /get-a-nutone-central-vacuum-for-the-new-year',
+            'NuTone Replacement Parts | /nutone-replacement-parts',
+            'Page Name | /about-vac-soc-popup',
+            'Page Name | /baglessmore-inside-popup',
+            'Page Name | /bag-vs-bagless-which-way-should-you-go',
+            'Page Name | /bselldrainvac',
+            'Page Name | /budd-hose-connection-popup',
+            'Page Name | /centralvacstyles_popup',
+            'Page Name | /centralvacstyles_popup2',
+            'Page Name | /central-vacuum-sales',
+            'Page Name | /centvac101-work',
+            'Page Name | /customerreviews',
+            'Page Name | /cycloniccentralvacuumspopup',
+            'Page Name | /faq-11',
+            'Page Name | /faq-12',
+            'Page Name | /faq-13',
+            'Page Name | /faq-14',
+            'Page Name | /faq-15',
+            'Page Name | /faqs4',
+            'Page Name | /faq-which-central-vacuum-system-should-i-buy',
+            'Page Name | /hose-connection-popup',
+            'Page Name | /hose-connection-popup2',
+            'Page Name | /how-to-choose-the-best-vacuum-cleaner-for-your-business',
+            'Page Name | /how-to-install-a-central-vacuum-popup',
+            'Page Name | /how-to-keep-your-built-in-vacuum-cleaner-clean',
+            'Page Name | /iframe_bsc',
+            'Page Name | /kenmore-hose-connection-popup',
+            'Page Name | /landing',
+            'Page Name | /made-in-usa',
+            'Page Name | /moreinfo4',
+            'Page Name | /nutone-package-for-your-business',
+            'Page Name | /purvac-activac',
+            'Page Name | /ten_reasons_to_replace_unit',
+            'Page Name | /testfeed',
+            'Page Name | /test-reviews-page',
+            'Page Name | /thankyou-bestdeal',
+            'Page Name | /topsecret',
+            'Page Name | /turbocat-pro-advantages-popup',
+            'Page Name | /ultimate-guide-to-purchasing-a-central-vacuum',
+            'Page Name | /vacuflo-basic-hose-popup',
+            'Page Name | /vacuflo-electric-hose-popup',
+            'Page Name | /vacuflo-hose-connection-popup',
+            'Page Name | /vacuflo-universal-hose-popup',
+            'Page Name | /vacuum-cleaner-filtration-systems',
+            'Page Name | /why-it-is-good-idea-to-invest-in-a-central-vacuum-system',
+            'Page Name | /why-you-should-invest-in-a-built-in-vacuum-cleaner',
+            'Plan Your Central Vacuum Install Strategy | /easy_helpful_instructions',
+            'PVC Pipe | /pvcpipe',
+            'Quotes | /quotes',
+            'Red Carpet Service | /red_carpet_service',
+            'Sebo Vacuums | /sebo-vacuums',
+            'Should I Exhaust | /exhaust',
+            'Signs To Replace Your Houshold Vacuum | /top-signs-you-need-to-replace-your-household-vacuum',
+            'Stuff You Didnt Know | /charts-ngbs',
+            'Suction Power | /suction-power',
+            'Things You Didn\'t Know | /things-you-didnt-know-about-central-vacuums',
+            'Three Essential Parts For Vacuum Repair | /three-essential-parts-for-vacuum-repair',
+            'Tips For Choosing | /tips-for-choosing-a-new-vacuum-cleaner',
+            'Top 10 Attachment Kits For Central Vacuums | /10_best_2018_attachmentkits_2018'
+            'Top 10 Central Vacuum Systems | /10_best_2018',
+            'Top 3 Brands | /top-three-best-vacuum-brands',
+            'Top Accessories | /accessories-your-vacuum-cleaner-needs',
+            'Top Accessories For Beam | /top-accessories-for-your-beam-vacuums',
+            'Top Recommendations | /central-vacuum-101',
+            'TroubleShooting | /troubleshooting',
+            'Vacuum Parts People Overlook | /vacuum-parts-people-overlook',
+            'Videos | /videos-page',
+            'What Is Private Label? | /privatelabel',
+            'Where We Ship | /shipmap',
+            'Wholesale Vacuums For Builders | /wholesale-vacuums-for-builders-construction-sites',
+            'Why A Central Vacuum Is A Great Investment | /why-central-vacuums-are-the-best-investment-for-your-home',
+            'Why Central Vacuums? | /whycentralvacuums',
+            'Will My Attachments Work | /will-old-attachments-works-cv',
+  'Sales And Specials | /tv-sales.html',
+
+ ];
+	
+links.sort();
+            // brand dropdown for attachment page
+            urls =
+                '<select class="urldrop" size="1"><option>Jump To Topic</option>';
+						list = '<ol class="topics">';
+           
+            for (var i = 0; i < links.length; i++) {
+            title = links[i].split('|');
+					//	title = title.trim();
+						if (title[0].trim() == 'Page Name') {
+						title[0]= title[1];
+						}
+                urls += '<option value="' + baseurl + title[1].trim() +'">' + title[0].trim() +
+                    '</option>';
+
+              list +='<li><a target="_blank" href="' + baseurl + title[1].trim() +'">' + title[0].trim() +
+                    '</a></li>'
+            }
+            // droplistone += '</select>';
+            jQuery('.urls').html(urls);
+						   jQuery('.list').html(list);
+         
+            jQuery(function() {
+                jQuery('.urldrop').on('change',
+                    function() {
+                        var url = jQuery(this).val(); // get selected value
+                        if (url) { // require a URL
+                            window.location = url; // redirect
+                        }
+                        return false;
+                    });
+            });
+	
+jQuery.expr[':'].icontains = function(a, i, m) {
+  return jQuery(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+};
+	
+$("#searchfor").keyup(function(){
+    var search = $('#searchfor').val();
+	//	search = search.toString();
+		search = search.toLowerCase();
+		
+	
+$( '.topics li a, .topics li').css( {
+'background-color':'transparent',
+'color':'#999999',
+'display':'none'
+} );
+
+
+		$( '.topics li a:icontains("'+search+'")' ).css( {
+	//	'background-color': '#ffff99',
+		'color':'#000000',
+			'display':''
+			});
+			
+					$( '.topics li:icontains("'+search+'")' ).css( {
+		'color':'#1861BD',
+		'display':'',
+
+			});
+
+
+if   (search == '') {
+$( '.topics li a, .topics li').css( {
+'background-color':'',
+
+} );
+$('.topics li a').css({
+'color':'',
+
+});
+}		
+		
+});		
+</script>
+
+
+<span style="display:none;">
+</span>
