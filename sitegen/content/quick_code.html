@@ -1,20 +1,85 @@
 <div class="col-sm-10 col-sm-offset-1">
 
-<p>reference guide of some JS I've written over the years to perform various tasks</p>
+<p>reference of some JS Snippets I've written over the years to perform various tasks</p>
 
 
 
 <h2>Move consecutive items from one list to another</h2>
-
 <pre>
 <xmp>
+<script>
 // move items 17 trough 21 in list to another ul class 
  jQuery('ul.products-grid > li').slice(17, 21).addClass('canister').appendTo('.products-grid.canister');
+ </script>
+</xmp>
+</pre>
+----
 
-
+<h2>Find Replace Text</h2>
+<pre>
+<xmp>
+<script type="text/javascript">
+    jQuery(".motors-popup a").text(function() {
+        var elem = jQuery('.motors-popup a:contains("2011")');
+        elem.text(elem.text().replace("2011", "2017"));
+    });
+</script>
 </xmp>
 </pre>
 
+----
 
-</xmp>
+<h2>Scrolling Message, The Move ID to different location per client desire</h2>
+<pre>
+<xmp>
+<div id="display">
+<p id="text">Consumer Alert Notice: These Honeywell Power Units are having issues with Relay Boards and we don't recommend purchasing them until Honeywell fixes these issues...</p>
+</div>
+<style>
+*{margin:0;padding:0}
+#display{height:60px;width:50%;overflow:hidden;position:relative;margin:auto}
+#text{cursor:pointer;overflow:hidden;position:absolute;left:10px;margin-right:10px;top:10px;color:red;font-weight:700;font-size:20px;width:1700px}
+</style>
+<script type="text/javascript">// <![CDATA[
+function marquee(a, b) {
+        var width = b.width();
+        var start_pos = a.width();
+        var end_pos = -width;
+
+        function scroll() {
+            if (b.position().left <= -width) {
+                b.css('left', start_pos);
+                scroll();
+            } else {
+                time = (parseInt(b.position().left, 10) - end_pos) *
+                    (15000 / (start_pos - end_pos)); 
+                b.animate({
+                    'left': -width
+                }, time, 'linear', function() {
+                    scroll();
+                });
+            }
+        }
+
+        b.css({
+            'width': width,
+            'left': start_pos
+        });
+        scroll(a, b);
+
+        b.mouseenter(function() { // Remove these lines
+            b.stop(); //
+            b.clearQueue(); // if you don't want
+        }); //
+        b.mouseleave(function() { // marquee to pause
+            scroll(a, b); //
+        }); // on mouse over
+
+    }
+    jQuery(document).ready(function() {marquee(jQuery('#display'), jQuery('#text')); 
+		jQuery('ol.products-list  > li:eq(0)').after(  jQuery('#display')  ); // move because was client wanted marque in different place
+    });
+// ]]></script>
+
 </pre>
+</xmp>
