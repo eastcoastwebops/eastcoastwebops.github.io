@@ -194,6 +194,8 @@ h4{font-weight:bold;font-size:1.4em;}
 pre {font-size:11px;
 overflow:scroll-x;}
 
+img.scaleimage {max-width:100%;}
+
 /* desktop */
 
 @media only screen and (min-width: 701px) {
