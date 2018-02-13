@@ -6,14 +6,14 @@ SiteGen Version 2.0
 ******/
 if (location.hostname == "eastcoastwebops.github.io") {
 	sitetitle = 'East Coast Web Ops';
-	subtitle = 'Web Development & Other Fun Stuff';
+	subtitle = 'Web Development & Graphic Design';
 } else {
 	//sitetitle = 'ECWO';
 	sitetitle = 'East Coast Web Ops';
-	subtitle = 'Web Development & Other Fun Stuff';
+	subtitle = 'Web Development & Graphic Design';
 }
 imagloc = '';
-version = 18; //
+version = 19; //
 function gup(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 	regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -163,7 +163,7 @@ $(window).on("load", function() {
 			nicename = whichpage.replace(/_/g, ' ');
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
-			$('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
+			$('#footer').text(page + " is (c) 2018, Eric K. Holbrook");
 			
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({

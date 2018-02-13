@@ -8,6 +8,7 @@ Graphic Design|graphics,
 Code Snippets,
 <
 Tools>
+How To Host On GitHub|github,
 Encrypt,
 Styling Page|sample_page,
 Dark Theme|sample_page&t=dark,
