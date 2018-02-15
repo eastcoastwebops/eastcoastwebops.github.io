@@ -1,0 +1,283 @@
+
+<script src="../../src/jquery.min.js"></script>
+<script type="text/javascript" src="slick.min.js"></script>
+
+<div id="reviews">
+<h3>Verified Customer Reviews</h3>
+<ul class="thereviews">&nbsp;</ul></div>
+
+<script type="text/javascript">
+
+var html ='';
+
+text_truncate = function(str, length, ending) {
+    if (length == null) {
+      length = 100;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+	
+	function randnum(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+
+var review_data;
+$.getJSON('reviews.json').done(function (data) {
+review_data = data;
+});
+	
+	
+		jQuery(document).ready(function(){
+
+	
+	  jQuery.each(review_data, function (index, value) {
+	var 	name = value.name,
+					where = value.location,
+					date = value.displaydate,
+	comment = value.textcomments,
+	link = value.fullurl,
+	stars = value.Overall,
+	ratings = '';
+				comment = text_truncate(comment,60);
+
+					switch (stars) {
+			case '5.0':
+				ratings = '&#9733;&#9733;&#9733;&#9733;&#9733;';
+			
+				break;
+			case '4.0':
+				ratings = '&#9733;&#9733;&#9733;&#9733;&#9734;';
+	
+				break;
+			case '3.0':
+				ratings = '&#9733;&#9733;&#9733;&#9734;&#9734;';
+
+				break;
+			case '2.0':
+				ratings = '&#9733;&#9733;&#9734;&#9734;&#9734;';
+		
+				break;
+			case '1.0':
+				ratings = '&#9733;&#9734;&#9734;&#9734;&#9734;';
+	
+				break;
+			case '0.0':
+				ratings = '&#9734;&#9734;&#9734;&#9734;&#9734;';
+			break;
+		}
+				
+html += '<li class="review"><div class="review_container"><a href="'+link+'" target="top">'+name + ' - <span class="star">' + ratings + '</span> - ' + stars + ' Stars <img class="smile" src="smile'+randnum(1,7)+'.png"><br/>'+ date + ' "' + comment+'"</a></div></li>';
+			 
+    }); // each data
+	
+jQuery('#reviews ul').append(html).hide();
+     var list = jQuery('#reviews ul');
+	        var listItems = list.children('li');
+	        list.append(listItems.get().reverse());
+	  
+jQuery('#reviews ul').show();	
+	
+	
+jQuery('.thereviews').slick({
+  infinite: true,
+  slidesToShow: 5,
+  slidesToScroll: 5,
+//	  autoplay: true,
+//  autoplaySpeed: 2000,
+	 responsive: [
+    {
+      breakpoint: 968,
+      settings: {
+        slidesToShow: 3
+      }
+    },
+	 {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+	
+	});
+
+	
+</script>	
+	
+	
+<style type="text/css">
+.std #reviews ul li {
+	margin: 0px;
+}
+#reviews {
+	margin-bottom: 10px;
+}
+  
+  #reviews h3{text-align:center;
+  font-family:arial;
+  padding:0px;
+  margin:0px;
+  position:relative;
+  top:20px;
+  font-size:15px;
+ width:70%;
+  margin:auto;}
+	
+#reviews ul {
+	width: 100%;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	font-family: arial;
+	font-size: 10px;
+	line-height: 11px;
+	height: 50px;
+}
+li.review {
+	font-size: 10px !important;
+	line-height: 11px !important;
+	margin-bottom: 0px 0px 10px 0px !important;
+	border: solid 1px;
+	padding: 5px 10px 10px 40px;
+	background: #336633;
+	color: #ffffff;
+	border-radius: 5px;
+	position: relative;
+
+}
+.star {
+	color: #ffff00;
+}
+.review a {
+	color: #ffffff;
+	text-decoration: none;
+}
+.review:hover {
+	background: #000000;
+}
+.smile {
+	position: absolute;
+	left: 3px;
+	top: 12%;
+    height:36px;
+}
+.slick-prev {
+	border: solid 1px;
+}
+.slick-next {
+	position: absolute;
+	border: solid 1px;
+	top: 0px;
+	right: 0px;
+}
+.slick-arrow {
+	font-size: 10px;
+	padding: 2px 5px 2px 5px;
+	border-radius: 5px;
+}
+/* Slider */
+
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.slick-list:focus {
+	outline: none;
+}
+.slick-list.dragging {
+	cursor: pointer;
+	cursor: hand;
+}
+.slick-slider .slick-track, .slick-slider .slick-list {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.slick-track {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.slick-track:before, .slick-track:after {
+	display: table;
+	content: '';
+}
+.slick-track:after {
+	clear: both;
+}
+.slick-loading .slick-track {
+	visibility: hidden;
+}
+.slick-slide {
+	display: none;
+	float: left;
+	height: 100%;
+	min-height: 1px;
+}
+[dir='rtl'] .slick-slide {
+	float: right;
+}
+.slick-slide img {
+	display: block;
+}
+.slick-slide.slick-loading img {
+	display: none;
+}
+.slick-slide.dragging img {
+	pointer-events: none;
+}
+.slick-initialized .slick-slide {
+	display: block;
+}
+.slick-loading .slick-slide {
+	visibility: hidden;
+}
+.slick-vertical .slick-slide {
+	display: block;
+	height: auto;
+	border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+	display: none;
+}
+
+</style>
+
