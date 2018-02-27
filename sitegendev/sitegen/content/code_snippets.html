@@ -1,7 +1,60 @@
 <div class="col-sm-10 col-sm-offset-1">
-<h2>Check if date is today and hide/show class</h2>   
 
+<p>These some recent or ongoing snippets or code I have written in the past few months, mostly as it relates to my current work. This is all original code, ongoing code, and I tend to update it frequently or refine it</p>
+
+<p>I present some of it here to give you an idea of my level of coding</p>
+
+
+
+<h2>Compatible Brands</h2>
+<p>This is php / mageto code written to extract compatible brands for a given product on the display page. I use JS later (in the misc script way below) to take this "complist" and maniplate the output data further</p>
 <pre>
+<xmp>
+<?php
+$getCompat = $_product->getCompatibleModels(); //
+
+if ($getCompat != "") {
+    $getCompat   = str_replace(array(
+        "? ,",
+        "?,"
+    ), " Series, ", $getCompat);
+    $getCompat   = str_replace(array(
+        "?"
+    ), " Series ", $getCompat);
+    $getCompat   = str_replace(" ,", ",", $getCompat);
+    $compatlist  = "<div id=\"compatlist\" class=\"cleafix\"><p>Compatible with the following Brands & Models <br/>(hover over each)</p>";
+    $compatArray = preg_split("/[;]/", $getCompat);
+    $modelName   = array();
+    $modelNumber = array();
+    foreach ($compatArray as $brandModel) {
+        $brandNmodel = preg_split("/[:]/", $brandModel);
+        $modelName[] = $brandNmodel[0];
+        if ($brandNmodel[1] == "") {
+            $modelNumber[] = "Please Call";
+        } else {
+            $brandNmodel[1] = $brandNmodel[0] . " " . str_replace(", ", ", " . $brandNmodel[0] . " ", $brandNmodel[1]);
+            // insert first brand name before first model
+            $modelNumber[]  = $brandNmodel[1];
+        }
+        //    }
+        $allModels = array_combine($modelName, $modelNumber);
+    }
+    $compatlist .= "<ul>";
+    foreach ($allModels as $mName => $mValue) {
+        if ((!empty($mName)) && ($mName != " ")) {
+            $compatlist .= "<li class=\"modelname\">" . $mName . "<span class=\"modelbrand\">" . $mValue . "</span></li>";
+        }
+    }
+    $compatlist .= "</ul></div>";
+}
+?>
+</xmp>
+</pre>
+
+<h2>Check if date is today and hide/show class</h2>   
+<pre>
+<xmp>
+<script>
         var someDate = new Date("1 Nov 2017").toDateString();
         var today = new Date().toDateString();
         if (today === someDate) {
@@ -11,6 +64,8 @@
             jQuery('.late').fadeOut();
             jQuery('.early').fadeIn();
         }
+				</script>
+			</xmp>
 </pre>
 
 
@@ -117,5 +172,820 @@
        // end quick drop menu
      });
 </script>
+</xmp>
+</pre>
+
+
+<h2>Combination PHP & Javascript to first look up product variations, populate the JS variables, can calculate product to user</h2>
+<p>then determine determine how calculate all the options as they are manipulated by user Live on the product pages. This code (as are all my snippets) 100% original and this particular code replaced entirely the code I found in Magento template to perform similar actions. Yet the original code was 2000 lines long and was very limited</p>
+<p>Example of code in action can be seen here (start choosing some options) <a href="https://www.thinkvacuums.com/central-vacuums/drainvac/complete-packages/drainvac-builders-favorite-package.html" target="_blank">Complete Package</a>
+</p>
+<pre>
+<xmp>
+<script type="text/javascript"> 
+		jQuery(document).ready(function() {
+			var protype = <?php echo json_encode($_product->getTypeId()) ?>;
+			if (protype == 'bundle') {
+				var classname = ".product-bundle-select-container select";
+			} else {
+				var classname = ".product-options .configselect";
+			}
+			<?php if($csFlag): ?>
+			jQuery(classname).change(function() {
+				var text = jQuery(this).find(':selected').text();
+				if (text.indexOf(text) > -1) {
+					if (text.indexOf("-Foot") >= 0) {
+						var text = text.split('-Foot');
+					} else if (text.indexOf("FT") >= 0) {
+						var text = text.split('FT');
+					} else if (text.indexOf("Gal") >= 0) {
+						var text = text.split('-Gallon');
+					}
+					jQuery('.musthaveconfig select').css("border", "none");
+					jQuery('.musthaveconfig select').attr("enable", "enable");
+					text = text[0].replace(/\D/g, '');
+					text = jQuery.trim(text);
+					text = parseInt(text, 10);
+					if (text == '36') {
+						text = '35';
+					}
+					if (text == '42') {
+						text = '40';
+					}
+					jQuery('.musthaveconfig select').each(function() {
+						jQuery('.musthaveconfig select option').removeAttr("selected");
+					});
+					jQuery('.musthaveconfig').removeClass('no-display');
+					var select = jQuery('.musthaveconfig select').find("option:contains('" + text + "')").prop('selected', true);
+					my_condition = true;
+					var lastSel = $j(".musthaveconfig select option:selected");
+					$j(".musthaveconfig select").change(function() {
+						if (my_condition) {
+							lastSel.attr("selected", true);
+						}
+					});
+					$j(".musthaveconfig select").click(function() {
+						lastSel = $j(".musthaveconfig select option:selected");
+					});
+				}
+			});
+			<?php endif; ?>
+			var protype = <?php echo json_encode($_product->getTypeId()) ?>;
+			var user_agent = navigator.userAgent.toLowerCase(); // detect the user agent
+			var ios_devices = user_agent.match(/(iphone|ipod|ipad)/) ? "touchstart" : "click";
+			var prodQ = 1;
+			var base = 0;
+			var TeerPrice = 0;
+
+			function formatNumber(num) {
+				return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+			}
+
+			function increment(a) {
+				var n = $j(a).attr("class"),
+					r = 0;
+				n.search("plus") >= 0 ? r = 1 : n.search("minus") >= 0 && (r = -1);
+				var s = $j(a).parent().parent().find('[class*="qty"]').val(),
+					t = parseInt(s);
+				t && "" != t && "NaN" != t || (t = 0);
+				var e = t + r;
+				0 >= e && (e = 0), $j(a).parent().parent().find('[class*="qty"]').val(e)
+			}
+
+			function calc_price() {
+				var base = <?php echo $_product->getFinalPrice(); ?>,
+					card_value = base;
+				var origPrice = <?php echo $_product->getPrice(); ?>;
+				if (TeerPrice) {
+					if (TeerPrice > 0) {
+						type = "<?php echo $_product->getTypeId(); ?>	";
+						if (type.indexOf("bundle") >= 0) {
+							base = base - (base * (TeerPrice / 100));
+							base = Math.round(base * 100) / 100;
+						} else {
+							base = TeerPrice;
+						}
+					}
+				}
+				var custom_options = config_options = bundle_options = super_attribute_options = musthave_options_super = musthave_options_reg = total = 0.0;
+				var baseprc = newBasePlus = MustHaveAmt = 0;
+				var what = "";
+				$j('.product-custom-option-select').each(function(num) {
+					
+					$j(this).find('option').each(function() {
+						if ($j(this).attr("price") === undefined) {
+							var other = $j(this).text().trim();
+							var othernewtrim = String($j(this).text().match(/\$[^$]+/g));
+							if($j(this).text().match(/\-\$[^$]+/g)){
+								var othernewtrim = String($j(this).text().match(/\-\$[^$]+/g));
+							}
+							if (othernewtrim != 'null') {
+								var originalprice = othernewtrim.replace("$","");
+								$j(this).attr("price", originalprice);
+							}
+						}
+					});
+					
+					
+					optionPrice = parseFloat($j("option:selected", this).attr('price'));
+					what = $j("option:selected", this).text();
+					what = (what.trim());
+					if (isNaN(optionPrice)) {
+						optionPrice = 0;
+					}
+					custom_options += optionPrice;
+				});
+				
+				
+				$j('.bundle-option-select').each(function(num) {
+					$j(this).find('option').each(function() {
+						if ($j(this).attr("price") === undefined) {
+							other = $j(this).text();
+							other = (other.trim());
+							$othertrimer = ($j(this).text().match(/\$[^$]+/g));
+							if ($othertrimer) {
+								var othernewtrim = "" + $othertrimer;
+								var originalprice = Number(othernewtrim.replace(/[^0-9\.]+/g, ""));
+								originalprice = originalprice.toFixed(2);
+								$j(this).attr("price", originalprice);
+							}
+						}
+					});
+					optionPrice = parseFloat($j("option:selected", this).attr('price'));
+					what = $j("option:selected", this).text();
+					what = (what.trim());
+					if (isNaN(optionPrice)) {
+						optionPrice = 0;
+					}
+					bundle_options += optionPrice;
+				});
+				$j('.optionblock .super-attribute-select').each(function(num) {
+					optionPrice = parseFloat($j("option:selected", this).attr('price'));
+					what = $j("option:selected", this).text();
+					what = (what.trim());
+					if (isNaN(optionPrice)) {
+						optionPrice = 0;
+					}
+					super_attribute_options += optionPrice;
+				});
+				$j('.musthave .super-attribute-select').each(function(num) {
+					optionPrice = parseFloat($j("option:selected", this).attr('price'));
+					what = $j("option:selected", this).text();
+					what = (what.trim());
+					if (isNaN(optionPrice)) {
+						optionPrice = 0;
+					}
+					ogprice = parseFloat($j(this).parent().parent().parent().parent().find('.related_ogprice').val());
+					fullprice = (ogprice + optionPrice); // 50 + 20
+					qt = parseInt($j(this).parent().parent().parent().parent().find('[class*="qty"]').val());
+					must_options_super = (fullprice) * qt;
+					musthave_options_super += must_options_super;
+					$j(this).parent().parent().find('.musthave-price').html('$' + fullprice);
+				});
+				$j('.musthave [class^="qty"]').each(function(num) {
+					if ($j(this).closest('.config').length) {} else {
+						quant = $j(this).siblings().val();
+						prc = parseFloat($j(this).siblings('.related_price').val());
+						if (isNaN(prc)) {
+							prc = 0;
+						}
+						musthave_options_reg += (quant * prc);
+					}
+				});
+				prodTotal = (base + custom_options + bundle_options + super_attribute_options) * prodQ;
+				topPrice = (base + custom_options + bundle_options + super_attribute_options) * 1;
+				total = prodTotal + musthave_options_super + musthave_options_reg;
+				topPrice = formatNumber(topPrice.toFixed(2));
+				total = formatNumber(total.toFixed(2));
+				origPrice = (origPrice + custom_options + bundle_options + super_attribute_options) * 1;
+				var discount = ((origPrice - topPrice) / origPrice) * 100;
+				discount = discount.toFixed(2);
+				if (discount > 0) {
+					$j('.product-top-container .yousave .price').html(discount + '%');
+				}
+				$j('.product-top-container [id^="product-price"].price, .product-top-container [id^="product-price"] .price').html('$' + topPrice);
+				$j(".text-final").html('$' + total);
+			}
+			$j("#dreamqty").change(function() {
+				var base = <?php echo $_product->getFinalPrice(); ?>;
+				TeerPrice = 0;
+				prodQ = this.value;
+				$j(this).parent().find('.input-text').attr('value', prodQ);
+				var tierPrices = <?php echo json_encode($_product->getTierPrice()) ?>;
+				for (index = 0; index < tierPrices.length; ++index) {
+					tprice = tierPrices[index]['price'];
+					tqty = parseInt(tierPrices[index]['price_qty']);
+					if (prodQ >= tqty) TeerPrice = tprice;
+				}
+				calc_price();
+			});
+			$j(window).load(function() {
+				var base = <?php echo $_product->getFinalPrice(); ?>;
+				TeerPrice = 0;
+				prodQ = $j('#dreamqty').siblings().closest('.input-text').attr('value');
+				if (prodQ == null) {
+					prodQ = 1;
+				}
+				var tierPrices = <?php echo json_encode($_product->getTierPrice()) ?>;
+				for (index = 0; index < tierPrices.length; ++index) {
+					tprice = tierPrices[index]['price'];
+					tqty = parseInt(tierPrices[index]['price_qty']);
+					if (prodQ >= tqty) TeerPrice = tprice;
+				}
+				calc_price();
+			});
+			$j(document).on("click", '.musthave.config [class^="plus"], .musthave.config [class^="minus"]', function() {
+				calc_price();
+			});
+			$j(document).on("click", '.optionblock [class^="plus"], .optionblock [class^="minus"]', function() {
+				whatsthis = $j(this).parent().parent().find('[class*="qty"]');
+				increment($j(this));
+				var base = <?php echo $_product->getFinalPrice(); ?>;
+				TeerPrice = 0;
+				if ($j(whatsthis).val() < 1) {
+					$j(whatsthis).val('1');
+				};
+				prodQ = parseInt($j(whatsthis).val());
+				var tierPrices = <?php echo json_encode($_product->getTierPrice()) ?>;
+				for (index = 0; index < tierPrices.length; ++index) {
+					tprice = tierPrices[index]['price'];
+					tqty = parseInt(tierPrices[index]['price_qty']);
+					if (prodQ >= tqty) TeerPrice = tprice;
+				}
+				prodQ = parseInt($j(whatsthis).val());
+				calc_price();
+			});
+			$j(document).on("click", '.musthave [class^="plus"], .musthave [class^="minus"]', function() {
+				increment($j(this));
+				calc_price();
+			});
+			$j('select').change(function() {
+				calc_price();
+			});
+		});
+</script>
+</xmp>
+</pre>
+
+
+
+
+<h2>Miscellaneous other code, mostly to manipluate user interface or DOM objects on site</h2>
+<pre>
+<xmp>
+<p>
+    <script type="text/javascript">
+        // <![CDATA[
+        // THIS IS INCLUDED IN FOOTER_DESK CMS
+        // SEE Footer_css  for CSS 
+
+        jQuery('#mainproductaddtocart').text('Let\'s Do This');
+
+        var lastbread = jQuery('.breadcrumbs li:last-child').text().toLowerCase().trim();
+        console.log(lastbread);
+        var brandbread = jQuery('.breadcrumbs li:eq(3)').text().toLowerCase().trim();
+
+        var brands = ['Aggresor', 'Air King', 'Airstream', 'AirVac', 'Astrovac',
+            'Beam', 'Black & Decker', 'Broan', 'Brute', 'Budd', 'Cana-Vac',
+            'Centralux', 'Cirrus', 'CV International', 'Dirt Devil', 'DrainVac',
+            'DuoVac', 'DustCare', 'Easy-Flo', 'Electrolux', 'Eureka', 'Fasco',
+            'Filtex', 'Frigidaire', 'Hayden', 'Honeywell', 'Hoover', 'Imperium',
+            'Kenmore', 'MD', 'Nadair', 'NuTone', 'Patton', 'PowerStar',
+            'Pullman-Holt', 'Purvac', 'Riccar', 'Royal', 'Sequoia', 'Signature',
+            'Simplicity', 'Smart', 'Vacuflo', 'Vacumaid', 'Valet', 'Vent-A-Vac',
+            'Walvac', 'Whirlpool', 'Zenex'
+        ];
+
+        jQuery(document).ready(function() {
+
+            var motorlink =
+                '<div class="motorlink" style="font-size:12px;font-weight:bold;margin:5px;text-align:center;">Rather Upgrade to a unit with More suction & power? <a href="https://www.thinkvacuums.com/best-selling-central-vacuums" style="color:#1861BD;text-decoration:underline;">Click Here</a></div>';
+
+            if (lastbread.indexOf("vacuum motor") != -1) {
+                console.log('motor found');
+                jQuery('.full_short_desc').after(motorlink);
+            }
+
+
+            // remove reviews
+            jQuery('#customer-reviews').remove();
+
+            // start conform all h1 titles and banners 
+            var brand = "false";
+            var subcat = "false";
+            if (
+                (jQuery('.breadcrumbs:contains("Find Your Brand")').length > 0)) {
+                brand = "true"
+            }
+            if (
+                (jQuery('.breadcrumbs li:last-child:contains("Power Units")').length > 0) ||
+                (jQuery('.breadcrumbs li:last-child:contains("Complete Packages")').length >
+                    0)) {
+                subcat = "true"
+            }
+            if ((brand == "true") && (subcat == "true") && (lastbread !=
+                    'replacement power units')) {
+                var title = jQuery('.page-title.category-title').text();
+                title = title.trim();
+                var subtitle = jQuery('.subtitle').text();
+                jQuery('.page-title.category-title').remove();
+                title = title.split(/[ ,.]+/);
+                var secondtitle = '';
+                for (var i = 1; i < title.length; i++) {
+                    secondtitle += title[i] + " ";
+                }
+                newh1 = '';
+                firsttitle = title[0];
+                if (subtitle.length) {
+                    jQuery('.subtitle').remove();
+                } else {
+                    selection = jQuery('.products-grid li.item').length;
+                    if (selection <= 0) {
+                        selection = jQuery('.products-list li.item').length;
+                    }
+                    size = '';
+                    if (selection <= 3) {
+                        size = 'Our';
+                    } else if ((selection > 3) && (selection < 10)) {
+                        size = 'Generous';
+                    } else if ((selection > 10) && (selection < 20)) {
+                        size = 'A Wide';
+                    } else if ((selection > 20) && (selection < 30)) {
+                        size = 'A Large';
+                    } else if (selection > 30) {
+                        size = 'The Largest';
+                    }
+                    subtitle = size + ' Selection of ' + firsttitle + ' ' + secondtitle;
+                }
+                newh1 += '<div class="category-description std"><div class="rows">';
+                newh1 += '<div class="branddetailbanner">';
+                newh1 += '<h1>' + firsttitle + '<br/><small class="blue">' + secondtitle +
+                    '</small></h1>';
+                newh1 += '<h2 class="shopcompunits">' + subtitle + '</h2></div>';
+                newh1 += '</div></div>';
+                var checkh1 = jQuery('.branddetailbanner');
+                if (checkh1.length) {
+                    jQuery('.category-description.std').remove();
+                    jQuery('.col-main').prepend(newh1);
+                } else {
+                    jQuery('.col-main').prepend(newh1);
+                }
+            } // end if both are true
+            else if ((brand == "true") && (subcat == "true") && (lastbread ==
+                    'replacement power units')) {
+                jQuery('.page-title.category-title').remove();
+            }
+            // end conform titles
+
+            // start POWER compare table on power units, add links, change comparision word to brand
+            // power units, then... 
+            if (lastbread == "power units") {
+                jQuery("h5.tblcmptle").html(function() {
+                    return jQuery(this).html().replace("Comparison", "Models");
+                });
+                jQuery("h5.tblcmptle:eq(0)").prepend('Most Popular ');
+                jQuery('.comparecontain').find('.tableimg').each(function(i) {
+                    var link = jQuery(this).find('.product-image').attr('href');
+                    if (link) {
+                        jQuery(this).siblings().find('.tblcmptle').wrapInner(
+                            '<a href="' + link + '"></a>');
+                    }
+                })
+                if ((brandbread != "drainvac") && (brandbread != "duovac") && (brandbread !=
+                        "purvac")) {
+                    var rec = '';
+                    rec += '<div class="ourec">';
+                    rec +=
+                        '<div class="want"><span class="bigger">Top Selling</span><br/>Central Vacuums<br/>In The United States</div>';
+                    rec +=
+                        '<div class="recbutton"><a href = "/whycentralvacuums" >Compare All Brands</a></div>';
+                    rec += '<div class="smiled"></div></div > ';
+                    jQuery('.tableimg:first').html(rec);
+                } // if brand
+                if (brandbread == "drainvac") {
+                    jQuery('.tableimg:first').html(
+                        '<div class="powerbrandimage"><img src="https://www.thinkvacuums.com/media/brand/logo_drainvac_en_FB.1475600473.png"></div>'
+                    );
+                } else if (brandbread == "duovac") {
+                    jQuery('.tableimg:first').html(
+                        '<div class="powerbrandimage"><img src="https://www.thinkvacuums.com/media/brand/Page-1-Image-39_1.1476969938.png"></div>'
+                    );
+                }
+            } // if power units add thing into table
+            // end POWER UNITS
+
+
+            // clean empty nodes
+            function clean(node) {
+                for (var n = 0; n < node.childNodes.length; n++) {
+                    var child = node.childNodes[n];
+                    if (child.nodeType === 8 || (child.nodeType === 3 && !/\S/.test(child.nodeValue))) {
+                        node.removeChild(child);
+                        n--;
+                    } else if (child.nodeType === 1) {
+                        clean(child);
+                    }
+                }
+            }
+            clean(document.body);
+            // end clean empty nodes
+
+            // compatibility tabs on products
+            var hider = '<div class="compatview"></div>';
+            var hiderbutton =
+                '<span class="showcompat button btn-cart">Hover Over For Compatible Brands/Models</span>';
+            jQuery('#compatlist li').each(function(i) {
+                jQuery(this).html(jQuery(this).html().replace("note1",
+                    ": Yes, but may required additional attachment, call for questions."
+                ));
+                jQuery(this).html(jQuery(this).html().replace("noteW",
+                    ": Yes, but is dependent on PowerHead, call for questions."
+                ));
+                // if these brands, and is a "kit", then highlight
+                if ((jQuery(this).text().match('Budd')) || (jQuery(this).text().match(
+                        'Kenmore')) || (jQuery(this).text().match('VacuFlo'))) {
+                    if (lastbread.includes('kit')) {
+                        jQuery(this).addClass('red').html(jQuery(this).html().replace(
+                            "Please Call",
+                            "Requires 1-1/4 inch opening - Call First"));
+                    }
+                }
+                jQuery(this).html(jQuery(this).html().replace("Please Call",
+                    "Yes - Please Call Us If Any Questions"));
+            });
+            if (jQuery('#compatlist ul li').length > 15) {
+                jQuery("#compatlist").wrap(hider);
+                jQuery(".compatview").prepend(hiderbutton);
+                jQuery("#compatlist").css('display', 'none');
+                jQuery(".compatview").mouseenter(function() {
+                    jQuery("#compatlist").slideDown();
+                });
+                jQuery(".product-top-container").mouseleave(function() {
+                    jQuery("#compatlist").slideUp();
+                });
+            }
+            // end compat tabs on products
+
+            // social button changes
+            var newsocial = '';
+            newsocial += '<ul class="social">';
+            newsocial +=
+                '<li class="fb2"><a target="_blank" href="https://www.facebook.com/thinkvacuums"></a></li>';
+            newsocial +=
+                '<li class="yu2"><a target="_blank" href="https://www.youtube.com/user/thinkvacuums"></a></li>';
+            newsocial +=
+                '<li class="tw2"><a target="_blank" href="https://twitter.com/thinkvacuums"></a></li>';
+            newsocial +=
+                '<li class="pi2"><a target="_blank" href="https://www.pinterest.com/thinkvacuumspinterest/"></a></li>';
+            newsocial += '<br style="clear:both;"/>';
+            newsocial += '</ul>';
+            jQuery('.col-md-2.headsocial').html(newsocial);
+            jQuery('.socialsfooter ul').replaceWith(newsocial);
+            // end social button changes
+
+            // show links to complete packages
+            var powerbrand = "powerbrand";
+            var powerunit = "powerunit";
+            var addpackage = '';
+            var packages = url1 = url2 = pack1 = pack2 = "";
+            var whatproduct = jQuery('li.product').text();
+            var powerbrand = (whatproduct.split(' ').slice(0, 1));
+            powerbrand = powerbrand.toString().toLowerCase();
+            var powerunit = whatproduct.split(' ').slice(1, 2);
+            powerunit = powerunit.toString().toLowerCase();
+            var powerunit2 = whatproduct.split(' ').slice(2, 3);
+            powerunit = powerunit.toString().toLowerCase();
+            powerunit2 = powerunit2.toString().toLowerCase();
+            if ((powerunit2 == "giant") || (powerunit2 == "turbo")) {
+                powerunit = powerunit + ' ' + powerunit2;
+            }
+            switch (powerbrand) {
+                // start brand 
+                case "drainvac":
+                    switch (powerunit) {
+                        case 'viper':
+                            url1 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-elite-package.html';
+                            pack1 = 'DrainVac Elite Package';
+                            break;
+                        case 'little giant':
+                            url1 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-starter-package.html';
+                            pack1 = 'DrainVac Starter Package';
+                            url2 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-builders-favorite-package.html';
+                            pack2 = 'DrainVac Builders Package';
+                            break;
+                        case 'petvac':
+                            url1 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-petvac-package.html';
+                            pack1 = 'DrainVac PetVac Package';
+                            break;
+                        case 'turbo':
+                            url1 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-ultimate-package.html';
+                            pack1 = 'DrainVac Ultimate Package';
+                            break;
+                        case 'twin turbo':
+                            url1 =
+                                '/central-vacuums/drainvac/complete-packages/drainvac-estate-package.html';
+                            pack1 = 'DrainVac Estate Package';
+                            break;
+                    }
+                    break;
+                    // end brand 	
+                default:
+                    //	var url = 'dontdrain';
+            }
+            if (url2 != "") {
+                packages = 'two <b>Complete Packages</b>, the <a href=" ' + url1 + ' ">' +
+                    pack1 + '</a> and  <a href=" ' + url2 + ' ">' + pack2 + '</a>';
+            } else {
+                packages = 'A <b>Complete Package</b>, the <a href=" ' + url1 + ' ">' +
+                    pack1 + '</a>';
+            }
+            addpackage +=
+                '<div class="packages"><hr></hr><img src="https://www.thinkvacuums.com/media/catalog/category/completepack-notext_5.1488315790.jpg">NOTE: We also Offer ' +
+                packages + ' with everything you need based on this <span class="caps">' +
+                powerbrand + ' ' + powerunit +
+                '</span> Powerunit, including PVC pipe, Attachment Kits, Wall Inlets, and much more!<br style="clear:both;"</div>';
+            if (url1 != '') {
+                jQuery('.product-essential').append(addpackage);
+            }
+            // end complete packages
+
+            // begin motor , power unit reorganization, display banner
+            if ((lastbread.includes('power units')) && (!lastbread.includes('search'))) {
+                jQuery('ul.products-grid').addClass('initialgrid')
+                var disc = 0;
+                jQuery('ul.products-grid').each(function(i) {
+                    jQuery(this).find("li:contains('Discontinued')").each(function(
+                        i) {
+                        disc++;
+                        jQuery(this).find('.actions a').html(
+                            'Discontinued<br/><span class="dis">Click to view available Bags, Filters, Attachments & More</span>'
+                        );
+                        jQuery(this).addClass('discontinued');
+                    })
+                    jQuery(this).find('.discontinued').insertAfter(this).wrapAll(
+                        "<ul class='products-grid products-grid--max-5-col first last odd secondgrid'></ul>"
+                    );
+                })
+                var firstinsert =
+                    '<h2 class="bc-banner motorbanner firstgrid">Currently Manufactured & Available Power Units</h2>';
+                var secondinsert =
+                    '<h2 class="bc-banner motorbanner secondgrid">Discontinued Power Units<br/><span class="smaller">You may still be able to order bags, filters, powerheads,  and other related items for each of these discontinued units. Click Each One to View.</span> </h2>';
+                if (jQuery('.initialgrid li').length >= 1) {
+                    jQuery(firstinsert).insertBefore(".initialgrid");
+                }
+                if (disc >= 1) {
+                    jQuery(secondinsert).insertBefore(".secondgrid");
+                    jQuery(menu).insertAfter("ul.secondgrid");
+                }
+                jQuery(".continueditems").click(function() {
+                    jQuery('.continueditems').addClass('active');
+                    jQuery('.other').removeClass('active');
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(".firstgrid").offset().top - 100
+                    }, 1000);
+                });
+                jQuery(".other").click(function() {
+                    jQuery('.other').addClass('active');
+                    jQuery('.continueditems').removeClass('active');
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(".secondgrid").offset().top - 100
+                    }, 1000);
+                });
+                jQuery(window).scroll(function() {
+                    if (jQuery(this).scrollTop() < 650) {
+                        jQuery('.continueditems').addClass('active');
+                        jQuery('.other').removeClass('active');
+                    } else if (jQuery(this).scrollTop() > 2050) {
+                        jQuery('.other').addClass('active');
+                        jQuery('.continueditems').removeClass('active');
+                    } else {}
+                });
+            }
+            // end power unit reorganization, display banner
+
+            // start IF DRAINVAC POWER UNITS --- Add Custom. 
+            if (
+                ((brandbread == "drainvac") && (lastbread == "power units")) || (lastbread ==
+                    "replacement power units")) {
+                for (count = 1; count < 100; count++) {
+                    if (count < 6) {
+                        jQuery('ul.products-grid.initialgrid > li:nth-child(' + (count) +
+                            ')').addClass('regular');
+                    } else if ((count >= 6) && (count < 11)) {
+                        jQuery('ul.products-grid.initialgrid > li:nth-child(' + (count) +
+                            ')').addClass(' wetdry');
+                    } else if (count >= 11) {
+                        jQuery('ul.products-grid.initialgrid > li:nth-child(' + (count) +
+                            ')').addClass(' all');
+                    }
+                }
+                jQuery('ul.products-grid.initialgrid').each(function(i) {
+                    jQuery(this).find('li.regular').insertBefore(this).wrapAll(
+                        '<ul class="products-grid products-grid--max-5-col first last odd regular clearfix"></ul>'
+                    );
+                    jQuery(this).find('li.wetdry').insertBefore(this).wrapAll(
+                        '<ul class="products-grid products-grid--max-5-col first last odd wet regular clearfix"></ul>'
+                    );
+                    jQuery(this).find('li.all').insertBefore(this).wrapAll(
+                        '<ul class="products-grid products-grid--max-5-col first last odd all regular clearfix"></ul>'
+                    );
+                });
+                var bannerwet =
+                    '<h2 class="bc-banner motorbanner wet">Industry Leading New DrainVac Models: Can Be Used For Dry or Wet Pickup!</h2>';
+                var bannerother =
+                    '<h2 class="bc-banner motorbanner other">All Other DrainVac Models</h2>';
+                jQuery(bannerwet).insertBefore('.products-grid.wet');
+                jQuery(bannerother).insertAfter('.products-grid.wet');
+                jQuery('.bc-banner.motorbanner.firstgrid > p > strong').text(
+                    'Best Selling DrainVac Models:');
+            }
+            // end drainvac power unit customization
+
+            // motor reorganize menu	
+            if (lastbread.includes('motors')) {
+
+                jQuery('ul.products-grid').addClass('initialgrid')
+                jQuery('ul.products-grid').each(function(i) {
+                    jQuery(this).find("li:contains('Ametek-Lamb')").each(function(i) {
+                        jQuery(this).addClass('ametek');
+                    })
+                    jQuery(this).find("li:contains('Lamb MOTE')").each(function(i) {
+                        jQuery(this).addClass('lamb');
+                    })
+                    jQuery(this).find("li:contains('Domel MOTE')").each(function(i) {
+                        jQuery(this).addClass('fourthtype');
+                    })
+                    jQuery(this).find('.fourthtype').insertAfter(this).wrapAll(
+                        "<ul class='products-grid products-grid--max-5-col first last odd thirdgrid'></ul>"
+                    );
+                    jQuery(this).find('.lamb').insertAfter(this).wrapAll(
+                        "<ul class='products-grid products-grid--max-5-col first last odd secondgrid'></ul>"
+                    );
+                    jQuery(this).find('.ametek').insertAfter(this).wrapAll(
+                        "<ul class='products-grid products-grid--max-5-col first last odd firstgrid'></ul>"
+                    );
+                })
+                /* paste */
+
+                var firstinsert =
+                    '<h2 class="bc-banner motorbanner firstgrid">Genuine Ametek-Lamb Replacement Motors for Central Vacuum Systems</h2>';
+                var secondinsert =
+                    '<h2 class="bc-banner motorbanner secondgrid">Drainvac Lamb Mote Replacement Motors for Central Vacuum Systems</h2>';
+                var thirdinsert =
+                    '<h2 class="bc-banner motorbanner thirdgrid">Drainvac Domel Replacement Motors</strong> for Central Vacuum Systems</h2>';
+                jQuery(firstinsert).insertBefore(".firstgrid");
+                jQuery(secondinsert).insertBefore(".secondgrid");
+                jQuery(thirdinsert).insertBefore(".thirdgrid");
+                jQuery(".ameteklamb").click(function() {
+                    jQuery('.ameteklamb').toggleClass('active');
+                    jQuery('.lambmote, .drainvacdomel').removeClass('active');
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(".firstgrid").offset().top - 100
+                    }, 2000);
+                });
+                jQuery(".lambmote").click(function() {
+                    jQuery('.lambmote').toggleClass('active');
+                    jQuery('.ameteklamb, .drainvacdomel').removeClass('active');
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(".secondgrid").offset().top - 100
+                    }, 2000);
+                });
+                jQuery(".drainvacdomel").click(function() {
+                    jQuery('.drainvacdomel').toggleClass('active');
+                    jQuery('.ameteklamb, .lambmote').removeClass('active');
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(".thirdgrid").offset().top - 100
+                    }, 2000);
+                });
+                jQuery(window).scroll(function() {
+                    if (jQuery(this).scrollTop() < 350) {
+                        jQuery(".firstgrid .motor-right").slideDown('slow');
+                    } else if (jQuery(this).scrollTop() > 1050) {} else {}
+                });
+            }
+            // end motor reorganize 
+
+            ///// show reviews on top of all pages ///
+            jQuery('.centerheader .h2').after(
+                '<div class="topreviews"><a href="/customerreviews"><span class="staryellow">&#9733;&#9733;&#9733;&#9733;&#9733;  </span><span class="cusreview"><b>&nbsp;&nbsp;Customer Reviews</b></span><span class="hearts"><b>&nbsp;&nbsp;We &#10084 Our Customers!</b></span></a> </div>'
+            );
+            var showingWelcome = true;
+            setInterval(function() {
+                if (showingWelcome) {
+                    jQuery(".cusreview").fadeIn(1000);
+                    jQuery(".hearts").fadeOut(1000);
+                    showingWelcome = false;
+                } else {
+                    jQuery(".cusreview").fadeOut(1000);
+                    jQuery(".hearts").fadeIn(1000);
+                    showingWelcome = true;
+                }
+            }, 4000);
+            // end show reviews on top
+
+            /*
+                        // quick drop menu start
+          
+                        // end quick drop menu
+            */
+            // replace with brand name
+            brandbread = brandbread.toLowerCase();
+            jQuery('.desc_brandname').text(brandbread).css('text-transform', 'capitalize').css(
+                'font-weight', 'bold');
+            // replace with brand name
+
+            var currentPage = window.location.href;
+            if (currentPage == 'https://www.thinkvacuums.com/customer/account/login/')
+
+            {
+                //  jQuery('.new-users').hide();
+                jQuery('.page-title').html('<h1>Login</h1>');
+                jQuery('.col-1').remove();
+
+                jQuery('.col-2').addClass('col-1').removeClass('col-2');
+
+                jQuery(
+                    '<div class="col-2"><h3>If You had an account or were a customer prior to November 2016, and you are unable to login, please call us to setup a new account on our new website!</h3></div>'
+                ).insertAfter('.col-1');
+
+            }
+
+            // remove download attribute from pdf tabs
+            jQuery('#tab_d a').each(function(i) {
+                jQuery(this).removeAttr("download");
+
+            });
+
+            // brand dropdown for attachment page
+            barefloorkitdrop =
+                '<select class="branddrop" size="1"><option>Find Your Brand</option>';
+            turbokitdrop =
+                '<select class="branddrop" size="1"><option>Find Your Brand</option>';
+            electrickitdrop =
+                '<select class="branddrop" size="1"><option>Find Your Brand</option>';
+            garagekitdrop =
+                '<select class="branddrop" size="1"><option>Find Your Brand</option>';
+            for (var i = 0; i < brands.length; i++) {
+                urlbrand = brands[i].toLowerCase();
+                if (urlbrand == 'black & decker') {
+                    urlbrand = 'black-and-decker';
+                } else if (urlbrand == 'cv international') {
+                    urlbrand = 'cv-international';
+                } else if (urlbrand == 'dirt devil') {
+                    urlbrand = 'dirt-devil';
+                } else if (urlbrand == 'air king') {
+                    urlbrand = 'airking';
+                }
+
+                barefloorkitdrop += '<option value="/central-vacuums/' + urlbrand +
+                    '/attachment-kits#bare-floor-attachment-kits">' + brands[i] +
+                    '</option>';
+
+                turbokitdrop += '<option value="/central-vacuums/' + urlbrand +
+                    '/attachment-kits#turbo-attachment-kits">' + brands[i] + '</option>';
+
+                electrickitdrop += '<option value="/central-vacuums/' + urlbrand +
+                    '/attachment-kits#electric-attachment-kits">' + brands[i] + '</option>';
+
+                garagekitdrop += '<option value="/central-vacuums/' + urlbrand +
+                    '/car-and-garage">' + brands[i] + '</option>';
+            }
+            // droplistone += '</select>';
+            jQuery('.barefloorkitdrop').html(barefloorkitdrop);
+            jQuery('.turbokitdrop').html(turbokitdrop);
+            jQuery('.electrickitdrop').html(electrickitdrop);
+            jQuery('.garagekitdrop').html(garagekitdrop);
+            jQuery(function() {
+                jQuery('.branddrop').on('change',
+                    function() {
+                        var url = jQuery(this).val(); // get selected value
+                        if (url) { // require a URL
+                            window.location = url; // redirect
+                        }
+                        return false;
+                    });
+            });
+
+            // append cent vac 101 menu
+            getfirst = jQuery('ul.cat-list li').first().text();
+            if (getfirst == 'Getting Started') {
+                appendmenu =
+                    '<li><a href="/find_right_attachment_kit" alt="Best Attachment Kits" title="Find The Best Attachment Kits">Best Attachment Kits</a></li>';
+                jQuery('ul.cat-list li:eq(5)').after(appendmenu);
+            }
+
+            /* append trim plages with anchor */
+
+            jQuery('#nav .active').removeClass('active');
+
+
+        }); // end document ready
+        // ]]>
+    </script>
 </xmp>
 </pre>

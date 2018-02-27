@@ -1,9 +1,10 @@
 /***** 
 
 All code copyright 2017, EKHolbrook.
-SiteGen Version 2.0
+SiteGen Version 3.0
 
 ******/
+
 if (location.hostname == "eastcoastwebops.github.io") {
 	sitetitle = 'East Coast Web Ops';
 	subtitle = 'Web Development & Graphic Design';
@@ -13,7 +14,7 @@ if (location.hostname == "eastcoastwebops.github.io") {
 	subtitle = 'Web Development & Graphic Design';
 }
 imagloc = '';
-version = 19; //
+version = 22718; //
 function gup(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 	regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -40,7 +41,9 @@ if (article === null) {
 	article = "0";
 }
 loc = window.location.pathname;
+
 dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
+console.log(dir);
 var data = "";
 data = $.ajax({
 	url: dir + "sitegen/content/menu.txt",
@@ -73,9 +76,18 @@ for (i = 0; i < menusize;) {
 	}
 	// build url
 	console.log('--'+thelinkb+'--');
+	
+	//if normal url then skip url creation otherwise append with stuff as normal
+	var target='';
+	if (  thelinkb.charAt(0) == '/')  {
+			url = dir+thelinkb.substring(1);
+			target='_blank';
+	}
+	else {
 	url = 'index.html?page=' + thelinkb;
+	}
 	if (thelinkb !='') {
-	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="' + url + '\">' + thetitle + '</a>';
+	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="' + url + '\" target='+target+'>' + thetitle + '</a>';
 	}
 	if (menucheck.indexOf(">") > -1) {
 		themenu += "<ul class='subitem'>";

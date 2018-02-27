@@ -1,19 +1,20 @@
 /***** 
 
 All code copyright 2017, EKHolbrook.
-SiteGen Version 2.0
+SiteGen Version 3.0
 
 ******/
+
 if (location.hostname == "eastcoastwebops.github.io") {
-	sitetitle = 'East Coast Web Operations';
-	subtitle = 'Web Development by Eric K. Holbrook';
+	sitetitle = 'East Coast Web Ops';
+	subtitle = 'Web Development & Graphic Design';
 } else {
-	sitetitle = 'ECWO';
-	//sitetitle = 'East Coast Web Operations';
-	subtitle = 'Web Development by Eric K. Holbrook';
+	//sitetitle = 'ECWO';
+	sitetitle = 'East Coast Web Ops';
+	subtitle = 'Web Development & Graphic Design';
 }
 imagloc = '';
-version = 18; //
+version = 22718; //
 function gup(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 	regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -40,7 +41,9 @@ if (article === null) {
 	article = "0";
 }
 loc = window.location.pathname;
+
 dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
+console.log(dir);
 var data = "";
 data = $.ajax({
 	url: dir + "sitegen/content/menu.txt",
@@ -73,7 +76,15 @@ for (i = 0; i < menusize;) {
 	}
 	// build url
 	console.log('--'+thelinkb+'--');
+	
+	//if normal url then skip url creation otherwise append with stuff as normal
+	
+	if (  thelinkb.charAt(0) == '/')  {
+			url = dir+thelinkb;
+	}
+	else {
 	url = 'index.html?page=' + thelinkb;
+	}
 	if (thelinkb !='') {
 	themenu += '<li class=\"' + thelinkb + needtap + '\"><a href="' + url + '\">' + thetitle + '</a>';
 	}
@@ -163,7 +174,7 @@ $(window).on("load", function() {
 			nicename = whichpage.replace(/_/g, ' ');
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
-			$('#footer').text(page + " is (c) 2017, Eric K. Holbrook");
+			$('#footer').text(page + " is (c) 2018, Eric K. Holbrook");
 			
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({

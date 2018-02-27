@@ -1,0 +1,53 @@
+<style>
+ul.points a:hover{cursor:pointer;}
+ul.points a{font-weight:bold;padding:10px;}
+ul.points li{margin-bottom:20px;}
+</style>
+<script>
+		function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  return text;
+}
+
+		function popit(url) {
+        newwindow=window.open(url, makeid(),'height=700,width=1100');
+        if (window.focus) {newwindow.focus()}
+        return false;
+    }
+</script>
+
+<div class="container">
+<h1>Graphic Design</h1>
+
+<p>While I have written the code to support onsite image galleries, they are not really populated with my latest works, and this can be a time consuming process, and so for now I'm using Google Photos to display my artwork and designs</p>
+
+<ul id="points" class="points col-sm-10 col-sm-offset-1">
+
+<li style="list-style-type:none;"></li>
+
+<li><a href="https://goo.gl/photos/vywYZ3cHT3tQ4Gz26" >Graphic Design Created for Work/Clients</a><p>A  gallery with snapshots of websites, posters, mailers, created for work related projects. </p>
+</li>	
+<li><a href="https://goo.gl/photos/ZyAwhbLcSeAAqYhg6" >3D Modeling and Graphic Design</a><p>A  gallery of non-client related 3D Graphic Design and Rendering images. </p>
+</li>
+
+
+
+
+
+</ul>
+</div>
+
+
+
+<script>
+$('#points a').each(function() {
+  var ref = $(this).attr('href');
+$(this).attr('onclick', "popit('"+ref+"')" ).attr('href', '#');
+});
+</script>
+
+

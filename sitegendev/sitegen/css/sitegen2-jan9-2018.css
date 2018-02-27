@@ -90,11 +90,9 @@ body {
 	background-position: center 100px;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-  background-size:cover;
-
+	background-size: cover;
 	display: table;
 	width: 100%;
-
 }
 .row {
 	margin-left: auto;
@@ -193,8 +191,6 @@ h4{font-weight:bold;font-size:1.4em;}
 
 pre {font-size:11px;
 overflow:scroll-x;}
-
-img.scaleimage {max-width:100%;}
 
 /* desktop */
 
@@ -337,7 +333,7 @@ img.scaleimage {max-width:100%;}
 		margin-bottom: 10px;
 	}
 	.full-bg-image {
-	//	border-top: solid 2px #000000;
+		border-top: solid 3px #000000;
 	}
 	.callout {
 		display: table-cell;
@@ -357,7 +353,9 @@ img.scaleimage {max-width:100%;}
 
 @media only screen and (min-width: 900px) {
 	.full-bg-image {
-
+		box-shadow: inset 0px 20px 30px var(--dropshadow);
+		border-bottom: solid 3px #000000 !important;
+		border-top: solid 5px #000000;
 	}
 }
 @media only screen and (max-width: 1100px) {

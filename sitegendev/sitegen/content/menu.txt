@@ -1,14 +1,15 @@
 Home>
+Site Gen|sitegen,
 About Me|about<
-Tools>
-Encrypt,
-Styling Page|sample_page,
-Dark Theme|sample_page&t=dark,
-Light Theme|sample_page&t=light<
 Articles|blog,
 Portfolio Of Work|portfolio>
 Code|portfolio,
+Graphic Design|graphics,
 Code Snippets,
-Galleries,
-Demo Gallery|gallery&gallery=demo_gallery,
-Web Design Snapshots|gallery&gallery=websiteportfolio<
+<
+Tools>
+How To Host On GitHub|github,
+Encrypt|/projects/encrypt/index.html,
+Styling Page|sample_page,
+Dark Theme|sample_page&t=dark,
+Light Theme|sample_page&t=light<

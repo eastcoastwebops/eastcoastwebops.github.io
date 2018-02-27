@@ -9,7 +9,7 @@ Code Snippets,
 <
 Tools>
 How To Host On GitHub|github,
-Encrypt|/projects/encrypt/index.html,
+Encrypt,/projects/encrypt/index.html,
 Styling Page|sample_page,
 Dark Theme|sample_page&t=dark,
 Light Theme|sample_page&t=light<
