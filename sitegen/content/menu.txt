@@ -9,6 +9,7 @@ Code Snippets,
 <
 Tools>
 How To Host On GitHub|github,
+Reverse Calc|/projects/reversecalc.html,
 Encrypt|/projects/encrypt/index.html,
 Styling Page|sample_page,
 Dark Theme|sample_page&t=dark,
