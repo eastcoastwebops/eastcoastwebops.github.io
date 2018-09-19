@@ -117,11 +117,11 @@ $(window).on("load", function() {
 	function loadPage(whichpage) {
 		$("body").hide(0, function() {
 			var content = 'sitegen/content/' + whichpage + '.html';
-			themecss = 'sitegen/css/' + theme + '.css';
+			themecss = 'css/' + theme + '.css';
 			$('<link>').prependTo('head').attr({
 				type: 'text/css',
 				rel: 'stylesheet',
-				href: 'sitegen/css/' + theme + '.css'
+				href: 'css/' + theme + '.css'
 			});
 			$("#content").load(content, function() {
 	

@@ -1,0 +1,27 @@
+:root {
+	--docbg: #ff5555;
+	--pagebg: #ffffff;
+	--hcolor: #000000;
+	--pcolor:#666666;
+	--dropshadow:#000000;
+	--deskmenubgcolor:#ffffff;
+	--deskmenulink:#000000;
+	--menulinkactive:#ffff00;
+	--menubgdrop:#333333;
+	--mobilemenubgdrop:#555555;
+	--menuhoverbg:#ff6600;
+	--menuhoverfontcolor:#ffffaa;
+  --menutriggeractivebg:#339933;
+	--menuactivebg:#ff9944;
+ --menuparentbg:#666666;
+	--sitetitlecolor:#0099ff;
+	--subtitlecolor:#00bbff;
+	--pagetitlecolor:#336699;
+	--hamburger:#77AA00;
+	--menulinkcolor:#ffffff;
+	--menusublinkcolor:#eeeeee;
+	--menubordercolor:solid 2px #444444;
+	--mobilesitebg:#333333;
+	--basefontsize:16px;
+  --mobilebasefontsize:14px;
+}
