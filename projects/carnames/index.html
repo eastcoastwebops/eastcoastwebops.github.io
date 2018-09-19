@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
-<title>Eric's UnOfficial Car Names For Next Year</title>
+<title>Eric's UnOfficial Car Names </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/jquery-ui.js"></script>
@@ -10,6 +10,9 @@
 
 <body>
 <script type="text/javascript">
+
+thisyear = (new Date()).getFullYear() + 1;
+
 function norepeat(array) {
 	var copy = array.slice(0);
 	return function() {
@@ -88,33 +91,41 @@ function generate() {
 }
 $(document).ready(function() {
 	$('.combo').text(combos);
-	for (var i = 1; i < 7; i++) {
+	for (var i = 1; i < 6; i++) {
 		setTimeout(generate, 200 * i);
 	}
 	$('#new').click(function() {
 		$('#carname').slideUp(500, function() {
 			$('#carname').empty().show();
-			for (var i = 1; i <= 6; i++) {
+			for (var i = 1; i <= 5; i++) {
 				//console.log (i);
 				setTimeout(generate, 200 * i);
 			}
 		});
 	});
+	
+		jQuery ('.thisyear').text(thisyear);
+
 }); // end doc ready
 </script>
 
-<h1>Eric's Official Unofficial A.I. Generated Car Name & Pricing Guide For Next Year</h1> 
+<h1>Eric's Official Unofficial A.I. Generated Car Name & Pricing Guide For <span class="thisyear">&nbsp;</span></h1> 
 	<p>There are currently <span class="combo">&nbsp;</span>+ combinations of names</br>
-	<span style="font-size:.8em;font-style:italic;">Each Car Name is Generated with Automated Care & Attention To Human Pronounciation</span><p>
+	
 	
 	<ul id="carname"></ul><br/>
 <div id="new">More Names!</div>
-	
-	<p>All code, and ideas (c) 2017 Eric Knight Holbrook</p>
 
+	
+<p>All code, and ideas (c) 2018 Eric Knight Holbrook</p>
+
+<script>
+
+</script>
 
 </body>
 </html>
+
 
 <style>
 

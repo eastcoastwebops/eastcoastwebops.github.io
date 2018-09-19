@@ -10,8 +10,8 @@ if (location.hostname == "eastcoastwebops.github.io") {
 	subtitle = 'Web Development & Graphic Design';
 } else {
 	//sitetitle = 'ECWO';
-	sitetitle = 'East Coast Web Ops';
-	subtitle = 'Web Development & Graphic Design';
+	sitetitle = 'Sample';
+	subtitle = 'Projects';
 }
 imagloc = '';
 version = 22718; //
