@@ -1,3 +1,0 @@
-# ekholbrookdigitalknight.github.io
-publicversion
-
