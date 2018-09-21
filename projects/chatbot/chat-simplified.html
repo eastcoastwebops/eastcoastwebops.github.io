@@ -21,64 +21,27 @@
 
 function chatBot() {
 	this.input;
+	
 	this.respondTo = function(input) {
 
 		this.input = input.toLowerCase();
 		
-		alert ( this.input );
+//		alert ( this.input );
 	
 
-		if   (   this.match('(are|r|)') && this.match('(robot|bot)')  )
-			return ["I'm a highly developed artificial creature."];
-		
-				if ( 
-				(   this.match('(what|who)') && this.match('(name)')  ) || 
-				(     this.match('who') && this.match('(you)')     ) 
-				)
-			return ["People call me MegaBot","But I prefer the name, Fred"];
+	
+	return 'hi';	
 			
-			if   (   this.match('(what)') && this.match('(you)')  && !this.match('doing') )
-			return ["I'm a piece of code that likes to chat"];	
-			
-	 	if   (   this.match('(what)') && this.match('(you)') && this.match('(doing)')  )
-			return ["Listening to you"];
 		
-			if(this.match('(what)') && this.match('do'))
-			return ["We specialize in web and graphic design, and web development"];
-		
-			if   (this.match('(dev|web)')  && this.match('what'))
-			return ["Web Development is the process of"];
-		
-		if(this.match('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)'))
-			return "Hi. Hey. Good Day, how can I help?";
-		
-		if(this.match('what[^ ]* up') || this.match('sup') || this.match('how are you'))
-			return "we're doing good, how are you?";
-		
-		if(this.match('l(ol)+') || this.match('(ha)+(h|$)') || this.match('lmao'))
-			return "what's so funny?";
-		
-		if(this.match('^no+(\\s|!|\\.|$)'))
-			return "don't be such a negative nancy :(";
-		
-		if(this.match('(cya|bye|see ya|ttyl|talk to you later)'))
-			return ["alright, see you around", "good teamwork!"];
-		
-		if(this.match('(dumb|stupid|is that all)'))
-			return ["hey i'm just a proof of concept", "you can make me smarter if you'd like"];
-		
-		if(this.input == 'noop')
-			return;
-		
-		return input + " what?";
-	}
+	
+
 	
 	
 
-	this.match = function(regex) {
-	
-		return new RegExp(regex).test(this.input);
+
 	}
+
+
 
 } // end chat
 
