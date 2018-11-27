@@ -351,7 +351,7 @@ row='';
 	
       //  $("#rss-feeds").rss("https://wallspaintedblue.wordpress.com/feed/", {
           effect: 'slideSynced',
-            entryTemplate: '<div class="blogentry row"><div class="col-sm-6"><a href="index.html?page=blogarticle&article={index}"><h3>{title}</h3><div class="blogdate">{date}</div><div class="snippet ">{shortBody}...</div></a></div><div class="teaserimage col-sm-6"><a href="index.html?page=blogarticle&article={index}">{teaserImage}</div></a></div>',
+            entryTemplate: '<div class="blogentry row"><a href="index.html?page=blogarticle&article={index}"><h3>{title}</h3><div class="blogdate">{date}</div><div class="teaserimage col-xs-3">{teaserImage}</div><div class="snippet col-xs-9">{shortBody}...</div></a></div>',
 					dateFormat: 'dddd MMMM Do, YYYY',
         }),
 				$('#rss-feeds').each(function() {
