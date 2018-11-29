@@ -51,15 +51,25 @@ function chatBot() {
 	return ["People call me MegaBot","But I prefer the name, Fred"];
 	}
 
-}			
-			if   (   this.match('(what)') && this.match('(you)')  && !this.match('doing') )
-			return ["I'm a piece of code that likes to chat"];	
-			
-	 	if   (   this.match('(what)') && this.match('(you)') && this.match('(doing)')  )
-			return ["Listening to you"];
-		
-			if(this.match('(what)') && this.match('do'))
+}		
+
+	if   (  this.match('(what)') && this.match('do|does')  && !this.match('doing'))
 			return ["We specialize in web and graphic design, and web development"];
+
+			if  
+			(   this.match('(what)') && this.match('(you|u)')  && this.match('doing') ) {
+		
+   /* variations */
+	 	t = genrand(0,2);
+		peop = genrand(1,7);
+		if ( t ==0) { 		return ["I'm chatting with you and " + peop + " people."];	 }		
+if ( t ==1) { 		return ["I'm trying to juggle " + peop + " different tasks while I talk to you."];	 }				
+	 else 			return ["Listening to you"];
+						
+		}
+		
+		
+		
 		
 			if   (this.match('(dev|web)')  && this.match('what'))
 			return ["Web Development is the process of"];
