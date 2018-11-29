@@ -18,9 +18,16 @@
 </body></html>
 
 <script>
+var t=0;
+function genrand(min , max) {
+    return Math.round( Math.random() * (max-min) + min) ;
+} 
+
+
 
 function chatBot() {
 	this.input;
+	console.log(this.input);
 	this.respondTo = function(input) {
 
 		this.input = input.toLowerCase();
@@ -46,8 +53,19 @@ function chatBot() {
 			if   (this.match('(dev|web)')  && this.match('what'))
 			return ["Web Development is the process of"];
 		
+		
+/* choose random choices for reply */		
 		if(this.match('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)'))
-			return "Hi. Hey. Good Day, how can I help?";
+		t = genrand(0,2);
+		if ( t ==0) {
+		return "Hi. Good Day, how can I help?";
+		}
+		else if (t == 1) {
+		return "yes?";
+		}
+			else if (t == 2) {
+		return ["One Moment..","Ok, Hello!"];
+		}
 		
 		if(this.match('what[^ ]* up') || this.match('sup') || this.match('how are you'))
 			return "we're doing good, how are you?";
@@ -62,7 +80,7 @@ function chatBot() {
 			return ["alright, see you around", "good teamwork!"];
 		
 		if(this.match('(dumb|stupid|is that all)'))
-			return ["hey i'm just a proof of concept", "you can make me smarter if you'd like"];
+			return ["hey i'm just a proof of concept", "you can make me smarter if you'd like","But trust me, I'm learning"];
 		
 		if(this.input == 'noop')
 			return;
@@ -81,19 +99,18 @@ function chatBot() {
 ////////////////////////// start initialize
 $(function() {
 
-	// chat aliases
+	// names (to be updated later)
 	var you = 'You';
 	var robot = 'Website Support';
 	i=0;
-	// slow reply by 400 to 800 ms
-	var delayStart = 100;
-	var delayEnd = 300;
+	var delayStart = 2000;
+	var delayEnd = 3000;
 	
 	// initialize
 	var bot = new chatBot();
 	var chat = $('.chat');
 	var waiting = 0;
-	$('.busy').text(robot + ' is typing...');
+	$('.busy').text(robot + ' is typing...').delay(2000);
 
 	
 	// submit user input and get chat-bot's reply
@@ -131,33 +148,29 @@ function pause(numberMillis) {
 				for(var r in reply) {
 				
 				setTimeout(function() {
-		
+	
        updateChat(robot, reply[i]);	i++;
       }, 200 * (r+1));	
 		
 				}
 			}
+			
 			if(--waiting == 0) $('.busy').css('display', 'none');
 		}, latency);
 	}
 	
 	// add a new line to the chat
 	var updateChat = function(party, text) {
-	
-		var style = 'you';
+	var style = 'you';
 		if(party != you) {
 			style = 'other';
 		}
-		
 		var line = $('<div class="entry"><span class="party"></span> <span class="text"></span></div>');
 			line.find('.party').addClass(style).text(party + ':');
 chat.append(line);
 	
 		line.find('.text').text(text);
-		
 		chat.stop().animate({ scrollTop: chat.prop("scrollHeight")});
-		
-
 	
 
 	}
