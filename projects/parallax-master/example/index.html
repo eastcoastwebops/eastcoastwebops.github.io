@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+	
+	body {
+		padding: 0; margin: 0;
+		overflow: hidden;
+	}
+
+	.background {
+		position: absolute; top: -10%; left: -10%; 
+	
+		z-index: 1;
+		font-family: Courier;
+	}
+	
+	.cloud {
+		position: absolute; top: 0; left: 0; 
+		width: auto; height: auto;
+		z-index: 2;
+		opacity: 0.8;
+	}
+	
+		.logo {
+		position: absolute; top: 0; left: 0; 
+		width: auto; height: auto;
+		z-index: 2;
+		opacity: 1.0;
+top:200px;
+width:100%;
+
+	}
+
+	
+	.header {
+		position: fixed; top: 0; left: 0;
+		width: 100%; height: auto;
+		padding: 12px 0;
+		text-align: center;
+		z-index: 100;
+		color: #fff;
+		font-family: Courier;
+	}
+	.header h1 { 
+		font-size: 40px; 
+		font-weight: lighter; 
+	}
+	.header a {
+		font-size: 32px;
+		text-decoration: none;
+		padding-bottom: 2px;
+		border-bottom: 1px solid #fff;
+		color: #fff;
+	}
+
+</style>
+
+</head>
+<body>
+
+	<header class="header">
+		
+
+
+	</header>
+
+	<img src="images/background2.jpg" alt="New York" class="background">
+	<img src="images/1.png" alt="Clouds" class="cloud cloud1">
+	<img src="images/logo.png" alt="Clouds" class="logo">
+	<img src="images/2.png" alt="Clouds" class="cloud cloud2">
+	<img src="images/3.png" alt="Clouds" class="cloud cloud3">
+
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+<script src="../jquery-parallax.js"></script>
+
+
+<script>
+		$( document ).mousemove( function( e ) {
+			$( '.background' ).parallax( -30, e );
+			$( '.cloud1' )	  .parallax( 10	, e );
+			$( '.logo' )	  .parallax( -6	, e );
+			$( '.cloud2' )	  .parallax( 30	, e );
+			$( '.cloud3' )	  .parallax( 40	, e );
+		});
+	</script>
+
+</body>
+</html>
