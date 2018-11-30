@@ -4,6 +4,31 @@
 
 <p>I present some of it here to give you an idea of my level of coding</p>
 
+<h2>Find item with text, find prices within that item, then assign to value to be copied</h2>
+<pre>
+<xmp>
+<script type="text/javascript">// <![CDATA[
+/* just change these to match exacty the part of the title to grab from real product */
+var grab =['Piranha','Stingray','Barracuda','Great White','Killer Whale'];
+/* end items */
+jQuery(function() { 
+var price=[];
+grab.forEach(function(entry,i){
+		jQuery('li.item').find('h2.product-name:contains("'+entry+'") ').each(function(){
+				price[i]=jQuery(this).parent().find('.price-box').html();
+		});
+});
+jQuery('.pprice.one').html(price[0]);
+jQuery('.pprice.two').html(price[1]);
+jQuery('.pprice.three').html(price[2]);
+jQuery('.pprice.four').html(price[3]);
+jQuery('.pprice.five').html(price[4]); 
+});
+// ]]></script>
+</xmp>
+</pre>
+
+
 
 
 <h2>Compatible Brands</h2>
