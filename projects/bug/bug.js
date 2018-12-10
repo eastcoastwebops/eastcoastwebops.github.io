@@ -31,6 +31,9 @@
 
 var BugDispatch = {
 /*yrdy */
+
+
+
     options: {
         minDelay: 500,
         maxDelay: 10000,
