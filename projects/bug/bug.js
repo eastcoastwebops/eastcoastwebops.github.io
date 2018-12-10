@@ -30,12 +30,12 @@
 "use strict";
 
 var BugDispatch = {
-
+/*yrdy */
     options: {
         minDelay: 500,
         maxDelay: 10000,
-        minBugs: 1,
-        maxBugs: 3,
+        minBugs: 5,
+        maxBugs: 30,
         minSpeed: 5,
         maxSpeed: 20,
         maxLargeTurnDeg: 150,
