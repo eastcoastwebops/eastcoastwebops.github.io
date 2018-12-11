@@ -71,6 +71,9 @@ body {
 	color: var(--sitetitlecolor);
 	font-size: 30px;
 }
+
+
+
 .subtitletext {
 	color: var(--subtitlecolor);
 	font-size: 20px;
@@ -234,13 +237,25 @@ img.scaleimage {max-width:100%;}
 		opacity: 1;
 	}
 	#sitetitle {
-		background: url('../sitegen/images/stars2.jpg') no-repeat #999999;
+		background: url('../sitegen/images/stars3.jpg') no-repeat #999999;
 		height: 300px;
-		background-size: 100% 300px;
-		background-attachment: fixed;
+		background-size: cover;
+		//background-attachment: cover;
 		position: relative;
 		z-index: 0;
 	}
+	
+	.logo {border:solid 0px;
+height:200px;
+width:200px;
+position:absolute;
+right:10px;
+top:50px;
+background:url('../sitegen/images/logo.png');
+background-size:100%;
+}
+
+	
 	.sitetitletext {
 		position: fixed;
 		top: 125px;
@@ -379,8 +394,8 @@ img.scaleimage {max-width:100%;}
 		width: 1%;
 	}
 	#sitetitle {
-		background-size: 1920px 300px;
-		background-attachment: fixed;
+	//	background-size: 1920px 300px;
+	//	background-attachment: fixed;
 	}
 }
 
@@ -409,6 +424,16 @@ img.scaleimage {max-width:100%;}
 		height: 55px;
 		overflow: hidden;
 	}
+		  .logo {border:solid 0px;
+				height:50px;
+				width:50px;
+				right:5px;
+				top:1px;
+          position:absolute;
+		  background:url('../sitegen/images/logo.png');
+background-size:100%;
+			}
+	
 	.subtitletext {
 		color: var(--subtitlecolor);
 		font-size: calc( var(--basefontsize) - 2px);
@@ -428,8 +453,11 @@ img.scaleimage {max-width:100%;}
 	}
 	.sitetitletext {
 		text-align: right;
-		padding-right: 10px;
+		padding-right: 64px;
 	}
+	
+
+	
 	#menutrigger:hover {
 		cursor: pointer;
 	}
