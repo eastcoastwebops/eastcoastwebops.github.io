@@ -3,6 +3,7 @@ Site Gen|sitegen,
 About Me|about<
 Articles|blog,
 Portfolio Of Work|portfolio>
+Work History|career,
 Code|portfolio,
 Graphic Design|graphics,
 Code Snippets,
