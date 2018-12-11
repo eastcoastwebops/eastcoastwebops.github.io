@@ -5,6 +5,9 @@ SiteGen Version 3.0
 
 ******/
 
+	sitetitle = 'East Coast Web Ops';
+	subtitle = 'Web Development & Graphic Design';
+/*
 if (location.hostname == "eastcoastwebops.github.io") {
 	sitetitle = 'East Coast Web Ops';
 	subtitle = 'Web Development & Graphic Design';
@@ -13,6 +16,7 @@ if (location.hostname == "eastcoastwebops.github.io") {
 	sitetitle = 'Sample';
 	subtitle = 'Projects';
 }
+*/
 imagloc = '';
 version = 22718; //
 function gup(name) {
