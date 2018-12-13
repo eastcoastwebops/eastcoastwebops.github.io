@@ -1,7 +1,9 @@
 Home>
 Site Gen|sitegen,
 About Me|about<
+Blog|blog>
 Articles|blog,
+Twitter Grid|twitter<
 Portfolio Of Work|portfolio>
 Work History|career,
 Code|portfolio,
