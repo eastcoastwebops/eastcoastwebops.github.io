@@ -9,6 +9,7 @@ Graphic Design|graphics,
 Code Snippets,
 <
 Tools>
+Quick Tools & Gadgets|tools,
 How To Host On GitHub|github,
 Reverse Calc|/projects/reversecalc.html,
 Encrypt|/projects/encrypt/index.html,
