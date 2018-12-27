@@ -212,6 +212,8 @@ overflow:scroll-x;}
 
 img.scaleimage {max-width:100%;}
 
+#footermenu {text-align:center;}
+
 /* desktop */
 
 @media only screen and (min-width: 701px) {

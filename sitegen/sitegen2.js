@@ -117,6 +117,7 @@ $(window).on("load", function() {
 	
 
 	
+	function upCase(inStr) { return inStr.replace(/\w\S*/g, function(tStr) { return tStr.charAt(0).toUpperCase() + tStr.substr(1).toLowerCase(); }); }
 	
 	function loadPage(whichpage) {
 		$("body").hide(0, function() {
@@ -168,19 +169,28 @@ $(window).on("load", function() {
 				//	alert ('yes');
 				//	whichpage = (whichpage + '&gallery=' + whichimages);
 			}
-		//	console.log(whichpage);
+			
+		
+		
 			// need way to get class of galleries
 			$('li.' + whichpage).addClass('active');
 			$('li.' + whichpage).parent().parent().addClass('semiactive');
-			//		console.log (whichpage);
+			//	console.log ('which ' + whichpage);
 			page = $('li.' + whichpage + ' > a:first').text();
+			
 			$(document).prop('title', page + ' | ' + sitetitle);
 			$('#sitetitle').html(fullsitetitle);
 			nicename = whichpage.replace(/_/g, ' ');
+			//console.log (nicename);
+			if (page == '') {page = upCase(nicename)};
 			$("#title").text('Current Page: ' + nicename).css('text-transform', 'capitalize');
 			//   $('#title').addClass("loaded").removeClass("unloaded")
-			$('#footer').text(page + " is (c) 2018, Eric K. Holbrook");
 			
+			var d = new Date();
+			var n = d.getFullYear();
+									
+			$('#footer').text(page + " is (c) " + n + ", Eric K. Holbrook");
+			$('#footermenu').html('<a href="?page=privacy_policy">Privacy Policy</a>');
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({
 				//'left' : "-=70%",
