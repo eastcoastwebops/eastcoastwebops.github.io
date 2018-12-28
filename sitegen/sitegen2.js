@@ -1,6 +1,6 @@
 /***** 
 
-All code copyright 2017, EKHolbrook.
+All code copyright 2018, EKHolbrook.
 SiteGen Version 3.0
 
 ******/
@@ -190,7 +190,7 @@ $(window).on("load", function() {
 			var n = d.getFullYear();
 									
 			$('#footer').text(page + " is (c) " + n + ", Eric K. Holbrook");
-			$('#footermenu').html('<a href="?page=privacy_policy">Privacy Policy</a>');
+			$('#thefootermenu').html('<a href="?page=privacy_policy">Privacy Policy</a>');
 			$("body").delay(450).fadeIn(1700, 'swing');
 			$('.sitetitletext').delay(1000).animate({
 				//'left' : "-=70%",
