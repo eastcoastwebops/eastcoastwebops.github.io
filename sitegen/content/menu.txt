@@ -1,6 +1,7 @@
 Home>
 Site Gen|sitegen,
-About Me|about<
+About Me|about,
+Contact|contactus<
 Blog|blog>
 Articles|blog,
 Twitter Grid|twitter<
@@ -9,6 +10,7 @@ Work History|career,
 Code|portfolio,
 Graphic Design|graphics,
 Code Snippets,
+Contact|contactus,
 <
 Tools>
 Quick Tools & Gadgets|tools,

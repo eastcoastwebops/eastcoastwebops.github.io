@@ -1,0 +1,51 @@
+<style>
+ul.points a:hover{cursor:pointer;}
+ul.points a{font-weight:bold;padding:10px;}
+ul.points li{margin-bottom:20px;}
+</style>
+<script>
+		function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  return text;
+}
+
+		function popit(url) {
+        newwindow=window.open(url, makeid(),'height=700,width=1100');
+        if (window.focus) {newwindow.focus()}
+        return false;
+    }
+</script>
+<h1>Contact Us</h1>
+
+ <div class="container">
+
+<div id="popup" class="col-sm-4 col-sm-offset-4">
+Fill out my contact form and I will get back to you as soon as possible.
+<a href="https://goo.gl/forms/CIotQOznTWQce7Mc2">Contact - Click Here</a>
+<br/><br/>
+</div>
+
+
+
+</div>
+
+</div>
+
+<div class="full-bg-image row"  style="background-image:url('sitegen/images/50.jpg');">
+<div class="callout">Image Isn't Everything. But It's Alot.</div>
+</div>
+
+
+
+<script>
+$('#popup a').each(function() {
+  var ref = $(this).attr('href');
+$(this).attr('onclick', "popit('"+ref+"')" ).attr('href', '#');
+});
+</script>
+
+
