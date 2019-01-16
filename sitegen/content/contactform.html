@@ -24,7 +24,7 @@
   </div>
 
   <div>
-    <button type="submit"id="submit-form">Submit4</button>
+    <button type="submit"id="submit-form">Submit5</button>
   </div>
 
 </form>
@@ -214,7 +214,7 @@ $('#submit-form').on('click', function(e) {
     dataType: "json",
     data: $form.serializeObject()
   }).success(
-    // do something
+   alert ('submitted'); // do something
   );
 })
 </script>
