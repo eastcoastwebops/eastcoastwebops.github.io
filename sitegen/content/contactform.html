@@ -32,7 +32,7 @@
 var $form = $('form#test-form'),
     url = 'https://script.google.com/macros/s/AKfycbyOS_uLwYgHczSqhuL-SZVx1PcaNu_oCL0JQgisRKF6AnAmr9g/exec'
 
-$('#test-form').on('click', function(e) {
+$('#submit-form').on('click', function(e) {
   e.preventDefault();
   var jqxhr = $.ajax({
     url: url,
