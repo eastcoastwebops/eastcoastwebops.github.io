@@ -74,6 +74,48 @@ body {
 
 
 
+
+
+
+
+/* new social icons */
+
+#social {border:solid 0px;
+height:50px;;position:absolute;
+    display:block;
+margin-left:20px;
+z-index:100;
+    top:220px;
+color:#ffffff;
+   
+}
+
+#social img {height:100%;}
+
+
+@media screen and (max-width: 700px) {
+    
+#social {border:solid 0px;
+height:50px;position:relative;
+    width:100%;
+    
+    text-align:center;
+z-index:10 !important;
+top:70px;
+color:#666666;
+
+ margin:0px 0px 34px 0px;
+}
+    #social .follow{display:block;}
+#social img {height:100%;}
+    
+}   
+
+
+/* end icons */
+
+
+
 .subtitletext {
 	color: var(--subtitlecolor);
 	font-size: 20px;
