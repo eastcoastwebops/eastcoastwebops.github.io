@@ -1,190 +1,271 @@
 <body>
-<textarea id="inputId"  rows="4" cols="90">http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302582665_alt.jpg,
+    <p style="text-align:center;">Sample images, delete and add your own. Use "ORIGIN" image urls.</p>
+    <textarea id="inputId" rows="6" cols="90">http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302582665_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302582665_alt.jpg,
 http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298134923_alt.jpg,
 http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298134928_alt.jpg,
 http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298134930_alt.jpg,
-http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298154818_alt.jpg</textarea>
-<br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
-<div id="thepage">
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298154818_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298154819_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298164818_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298164819_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298164831_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302544923_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302544928_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302544930_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302544931_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302562665_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302572665_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302582665_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112302602665_alt.jpg,
+http://www.victoriassecret.com/p/760x1013/png/zz/23/11/07/08/112298134931_alt.jpg
+</textarea>
+    <br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
+    <br/>(images may take a few moments to load entirely)
+    <div id="thepage">
+        <script>
+        var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
 
 
-    <script>
-
-        var allhtml="<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
-        
 
 
 
+        /************** what Cnames/urls are involved? *******************/
 
-    /************** what Cnames/urls are involved? *******************/
+        var cname = [
+            'frca.victoriassecret.com', 'frca.victoriassecret.com',
+            '146.20.232.177', 'same',
+            '146.20.232.178', 'same',
+            '146.20.232.176', 'same',
 
-    var cname = [
-        'frca.victoriassecret.com','frca.victoriassecret.com',
-        '146.20.232.177','same',
-        '146.20.232.178','same',
-        '146.20.232.176','same',
+            'fr.victoriassecret.com', 'fr.victoriassecret.com',
+            '146.20.232.174', 'same',
+            '146.20.232.175', 'same',
+            '146.20.232.173', 'same',
 
-        'fr.victoriassecret.com','fr.victoriassecret.com',
-        '146.20.232.174','same',
-        '146.20.232.175','same',
-        '146.20.232.173','same',
+            'de.victoriassecret.com', 'de.victoriassecret.com',
+            '146.20.232.180', 'same',
+            '146.20.232.181', 'same',
+            '146.20.232.179', 'same',
 
-        'de.victoriassecret.com','de.victoriassecret.com',
-        '146.20.232.180','same',
-        '146.20.232.181','same',
-        '146.20.232.179','same',
+            'es.victoriassecret.com', 'es.victoriassecret.com',
+            '146.20.232.183', 'same',
+            '146.20.232.184', 'same',
+            '146.20.232.182', 'same',
 
-        'es.victoriassecret.com','es.victoriassecret.com',
-        '146.20.232.183','same',
-        '146.20.232.184','same',
-        '146.20.232.182','same',
+            'sp.victoriassecret.com', 'sp.victoriassecret.com',
+            '146.20.232.165', 'same',
+            '146.20.232.166', 'same',
+            '146.20.232.164', 'same',
 
-        'sp.victoriassecret.com','sp.victoriassecret.com',
-        '146.20.232.165','same',
-        '146.20.232.166','same',
-        '146.20.232.164','same',
+            'ko.victoriassecret.com', 'ko.victoriassecret.com',
+            '146.20.232.156', 'same',
+            '146.20.232.157', 'same',
+            '146.20.232.155', 'same',
 
-        'ko.victoriassecret.com','ko.victoriassecret.com',
-        '146.20.232.156','same',
-        '146.20.232.157','same',
-        '146.20.232.155','same',
+            'ja.victoriassecret.com', 'ja.victoriassecret.com',
+            '146.20.232.171', 'same',
+            '146.20.232.172', 'same',
+            '146.20.232.170', 'same',
 
-        'ja.victoriassecret.com','ja.victoriassecret.com',
-        '146.20.232.171','same',
-        '146.20.232.172','same',
-        '146.20.232.170','same',
+            'it.victoriassecret.com', 'it.victoriassecret.com',
+            '146.20.232.168', 'same',
+            '146.20.232.169', 'same',
+            '146.20.232.167', 'same',
 
-        'it.victoriassecret.com','it.victoriassecret.com',
-        '146.20.232.168','same',
-        '146.20.232.169','same',
-        '146.20.232.167','same',
+            'pl.victoriassecret.com', 'pl.victoriassecret.com',
+            '146.20.232.159', 'same',
+            '146.20.232.160', 'same',
+            '146.20.232.158', 'same',
 
-        'pl.victoriassecret.com','pl.victoriassecret.com',
-        '146.20.232.159','same',
-        '146.20.232.160','same',
-        '146.20.232.158','same',
+        ];
 
-    ];
-     
-    
+
         function getInputValue() {
-            dropdown="<select onchange='location=this.value'><option value=''>Jump to Language</option>";
-            droparray=[];
-            allhtml="";
-            
-        let input = document.getElementById("inputId").value;
-        let links = input.split(",");
-        for (var z = 0; z < cname.length; z=z+2) {
-            transurl = cname[z];
-            anchor="no";
-            if (cname[z+1] !='same') {
+            dropdown = "<select onchange='location=this.value'><option value=''>Jump to Language</option>";
+            droparray = [];
+            allhtml = "";
 
-                nicename = cname[z+1];
-                allhtml=allhtml+"</div>";
-                allhtml=allhtml+="<div class='newlanguage'>";
-              //  nicename = cname[z+1].replace(/\./g, "");
-           anchor="yes";
-          //  dropdown=dropdown+"<select id='"+nicename+"' onchange='location=this.value'>";
-             }
-            
-            //allhtml=allhtml+("<div class='virtualpage hidepiece'>");
-            if (anchor=="yes"){
-               
-                dropdown=dropdown+"<option value='#"+nicename+"'>"+nicename+"</option>";
-                allhtml=allhtml+"<span id=" +nicename+"></span>";
-                droparray.push(nicename);
+            let input = document.getElementById("inputId").value;
+            let links = input.split(",");
+            for (var z = 0; z < cname.length; z = z + 2) {
+                transurl = cname[z];
+                anchor = "no";
+                if (cname[z + 1] != 'same') {
 
-            }
-            allhtml=allhtml+("<h2><span style='font-size:.7em;'>(  " + nicename + "  )</span><br/>" + transurl + "<br/></h2><br clear='all'/>");
-            // allhtml=allhtml+"<p id=" +nicename+"></p>";
-            
-            for (var i = 0; i < links.length; i++) {
-                title = links[i];
-                //  title = title.trim();
-                titleES = title.replace('www.victoriassecret.com', transurl + '');
-                allhtml=allhtml+"<div class='leftside'><span class='origin'> #"+(i+1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleES + " </span><br clear='all'/><span class='origin'>"+title + "</span></div>";
-                } 
+                    nicename = cname[z + 1];
+                    allhtml = allhtml + "</div>";
+                    allhtml = allhtml += "<div class='newlanguage'>";
+                    //  nicename = cname[z+1].replace(/\./g, "");
+                    anchor = "yes";
+                    //  dropdown=dropdown+"<select id='"+nicename+"' onchange='location=this.value'>";
+                }
+
+                //allhtml=allhtml+("<div class='virtualpage hidepiece'>");
+                if (anchor == "yes") {
+
+                    dropdown = dropdown + "<option value='#" + nicename + "'>" + nicename + "</option>";
+                    allhtml = allhtml + "<span id=" + nicename + "></span>";
+                    droparray.push(nicename);
+
+                }
+                allhtml = allhtml + ("<h2><span style='font-size:.7em;'>(  " + nicename + "  )</span><br/>" + transurl + "<br/></h2><br clear='all'/>");
+                // allhtml=allhtml+"<p id=" +nicename+"></p>";
+
+                for (var i = 0; i < links.length; i++) {
+                    title = links[i];
+                    //  title = title.trim();
+                    titleES = title.replace('www.victoriassecret.com', transurl + '');
+                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleES + " </span><br clear='all'/><span class='origin'>" + title + "</span></div>";
+                }
                 // end link loop
-                   allhtml=allhtml+"<hr>";
-                 //   if (anchor=='yes') {
-                 //      allhtml=allhtml+"end lang</div>";
-                 //  }
-                  //  alert (dropdown);
+                allhtml = allhtml + "<hr>";
+                //   if (anchor=='yes') {
+                //      allhtml=allhtml+"end lang</div>";
+                //  }
+                //  alert (dropdown);
+            }
+
+
+            dropdown += '</select>';
+            return allhtml;
+            return dropdown;
+            return droparray;
+
         }
 
-        
-        dropdown+='</select>';
-        return allhtml;
-        return dropdown;
-        return droparray;
-    
-}
 
 
+        function writeBody() {
+            console.log(dropdown);
+            thepage.innerHTML = ""; // clear page
+            thepage.innerHTML += allhtml;
 
-function writeBody(){
-console.log(dropdown);
-thepage.innerHTML = ""; // clear page
-thepage.innerHTML+=allhtml;
+            for (var i = 0; i < droparray.length; i++) {
+                // alert(droparray[i]);
+                insert = droparray[i];
+                document.getElementById(insert).innerHTML = dropdown;
+            }
 
-for (var i = 0; i < droparray.length; i++) {
-   // alert(droparray[i]);
-    insert=droparray[i];
-    document.getElementById(insert).innerHTML=dropdown;
+        }
+        </script>
+        <!-- where the loop ends -->
+        <!-- pagination stuff-->
+    </div>
+    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+    <!-- css and other fun stuff --->
+    <style>
+    body {
+        background-image: radial-gradient(#666666, #000000);
+        background-attachment: scroll;
+
+        font-family: arial;
+        color: #ffbb55;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-}
+    .newlanguage>span {
+        display: block;
+        scroll-margin-top: 10px;
+        padding-top: 30px;
+    }
+
+    select {
+        font-size: 20px !important;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .newlanguage {
+        border-top: solid 3px #999999
+    }
+
+    .newlanguage:nth-child(odd) {
+        background: #555555 !important;
+    }
+
+    .newlanguage:nth-child(even) {
+        background: #222222 !important;
+    }
+
+    .virtualpage {
+        min-width: 200px;
+        margin-left;
+        auto;
+        margin-right: auto !important;
+        border: solid #ffffff 0px;
+    }
 
 
-    </script>
+    .leftside {
+        padding-top: 10px;
+        display: inline-block;
+        border: solid 0px #444444;
+        border-radius: 25px;
+        margin: 5px;
+        width: 24%
+    }
 
-    <!-- where the loop ends -->
+    .leftside img {
+        width: auto;
+        min-height: 100px;
+        max-height: 60%;
+        width: 90%;
+    }
 
-        
+    .origin {
+        margin: 5px;
+        color: #999999;
+        font-size: 12px !important;
+        ;
+        display: block;
+        text-align: center;
+        overflow-wrap: anywhere !important;
+    }
 
-        <!-- pagination stuff-->
-       
+    .instructs {
+        font-weight: bold;
+        font-size: 20px;
+        width: 50%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
 
-</div>
-<a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+    .cname {
+        font-weight: bold;
+        display: block;
+    }
 
-<!-- css and other fun stuff --->
+    #paginatediv {
+        text-align: center;
+        margin: auto !important
+    }
 
+    #paginatediv a {
+        border: solid 2px;
+        padding: 5px;
+        border-radius: 0px;
+        background: #ff9900;
+        color: #ffffff;
+    }
 
-<style>
- 
-body{background-image: radial-gradient(#666666, #000000);
-background-attachment:scroll;
+    .origin {
+        font-size: 11px
+    }
 
-font-family:arial;color:#ffbb55;text-align:center;
-margin-left:auto;margin-right:auto;}
+    div>h3 {
+        font-size: 12px;
+    }
 
-.newlanguage > span {display:block;scroll-margin-top: 10px;padding-top:30px;}
-select {font-size:20px !important;text-align:center;
-padding:5px;}
-
-.newlanguage{border-top:solid 3px #999999}
-.newlanguage:nth-child(odd){background:#555555 !important;}
-.newlanguage:nth-child(even){background:#222222 !important;}
-
-.virtualpage {min-width:200px;margin-left;auto;margin-right:auto !important;border:solid #ffffff 0px;}
-
-
-.leftside{padding-top:10px;display:inline-block;border:solid 0px #444444;border-radius:25px;margin:5px;width:24%}
-.leftside img{width:auto;min-height:100px;max-height:60%;
-width:90%;}
-
-.origin{margin:5px;color:#999999;font-size:12px !important;;display:block;text-align:center;overflow-wrap:anywhere !important;}
-
-.instructs{font-weight:bold;font-size:20px;width:50%;margin:auto;margin-bottom:10px;}
-.cname{font-weight:bold;display:block;}
-
-#paginatediv{text-align:center;margin:auto !important}
-#paginatediv a{border:solid 2px;padding:5px;border-radius:0px;background:#ff9900;color:#ffffff;}
-.origin{font-size:11px}
-div >h3{font-size:12px;}
-.nostyle{font-weight:bold;font-size:20px;color:#ff6633;border:0px!important;background:none!important;padding:0px;}
-</style>
-
-
+    .nostyle {
+        font-weight: bold;
+        font-size: 20px;
+        color: #ff6633;
+        border: 0px !important;
+        background: none !important;
+        padding: 0px;
+    }
+    </style>
 </body>
