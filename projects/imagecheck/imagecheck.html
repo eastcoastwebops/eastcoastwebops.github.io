@@ -101,8 +101,10 @@ https://www.victoriassecret.com/images/vsweb/mp-badges/top-gift-pink.png
                 for (var i = 0; i < links.length; i++) {
                     title = links[i];
                     //  title = title.trim();
+                    console.log(transurl);
                     titleES = title.replace('www.victoriassecret.com', transurl + '');
-                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleES + " </span></div>";
+                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>'+transurl + '</span>');
+                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleBold + " </span></div>";
                 }
                 // end link loop
                 allhtml = allhtml + "<br style='break-after:page'>";
@@ -156,6 +158,8 @@ https://www.victoriassecret.com/images/vsweb/mp-badges/top-gift-pink.png
 
 div.newlanguage > h2:nth-child(2){color:#ffffff !important;font-size:40px;text-shadow:5px 5px 5px #444444;}
 div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
+
+.boldcolor{font-weight:bold;color:#ffff88;font-size:1.1em;}
 
     .newlanguage>span {
         display: block;
