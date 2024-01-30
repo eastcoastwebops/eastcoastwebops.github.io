@@ -3,7 +3,8 @@
    <div class="hideprint"> <p style="text-align:center;">**Sample images**, test or delete and add your own. Use "ORIGIN" image urls.
 use http: vs https until I revise</p>
     <textarea id="inputId" rows="6" cols="90">
-https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-quiz-logo.svg
+https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-quiz-logo.svg,
+https://www.victoriassecret.com/images/vsweb/mp-badges/top-gift-pink.png
 </textarea>
     <br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
     <br/>(images may take a few moments to load entirely)</div>
@@ -94,14 +95,14 @@ https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-q
                     droparray.push(nicename);
 
                 }
-                allhtml = allhtml + ("<h2><span style='font-size:.7em;'>(  " + nicename + "  )</span><br/>" + transurl + "<br/></h2><br clear='all'/>");
+                allhtml = allhtml + ("<h2><span class='title'>" + nicename + " <span class='firstentry'>- " + transurl + "</span></span></h2><br clear='all'/>");
                 // allhtml=allhtml+"<p id=" +nicename+"></p>";
 
                 for (var i = 0; i < links.length; i++) {
                     title = links[i];
                     //  title = title.trim();
                     titleES = title.replace('www.victoriassecret.com', transurl + '');
-                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleES + " </span><br clear='all'/></div>";
+                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleES + " </span></div>";
                 }
                 // end link loop
                 allhtml = allhtml + "<br style='break-after:page'>";
@@ -147,11 +148,14 @@ https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-q
         background-attachment: scroll;
 
         font-family: arial;
-        color: #ffbb55;
+        color: #bbbbaa;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
     }
+
+div.newlanguage > h2:nth-child(2){color:#ffffff !important;font-size:40px;text-shadow:5px 5px 5px #444444;}
+div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
 
     .newlanguage>span {
         display: block;
@@ -159,7 +163,7 @@ https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-q
         padding-top: 30px;
     }
 
-    div.newlanguage > h2:nth-child(2){color:#ffffff !important;}
+    
 
     select {
         font-size: 20px !important;
@@ -189,7 +193,6 @@ https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-q
 
 
     .leftside {
-        padding-top: 10px;
         display: inline-block;
         margin: 5px;
         width: 24%
@@ -253,11 +256,20 @@ https://www.victoriassecret.com/assets/m583-MXbymlqR7W5s6Qnv8J62Q/svgs/bra-fit-q
         padding: 0px;
     }
 
+    h2 {margin-top:50px;paddng:0px;padding-top:10px !important;margin-bottom:0px;
+border-top:solid 2px #666666;}
+
+.title{display:block;
+border:solid 0px;}
+
+
+
 @media print
 {    
     .hideprint
     {
         display: none !important;
+        h2:border:0px;
     }
 }
 
