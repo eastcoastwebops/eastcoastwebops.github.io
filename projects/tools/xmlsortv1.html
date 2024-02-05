@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sort XML by Host with JavaScript</title>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    #output {
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+      background-color: #fff;
+    }
+
+    #exportButton {
+      padding: 8px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="xmlFileInput" accept=".xml">
+  <div id="output"></div>
+  <button id="exportButton" onclick="exportXml()">Export XML</button>
+
+  <script>
+    // idea and code ©2024 Eric K. Holbrook
+    document.getElementById('xmlFileInput').addEventListener('change', handleFileSelect);
+
+    function handleFileSelect(event) {
+      const fileInput = event.target;
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const xmlString = e.target.result;
+          const xmlDoc = parseXmlString(xmlString);
+          const sortedXmlDoc = sortXmlByHost(xmlDoc);
+
+          displayXml(sortedXmlDoc);
+        };
+
+        reader.readAsText(file);
+      }
+    }
+
+    function parseXmlString(xmlString) {
+      const parser = new DOMParser();
+      return parser.parseFromString(xmlString, 'application/xml');
+    }
+
+    function sortXmlByHost(xmlDoc) {
+      const mapElement = xmlDoc.querySelector('mappings');
+      const mapMappings = Array.from(mapElement.getElementsByTagName('mapMapping'));
+
+      mapMappings.sort((a, b) => {
+        const aHostElement = a.querySelector('sourceLocation > host');
+        const bHostElement = b.querySelector('sourceLocation > host');
+
+        if (aHostElement && bHostElement) {
+          const aHost = aHostElement.textContent.trim();
+          const bHost = bHostElement.textContent.trim();
+          return aHost.localeCompare(bHost);
+        } else if (aHostElement) {
+          return -1; // a comes first (b is missing host)
+        } else if (bHostElement) {
+          return 1; // b comes first (a is missing host)
+        } else {
+          return 0; // both are missing host
+        }
+      });
+
+      // Clear existing content
+      while (mapElement.firstChild) {
+        mapElement.removeChild(mapElement.firstChild);
+      }
+
+      // Append sorted elements back to the map
+      mapMappings.forEach(mapMapping => mapElement.appendChild(mapMapping));
+
+      return xmlDoc;
+    }
+
+    function displayXml(xmlDoc) {
+      const serializer = new XMLSerializer();
+      const xmlString = serializer.serializeToString(xmlDoc);
+
+      document.getElementById('output').innerText = xmlString;
+    }
+
+    function exportXml() {
+      const outputElement = document.getElementById('output');
+      const xmlString = outputElement.innerText;
+      const blob = new Blob([xmlString], { type: 'text/xml' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'sorted.xml';
+      a.click();
+    }
+  </script>
+</body>
+</html>
