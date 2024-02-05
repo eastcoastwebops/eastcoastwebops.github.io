@@ -1,1 +1,0 @@
-$j(document).ready(function(){$j(".slideshow-container .slideshow").cycle({slides:"> li",pager:".slideshow-pager",pagerTemplate:'<span class="pager-box"></span>',speed:600,pauseOnHover:!0,swipe:!0,prev:".slideshow-prev",next:".slideshow-next",fx:"scrollHorz"})});

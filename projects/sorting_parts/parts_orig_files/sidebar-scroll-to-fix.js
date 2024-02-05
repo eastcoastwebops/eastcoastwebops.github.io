@@ -1,1 +1,0 @@
-jQuery(window).on("load",function(){jQuery(".fixed-left-nav").scrollToFixed({marginTop:80,minWidth:991,limit:jQuery(document).height()-jQuery("#totfoot").height()-jQuery(".fixed-left-nav").height(),removeOffsets:!0,zIndex:8})});
