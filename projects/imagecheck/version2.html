@@ -1,0 +1,304 @@
+<html>
+<body>
+   <div class="hideprint"> <p style="text-align:center;">**Sample images**, test or delete and add your own. Use "ORIGIN" image urls.
+use http: vs https until I revise</p>
+    <textarea id="inputId" rows="6" cols="90">
+https://www.victoriassecret.com/images/vsweb/ba066b93-41ad-4f37-9d4b-e1b98191d3c5/011923-INTL-CAN-BORIS-OSL.jpg
+https://www.victoriassecret.com/images/vsweb/5f518afc-e19f-4503-8ebd-7619fee7d13e/020422-INTL-OSL-CAD-Shipping.jpg
+https://www.victoriassecret.com/images/vsweb/bbe008c6-b166-44aa-b356-350745c21f0a/122623-intl-VSI-Sleep-desk-camisets.jpg
+https://www.victoriassecret.com/images/vsweb/fc6388f4-1edd-41cf-9fb1-e5940b90aaca/011924-intl-PINK-CP-BraPanty-CPH.jpg
+https://www.victoriassecret.com/images/vsweb/d1a6fc7e-3c13-4bdd-ad3c-cb6e993e163f/011924-intl-PINK-CP-BraPanty-FC-4x.jpg
+https://www.victoriassecret.com/images/vsweb/dabbf544-54f0-4bc0-a027-0d4ad4a2bc62/011924-INTL-VSI-HP-What-Is-Love.jpg
+https://www.victoriassecret.com/images/vsweb/74ebef15-624c-4981-b961-12d5c68a6564/011024-intl-PINK-CPH-ValentinesDay.jpg
+https://www.victoriassecret.com/images/vsweb/c5db4aa4-4a67-455e-9ad0-3949c0417ca8/011924-INTL-VSI-VDay-Int-Header-BtyA-CAD.jpg
+https://www.victoriassecret.com/images/vsweb/1454a41c-9412-41e9-a2ed-67d01c435b90/011924-INTL-VSNow-Vday-Outfits-FTR.jpg
+https://www.victoriassecret.com/images/vsweb/0d7bc955-1da7-4732-960a-45b6ec70b771/011924-INTL-VSNow-Vday-Outfits-CorsetTeddy.jpg
+https://www.victoriassecret.com/images/vsweb/68175c9f-bc29-44fc-bdd8-6a13af2e5e08/011924-INTL-VSNow-Vday-Outfits-SkirtSet.jpg
+https://www.victoriassecret.com/images/vsweb/7d5874ee-0eb9-49d2-bb37-8ba47f56c4e8/011924-INTL-VSNow-Vday-Outfits-SilkCorset.jpg
+https://www.victoriassecret.com/images/vsweb/721d9266-8027-4de7-a0b5-b46d472aae26/011924-INTL-VSNow-Vday-Outfits-Pj.jpg
+https://www.victoriassecret.com/images/vsweb/7b6887ed-870c-4223-9483-3df1c1d6abff/011924-INTL-VSNow-Vday-Outfits-RobeSlippers.jpg
+https://www.victoriassecret.com/images/vsweb/61a39fb4-06ae-4f4f-a596-77081dfda406/050923-INTL-Sports-Bras-FC3-High.jpg
+https://www.victoriassecret.com/images/vsweb/7cf9550d-ab87-4d9a-b14a-879b198d4943/082923-INTL-VSNow-EN-lockup.jpg
+https://www.victoriassecret.com/images/vsweb/4129f139-8301-43c8-9026-dee59d771ed3/011924-INTL-VSNow-LP-FTR.jpg
+https://www.victoriassecret.com/images/vsweb/bf6b0eb7-e42b-4e9d-9c07-efd7c931f97d/092623-INTL-VSNow-DDiaries.jpg
+https://www.victoriassecret.com/images/vsweb/3a76c17a-407b-4b4f-8fc9-2e74d1a66441/091523-INTL-VSNow-LP-Wings.jpg
+https://www.victoriassecret.com/images/vsweb/8142c7ff-8b25-416e-9bbf-e6495fdb0bc1/091523-INTL-VSNow-LP-Icons.jpg
+</textarea>
+    <br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
+    <br/>(images may take a few moments to load entirely)</div>
+    <div id="thepage">
+        <script>
+        var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
+        var nicename;
+
+
+
+
+
+        /************** what Cnames/urls are involved? *******************/
+
+        var cname = [
+            'frca.victoriassecret.com',
+            '146.20.232.177',
+            '146.20.232.178',
+            '146.20.232.176',
+
+            'fr.victoriassecret.com', 
+            '146.20.232.174',
+            '146.20.232.175',
+            '146.20.232.173',
+
+            'de.victoriassecret.com', 
+            '146.20.232.180',
+            '146.20.232.181',
+            '146.20.232.179',
+
+            'es.victoriassecret.com',
+            '146.20.232.183',
+            '146.20.232.184',
+            '146.20.232.182',
+
+            'sp.victoriassecret.com', 
+            '146.20.232.165',
+            '146.20.232.166',
+            '146.20.232.164',
+
+            'ko.victoriassecret.com', 
+            '146.20.232.156',
+            '146.20.232.157',
+            '146.20.232.155',
+
+            'ja.victoriassecret.com', 
+            '146.20.232.171',
+            '146.20.232.172',
+            '146.20.232.170',
+
+            'it.victoriassecret.com', 
+            '146.20.232.168',
+            '146.20.232.169',
+            '146.20.232.167',
+
+            'pl.victoriassecret.com',
+            '146.20.232.159',
+            '146.20.232.160',
+            '146.20.232.158'
+
+        ];
+
+
+        function getInputValue() {
+            dropdown = "<select class='hideprint' onchange='location=this.value'><option value=''>Jump to Language</option>";
+            droparray = [];
+            allhtml = "";
+
+            let input = document.getElementById("inputId").value;
+            let links = input.split(/\s*,\s*|\s+/); // Split based on commas or spaces
+            for (var z = 0; z < cname.length; z = z + 1) {
+                transurl = cname[z];
+                anchor = "no";
+
+                if (cname[z].includes("victoriassecret")) {
+                    console.log(cname[z] + 'cname');
+                //if (cname[z + 1] != 'same') {
+
+                    nicename = cname[z];
+                    allhtml = allhtml + "</div>";
+                    allhtml = allhtml += "<div class='newlanguage'>";
+                    //  nicename = cname[z+1].replace(/\./g, "");
+                    anchor = "yes";
+                    //  dropdown=dropdown+"<select id='"+nicename+"' onchange='location=this.value'>";
+                }
+
+                //allhtml=allhtml+("<div class='virtualpage hidepiece'>");
+                if (anchor == "yes") {
+
+                    dropdown = dropdown + "<option value='#" + nicename + "'>" + nicename + "</option>";
+                    allhtml = allhtml + "<span id=" + nicename + "></span>";
+                    droparray.push(nicename);
+
+                }
+                allhtml = allhtml + ("<h2><span class='title'>" + nicename + " <span class='firstentry'>- " + transurl + "</span></span></h2><br clear='all'/>");
+                // allhtml=allhtml+"<p id=" +nicename+"></p>";
+
+                for (var i = 0; i < links.length; i++) {
+                    title = links[i];
+                    //  title = title.trim();
+                    console.log(transurl);
+                    titleES = title.replace('www.victoriassecret.com', transurl + '');
+                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>'+transurl + '</span>');
+                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleBold + " </span></div>";
+                }
+                // end link loop
+                allhtml = allhtml + "<br style='break-after:page'>";
+                //   if (anchor=='yes') {
+                //      allhtml=allhtml+"end lang</div>";
+                //  }
+                //  alert (dropdown);
+            }
+
+
+            dropdown += '</select>';
+            return allhtml;
+            return dropdown;
+            return droparray;
+
+        }
+
+
+
+        function writeBody() {
+            console.log(dropdown);
+            thepage.innerHTML = ""; // clear page
+            thepage.innerHTML += allhtml;
+
+            for (var i = 0; i < droparray.length; i++) {
+                // alert(droparray[i]);
+                insert = droparray[i];
+                document.getElementById(insert).innerHTML = dropdown;
+            }
+
+        }
+        </script>
+        <!-- where the loop ends -->
+        <!-- pagination stuff-->
+    </div>
+    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+    <!-- css and other fun stuff --->
+    <style>
+a{color:#ffff66;font-weight:bold;}
+
+    body {
+        background-image: radial-gradient(#666666, #000000);
+        background-attachment: scroll;
+
+        font-family: arial;
+        color: #bbbbaa;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+div.newlanguage > h2:nth-child(2){color:#ffffff !important;font-size:40px;text-shadow:5px 5px 5px #444444;}
+div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
+
+.boldcolor{font-weight:bold;color:#ffff88;font-size:1.1em;}
+
+    .newlanguage>span {
+        display: block;
+        scroll-margin-top: 10px;
+        padding-top: 30px;
+    }
+
+    
+
+    select {
+        font-size: 20px !important;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .newlanguage {
+     
+    }
+
+    .newlanguage:nth-child(odd) {
+        background: #777777 !important;
+    }
+
+    .newlanguage:nth-child(even) {
+        background: #888888 !important;
+    }
+
+    .virtualpage {
+        min-width: 200px;
+        margin-left;
+        auto;
+        margin-right: auto !important;
+       
+    }
+
+
+    .leftside {
+        display: inline-block;
+        margin: 5px;
+        width: 24%
+    }
+
+    .leftside img {
+        width: auto;
+        min-height: 100px;
+        max-height: 60%;
+        width: 90%;
+    }
+
+    .origin {
+        margin: 5px;
+        color: #dddddd;
+        font-size: 12px !important;
+        ;
+        display: block;
+        text-align: center;
+        overflow-wrap: anywhere !important;
+    }
+
+    .instructs {
+        font-weight: bold;
+        font-size: 20px;
+        width: 50%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .cname {
+        font-weight: bold;
+        display: block;
+    }
+
+    #paginatediv {
+        text-align: center;
+        margin: auto !important
+    }
+
+    #paginatediv a {
+       
+        padding: 5px;
+       background: #ff9900;
+        color: #ffffff;
+    }
+
+    .origin {
+        font-size: 11px
+    }
+
+    div>h3 {
+        font-size: 12px;
+    }
+
+    .nostyle {
+        font-weight: bold;
+        font-size: 20px;
+        color: #ff6633;
+        background: none !important;
+        padding: 0px;
+    }
+
+    h2 {margin-top:50px;paddng:0px;padding-top:10px !important;margin-bottom:0px;
+border-top:solid 2px #666666;}
+
+.title{display:block;
+border:solid 0px;}
+
+
+
+/*(@media print
+{    
+    .hideprint
+    {
+        display: none !important;
+        h2:border:0px;
+    }
+}
+*/
+
+    </style>
+</body></html>
