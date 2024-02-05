@@ -8,12 +8,22 @@
             font-size: 12px;
             color: #777;
         }
+
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 3.5s;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
     </style>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
 </head>
 
 <body>
     <div class="hideprint">
-        <p style="text-align:center;">**Sample images** - images can be pasted separated by comma or a space or new lines. No special formatting required</p>
+        <p style="text-align:center;">**Sample images** - images can be pasted separated by a comma, a space, or new lines. No special formatting required</p>
         <textarea id="inputId" rows="6" cols="90">
             https://www.victoriassecret.com/images/vsweb/61a39fb4-06ae-4f4f-a596-77081dfda406/050923-INTL-Sports-Bras-FC3-High.jpg
             https://www.victoriassecret.com/images/vsweb/7cf9550d-ab87-4d9a-b14a-879b198d4943/082923-INTL-VSNow-EN-lockup.jpg
@@ -33,7 +43,7 @@
         var currentLanguageIndex = 0; // Track the current language index
         var dropdown; // Declare dropdown as a global variable
         var droparray = []; // Declare droparray as a global variable
-var cname = [
+        var cname = [
             'frca.victoriassecret.com',
             '146.20.232.177',
             '146.20.232.178',
@@ -79,6 +89,22 @@ var cname = [
             '146.20.232.160',
             '146.20.232.158'
         ];
+
+  
+        function loadImage(url, containerId) {
+            var img = new Image();
+            img.src = url;
+            img.className = 'lazy-image';
+            img.loading = 'lazy';
+
+            img.onload = function () {
+                img.classList.add('loaded');
+            };
+
+            document.getElementById(containerId).appendChild(img);
+        }
+
+
         function getInputValue() {
             dropdown = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>";
             droparray = [];
@@ -99,7 +125,7 @@ var cname = [
                     title = links[i];
                     titleES = title.replace('www.victoriassecret.com', transurl);
                     titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
-                    allhtml += "<div class='leftside'><br/> <img src='" + titleES + "'><br><span class='origin'>" + titleBold + " </span></div>";
+                    allhtml += "<div class='leftside'><br/> <img data-src='" + titleES + "' class='lazyload'><br><span class='origin'>" + titleBold + " </span></div>";
                 }
 
                 var subdom = transurl.match(/^(.+)\.victoriassecret\.com$/);
@@ -114,7 +140,7 @@ var cname = [
                         title = links[j];
                         titleES = title.replace('www.victoriassecret.com', ip);
                         titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
-                        allhtml += "<div class='leftside'><img src='" + titleES + "'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
+                        allhtml += "<div class='leftside'><img data-src='" + titleES + "' class='lazyload'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
                     }
                 }
 
@@ -125,7 +151,12 @@ var cname = [
             dropdown += '</select>';
         }
 
-        function writeBody() {
+        function lazyLoadImages() {
+    // Use lazysizes to handle lazy loading
+    lazySizes.init();
+}
+
+            function writeBody() {
             thepage.innerHTML = ""; // clear page
             thepage.innerHTML += allhtml;
 
@@ -135,15 +166,22 @@ var cname = [
 
             // Populate the bottom dropdown
             document.getElementById('bottomDropdown').innerHTML = dropdown;
+
+            // Load images for the selected language
+            var selectedLanguage = droparray[currentLanguageIndex];
+            var images = document.querySelectorAll("#" + selectedLanguage + " img");
+            images.forEach(function (img) {
+                loadImage(img.src, "thepage");
+            });
         }
 
-function changeLanguage(index) {
-    currentLanguageIndex = index;
-    writeBody();
-    // Scroll to the top
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+        function changeLanguage(index) {
+            currentLanguageIndex = index;
+            writeBody();
+            // Scroll to the top
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
 </body>
 
