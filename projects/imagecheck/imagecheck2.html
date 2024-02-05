@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="vsimage.css">
+    <style>
+        .subdomain {
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hideprint">
+        <p style="text-align:center;">**Sample images** - images can be pasted separated by comma or a space or new lines. No special formatting required</p>
+        <textarea id="inputId" rows="6" cols="90">
+            https://www.victoriassecret.com/images/vsweb/61a39fb4-06ae-4f4f-a596-77081dfda406/050923-INTL-Sports-Bras-FC3-High.jpg
+            https://www.victoriassecret.com/images/vsweb/7cf9550d-ab87-4d9a-b14a-879b198d4943/082923-INTL-VSNow-EN-lockup.jpg
+            https://www.victoriassecret.com/images/vsweb/4129f139-8301-43c8-9026-dee59d771ed3/011924-INTL-VSNow-LP-FTR.jpg
+        </textarea>
+        <br>
+        <button type="button" onclick="getInputValue(); writeBody();">Load The Images!</button>
+        <br />(images may take a few moments to load entirely)
+    </div>
+    <div id="thepage"></div>
+    <div id="bottomDropdown"></div>
+    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+
+    <script>
+        var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
+        var nicename;
+        var currentLanguageIndex = 0; // Track the current language index
+        var dropdown; // Declare dropdown as a global variable
+        var droparray = []; // Declare droparray as a global variable
+var cname = [
+            'frca.victoriassecret.com',
+            '146.20.232.177',
+            '146.20.232.178',
+            '146.20.232.176',
+
+            'fr.victoriassecret.com',
+            '146.20.232.174',
+            '146.20.232.175',
+            '146.20.232.173',
+
+            'de.victoriassecret.com',
+            '146.20.232.180',
+            '146.20.232.181',
+            '146.20.232.179',
+
+            'es.victoriassecret.com',
+            '146.20.232.183',
+            '146.20.232.184',
+            '146.20.232.182',
+
+            'sp.victoriassecret.com',
+            '146.20.232.165',
+            '146.20.232.166',
+            '146.20.232.164',
+
+            'ko.victoriassecret.com',
+            '146.20.232.156',
+            '146.20.232.157',
+            '146.20.232.155',
+
+            'ja.victoriassecret.com',
+            '146.20.232.171',
+            '146.20.232.172',
+            '146.20.232.170',
+
+            'it.victoriassecret.com',
+            '146.20.232.168',
+            '146.20.232.169',
+            '146.20.232.167',
+
+            'pl.victoriassecret.com',
+            '146.20.232.159',
+            '146.20.232.160',
+            '146.20.232.158'
+        ];
+        function getInputValue() {
+            dropdown = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>";
+            droparray = [];
+            allhtml = "";
+
+            let input = document.getElementById("inputId").value;
+            let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
+
+            for (var z = 0; z < cname.length; z = z + 4) {
+                transurl = cname[z];
+                nicename = cname[z];
+
+                dropdown += "<option value='" + (z / 4) + "'>" + nicename + "</option>";
+                allhtml += "<div class='newlanguage' style='display: none;'><span id='" + nicename + "'></span>";
+                allhtml += "<h2><span class='title'>" + nicename + " <span class='firstentry'>" + transurl + "</span></span></h2><br clear='all'>";
+
+                for (var i = 0; i < links.length; i++) {
+                    title = links[i];
+                    titleES = title.replace('www.victoriassecret.com', transurl);
+                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
+                    allhtml += "<div class='leftside'><br/> <img src='" + titleES + "'><br><span class='origin'>" + titleBold + " </span></div>";
+                }
+
+                var subdom = transurl.match(/^(.+)\.victoriassecret\.com$/);
+                var subdom = (subdom && subdom.length > 1) ? subdom[1] : null;
+                for (var i = 1; i <= 3 && (z + i) < cname.length; i++) {
+                    ipIndex = z + i;
+                    ip = cname[ipIndex];
+
+                    allhtml += "<hr class='separator'><div class='newip'><span class='origin'> IP #" + i + "<br/> <span class=boldcolor>" + subdom + "</span>" + ip + "</span></div>";
+
+                    for (var j = 0; j < links.length; j++) {
+                        title = links[j];
+                        titleES = title.replace('www.victoriassecret.com', ip);
+                        titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
+                        allhtml += "<div class='leftside'><img src='" + titleES + "'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
+                    }
+                }
+
+                allhtml += "<br style='break-after:page'></div>";
+                droparray.push(nicename);
+            }
+
+            dropdown += '</select>';
+        }
+
+        function writeBody() {
+            thepage.innerHTML = ""; // clear page
+            thepage.innerHTML += allhtml;
+
+            insert = droparray[currentLanguageIndex];
+            document.getElementById(insert).innerHTML = dropdown;
+            document.getElementsByClassName('newlanguage')[currentLanguageIndex].style.display = 'block';
+
+            // Populate the bottom dropdown
+            document.getElementById('bottomDropdown').innerHTML = dropdown;
+        }
+
+function changeLanguage(index) {
+    currentLanguageIndex = index;
+    writeBody();
+    // Scroll to the top
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+    </script>
+</body>
+
+</html>
