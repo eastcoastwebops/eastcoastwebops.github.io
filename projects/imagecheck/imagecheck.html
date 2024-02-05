@@ -1,18 +1,14 @@
 
+
 <html>
 <body>
-   <div class="hideprint"> <p style="text-align:center;">**Sample images**, test or delete and add your own. Use "ORIGIN" image urls.
-use http: vs https until I revise</p>
+   <div class="hideprint"> <p style="text-align:center;">**Sample images**, You can separate by comma, space, line. Whatever you feel like works.</p>
     <textarea id="inputId" rows="6" cols="90">
 https://www.victoriassecret.com/images/vsweb/ba066b93-41ad-4f37-9d4b-e1b98191d3c5/011923-INTL-CAN-BORIS-OSL.jpg
 https://www.victoriassecret.com/images/vsweb/5f518afc-e19f-4503-8ebd-7619fee7d13e/020422-INTL-OSL-CAD-Shipping.jpg
 https://www.victoriassecret.com/images/vsweb/bbe008c6-b166-44aa-b356-350745c21f0a/122623-intl-VSI-Sleep-desk-camisets.jpg
 https://www.victoriassecret.com/images/vsweb/fc6388f4-1edd-41cf-9fb1-e5940b90aaca/011924-intl-PINK-CP-BraPanty-CPH.jpg
-https://www.victoriassecret.com/images/vsweb/d1a6fc7e-3c13-4bdd-ad3c-cb6e993e163f/011924-intl-PINK-CP-BraPanty-FC-4x.jpg
-https://www.victoriassecret.com/images/vsweb/dabbf544-54f0-4bc0-a027-0d4ad4a2bc62/011924-INTL-VSI-HP-What-Is-Love.jpg
-https://www.victoriassecret.com/images/vsweb/74ebef15-624c-4981-b961-12d5c68a6564/011024-intl-PINK-CPH-ValentinesDay.jpg
-https://www.victoriassecret.com/images/vsweb/c5db4aa4-4a67-455e-9ad0-3949c0417ca8/011924-INTL-VSI-VDay-Int-Header-BtyA-CAD.jpg
-https://www.victoriassecret.com/images/vsweb/1454a41c-9412-41e9-a2ed-67d01c435b90/011924-INTL-VSNow-Vday-Outfits-FTR.jpg
+
 </textarea>
     <br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
     <br/>(images may take a few moments to load entirely)</div>
@@ -82,7 +78,7 @@ https://www.victoriassecret.com/images/vsweb/1454a41c-9412-41e9-a2ed-67d01c435b9
             allhtml = "";
 
             let input = document.getElementById("inputId").value;
-            let links = input.split(/\s*,\s*|\s+/); // Split based on commas or spaces
+           let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
             for (var z = 0; z < cname.length; z = z + 1) {
                 transurl = cname[z];
                 anchor = "no";
