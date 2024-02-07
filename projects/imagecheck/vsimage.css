@@ -2,7 +2,7 @@
 a{color:#ffff66;font-weight:bold;}
 
     body {
-        background-image: radial-gradient(#666666, #000000);
+        background:#555555;
         background-attachment: scroll;
 
         font-family: arial;
