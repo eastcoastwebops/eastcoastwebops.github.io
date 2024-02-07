@@ -1,40 +1,60 @@
-
-
+<!DOCTYPE html>
 <html>
-<body>
-   <div class="hideprint"> <p style="text-align:center;">**Sample images**, You can separate by comma, space, line. Whatever you feel like works.</p>
-    <textarea id="inputId" rows="6" cols="90">
-https://www.victoriassecret.com/images/vsweb/ba066b93-41ad-4f37-9d4b-e1b98191d3c5/011923-INTL-CAN-BORIS-OSL.jpg
-https://www.victoriassecret.com/images/vsweb/5f518afc-e19f-4503-8ebd-7619fee7d13e/020422-INTL-OSL-CAD-Shipping.jpg
-https://www.victoriassecret.com/images/vsweb/bbe008c6-b166-44aa-b356-350745c21f0a/122623-intl-VSI-Sleep-desk-camisets.jpg
-https://www.victoriassecret.com/images/vsweb/fc6388f4-1edd-41cf-9fb1-e5940b90aaca/011924-intl-PINK-CP-BraPanty-CPH.jpg
 
-</textarea>
-    <br><button type="button" onclick="getInputValue();writeBody();">Load The Images!</button>
-    <br/>(images may take a few moments to load entirely)</div>
-    <div id="thepage">
-        <script>
+<head>
+    <link rel="stylesheet" href="vsimage.css">
+    <style>
+        .subdomain {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 3.5s;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+    </style>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+</head>
+
+<body>
+    <div class="hideprint">
+        <p style="text-align:center;">**Sample images** - images can be pasted separated by a comma, a space, or new lines. No special formatting required</p>
+        <textarea id="inputId" rows="6" cols="90">
+            https://www.victoriassecret.com/images/vsweb/61a39fb4-06ae-4f4f-a596-77081dfda406/050923-INTL-Sports-Bras-FC3-High.jpg
+            https://www.victoriassecret.com/images/vsweb/7cf9550d-ab87-4d9a-b14a-879b198d4943/082923-INTL-VSNow-EN-lockup.jpg
+            https://www.victoriassecret.com/images/vsweb/4129f139-8301-43c8-9026-dee59d771ed3/011924-INTL-VSNow-LP-FTR.jpg
+        </textarea>
+        <br>
+        <button type="button" onclick="getInputValue(); writeBody();">Load The Images!</button>
+        <br />(images may take a few moments to load entirely)
+    </div>
+    <div id="thepage"></div>
+    <div id="bottomDropdown"></div>
+    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+
+    <script>
         var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
         var nicename;
-
-
-
-
-
-        /************** what Cnames/urls are involved? *******************/
-
+        var currentLanguageIndex = 0; // Track the current language index
+        var dropdown; // Declare dropdown as a global variable
+        var droparray = []; // Declare droparray as a global variable
         var cname = [
             'frca.victoriassecret.com',
             '146.20.232.177',
             '146.20.232.178',
             '146.20.232.176',
 
-            'fr.victoriassecret.com', 
+            'fr.victoriassecret.com',
             '146.20.232.174',
             '146.20.232.175',
             '146.20.232.173',
 
-            'de.victoriassecret.com', 
+            'de.victoriassecret.com',
             '146.20.232.180',
             '146.20.232.181',
             '146.20.232.179',
@@ -44,22 +64,22 @@ https://www.victoriassecret.com/images/vsweb/fc6388f4-1edd-41cf-9fb1-e5940b90aac
             '146.20.232.184',
             '146.20.232.182',
 
-            'sp.victoriassecret.com', 
+            'sp.victoriassecret.com',
             '146.20.232.165',
             '146.20.232.166',
             '146.20.232.164',
 
-            'ko.victoriassecret.com', 
+            'ko.victoriassecret.com',
             '146.20.232.156',
             '146.20.232.157',
             '146.20.232.155',
 
-            'ja.victoriassecret.com', 
+            'ja.victoriassecret.com',
             '146.20.232.171',
             '146.20.232.172',
             '146.20.232.170',
 
-            'it.victoriassecret.com', 
+            'it.victoriassecret.com',
             '146.20.232.168',
             '146.20.232.169',
             '146.20.232.167',
@@ -68,223 +88,101 @@ https://www.victoriassecret.com/images/vsweb/fc6388f4-1edd-41cf-9fb1-e5940b90aac
             '146.20.232.159',
             '146.20.232.160',
             '146.20.232.158'
-
         ];
+
+  
+        function loadImage(url, containerId) {
+            var img = new Image();
+            img.src = url;
+            img.className = 'lazy-image';
+            img.loading = 'lazy';
+
+            img.onload = function () {
+                img.classList.add('loaded');
+            };
+
+            document.getElementById(containerId).appendChild(img);
+        }
 
 
         function getInputValue() {
-            dropdown = "<select class='hideprint' onchange='location=this.value'><option value=''>Jump to Language</option>";
+            dropdown = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>";
             droparray = [];
             allhtml = "";
 
             let input = document.getElementById("inputId").value;
-           let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
-            for (var z = 0; z < cname.length; z = z + 1) {
+            let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
+
+            for (var z = 0; z < cname.length; z = z + 4) {
                 transurl = cname[z];
-                anchor = "no";
+                nicename = cname[z];
 
-                if (cname[z].includes("victoriassecret")) {
-                    console.log(cname[z] + 'cname');
-                //if (cname[z + 1] != 'same') {
-
-                    nicename = cname[z];
-                    allhtml = allhtml + "</div>";
-                    allhtml = allhtml += "<div class='newlanguage'>";
-                    //  nicename = cname[z+1].replace(/\./g, "");
-                    anchor = "yes";
-                    //  dropdown=dropdown+"<select id='"+nicename+"' onchange='location=this.value'>";
-                }
-
-                //allhtml=allhtml+("<div class='virtualpage hidepiece'>");
-                if (anchor == "yes") {
-
-                    dropdown = dropdown + "<option value='#" + nicename + "'>" + nicename + "</option>";
-                    allhtml = allhtml + "<span id=" + nicename + "></span>";
-                    droparray.push(nicename);
-
-                }
-                allhtml = allhtml + ("<h2><span class='title'>" + nicename + " <span class='firstentry'>- " + transurl + "</span></span></h2><br clear='all'/>");
-                // allhtml=allhtml+"<p id=" +nicename+"></p>";
+                dropdown += "<option value='" + (z / 4) + "'>" + nicename + "</option>";
+                allhtml += "<div class='newlanguage' style='display: none;'><span id='" + nicename + "'></span>";
+                allhtml += "<h2><span class='title'>" + nicename + " <span class='firstentry'>" + transurl + "</span></span></h2><br clear='all'>";
 
                 for (var i = 0; i < links.length; i++) {
                     title = links[i];
-                    //  title = title.trim();
-                    console.log(transurl);
-                    titleES = title.replace('www.victoriassecret.com', transurl + '');
-                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>'+transurl + '</span>');
-                    allhtml = allhtml + "<div class='leftside'><span class='origin'> #" + (i + 1) + "<br/> <img src='" + titleES + "'><br><span class='origin'>" + titleBold + " </span></div>";
+                    titleES = title.replace('www.victoriassecret.com', transurl);
+                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
+                    allhtml += "<div class='leftside'><br/> <img data-src='" + titleES + "' class='lazyload'><br><span class='origin'>" + titleBold + " </span></div>";
                 }
-                // end link loop
-                allhtml = allhtml + "<br style='break-after:page'>";
-                //   if (anchor=='yes') {
-                //      allhtml=allhtml+"end lang</div>";
-                //  }
-                //  alert (dropdown);
+
+                var subdom = transurl.match(/^(.+)\.victoriassecret\.com$/);
+                var subdom = (subdom && subdom.length > 1) ? subdom[1] : null;
+                for (var i = 1; i <= 3 && (z + i) < cname.length; i++) {
+                    ipIndex = z + i;
+                    ip = cname[ipIndex];
+
+                    allhtml += "<hr class='separator'><div class='newip'><span class='origin'> IP #" + i + "<br/> <span class=boldcolor>" + subdom + "</span>" + ip + "</span></div>";
+
+                    for (var j = 0; j < links.length; j++) {
+                        title = links[j];
+                        titleES = title.replace('www.victoriassecret.com', ip);
+                        titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
+                        allhtml += "<div class='leftside'><img data-src='" + titleES + "' class='lazyload'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
+                    }
+                }
+
+                allhtml += "<br style='break-after:page'></div>";
+                droparray.push(nicename);
             }
 
-
             dropdown += '</select>';
-            return allhtml;
-            return dropdown;
-            return droparray;
-
         }
 
+        function lazyLoadImages() {
+    // Use lazysizes to handle lazy loading
+    lazySizes.init();
+}
 
-
-        function writeBody() {
-            console.log(dropdown);
+            function writeBody() {
             thepage.innerHTML = ""; // clear page
             thepage.innerHTML += allhtml;
 
-            for (var i = 0; i < droparray.length; i++) {
-                // alert(droparray[i]);
-                insert = droparray[i];
-                document.getElementById(insert).innerHTML = dropdown;
-            }
+            insert = droparray[currentLanguageIndex];
+            document.getElementById(insert).innerHTML = dropdown;
+            document.getElementsByClassName('newlanguage')[currentLanguageIndex].style.display = 'block';
 
+            // Populate the bottom dropdown
+            document.getElementById('bottomDropdown').innerHTML = dropdown;
+
+            // Load images for the selected language
+            var selectedLanguage = droparray[currentLanguageIndex];
+            var images = document.querySelectorAll("#" + selectedLanguage + " img");
+            images.forEach(function (img) {
+                loadImage(img.src, "thepage");
+            });
         }
-        </script>
-        <!-- where the loop ends -->
-        <!-- pagination stuff-->
-    </div>
-    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
-    <!-- css and other fun stuff --->
-    <style>
-a{color:#ffff66;font-weight:bold;}
 
-    body {
-        background-image: radial-gradient(#666666, #000000);
-        background-attachment: scroll;
+        function changeLanguage(index) {
+            currentLanguageIndex = index;
+            writeBody();
+            // Scroll to the top
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
 
-        font-family: arial;
-        color: #bbbbaa;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-div.newlanguage > h2:nth-child(2){color:#ffffff !important;font-size:40px;text-shadow:5px 5px 5px #444444;}
-div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
-
-.boldcolor{font-weight:bold;color:#ffff88;font-size:1.1em;}
-
-    .newlanguage>span {
-        display: block;
-        scroll-margin-top: 10px;
-        padding-top: 30px;
-    }
-
-    
-
-    select {
-        font-size: 20px !important;
-        text-align: center;
-        padding: 5px;
-    }
-
-    .newlanguage {
-     
-    }
-
-    .newlanguage:nth-child(odd) {
-        background: #777777 !important;
-    }
-
-    .newlanguage:nth-child(even) {
-        background: #888888 !important;
-    }
-
-    .virtualpage {
-        min-width: 200px;
-        margin-left;
-        auto;
-        margin-right: auto !important;
-       
-    }
-
-
-    .leftside {
-        display: inline-block;
-        margin: 5px;
-        width: 24%
-    }
-
-    .leftside img {
-        width: auto;
-        min-height: 100px;
-        max-height: 60%;
-        width: 90%;
-    }
-
-    .origin {
-        margin: 5px;
-        color: #dddddd;
-        font-size: 12px !important;
-        ;
-        display: block;
-        text-align: center;
-        overflow-wrap: anywhere !important;
-    }
-
-    .instructs {
-        font-weight: bold;
-        font-size: 20px;
-        width: 50%;
-        margin: auto;
-        margin-bottom: 10px;
-    }
-
-    .cname {
-        font-weight: bold;
-        display: block;
-    }
-
-    #paginatediv {
-        text-align: center;
-        margin: auto !important
-    }
-
-    #paginatediv a {
-       
-        padding: 5px;
-       background: #ff9900;
-        color: #ffffff;
-    }
-
-    .origin {
-        font-size: 11px
-    }
-
-    div>h3 {
-        font-size: 12px;
-    }
-
-    .nostyle {
-        font-weight: bold;
-        font-size: 20px;
-        color: #ff6633;
-        background: none !important;
-        padding: 0px;
-    }
-
-    h2 {margin-top:50px;paddng:0px;padding-top:10px !important;margin-bottom:0px;
-border-top:solid 2px #666666;}
-
-.title{display:block;
-border:solid 0px;}
-
-
-
-/*(@media print
-{    
-    .hideprint
-    {
-        display: none !important;
-        h2:border:0px;
-    }
-}
-*/
-
-    </style>
-</body></html>
+</html>
