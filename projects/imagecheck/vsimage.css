@@ -101,7 +101,7 @@ div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
     }
 
     .origin {
-        font-size: 11px
+        font-size: 1.2vw;
     }
 
     div>h3 {
@@ -123,6 +123,29 @@ border-top:solid 2px #666666;}
 border:solid 0px;}
 
 
+        .subdomain {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 3.5s;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
+
+i{font-size:1.2vw !important;color:#ffffdddd}
+.origin {font-size:1.1vw !important;}
+.newip>.origin{font-weight:bold !important;
+color:#ffffff;border-radius:10px;padding:5px;border:solid 1px #999999;width:15%;margin:auto;background:#999999;}
+hr.separator{color:#ff0000 !important;border-top:solid 4px #888888;
+border-bottom:solid 2px #444444 !important;
+margin-bottom:50px
+}
 
 /*(@media print
 {    
