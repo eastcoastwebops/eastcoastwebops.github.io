@@ -9,11 +9,20 @@
 
 <body>
     <div class="hideprint">
-        <p style="text-align:center;">**Sample images** - images can be pasted separated by a comma, a space, or new lines. No special formatting required</p>
-        <textarea id="inputId" rows="6" cols="90">
-https://www.victoriassecret.com/images/vsweb/61a39fb4-06ae-4f4f-a596-77081dfda406/050923-INTL-Sports-Bras-FC3-High.jpg
-https://www.victoriassecret.com/images/vsweb/7cf9550d-ab87-4d9a-b14a-879b198d4943/082923-INTL-VSNow-EN-lockup.jpg
-https://www.victoriassecret.com/images/vsweb/4129f139-8301-43c8-9026-dee59d771ed3/011924-INTL-VSNow-LP-FTR.jpg
+        <p style="text-align:center;">Please format the image urls to <b></b>use www </b> instead of translated "frca" etc. <br/>
+        This is partly to verifiy origin images are also valid. (why check on broken origin urls??) <br/><br/>
+        
+        Like the translated servers.., all translated image urls below (and all Load balance variation) are then built from the origin URL.
+    <br/><br/>
+<b>EXAMPLE FORMAT</b> - ( www not fr )  Separation by line, space, or comma is ok. Other characters not allowed at this time. 
+    </p>
+        <textarea id="inputId" rows="15" cols="130">
+https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92a/050923-INTL-Sports-Bras-mob-FC1-Light.jpg
+https://www.victoriassecret.com/images/vsweb/35207e73-0317-4013-8f69-6147ae87a172/01-122622-INTL-HP-FAQ-EUR.jpg
+https://www.victoriassecret.com/images/vsweb/4dba0903-0590-4669-985a-112049c7ca52/050923-INTL-Sports-Bras-mob-FC2-Med.jpg
+https://www.victoriassecret.com/images/vsweb/5473cf8e-6a97-4461-b818-bfda15f24644/020422-INTL-OSL-EURO-ROW-Delivery.jpg
+https://www.victoriassecret.com/images/vsweb/54aafc9f-fb62-4a9f-b4f1-b8fbd3f2e7f4/021624-INTL-VSI-HP-BtyA-Bare-01.jpg
+
         </textarea>
         <br>
         <button type="button" onclick="getInputValue(); writeBody();">Load The Images!</button>
