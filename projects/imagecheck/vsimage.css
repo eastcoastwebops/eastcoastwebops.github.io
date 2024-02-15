@@ -144,7 +144,8 @@ i{font-size:1.2vw !important;color:#ffffdddd}
 color:#ffffff;border-radius:10px;padding:5px;border:solid 1px #999999;width:15%;margin:auto;background:#999999;}
 hr.separator{color:#ff0000 !important;border-top:solid 4px #888888;
 border-bottom:solid 2px #444444 !important;
-margin-bottom:50px
+margin-bottom:50px;
+height:100px;border-top:0px;box-shadow:0px 100px 100px #ff0000;
 }
 
 /*(@media print
