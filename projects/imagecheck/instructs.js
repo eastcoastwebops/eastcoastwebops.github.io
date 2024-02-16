@@ -9,11 +9,13 @@ var jumps = "<select id='jumpDropdown'>" +
                 "<option value='imagecheck_CAD.html'>ONLY CAD</option>" +
                 "<option value='imagecheck_MXN.html'>ONLY MXN</option>" +
              "</select>";
-
+var market="";
 function setupContentAndDropdown(contentId, jumpId, instructs, jumps) {
     // Create a new div element for content
     var contentContainer = document.getElementById(contentId);
+   if (market !== "eur" && market !== "usd" && market !== "can" && market !== "mxn") {
     contentContainer.innerHTML += instructs;
+}
 
     // Create a new div element for the dropdown
     var jumpContainer = document.getElementById(jumpId);

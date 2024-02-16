@@ -13,22 +13,9 @@
 <div id="contentContainer"><h1>MXN - SP / Mexico</h1></div>
 <script src="instructs.js"></script>
 <script>
+    var market="mxn";
     document.addEventListener('DOMContentLoaded', function () {
-        // Create a new div element
-        var contentContainer = document.getElementById('contentContainer');
-        var jumpContainer = document.getElementById('jumpContainer');
-      //  contentContainer.innerHTML += instructs;
-
-        jumpContainer.innerHTML += jumps;
-document.getElementById('jumpDropdown').addEventListener('change', function() {
-    // Get the selected value
-    var selectedValue = this.value;
-    
-    // Redirect to the selected page
-    window.location.href = selectedValue;
-});
-   
-
+    setupContentAndDropdown('contentContainer', 'jumpContainer', instructs, jumps);
     });
 </script>
 
