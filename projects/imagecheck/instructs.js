@@ -2,8 +2,8 @@ var instructs="For now... Please format the image urls to <b></b>use www </b> in
 var codekey="USD: Korean, Japanese, Spanish Universal<br>EUR: Polish, German, Italian, Spanish Castilian, French Continental<br>CAD: French Canadian<br/>MXN: Spanish Universal";
 
 var jumps = "<select id='jumpDropdown'>" +
-                "<option value=''>Choose Market</option>" +
-                "<option value='imagecheck3.html'>Check ALL markets</option>" +
+                "<option value=''>Choose</option>" +
+                "<option value='imagecheck3.html'>CALL markets</option>" +
                 "<option value='imagecheck_EUR.html'>ONLY EUR</option>" +
                 "<option value='imagecheck_USD.html'>ONLY USD</option>" +
                 "<option value='imagecheck_CAD.html'>ONLY CAD</option>" +
