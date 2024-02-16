@@ -3,93 +3,71 @@
 
 <head>
     <link rel="stylesheet" href="vsimage.css">
-  
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
-        <script src="instructs.js"></script>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+    
 </head>
 
 <body>
     <div class="hideprint">
-<div id="contentContainer"><h1>INTL - All Markets </h1></div>
-<div id="secondcontentContainer"></div>
+        <div id="contentContainer">
+            <h1>INTL - All Markets </h1>
+        </div>
+        <div id="secondcontentContainer"></div>
 
-<script src="instructs.js"></script>
-<script>
-    var market="all";
-    document.addEventListener('DOMContentLoaded', function () {
-    setupContentAndDropdown('contentContainer', 'jumpContainer', instructs, jumps);
-    });
-</script>
-
-
-        <textarea id="inputId" rows="15" cols="130">
+        <textarea id="inputId" rows="10" cols="130">
 https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92a/050923-INTL-Sports-Bras-mob-FC1-Light.jpg
         </textarea>
         <br>
-        <button type="button" onclick="getInputValue(); writeBody();">Load The Images!</button>
-           </div>
+    </div>
 
-<div id="jumpContainer"></div>
-
+    <div id="jumpContainer"></div>
 
     <div id="thepage"></div>
     <div id="bottomDropdown"></div>
     <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
 
     <script>
+        var instructs = "For now... Please format the image urls to <b></b>use www </b> instead of translated \"frca\" etc. <br/> Separation by line, space, or comma is ok.<br/><br/><i>Sample Images</i>";
+        var codekey = "USD: Korean, Japanese, Spanish Universal<br>EUR: Polish, German, Italian, Spanish Castilian, French Continental<br>CAD: French Canadian<br/>MXN: Spanish Universal";
+        var jumps = "<select id='jumpDropdown'>" +
+            "<option value='' disabled selected>Select an option</option>" +
+            "<option value='imagecheck3.html' market='all'>ALL markets</option>" +
+            "<option value='imagecheck_EUR.html' market='eur'>ONLY EUR</option>" +
+            "<option value='imagecheck_USD.html' market='usd'>ONLY USD</option>" +
+            "<option value='imagecheck_CAD.html' market='cad'>ONLY CAD</option>" +
+            "<option value='imagecheck_MXN.html' market='mxn'>ONLY MXN</option>" +
+            "</select>";
+        var market = "";
+
+        function setupContentAndDropdown(contentId, jumpId, instructs, jumps) {
+            // Create a new div element for content
+            var contentContainer = document.getElementById(contentId);
+            if (market !== "eur" && market !== "usd" && market !== "cad" && market !== "mxn") {
+                contentContainer.innerHTML += instructs;
+            }
+
+            // Create a new div element for the dropdown
+            var jumpContainer = document.getElementById(jumpId);
+            jumpContainer.innerHTML += jumps;
+
+            // Add event listener to handle dropdown selection change
+            document.getElementById('jumpDropdown').addEventListener('change', function () {
+                // Get the selected value
+                var selectedOption = this.options[this.selectedIndex];
+                market = selectedOption.getAttribute("market");
+                getInputValue();
+                writeBody();
+            });
+        }
+
         var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
         var nicename;
         var currentLanguageIndex = 0; // Track the current language index
         var dropdown; // Declare dropdown as a global variable
         var droparray = []; // Declare droparray as a global variable
-        var cname = [
-            'frca.victoriassecret.com',
-            '146.20.232.177',
-            '146.20.232.178',
-            '146.20.232.176',
+        var cname = [];
 
-            'fr.victoriassecret.com',
-            '146.20.232.174',
-            '146.20.232.175',
-            '146.20.232.173',
-
-            'de.victoriassecret.com',
-            '146.20.232.180',
-            '146.20.232.181',
-            '146.20.232.179',
-
-            'es.victoriassecret.com',
-            '146.20.232.183',
-            '146.20.232.184',
-            '146.20.232.182',
-
-            'sp.victoriassecret.com',
-            '146.20.232.165',
-            '146.20.232.166',
-            '146.20.232.164',
-
-            'ko.victoriassecret.com',
-            '146.20.232.156',
-            '146.20.232.157',
-            '146.20.232.155',
-
-            'ja.victoriassecret.com',
-            '146.20.232.171',
-            '146.20.232.172',
-            '146.20.232.170',
-
-            'it.victoriassecret.com',
-            '146.20.232.168',
-            '146.20.232.169',
-            '146.20.232.167',
-
-            'pl.victoriassecret.com',
-            '146.20.232.159',
-            '146.20.232.160',
-            '146.20.232.158'
-        ];
-
-  
         function loadImage(url, containerId) {
             var img = new Image();
             img.src = url;
@@ -103,7 +81,6 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
             document.getElementById(containerId).appendChild(img);
         }
 
-
         function getInputValue() {
             dropdown = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>";
             droparray = [];
@@ -111,6 +88,8 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
 
             let input = document.getElementById("inputId").value;
             let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
+
+            cname = getCnameArray(market);
 
             for (var z = 0; z < cname.length; z = z + 4) {
                 transurl = cname[z];
@@ -151,11 +130,11 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
         }
 
         function lazyLoadImages() {
-    // Use lazysizes to handle lazy loading
-    lazySizes.init();
-}
+            // Use lazysizes to handle lazy loading
+            lazySizes.init();
+        }
 
-            function writeBody() {
+        function writeBody() {
             thepage.innerHTML = ""; // clear page
             thepage.innerHTML += allhtml;
 
@@ -181,6 +160,124 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
+        function getCnameArray(selectedMarket) {
+            var cnameArray = [];
+
+            if (selectedMarket === "usd") {
+                cnameArray = [
+                    'sp.victoriassecret.com',
+                    '146.20.232.165',
+                    '146.20.232.166',
+                    '146.20.232.164',
+
+                    'ko.victoriassecret.com',
+                    '146.20.232.156',
+                    '146.20.232.157',
+                    '146.20.232.155',
+
+                    'ja.victoriassecret.com',
+                    '146.20.232.171',
+                    '146.20.232.172',
+                    '146.20.232.170',
+                ];
+            } else if (selectedMarket === "cad") {
+                cnameArray = [
+                    'frca.victoriassecret.com',
+                    '146.20.232.177',
+                    '146.20.232.178',
+                    '146.20.232.176',
+                ];
+            } else if (selectedMarket === "eur") {
+                cnameArray = [
+                    'fr.victoriassecret.com',
+                    '146.20.232.174',
+                    '146.20.232.175',
+                    '146.20.232.173',
+
+                    'de.victoriassecret.com',
+                    '146.20.232.180',
+                    '146.20.232.181',
+                    '146.20.232.179',
+
+                    'es.victoriassecret.com',
+                    '146.20.232.183',
+                    '146.20.232.184',
+                    '146.20.232.182',
+
+                    'it.victoriassecret.com',
+                    '146.20.232.168',
+                    '146.20.232.169',
+                    '146.20.232.167',
+
+                    'pl.victoriassecret.com',
+                    '146.20.232.159',
+                    '146.20.232.160',
+                    '146.20.232.158'
+                ];
+            } else if (selectedMarket === "mxn") {
+                cnameArray = [
+                    'sp.victoriassecret.com',
+                    '146.20.232.165',
+                    '146.20.232.166',
+                    '146.20.232.164',
+                ];
+            } else if (selectedMarket === "all") {
+                cnameArray = [
+                    'frca.victoriassecret.com',
+                    '146.20.232.177',
+                    '146.20.232.178',
+                    '146.20.232.176',
+
+                    'fr.victoriassecret.com',
+                    '146.20.232.174',
+                    '146.20.232.175',
+                    '146.20.232.173',
+
+                    'de.victoriassecret.com',
+                    '146.20.232.180',
+                    '146.20.232.181',
+                    '146.20.232.179',
+
+                    'es.victoriassecret.com',
+                    '146.20.232.183',
+                    '146.20.232.184',
+                    '146.20.232.182',
+
+                    'sp.victoriassecret.com',
+                    '146.20.232.165',
+                    '146.20.232.166',
+                    '146.20.232.164',
+
+                    'ko.victoriassecret.com',
+                    '146.20.232.156',
+                    '146.20.232.157',
+                    '146.20.232.155',
+
+                    'ja.victoriassecret.com',
+                    '146.20.232.171',
+                    '146.20.232.172',
+                    '146.20.232.170',
+
+                    'it.victoriassecret.com',
+                    '146.20.232.168',
+                    '146.20.232.169',
+                    '146.20.232.167',
+
+                    'pl.victoriassecret.com',
+                    '146.20.232.159',
+                    '146.20.232.160',
+                    '146.20.232.158'
+                ];
+            }
+
+            return cnameArray;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setupContentAndDropdown('contentContainer', 'jumpContainer', instructs, jumps);
+        });
+
     </script>
 </body>
 
