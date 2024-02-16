@@ -1,4 +1,4 @@
-var instructs="Please format the image urls to <b></b>use www </b> instead of translated \"frca\" etc. <br/>This is partly to verifiy origin images are also valid.Like the translated servers.., all translated image urls below (and all Load balance variation) are then built from the origin URL<br/><br/><b>EXAMPLE FORMAT</b> - ( www not fr )  Separation by line, space, or comma is ok. Other characters not allowed at this time. <br/><br/><i>Sample Images</i><br/>Drop in your own list..., click Load images one time...  <br/>All Translated versions are automatically built across ALL languages. ... No need to re-load for each languages";
+var instructs="For now... Please format the image urls to <b></b>use www </b> instead of translated \"frca\" etc. <br/> Separation by line, space, or comma is ok.<br/><br/><i>Sample Images</i>";
 var codekey="USD: Korean, Japanese, Spanish Universal<br>EUR: Polish, German, Italian, Spanish Castilian, French Continental<br>CAD: French Canadian<br/>MXN: Spanish Universal";
 
 var jumps = "<select id='jumpDropdown'>" +
