@@ -13,7 +13,7 @@ var market="";
 function setupContentAndDropdown(contentId, jumpId, instructs, jumps) {
     // Create a new div element for content
     var contentContainer = document.getElementById(contentId);
-   if (market !== "eur" && market !== "usd" && market !== "can" && market !== "mxn") {
+   if (market !== "eur" && market !== "usd" && market !== "cad" && market !== "mxn") {
     contentContainer.innerHTML += instructs;
 }
 
