@@ -11,7 +11,7 @@
 <body>
     <div class="hideprint">
         <div id="contentContainer">
-            <h1>INTL - All Markets </h1>
+            <h1>Victoria Secret Image Check </h1>
         </div>
         <div id="secondcontentContainer"></div>
 
@@ -32,11 +32,11 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
         var codekey = "USD: Korean, Japanese, Spanish Universal<br>EUR: Polish, German, Italian, Spanish Castilian, French Continental<br>CAD: French Canadian<br/>MXN: Spanish Universal";
         var jumps = "<select id='jumpDropdown'>" +
             "<option value='' disabled selected>Select an option</option>" +
-            "<option value='imagecheck3.html' market='all'>ALL markets</option>" +
-            "<option value='imagecheck_EUR.html' market='eur'>ONLY EUR</option>" +
-            "<option value='imagecheck_USD.html' market='usd'>ONLY USD</option>" +
-            "<option value='imagecheck_CAD.html' market='cad'>ONLY CAD</option>" +
-            "<option value='imagecheck_MXN.html' market='mxn'>ONLY MXN</option>" +
+            "<option value='' market='all'>ALL markets</option>" +
+            "<option value='' market='eur'>ONLY EUR</option>" +
+            "<option value='' market='usd'>ONLY USD</option>" +
+            "<option value='' market='cad'>ONLY CAD</option>" +
+            "<option value='' market='mxn'>ONLY MXN</option>" +
             "</select>";
         var market = "";
 
@@ -45,7 +45,7 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
             var contentContainer = document.getElementById(contentId);
             if (market !== "eur" && market !== "usd" && market !== "cad" && market !== "mxn") {
                 contentContainer.innerHTML += instructs;
-            }
+            } 
 
             // Create a new div element for the dropdown
             var jumpContainer = document.getElementById(jumpId);
@@ -56,6 +56,7 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
                 // Get the selected value
                 var selectedOption = this.options[this.selectedIndex];
                 market = selectedOption.getAttribute("market");
+               console.log('market'+market);
                 getInputValue();
                 writeBody();
             });
@@ -91,40 +92,41 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
 
             cname = getCnameArray(market);
 
-            for (var z = 0; z < cname.length; z = z + 4) {
-                transurl = cname[z];
-                nicename = cname[z];
+        for (var z = 0; z < cname.length; z = z + 4) {
+    transurl = cname[z];
+    nicename = cname[z];
 
-                dropdown += "<option value='" + (z / 4) + "'>" + nicename + "</option>";
-                allhtml += "<div class='newlanguage' style='display: none;'><span id='" + nicename + "'></span>";
-                allhtml += "<h2><span class='title'>" + nicename + " <span class='firstentry'>" + transurl + "</span></span></h2><br clear='all'>";
+    dropdown += "<option value='" + (z / 4) + "'>" + nicename + "</option>";
+    allhtml += "<div class='newlanguage' style='display: none;'><span id='" + nicename + "'></span>";
+    allhtml += "<h2><span class='title'>" + nicename + " <span class='firstentry'>" + transurl + "</span></span></h2><br clear='all'>";
 
-                for (var i = 0; i < links.length; i++) {
-                    title = links[i];
-                    titleES = title.replace('www.victoriassecret.com', transurl);
-                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
-                    allhtml += "<div class='leftside'><br/> <img data-src='" + titleES + "' class='lazyload'><br><span class='origin'>" + titleBold + " </span></div>";
-                }
+    for (var i = 0; i < links.length; i++) {
+        title = links[i];
+        titleES = title.replace('www.victoriassecret.com', transurl);
+        titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
+        allhtml += "<div class='leftside'><br/> <img data-src='" + titleES + "' class='lazyload'><br><span class='origin'>" + titleBold + " </span></div>";
+    }
 
-                var subdom = transurl.match(/^(.+)\.victoriassecret\.com$/);
-                var subdom = (subdom && subdom.length > 1) ? subdom[1] : null;
-                for (var i = 1; i <= 3 && (z + i) < cname.length; i++) {
-                    ipIndex = z + i;
-                    ip = cname[ipIndex];
+    for (var i = 1; i <= 3 && (z + i) < cname.length; i++) {
+        var subdomMatch = transurl.match(/^(.+)\.victoriassecret\.com$/);
+        var subdom = (subdomMatch && subdomMatch.length > 1) ? subdomMatch[1] : null;
 
-                    allhtml += "<hr class='separator'><div class='newip'><span class='origin'> IP #" + i + "<br/> <span class=boldcolor>" + subdom + "</span>" + ip + "</span></div>";
+        ipIndex = z + i;
+        ip = cname[ipIndex];
 
-                    for (var j = 0; j < links.length; j++) {
-                        title = links[j];
-                        titleES = title.replace('www.victoriassecret.com', ip);
-                        titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
-                        allhtml += "<div class='leftside'><img data-src='" + titleES + "' class='lazyload'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
-                    }
-                }
+        allhtml += "<hr class='separator'><div class='newip'><span class='origin'> IP #" + i + "<br/> <span class=boldcolor>" + subdom + "</span>" + ip + "</span></div>";
 
-                allhtml += "<br style='break-after:page'></div>";
-                droparray.push(nicename);
-            }
+        for (var j = 0; j < links.length; j++) {
+            title = links[j];
+            titleES = title.replace('www.victoriassecret.com', ip);
+            titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
+            allhtml += "<div class='leftside'><img data-src='" + titleES + "' class='lazyload'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
+        }
+    }
+
+    allhtml += "<br style='break-after:page'></div>";
+    droparray.push(nicename);
+}
 
             dropdown += '</select>';
         }
@@ -134,37 +136,71 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
             lazySizes.init();
         }
 
-        function writeBody() {
-            thepage.innerHTML = ""; // clear page
-            thepage.innerHTML += allhtml;
+    function writeBody() {
+    thepage.innerHTML = ""; // clear page
+    thepage.innerHTML += allhtml;
 
-            insert = droparray[currentLanguageIndex];
-            document.getElementById(insert).innerHTML = dropdown;
-            document.getElementsByClassName('newlanguage')[currentLanguageIndex].style.display = 'block';
+    insert = droparray[currentLanguageIndex];
+    var targetElement = document.getElementById(insert);
 
-            // Populate the bottom dropdown
-            document.getElementById('bottomDropdown').innerHTML = dropdown;
+    // Check if the element exists before setting its content
+    if (targetElement) {
+        targetElement.innerHTML = dropdown;
+        document.getElementsByClassName('newlanguage')[currentLanguageIndex].style.display = 'block';
+    } else {
+        console.error("Element with ID '" + insert + "' not found.");
+    }
 
-            // Load images for the selected language
-            var selectedLanguage = droparray[currentLanguageIndex];
-            var images = document.querySelectorAll("#" + selectedLanguage + " img");
-            images.forEach(function (img) {
-                loadImage(img.src, "thepage");
-            });
-        }
+    // Populate the bottom dropdown
+    var bottomDropdownContent = "";
+    for (var i = 0; i < droparray.length; i++) {
+        bottomDropdownContent += "<option value='" + i + "'>" + droparray[i] + "</option>";
+    }
+    document.getElementById('bottomDropdown').innerHTML = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>" + bottomDropdownContent + "</select>";
 
-        function changeLanguage(index) {
-            currentLanguageIndex = index;
-            writeBody();
-            // Scroll to the top
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
+    // Load images for the selected language
+    var selectedLanguage = droparray[currentLanguageIndex];
+    var images = document.querySelectorAll("#" + selectedLanguage + " img");
+    images.forEach(function (img) {
+        loadImage(img.src, "thepage");
+    });
+
+    // Change the content of the h1 tag based on the market
+    var h1Tag = document.querySelector("#contentContainer h1");
+    if (market === "usd") {
+        h1Tag.textContent = "USD - Korean(KO), Japanese(JA), Spanish (SP)";
+    } else if (market === "cad") {
+        h1Tag.textContent = "CAD - Canadian(FRCA)";
+    } else if (market === "eur") {
+        h1Tag.textContent = "EUR - Polish (PL), German(DE), Italian(IT), Spanish(ES), French(FR)";
+    } else if (market === "mxn") {
+        h1Tag.textContent = "MXN - (SP) / Mexico";
+    } else if (market === "all") {
+        h1Tag.textContent = "INTL - All";
+    } else {
+        
+    }
+}
+
+function changeLanguage(index) {
+    if (index >= 0 && index < droparray.length) {
+        currentLanguageIndex = index;
+        // Set market based on the selected option
+        market = droparray[currentLanguageIndex];
+        writeBody();
+        // Scroll to the top
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    } else {
+        console.error("Invalid index: " + index);
+    }
+}
 
         function getCnameArray(selectedMarket) {
             var cnameArray = [];
 
             if (selectedMarket === "usd") {
+
                 cnameArray = [
                     'sp.victoriassecret.com',
                     '146.20.232.165',
@@ -213,16 +249,17 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
                     'pl.victoriassecret.com',
                     '146.20.232.159',
                     '146.20.232.160',
-                    '146.20.232.158'
+                    '146.20.232.158',
                 ];
             } else if (selectedMarket === "mxn") {
-                cnameArray = [
-                    'sp.victoriassecret.com',
-                    '146.20.232.165',
-                    '146.20.232.166',
-                    '146.20.232.164',
-                ];
-            } else if (selectedMarket === "all") {
+        cnameArray = [
+            'sp.victoriassecret.com',
+            '146.20.232.165',
+            '146.20.232.166',
+            '146.20.232.164',
+        ];
+    } else if (selectedMarket === "all") {
+           
                 cnameArray = [
                     'frca.victoriassecret.com',
                     '146.20.232.177',
@@ -267,11 +304,25 @@ https://www.victoriassecret.com/images/vsweb/33508d44-7c0e-485b-aa13-32b424b7c92
                     'pl.victoriassecret.com',
                     '146.20.232.159',
                     '146.20.232.160',
-                    '146.20.232.158'
+                    '146.20.232.158',
                 ];
             }
 
+            else  {
+           
+                cnameArray = [
+                  'frca.victoriassecret.com',
+                    '146.20.232.177',
+                    '146.20.232.178',
+                    '146.20.232.176',
+        
+                ];
+            }
+
+
+ console.log (selectedMarket + ' ' + cnameArray);
             return cnameArray;
+
         }
 
         document.addEventListener('DOMContentLoaded', function () {
