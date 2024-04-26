@@ -15,7 +15,7 @@ a{color:#ffff66;font-weight:bold;}
 div.newlanguage > h2:nth-child(2){color:#ffffff !important;font-size:40px;text-shadow:5px 5px 5px #444444;}
 div.newlanguage > h2:nth-child(2) .firstentry{display:none !important}
 
-.boldcolor{font-weight:bold;color:#ffff88;font-size:1.1em;}
+.boldcolor{font-weight:bold;color:#ffff88;font-size:1.1em;margin-right:10px;}
 
     .newlanguage>span {
         display: block;
