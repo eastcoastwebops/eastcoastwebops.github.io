@@ -1,0 +1,205 @@
+body{
+//  background-color: transparent;
+}
+
+.jf-form{
+  margin-top: 28px;
+}
+
+.jf-form > form{
+  margin-bottom: 32px;
+}
+
+.jf-option-box{
+  display: none;
+  margin-left: 8px;
+}
+
+.jf-hide{
+  display: none;
+}
+
+.jf-disabled {
+    background-color: #eeeeee;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 
+overwrite bootstrap default margin-left, because the <label> doesn't contain the <input> element.
+*/
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  position: absolute;
+  margin-top: 4px \9;
+  margin-left: 0px;
+}
+
+div.form-group{
+  padding: 8px 8px 4px 8px;
+}
+
+.mainDescription{
+  margin-bottom: 10px;
+}
+
+p.description{
+  margin:0px;
+}
+
+.responsive img{
+  width: 100%;
+}
+
+p.error, p.validation-error{
+  padding: 5px;
+}
+
+p.error{
+  margin-top: 10px;
+  color:#a94442;
+}
+
+p.server-error{
+  font-weight: bold;
+}
+
+div.thumbnail{
+  position: relative;
+  text-align: center;
+}
+
+div.thumbnail.selected p{
+  color: #ffffff;
+}
+
+div.thumbnail .glyphicon-ok-circle{
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.jf-copyright{color: #888888; display: inline-block; margin: 16px;display:none;}
+
+.form-group.required .control-label:after {
+    color: #dd0000;
+    content: "*";
+    margin-left: 6px;
+}
+
+.submit .btn.disabled, .submit .btn[disabled]{
+  background: transparent;
+  opacity: 0.75;
+}
+
+/* for image option with span text */
+.checkbox label > span, .radio label > span{
+  display: block;
+}
+
+.form-group.inline .control-label,
+.form-group.col-1 .control-label,
+.form-group.col-2 .control-label,
+.form-group.col-3 .control-label
+{
+  display: block;
+}
+
+.form-group.inline div.radio,
+.form-group.inline div.checkbox{
+  display: inline-block;
+}
+
+.form-group.col-1 div.radio,
+.form-group.col-1 div.checkbox{
+  display: block;
+}
+
+.form-group.col-2 div.radio,
+.form-group.col-2 div.checkbox{
+  display: inline-flex;
+  width: 48%;
+}
+
+.form-group.col-3 div.radio,
+.form-group.col-3 div.checkbox{
+  display: inline-flex;
+  width: 30%;
+}
+
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+/*  break */
+
+
+		
+	.steps {
+		padding: 0;
+		overflow: hidden;
+	}
+	
+	.steps li { 
+		list-style: none;
+	    float: left;
+	    margin: 10px;
+	    display: inline-block;
+	    border-bottom-width: 2px;
+	}
+
+	.steps li.current { 
+	    border-bottom-style: solid;
+	    border-bottom-color: #337ab7; 
+	}
+
+	.steps span.pn-num{
+		border-radius: 50%;
+		width: 26px;
+		height: 26px;
+		line-height: 26px;
+		text-align: center;
+		color: black;
+		font-weight: bold;
+		margin-right: 10px;
+		display: inline-block;
+	}
+
+	.steps li.current span.pn-num{
+		background-color: #337ab7;
+		color: white;
+	}
+
+	ul.actions{
+		padding-left:0px;
+	}
+	.actions li {
+		list-style: none;
+	    float: left;
+	    margin: 0;
+	    padding: 0 18px 8px 10px;
+		position: relative;
+	}
+
+	.actions .numberText > label,
+	.actions .previous > a.link{
+		line-height: 46px;
+	}
+
+	.form-group.error-msg{
+		clear: both;
+	}
+
+	section.page{
+		display: none;
+	}
+
+	section.page.current{
+		display:block;
+	}
+			

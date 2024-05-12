@@ -1,0 +1,136 @@
+html{}
+
+body{width:520px;
+margin-left:auto;
+margin-right:auto;
+font-family:arial;
+font-size:14px;
+background-color:#eeeeee;
+color:#555555;
+border:solid 0px;
+margin-top:20px;
+
+}
+
+.total{border:none;
+margin-left:10px;
+font-weight:bold;
+color:#ff9900;
+background-color:#ffffff;
+border-bottom:solid 1px;
+text-align:right;
+padding:0px;
+padding-right:5px;
+float:right;
+position:relative;top:-10px;}
+
+#taxform .realtotal{color:#990000;}
+
+.questionbox{border:solid 5px #2288dd;
+width:450px;
+padding:10px;
+margin:5px;
+background-color:#ffffff;
+-moz-border-radius:10px;
+-webkit-border-radius:10px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.question{
+font-weight:bold;
+font-size:15px;
+color:#336699;
+border-bottom:solid 1px #cccccc;
+font-family:trebuchet ms;}
+
+.subquestion{
+padding:0px;
+font-size:14px;
+padding:10px;
+padding-top:0px;
+margin-left:20px;
+border-left:solid 0px #dddddd;
+margin-bottom:10px;}
+
+
+
+input{font-size:18px;}
+
+.callus{color:#ff0000;
+font-weight:bold;
+font-size:12px;
+margin-bottom:10px;}
+
+.choices{font-weight:bold;}
+
+.qnumber{background-color:#999999;
+color:#ffffff;
+padding:4px;
+float:left;
+margin-right:10px;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border:solid 1px #000000;
+margin-bottom:0px;}
+
+.datedrop{font-size:18px;width:65px;
+background-color:#eeeeee;
+border:solid 1px #dddddd;
+color:#666666;
+padding:0px;
+margin-right:10px;}
+
+.navbox{border:solid 0px #000000;
+font-size:16px;
+font-weight:bold;
+text-align:center;
+padding:5px;
+margin-top:10px;}
+
+.navbox a{color:#ffffff;
+background-color:#3399dd;
+border:solid 2px #999999;
+padding:3px;
+padding-left:10px;
+padding-right:10px;
+text-decoration:none;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;}
+
+.navbox a:hover{background-color:#ff9900;
+color:#ffffdd;}
+
+.progressbar{border:solid 1px #dddddd;text-align:right;
+font-size:10px;font-weight:bold;height:15px;}
+
+.percent{background-color:#009900;height:15px;
+float:left;}
+
+#status{font-weight:bold;
+margin-left:25px;color:#4499ff;
+font-size:20px;}
+
+.item{width:145px;float:left;
+font-weight:bold;border-bottom:solid 1px #dddddd;}
+.answers{clear:right;}
+
+.textbox{width:330px;height:150px;
+border:solid 2px #dddddd;background-color:#eeeeee;}
+
+#showsummary{height:200px;
+border:dotted 1px;margin-top:20px;
+padding:20px;}
+
+#taxform a.go{background-color:#006600;color:#ffff00;}
+#taxform a.go:hover{background-color:#ff6600;color:#ffff00;}
+#taxform a.review{background-color:#990000;}
+
+#styleswitch{margin-left:80px;
+border:solid 0px;}
+
+#styleswitch {color:#000000;font-size:12px;
+margin-left:40px;}
+.desktopcss{display:none;}
+
+#zip {width:50px;}

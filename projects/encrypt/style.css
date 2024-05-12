@@ -1,0 +1,62 @@
+#header-logo {
+	position: absolute;
+	width: 152px;
+	height: 100px;
+	left: 0;
+	top: 23px;
+	margin-left: 15px;
+	background: url("img/jsencryption-header-logo.png") 0px 0px no-repeat;
+/*	width: 400px;
+	font-size: 24px;
+	line-height: 28px;
+*/
+}
+
+#submenu {
+	margin-left: 175px;
+}
+
+#content {
+	padding-top: 20px;
+}
+
+#passwordText, #plainText, #cipherText, #codeText {
+	font-family: monospace;
+	color: black;
+	font-size: 14px;
+	width: 100%;
+}
+
+#encryptedTest {
+	margin: 0 auto;
+	width: 100%;
+	padding: 15px;
+}
+
+/*
+textarea.plain, textarea.cipher {
+	height: 180px;
+}
+*/
+
+#passwordText {
+	background-color: #ffffe1;
+	margin-bottom: 0.5em;
+	padding: 3px;
+}
+
+#plainText {
+	background-color: #e1ffe1;
+}
+
+#cipherText {
+	background-color: #ffe1e1;
+}
+
+#codeText {
+	background-color: #e1e1ff;
+}
+
+#encryptedTest {
+	border: 1px solid gray;
+}

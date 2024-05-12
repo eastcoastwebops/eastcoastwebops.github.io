@@ -1,0 +1,1 @@
+var Translate=Class.create();Translate.prototype={initialize:function(a){this.data=$H(a)},translate:function(){var b=arguments[0];return this.data.get(b)?this.data.get(b):b},add:function(){arguments.length>1?this.data.set(arguments[0],arguments[1]):"object"==typeof arguments[0]&&$H(arguments[0]).each(function(a){this.data.set(a.key,a.value)}.bind(this))}};

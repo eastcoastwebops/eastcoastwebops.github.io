@@ -1,0 +1,116 @@
+ #tvarticles {
+        font-family: arial !important;
+    }
+    
+    .cms-page-view .std li {
+        color: #1861BD;
+    }
+    
+    .article_list ol.topics {
+        list-style-type: numbers;
+        margin: 0px;
+        font-size: 1.3vw;
+        line-height: 1.5vw;
+        columns: 200px;
+        column-gap: 10px;
+        padding: 0vw 1vw 0vw 1vw;
+        font-weight: bold;
+        color: #1861BD;
+        font-style: normal !important;
+    }
+    
+    .article_list ol.topics li {
+        font-style: normal !important;
+        font-family: arial !important;
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+    .article_list ol.topics li a {
+        font-weight: normal;
+        color: #000000;
+        text-decoration: none;
+    }
+    
+    .article_list ol.topics li a:hover {
+        background: #ffff00 !important;
+        color: #000000;
+    }
+    
+    .thedrop {
+        margin: auto;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        border: solid 1px;
+        overflow: hidden;
+        background: #1861BD;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+    
+    .article_search {
+        margin: auto;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .article_search input {
+        font-size: 16px;
+        background: #ff9900;
+        color: #ffffff;
+        padding: 10px 5px 10px 5px;
+        text-align: center !important;
+        height: auto;
+        border: solid 2px #000000;
+        border-radius: 10px;
+    }
+    
+    .thedrop {}
+    
+    .thedrop select {
+        padding: 5px;
+        width: 100%;
+        background: #aaaaaa;
+        color: #ffffff;
+    }
+    
+    .thedrop option {
+        padding: 2px;
+        width: 100%;
+        background: #999999;
+        color: #ffffff;
+    }
+    
+    #searchfor {
+        width: 100%;
+    }
+    
+    h3.topic {
+        font-size: 15px;
+        color: #336699;
+        text-decoration: underline;
+        padding: 0px;
+        margin: 0px;
+        margin-left: 6px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    
+    h3.topic:first-child {
+        margin-top: 0px;
+    }
+    
+    .article_control {
+        margin-bottom: 10px;
+    }
+    
+    .thedrop {
+        display: none;
+        max-width: 320px;
+    }
+    
+    .article_search {
+        max-width: 320px;
+    }
+    

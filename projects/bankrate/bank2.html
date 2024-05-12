@@ -1,0 +1,328 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<title>Bank Rate</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bank.css">
+	<style type="text/css">
+	#text2{background:#f9f9f9;border:none;font-weight:bold;color:#5385ba;margin-left:3px;}
+	</style>
+</head>
+<body>
+<div id="note">
+    <p>
+        E.Holbrook Note: This is a more "correct" version in that the user cannot directly change the 2nd field (how much did you charge this month), but instead can indirectly change this by adding various spending categories. Thus, cat1 + cat 2. etc adds up to "monthly charge".
+    </p>
+    <p>
+        Then, ...In the bottom section, the monthly balance then is a combination of (monthly charges (which is all the spending fields combined) + balance from last month - amount paid off)
+    </p>
+    <p>
+        This version also fixes and pads any decimal issues, especially in the percentage fields
+    </p>
+</div>
+<div id="main">
+    <div id="tablewrap">
+        <table>
+            <tr>
+                <td class="title" colspan="2">
+                    Are you paying for your cash back rewards?
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle" colspan="2">
+                    Fill out the form below to find out now
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    What was your balance left over from last month?:
+                </td>
+                <td class="right">
+                    $<input id="text1" type="text" value="500">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    How much did you charge this month?:
+                </td>
+                <td class="right">
+                    $<input id="text2" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    Choose a spending category 1 : <select>
+                        <option value="option1">
+                            Spending Category 1
+                        </option>
+                        <option value="option2">
+                            Spending Category 2
+                        </option>
+                        <option value="option3">
+                            Spending Category 3
+                        </option>
+                    </select>
+                </td>
+                <td class="right">
+                    $<input id="textbox1" name="textbox1" type="text" value="2000">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    What was your % Cash Back?
+                </td>
+                <td class="right">
+                    %<input id="percent1" name="textbox1" type="text" value="1">
+                </td>
+            </tr>
+        </table>
+        <table id='categories'>
+            <!--dynamic entires go here -->
+        </table>
+        <table>
+            <tr>
+                <td class="left"></td>
+                <td class="right button">
+                    <div class="hidebutton" id='removeButton'>
+                        Remove Category
+                    </div>
+                    <div id='addButton'>
+                        Add Category
+                    </div><br>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="left">
+                    What did you spend on everything else?
+                </td>
+                <td class="right">
+                    $<input id="text3" type="text" value="1000">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    What was your Cash Back?
+                </td>
+                <td class="right">
+                    %<input id="text3a" type="text" value="0.5">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    How much did you pay off?
+                </td>
+                <td class="right">
+                    $<input id="text4" type="text" value="500">
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    Interest rate on credit card
+                </td>
+                <td class="right">
+                    %<input id="text5" type="text" value="18">
+                </td>
+            </tr>
+        </table>
+        <div class="otherbutton">
+            Calculate
+        </div>
+        <p class="res">
+            RESULTS
+        </p>
+        <table id="results">
+            <tr class="rowa">
+                <td class="left">
+                    Monthly Balance <span class="mb"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    How Much will you pay in interest?<span class="pi"></span>
+                </td>
+            </tr>
+            <tr class="rowa">
+                <td class="left">
+                    Cash Back earned this month <span class="cbe"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">
+                    How much $ did you gain/lose <span class="gl"></span>
+                </td>
+            </tr>
+            <tr class="rowa">
+                <td class="left">
+                    Did you pay for your rewards?<span class="didpay"><br>
+                    <br></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div><!-- end main -->
+</body>
+</html>
+
+<script>
+function domath() {
+    /* get all values */
+    var num1 = parseInt($('#text1').val());
+  //  var num2 = parseInt($('#text2').val());
+    var num4 = parseInt($('#text4').val());
+	
+   
+    var cbe = "0", pi = "0",tb1=0, tb2=0, tb3=0, tb4=0,add1 = 0,
+        add2 = 0,
+        add3 = 0,
+        add4 = 0;
+    // def better way to do this would be in function that adds box but having a brainfreeze at the moment... so	
+    //we'll limit to 3 calcs for now because only max 3 items shown on mockup
+    if ($('#textbox1').length) {
+        var tb1 = parseInt($('#textbox1').val());
+        var pc1 = parseFloat($('#percent1').val()).toFixed(2);
+        add1 = (tb1 * (pc1 / 100));
+		
+		$('#percent1').val(pc1);
+		
+    }
+    if ($('#textbox2').length) {
+        var tb2 = parseInt($('#textbox2').val());
+        var pc2 = parseFloat($('#percent2').val()).toFixed(2);
+        add2 = (tb2 * (pc2 / 100));
+		$('#percent2').val(pc2);
+    }
+    if ($('#textbox3').length) {
+        var tb3 = parseInt($('#textbox3').val());
+        var pc3 = parseFloat($('#percent3').val()).toFixed(2);
+        add3 = (tb3 * (pc3 / 100));
+		$('#percent3').val(pc3);
+    }
+    // this is everything else entry.... 
+    // not to be confused with dynamic entries above
+    if ($('#text3').length) {
+        var tb4 = parseInt($('#text3').val());
+        var pc4 = parseFloat($('#text3a').val()).toFixed(2);
+        add4 = (tb4 * (pc4 / 100));
+		$('#text3a').val(pc4);
+    }
+    // add up the items
+   
+	var num2 = tb1 + tb2 + tb3 + tb4;
+	var mb = (num1 + num2 - num4).toFixed(2);
+	
+	//alert (num2);
+    cbe = (add1 + add2 + add3 + add4).toFixed(2);
+    pi = (parseFloat($('#text5').val()));
+    pi = (((pi / 100) / 12) * mb).toFixed(2);
+    // last but not least The ANSWER!
+    var gl = ( (pi - cbe) * -1).toFixed(2);
+    if (gl >= 0) {
+        didpay = "No";
+    } else {
+        didpay = "Yes";
+    }
+    /* write out calcs */
+	
+
+    $('#text2').val(num2).effect("highlight", {
+                color: "#00ff00"
+            }, 500);	
+	
+    $('.mb').text(mb).effect("highlight", {
+                color: "#00ff00"
+            }, 500);
+			
+    $('.cbe').text(cbe).delay(200).effect("highlight", {
+                color: "#00ff00"
+            }, 500);
+    $('.pi').text(pi).delay(400).effect("highlight", {
+                color: "#00ff00"
+            }, 500);
+    $('.gl').text(gl).delay(600).effect("highlight", {
+                color: "#00ff00"
+            }, 500);
+    $('.didpay').text(didpay).delay(800).effect("highlight", {
+                color: "#ff0000"
+            }, 500);
+    /* end add */
+}
+$(document).ready(function() {
+    domath(); // run on initial load
+    $('#main').on('blur click', function() {
+        domath();
+    });
+	
+	$('#main').keydown(function(e) {
+    var code = e.keyCode || e.which;
+	
+    if (code === 9) {  
+      //  e.preventDefault();
+        domath();
+    }
+});
+
+/* add  button (amazing how complicated I made it! */
+    var copyval = 1; // for buttons/cat
+    var percentval = 1; // for buttons/cat
+    var counter = 2; // for buttons/cat
+    $("#addButton").on('click', function() {
+        if (counter > 3) {
+            alert("Only 3 categories allowed for this exercise");
+            return false;
+        }
+        if (counter > 1) {
+            $('#removeButton').show();
+        }
+        var newcatDiv = $(document.createElement('table')).attr(
+            "id", 'catDiv' + counter).attr('class', 'entry');
+        if (counter == 2) {
+            copyval = 0;
+        } // start with $00 to make life easier
+        else {
+            copyval = parseInt($('#textbox' + (counter - 1)).val());
+        }
+        newcatDiv.after().html('<tr><td class=\"left\">' +
+            ' Choose a spending category ' + counter +
+            ' : ' + '<select>' +
+            '<option value=\"option1\">Spending Category 1</option>' +
+            '<option value=\"option2\">Spending Category 2</option>' +
+            '<option value=\"option3\">Spending Category 3</option>' +
+            '</select></td>' +
+            '<td class=\"right\">$<input type="text" name="textbox' +
+            counter + '"  id="textbox' + counter +
+            '" value=' + copyval + ' ></td></tr>' +
+            '<tr><td class=\"left\">What was your % Cash Back?</td><td class=\"right\">%<input type="text" name="textbox' +
+            counter + '"  id="percent' + counter +
+            '" value=' + percentval + ' ></td></tr>');
+        newcatDiv.appendTo("#categories");
+        counter++;
+		domath();
+    });
+    // remove button/cat	 
+    $("#removeButton").click(function() {
+	
+        if (counter == 2) {
+            alert("No more textbox to remove");
+            return false;
+        }
+        if (counter <= 3) {
+            $('#removeButton').hide();
+        }
+        counter--;
+        $("#catDiv" + counter).remove();
+		domath();
+	
+    });
+	
+	$(".otherbutton").on('click', function() {
+	domath();
+	});
+    //  end remove	  
+});
+	       
+</script>

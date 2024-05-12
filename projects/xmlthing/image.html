@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+$(document).ready(function()
+{
+html = "";
+
+
+
+//$("#content").append("<dl>");
+	$.get("images.xml",{},function(xml) {
+	
+	
+	
+	var color;
+	var randomColor ;
+	var img;
+	x=0;
+
+// name of main list and then main "thing" (CD) to pick from //	
+	$('allimages',xml).find('image').each(function() {
+			x++;
+		//	img=(this).nodeName;
+		//	alert(img);
+			
+		randomColor = Math.floor(Math.random()*16777215).toString(16); // not used
+		color = "hsl(" + Math.random() * 360 + ", 80%, 80%)";
+		
+		html += "<div class=\"item\" style=\"background-color:"+color+"\">";
+//alert(randomColor);		
+		$(this).children().each(function() {
+		name = (this).nodeName;
+		//name = (this).parent().nodeValue;
+		data = (this).childNodes[0].nodeValue;
+		//data1 = (this).childNodes[1].nodeValue;
+		html +="<a href=\"images/full/"+data+"\" target=\"_image\"><img src=\"images/thumb/"+data+"\"></a>";
+			});
+		
+
+		html +=	"</div>";
+
+			});
+		
+			
+					
+html += ""; 
+		$("#content").append(html);
+		
+		$("#count").append('Total of '+x+' items');
+
+// randomize		
+		$(function () {
+    var parent = $("#content");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    }
+});
+// randomize
+		
+		
+	});
+
+ 
+
+
+
+ 
+});
+
+
+
+
+</script>
+
+
+
+<body>
+<div id="count"></div><br/>
+<div id="content"></div>
+</body>
+
+
+<style type="text/css">
+body{width:100%;margin:auto;padding:20px;margin:0px;}
+#content{margin:auto;}
+
+.item{border:solid 1px #dddddd;
+border-radius:10px;
+box-shadow:0px 2px 6px #dddddd;
+padding:10px;
+margin:5px;
+margin-bottom:10pxx;float:left;
+font-size:14px;}
+
+
+</style>

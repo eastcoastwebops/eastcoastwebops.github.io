@@ -1,0 +1,107 @@
+/* ------------------ HERE --------------- */
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		color: #fff;
+		margin:0;
+		padding:0;
+		width:85%; 
+		margin:auto;
+
+	}
+	p{width:80%;margin:auto;}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section1,
+	#section2,
+	#section3,
+	#section4, .slide{
+	background-size: cover;
+	background-color:#339900;
+	padding:0px;
+	}
+
+	/* Defining each section background and styles
+	* --------------------------------------- */
+	#section1{
+	//	background-image: url('https://db.tt/SyzKF03i');
+	}
+
+     #section2 h1{color:#ffff99;text-shadow:0px 3px 5px #000000;}
+#section2 p{color:#ffffff;text-shadow:0px 0px 4px #000000;
+background-color: rgba(0, 0, 0, 0.4);
+border-radius:60px;
+padding:1%;}
+	
+	
+	#section3 p{
+	color:#ffffff;
+font-size:40px;font-weight:bold;
+	}
+	#section3 h1{
+		color: #ffff00;
+        text-shadow:0px 15px 12px #000000;
+	}
+	
+	#section4 {
+	background-color:#ff9900;
+	}
+
+
+
+
+ 	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url('https://db.tt/FdW0FVZl');
+		
+		padding: 0% 0 0 0;
+	}
+	#slide2{
+		background-image: url('https://db.tt/N7AhQd5l');
+		padding: 0%;
+
+	}
+	
+	#slide3{
+		background-image: url('https://db.tt/MkMEyY1D');
+		padding: 0%;
+
+	}
+	#slide5{
+		background-image: url('https://db.tt/liCK6qSJ');
+		background-color:#339900;
+		}
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	
+	.fp-slidesNav ul li a span{
+		background-color: #fff !important;
+
+	}
+	
+		/* Overwriting styles for the navigation dots (to place it where we want)
+	* --------------------------------------- */
+	.fp-slidesNav.bottom{
+			bottom: 25px;
+	}
+
+	
+
+
+
