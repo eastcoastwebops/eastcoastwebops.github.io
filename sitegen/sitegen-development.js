@@ -30,7 +30,7 @@ menu+="<Tools>Quick Tools & Gadgets|tools,How To Host On GitHub|github,Reverse C
 menu+="<Training>";
 menu+="Divs & IDs|/lessons/javascript/divs.html,"
 menu+="Part One|/lessons/javascript/one.html"
-menu+="<Training>";
+menu+="<test menu>";
 menu+="Divs & IDs|/lessons/javascript/divs.html,"
 menu+="Part One|/lessons/javascript/one.html<"
 
@@ -57,7 +57,7 @@ if (whichimages == null) {
 	whichimages = "demo_gallery";
 }
 if (theme === null) {
-	theme = "light";
+	theme = "dark";
 }
 if (article === null) {
 	article = "0";
