@@ -20,7 +20,7 @@ var username=[
     'Jack','Snow']
 
 //simple loop using i as a counter and check if less thant length, except now increment by 2 since each loop grabs first name and lastname from above
-for (var i = 0; i < username.length; i=I+2) {
+for (var i = 0; i < username.length; i=i+2) {
 
 			firstname = username[i];lastname=username[i+1];
             fullname = firstname +" " + lastname;
@@ -36,6 +36,9 @@ document.getElementById('displayfullname').innerHTML += displayname;
 </script>
 
 
-
-
 </html>
+
+<a href="#" id="showHTML">Show This Lesson's Source</a>
+<div id="myModal" class="modal"></div>
+<script src="show_html_source.js" data-remove></script>
+<link rel="stylesheet" type="text/css" href="modal.css">

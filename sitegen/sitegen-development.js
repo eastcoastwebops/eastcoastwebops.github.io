@@ -27,12 +27,8 @@ menu="Home>Site Gen|sitegen,About Me|about,Contact|contactus";
 menu+="<Blog|blog>Articles|blog,Twitter Grid|twitter";
 menu+="<Portfolio Of Work|portfolio>Work History|career,Code|portfolio,Graphic Design|graphics,Code Snippets,Contact|contactus"
 menu+="<Tools>Quick Tools & Gadgets|tools,How To Host On GitHub|github,Reverse Calc|/projects/reversecalc.html,Encrypt|/projects/encrypt/index.html,Styling Page|sample_page,Dark Theme|sample_page&t=dark,Light Theme|sample_page&t=light";
-menu+="<Training>";
-menu+="Divs & IDs|/lessons/javascript/divs.html,"
-menu+="Part One|/lessons/javascript/one.html"
-menu+="<test menu>";
-menu+="Divs & IDs|/lessons/javascript/divs.html,"
-menu+="Part One|/lessons/javascript/one.html<"
+menu+="<Learn>|";
+
 
 
 imagloc = '';
