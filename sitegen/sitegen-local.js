@@ -18,13 +18,21 @@ if (location.hostname == "eastcoastwebops.github.io") {
 }
 */
 
-data="Home>Site Gen|sitegen,About Me|about,Contact|contactus";
-data+="<Blog|blog>Articles|blog,Twitter Grid|twitter";
-data+="<Portfolio Of Work|portfolio>Work History|career,Code|portfolio,Graphic Design|graphics,Code Snippets,Contact|contactus"
-data+="<Tools>Quick Tools & Gadgets|tools,How To Host On GitHub|github,Reverse Calc|/projects/reversecalc.html,Encrypt|/projects/encrypt/index.html,Styling Page|sample_page,Dark Theme|sample_page&t=dark,Light Theme|sample_page&t=light";
-data+="<Training>";
-data+="Divs & IDs|/lessons/javascript/divs.html,"
-data+="Part One|/lessons/javascript/one.html"
+// > creates childs after parent
+// < creates start of NEW top level
+// | comma, separates items in same list and | can be used to give Visible|url (page)
+// final item in Menu must end in < to create correct balance
+
+menu="Home>Site Gen|sitegen,About Me|about,Contact|contactus";
+menu+="<Blog|blog>Articles|blog,Twitter Grid|twitter";
+menu+="<Portfolio Of Work|portfolio>Work History|career,Code|portfolio,Graphic Design|graphics,Code Snippets,Contact|contactus"
+menu+="<Tools>Quick Tools & Gadgets|tools,How To Host On GitHub|github,Reverse Calc|/projects/reversecalc.html,Encrypt|/projects/encrypt/index.html,Styling Page|sample_page,Dark Theme|sample_page&t=dark,Light Theme|sample_page&t=light";
+menu+="<Training>";
+menu+="Divs & IDs|/lessons/javascript/divs.html,"
+menu+="Part One|/lessons/javascript/one.html"
+menu+="<Training>";
+menu+="Divs & IDs|/lessons/javascript/divs.html,"
+menu+="Part One|/lessons/javascript/one.html<"
 
 
 imagloc = '';
@@ -58,15 +66,15 @@ loc = window.location.pathname;
 
 dir = loc.substring(0, loc.lastIndexOf('/')) + "/";
 console.log(dir);
-//var data = "";
-// data = $.ajax({
+//var menu = "";
+// menu = $.ajax({
 // 	url: dir + "sitegen/content/menu.txt",
 // 	async: false,
 // 	contentType: "html",
-// 	dataType: 'html'
+// 	menuType: 'html'
 // }).responseText;
-data = data.replace(/\r?\n|\r/g, ''); // but then strip out all line breaks
-title = data.split(">").join(">,").split("<").join("<,").split(",");
+menu = menu.replace(/\r?\n|\r/g, ''); // but then strip out all line breaks
+title = menu.split(">").join(">,").split("<").join("<,").split(",");
 //console.log (title);
 fullsitetitle = '<a href="index.html?page=home"><div class="sitetitletext">' + sitetitle + '<div class="subtitletext">' + subtitle + '</div></div></a><div class="logo"></div>'; //may have to tweak #siteTitle css entry
 menusize = title.length; // find out how many titles
