@@ -1,0 +1,39 @@
+<html>
+
+<body>
+
+
+	<div id="ShowName">Full Name<br></div>
+	<hr>
+	<div id="DisplayFullName">display <br></div>
+
+</body>
+
+<script>
+
+//create array
+var firstname=['Lauren','Eric','John','Mary','Jack']
+var lastname=['McKinley','holbrook','Frost','Baxter','Snow']
+
+
+//simple loop using i as a counter and check if less thant length
+for (var i = 0; i < firstname.length; i=i+1) {
+            fullname = firstname[i]+ " " + lastname[i];
+            displayname = "First Name: " + firstname[i] + " - Last Name: " + lastname[i] + "<br/>";
+           
+
+
+//document.write (fullname)
+document.getElementById('ShowName').innerHTML += fullname + "<br>";
+document.getElementById('DisplayFullName').innerHTML += displayname;
+}
+
+</script>
+
+</body>
+</html>
+
+<a href="#" id="showHTML">Show This Lesson's Source</a>
+<div id="myModal" class="modal"></div>
+<script src="show_html_source.js" data-remove></script>
+<link rel="stylesheet" type="text/css" href="modal.css">
