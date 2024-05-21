@@ -1,0 +1,34 @@
+Quiz - building a small webpage
+
+Step 1
+
+Create a new file in just inside your laura...github.io folder
+Call it index.html
+
+This will be your temporary "home" page and because it's called "index" you will be able to visit your main github url and this page will load automatically (once it's upload)
+
+
+
+
+
+Step 2
+Create basic page structure 
+
+<html> <head> <body> tags, all opened (and closed) correctly how they should appear in page
+
+
+Step 3 
+inside the appropriate element from above, create several top level (meaning important) DIV's ***with unique ID's*** that represent
+
+
+Navigation Bar, the idea to hold your menu
+Content Area - where all the basic page content will sit
+Footer - bottom level navigation or other information area
+
+Note: keep everything created lowercase to simplify  id="simpleid" vs id="SimpleID"
+
+
+
+
+Extra Credit (?LOL)
+Inside your navigation, create an unordered list, with 4 list elements
