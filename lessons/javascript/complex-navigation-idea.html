@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div id="header">header</div>
+    <ul id="topnav">
+
+        <li id="dropdown-one">Home
+            <ul></ul>
+        </li>
+        
+        <li id="dropdown-two">Menu Two
+            <ul></ul>
+        </li>
+    </ul>
+
+    <script>
+        function createLinkMenu(menuList, elementId) {
+            var buildLink = "";
+
+            for (var i = 0; i < menuList.length; i++) {
+                var link = menuList[i];
+                var menuText = link.replace(/-/g, " ");
+                buildLink += "<li><a href='" + link + ".html'>" + menuText + "</a></li>";
+            }
+
+            document.querySelector('#' + elementId + ' ul').innerHTML = buildLink;
+        }
+
+        var homeMenulist = [
+            'lesson-one',
+            'lesson-two',
+            'lesson-three',
+            'lesson-four',
+            'new-lesson-five',
+            'menu-item-five',
+            'menu-item-six',
+            'menu-item-seven',
+            'navigation-idea'
+        ];
+
+        var secondMenulist = [
+            'lesson-one',
+            'lesson-two',
+            'lesson-three',
+            'lesson-four',
+            'new-lesson-five',
+            'menu-item-five',
+            'menu-item-six',
+            'menu-item-seven',
+            'navigation-idea'
+        ];
+
+        createLinkMenu(homeMenulist, 'dropdown-one');
+        createLinkMenu(secondMenulist, 'dropdown-two');
+    </script>
+</body>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: none;
+        }
+
+        #topnav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #topnav > li {
+            position: relative;
+            padding: 8px 16px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            list-style-type: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #topnav > li:hover {
+            background-color: #ddd;
+        }
+
+        #topnav ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #topnav > li:hover > ul {
+            display: block;
+        }
+
+        #topnav ul li {
+            width: 200px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #topnav ul li a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: black;
+        }
+
+        #topnav ul li a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</html>
