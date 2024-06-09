@@ -4,31 +4,19 @@
 </head>
 <body>
     <div id="header">header</div>
-    <ul id="topnav">
-
-        <li id="dropdown-one">Home
+    <div id="topnav">
+        <div id="dropdown-one">Home
             <ul></ul>
-        </li>
-        
-        <li id="dropdown-two">Menu Two
+        </div>
+        <div id="dropdown-two">Menu Two
             <ul></ul>
-        </li>
-    </ul>
+        </div>
+    </div>
 
-    <script>
-        function createLinkMenu(menuList, elementId) {
-            var buildLink = "";
 
-            for (var i = 0; i < menuList.length; i++) {
-                var link = menuList[i];
-                var menuText = link.replace(/-/g, " ");
-                buildLink += "<li><a href='" + link + ".html'>" + menuText + "</a></li>";
-            }
 
-            document.querySelector('#' + elementId + ' ul').innerHTML = buildLink;
-        }
-
-        var homeMenulist = [
+ <script>
+var homeMenulist = [
             'lesson-one',
             'lesson-two',
             'lesson-three',
@@ -52,10 +40,27 @@
             'navigation-idea'
         ];
 
+
+        
+        function createLinkMenu(menuList, elementId) {
+            var buildLink = "";
+
+            for (var i = 0; i < menuList.length; i++) {
+                var link = menuList[i];
+                var menuText = link.replace(/-/g, " ");
+                
+                buildLink += "<li><a href='/link_from_here/to_file_folder" + link + ".html'>" + menuText + "</a></li>";
+            }
+
+            document.querySelector('#' + elementId + ' ul').innerHTML = buildLink;
+        }
+
+        
+
         createLinkMenu(homeMenulist, 'dropdown-one');
         createLinkMenu(secondMenulist, 'dropdown-two');
     </script>
-</body>
+
     <style>
         html, body {
             margin: 0;
@@ -64,29 +69,25 @@
         }
 
         #topnav {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             background-color: #ffffff;
             border: 1px solid #ccc;
             border-radius: 8px;
-           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #topnav > li {
+        #topnav > div {
             position: relative;
             padding: 8px 16px;
             background-color: #f2f2f2;
             border: 1px solid #ccc;
             margin-right: 10px;
-            list-style-type: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
-        #topnav > li:hover {
+        #topnav > div:hover {
             background-color: #ddd;
         }
 
@@ -103,7 +104,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #topnav > li:hover > ul {
+        #topnav > div:hover > ul {
             display: block;
         }
 
@@ -123,4 +124,5 @@
             background-color: #ddd;
         }
     </style>
+</body>
 </html>

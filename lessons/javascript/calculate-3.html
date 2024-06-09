@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    html {background-color:#000000;}
+    body {
+        width: 900px;
+        margin: auto;
+        border: solid 1px;
+        border-radius:20px;
+        font-size: 30px;
+        background-color:#ffffff;
+        margin-top:15%;
+    }
+
+    div {
+        border: solid 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        padding: 10px;
+    }
+
+    input {
+        width: 70px;
+        font-size: 30px;
+        text-align: center;
+        border:solid 1px #999999;
+        border-radius: 10px;
+        text-align:center;
+    }
+    .red {color:#ff0000;}
+</style>
+</head>
+
+<body>
+    <div>Amount 1: <input type="number" id="amount1" value="0"></div><br/>
+    <div>Amount 2: <input type="number" id="amount2" value="0"></div><br/>
+    <div>Amount 3: <input type="number" id="amount3" value="0"></div><br/>
+
+    <div class="red">Sum: <span id="sum">0</span></div>
+
+    <script>
+        // create and Get each number user enters... from each "id=   " abouve 
+        var user_number1 = document.getElementById('amount1');
+        var user_number2 = document.getElementById('amount2');
+        var user_number3 = document.getElementById('amount3');
+
+        // Get the element to display the sum
+        var sumElement = document.getElementById('sum');
+
+        // Function to calculate the sum of the inputs
+        function calculateSum() {
+
+            var value1 = parseFloat(user_number1.value) || 0;   // get what user types in store it as value1 or value2 or value 3, 
+                                                                //and convert to a real "number" (parseFloat) vs just a word.. 
+                                                                //and if not valid, make it 0 --> || 0
+
+            var value2 = parseFloat(user_number2.value) || 0;
+            var value3 = parseFloat(user_number3.value) || 0;
+            // now just add up each a
+            var sum = value1 + value2 + value3;
+
+            //When the code sumElement.textContent = sum; is executed, it:
+            //Takes the value of sum and dispays if according to way above where we created
+            //var sumElement = document.getElementById('sum');
+
+            sumElement.textContent = sum;
+            //so basically, take final sum.. and rewrite back whatever the id="sum" html is way above
+        }
+
+        // for realtime updates we need to 
+        //Add event listeners to the input elements to listen for changes and re-run function:
+        //calculateSum anytime ANY of the inputs are changed.
+
+        user_number1.addEventListener('input', calculateSum);
+        user_number2.addEventListener('input', calculateSum);
+        user_number3.addEventListener('input', calculateSum);
+
+        // Initial calculation to set the sum on page load
+        calculateSum();
+    </script>
+</body>
+</html>

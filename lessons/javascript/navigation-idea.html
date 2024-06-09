@@ -1,44 +1,99 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
+        #topnav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 14px 0;
+            list-style-type: none;
+            margin: 0;
+        }
+
+        #topnav li {
+            position: relative;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        #topnav a {
+            text-decoration: none;
+            color: white;
+            padding: 14px 20px;
+            display: block;
+        }
+
+        #topnav a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+
+        #topnav ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #topnav ul li {
+            width: 200px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #topnav ul li a {
+            padding: 10px;
+        }
+
+        #topnav ul li a:hover {
+            background-color: #575757;
+        }
+
+        #topnav li:hover ul {
+            display: block;
+        }
+    </style>
+</head>
 <body>
+    <ol id="topnav"></ol>
 
+    <script>
+        // Create array that's easier to keep data all together
+        var menulist = [
+            'menu item one', 'test.html',
+            'menu item two', '2ndpage.html',
+            'menu item three', '3rdpage.html',
+            'menu item four', '4thpage.html',
+            'menu item five', '5thpage.html',
+            'menu item six', 'six.html',
+            'menu item seven', 'seven.html',
+            'menu item eight', 'eight.html',
+            'menu item nine', 'nine.html',
+            'menu item ten', 'ten.html'
+        ];
 
-	<ol id="topnav"> </pl>
-
-
+        // Simple loop using i as a counter and check if less than length, except now increment by 2 since each loop grabs
+        // two pieces of information: menu text and link
+        for (var i = 0; i < menulist.length; i += 2) {
+            var menutext = menulist[i];
+            var link = menulist[i + 1];
+            var buildlink = "<li><a href='" + link + "'>" + menutext + "</a></li>";
+            
+            document.getElementById('topnav').innerHTML += buildlink;
+        }
+    </script>
 </body>
-
-<script>
-
-//create array that's easier to keep data all together
-var menulist=[
-	'menu item one','test.html',
-	'menu item two','2ndpage.html',
-	'menu item three', '3rdpage.html',
-    'menu item four','4thpage.html',
-    'menu item five','5thpage.html',
-    'menu item six','six.html',
-	'menu item seven','seven.html',
-	'menu item eight', 'eight.html',
-    'menu item nine','nine.html',
-    'menu item 10','ten.html']
-
-//simple loop using i as a counter and check if less thant length, except now increment by 2 since each loop grabs 
-// we do +2 because each line.. has 2 pieces of info, so we need to increment by 2.. to get tyhe NEXT section of information
-for (var i = 0; i < menulist.length; i=i+2) {
-
-			menutext = menulist[i];link=menulist[i+1];
-			// in html and JS we can use " or '  to build stuff but we must stay consisten
-			// which is for which. It can be confusing to read but they must be balanced
-
-            buildlink = "<li><a href='"+link+"'>"+menutext +"</li>";
-           
-//document.write (fullname)
-document.getElementById('topnav').innerHTML +=buildlink;
-
-}
-
-</script>
-</body>
-
 </html>

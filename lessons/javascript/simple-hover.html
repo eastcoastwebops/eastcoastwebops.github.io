@@ -1,0 +1,72 @@
+<ul class="menu">
+    <li>
+        <a href="...">Menu Item 1</a>
+        <ul class="submenu">
+            <li><a href="...">Submenu 1</a></li>
+            <li><a href="...">Submenu 2</a></li>
+            <li><a href="...">Submenu 1</a></li>
+            <li><a href="...">Submenu 2</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="...">Menu Item 2</a>
+        <ul class="submenu">
+            <li><a href="...">Submenu 3</a></li>
+            <li><a href="...">Submenu 4</a></li>
+            <li><a href="...">Submenu 3</a></li>
+            <li><a href="...">Submenu 4</a></li>
+        </ul>
+    </li>
+</ul>
+<style>
+
+
+
+.menu {
+    font-family: arial;
+    font-size: 20px
+}
+
+/* > in css means, the NEXT type of item  so ul.menu is the first UL and ul.menu > li means the first instance of LI's within that ul.menu... but NO OTHER li.
+*/
+
+ul.menu>li {
+    display: block;
+    float: left;
+    margin-right: 30px;
+    border: solid 0px;
+    width: 150px;
+    text-align: center;
+}
+
+.submenu {
+    display: none;
+    margin: 0px;
+    padding: 0px;
+    border: solid 1px;
+}
+
+.submenu li {
+    list-style-type: none;
+    margin: 0px;
+    padding: 5px;
+    border-bottom: solid 1px;
+    background: #eeeeee;
+}
+
+.menu>li:hover>.submenu {
+    display: block;
+}
+
+.menu li>ul {
+    display: none;
+}
+
+.menu li:hover>ul {
+    display: block;
+}
+
+.menu li>ul>li:hover {
+    background-color: #ff9900;
+}
+</style>

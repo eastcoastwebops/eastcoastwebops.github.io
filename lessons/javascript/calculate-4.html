@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    html {background-color:#000000;}
+    body {
+        width: 900px;
+        margin: auto;
+        border: solid 1px;
+        border-radius:20px;
+        font-size: 30px;
+        background-color:#ffffff;
+        margin-top:15%;
+    }
+
+    div {
+        border: solid 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        padding: 10px;
+    }
+
+    input {
+        width: 150px;
+        font-size: 30px;
+        text-align: center;
+        border:solid 1px #999999;
+        border-radius: 10px;
+        text-align:center;
+    }
+    .red {color:#ff0000;}
+</style>
+</head>
+
+<body>
+    <div>Amount of Loan: <input type="number" id="amountLoan" value="0"></div><br/>
+    <div>Interest Rate (% per year): <input type="number" id="interestRate" value="0"></div><br/>
+    <div>Loan Term (years): <input type="number" id="loanLength" value="0"></div><br/>
+
+    <div class="red">Monthly Payment: $<span id="sum">0</span></div>
+
+    <script>
+        // Get each input element
+        var user_number1 = document.getElementById('amountLoan');
+        var user_number2 = document.getElementById('interestRate');
+        var user_number3 = document.getElementById('loanLength');
+
+        // Get the element to display the sum
+        var sumElement = document.getElementById('sum');
+
+        // Function to calculate the mortgage payment
+        function calculateMortgage() {
+            var principal = parseFloat(user_number1.value) || 0;
+            var annualInterestRate = parseFloat(user_number2.value) || 0;
+            var years = parseFloat(user_number3.value) || 0;
+
+            if (annualInterestRate === 0 || years === 0) {
+                sumElement.textContent = '0.00';
+                return;
+            }
+
+            // Convert annual interest rate to a monthly rate
+            var monthlyInterestRate = annualInterestRate / 100 / 12;
+            // Total number of payments (months)
+            var numberOfPayments = years * 12;
+
+            // Calculate the mortgage payment using the formula
+            var monthlyPayment = (principal * monthlyInterestRate * Math.pow((1 + monthlyInterestRate), numberOfPayments)) / 
+                                 (Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1);
+
+            // Display the result
+            sumElement.textContent = isNaN(monthlyPayment) || !isFinite(monthlyPayment) ? '0.00' : monthlyPayment.toFixed(2);
+        }
+
+        // Add event listeners to the input elements to listen for changes
+        user_number1.addEventListener('input', calculateMortgage);
+        user_number2.addEventListener('input', calculateMortgage);
+        user_number3.addEventListener('input', calculateMortgage);
+
+        // Initial calculation to set the sum on page load
+        calculateMortgage();
+    </script>
+</body>
+</html>
