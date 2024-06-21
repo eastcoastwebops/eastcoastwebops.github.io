@@ -1,0 +1,37 @@
+<html>
+	
+ <title>Arrays</title>
+<body>
+<p>Arrays</p>
+
+	<div id="ShowName">Full Name<br></div>
+	<hr>
+	<div id="DisplayFullName">display <br></div>
+
+</body>
+
+<script>
+
+//create array
+var firstname=['Laura','Stella','John','Mary','Jack']
+var lastname=['Cepeda','beltran','Frost','Baxter','Snow']
+
+
+//simple loop using i as a counter and check if less thant length
+for (var i = 0; i < firstname.length; i=i+1) {
+            fullname = firstname[i]+ " " + lastname[i];
+            displayname = "First Name: " + firstname[i] + " - Last Name: " + lastname[i] + "<br/>";
+           
+
+
+//document.write (fullname)
+document.getElementById('ShowName').innerHTML += fullname + "<br>";
+document.getElementById('DisplayFullName').innerHTML += displayname;
+}
+
+</script>
+
+
+
+
+</html>

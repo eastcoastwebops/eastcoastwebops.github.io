@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's GitHub HTML Page</title>
+    <link rel="stylesheet" href="js_first_steps/mystylelc.css">
+    
+</head>
+<body>
+    <div id="header">
+         <h1 style="background-color:silver;"> Welcome to Laura's GitHub HTML Page</h1>
+    </div>
+
+    <div id="navigation">
+        <!-- Dropdown Menu Button -->
+        <div class="dropdown">
+            <button class="navigationlinks dropbtn">JavaScript lessons</button>
+            <div class="dropdown-content">
+                <!-- Dropdown Items -->
+                <a href="js_first_steps/Lesson1.html"> 1.Java's introductory steps</a>
+                <a href="js_first_steps/Lesson2.html"> 2.Variable = string</a>
+                <a href="js_first_steps/Lesson3.html"> 3.Arrays simple loop using (i) as a counter</a>
+                <a href="js_first_steps/Lesson4.html"> 4.Arrays simple loop (i) increment by 2 </a>
+                <a href="js_first_steps/Lesson5-navigation-idea.html">5.Array to keep data all together</a>
+            </div>
+        </div>
+        
+        <!-- My projects button -->
+        <button class="navigationlinks" onclick="openCity(event, 'My projects')">My projects</button>
+    </div>
+
+    <div id="content">
+        <h2>About</h2>
+        <p>I'm a bilingual (Spanish & English) Senior Quality Assurance Analyst with a diverse background, proficient in web and mobile app testing, as well knowledge of front-end development troubleshooting. Known for my collaborative approach and proactive communication style, I believe in the power of teamwork to achieve outstanding results.</p>
+
+        <p>Triathlon, especially Ironman races, holds a special place in my life. It's more than just a hobby; it's a fundamental aspect that shapes my character. Through triathlon, I've cultivated qualities like focus, discipline, and organization, which I seamlessly integrate into my professional pursuits.</p>
+        
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // JavaScript to toggle dropdown menu visibility
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var dropdown = dropdowns[i];
+                dropdown.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.getElementsByClassName("dropdown-content")[0];
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

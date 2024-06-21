@@ -1,0 +1,55 @@
+<html>
+
+<body>
+
+<!-- id
+
+The "id" in html is one of the most important way to "identify" define buidling blocks and structure for your site. 
+Classes are another (example: class="red") and used with CSS (just like id's can be used in css), but ID's are supposed to be unique to a page.
+
+There should never be duplicate ID's used in a website. Classes on other hand are used many times. 
+
+You can still create element without ID or other identifiers..., but for Javascript the ones you want to work with
+must have some sort of unique identification... the id. 
+
+div 
+the <div> is a  or division section of your site, just like <p> is a paragraph and others. But div is THe most important.
+	Think of a div as a block on your page. It can be any size you imagine or define.. but it's a square or rectangle 
+	block
+
+CSS/Style
+by using css we can visualize the location and size of the divs and elements more easily. 
+we can create 1 global style to affect ALL 'div' to give them shape
+
+and then create another one to give unique properties to he ones with an id
+
+-->
+
+<div>Undefined div</div>
+
+<div id="one"><p> adding text</p> 
+	<div class="red">Block One</div>
+</div>
+
+
+
+<div id="two">Block Two</div>
+
+
+<div id="three">Block Three</div>
+
+<style>
+	div{width:50%;height:100px; border:solid 1px;margin:auto;}
+	div#two{border-color:#ff0000;background:#aaaaaa;}
+
+	div.red{ 
+		border: 0px; 
+		text-align:center; 
+		font-size:30px;  
+		color: red;
+		 }
+</style>
+
+</body>
+
+</html>

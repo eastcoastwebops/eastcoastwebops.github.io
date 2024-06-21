@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Name Input Popup</title>
+</head>
+<body>
+
+    <script>
+        window.onload = function() {
+            // Prompt the user to enter their full name
+            var fullName = prompt("Please enter your full name:");
+            
+            // Check if the user has entered something
+            if (fullName !== null) {
+                // Remove leading and trailing whitespace
+                fullName = fullName.trim();
+
+                // Count the number of words
+                var wordCount = fullName.split(/\s+/).filter(function(word) {
+                    return word.length > 0;
+                }).length;
+
+                // Count the number of letters
+                var letterCount = fullName.replace(/\s/g, '').length;
+
+                // Display the counts
+                alert("Your full name has " + wordCount + " words and " + letterCount + " letters.");
+
+                // Write the name to the screen
+                document.body.innerHTML += "<p>Your full name is: " + fullName + "</p>";
+            } else {
+                alert("No input provided.");
+            }
+        };
+    </script>
+
+</body>
+</html>

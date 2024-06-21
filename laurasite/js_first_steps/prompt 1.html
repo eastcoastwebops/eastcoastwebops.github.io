@@ -1,0 +1,54 @@
+Laura and her best friend are working together to resolve the issue
+
+
+<!--<script>
+
+// Laura, try to fix so that ammounts are ADDED together as numbers.. not as strings (words). 
+	// right now if you enter 20 and 24... it creates a word 2024... it's joining the amounts... Not adding
+
+var name = prompt("what is your name");
+
+var amount = prompt("how much");
+var amounttwo = prompt("how much again");
+
+var third = amount + amounttwo;
+
+alert ("Hi " + name + " amount of "+amount + "third " + third);
+
+console.log ('this is what the user wrote'+ name +'this cool');
+
+</script> 
+
+
+<script>
+    var name = prompt("What is your name?");
+    
+    // Use parseFloat or parseInt to convert input strings to numbers
+    var amount = parseFloat(prompt("Enter the first amount"));
+    var amounttwo = parseFloat(prompt("Enter the second amount"));
+
+    // Check if the inputs are valid numbers before proceeding
+    if (!isNaN(amount) && !isNaN(amounttwo)) {
+        var third = amount + amounttwo; // Adding the two numbers
+        alert("Hi " + name + ", the sum of " + amount + " and " + amounttwo + " is: " + third);
+    } 
+
+    console.log("User's name: " + name); // Logging the user's name
+</script>-->
+
+<script>
+    var name = prompt("What is your name?");
+    
+    // Use parseFloat or parseInt to convert input strings to numbers
+    var amount = parseFloat(prompt("how much"));
+    var amounttwo = parseFloat(prompt("how much again"));
+
+    // Check if the inputs are valid numbers before proceeding
+    
+        var third = amount + amounttwo; // Adding the two numbers
+        alert("Hi " + name + ", amount of" + amount + " and " + amounttwo + " is: " + third);
+     
+
+    console.log('this is what the user wrote'+ name +'this cool'); // Logging the user's name
+</script>
+
