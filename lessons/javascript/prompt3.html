@@ -1,0 +1,29 @@
+<script>
+
+
+name = prompt("what is your name");
+amountOne = prompt("Enter Amount One");
+amountTwo = prompt("how much again");
+
+amountOne = Number(amountOne); // convert to a Number.. not a "string / word"
+amountTwo = Number(amountTwo); // convert to a Number
+
+addNumbers = amountOne + amountTwo;
+
+buildphrase = "Hi " + name + " amount one: " + amountOne + "... plus, Amount Two: " + amountTwo + "... equals: " + addNumbers;
+
+alert(buildphrase)
+
+if (addNumbers < 100) {
+    alert('too bad...your numbers added to less than 100');
+} 
+
+else if (addNumbers >=100){
+	alert('Amazing your numbers add up to more than 100')
+}
+else {
+    alert('neat')
+}
+
+console.log('print out message:' + buildphrase);
+</script>

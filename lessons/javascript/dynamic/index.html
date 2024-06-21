@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load HTML Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .nav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        #content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <h1>My Website</h1>
+    </div>
+
+    <div class="nav">
+        <a href="#" data-filename="example.html">Example Page 1</a>
+        <a href="#" data-filename="resume.html">Resume</a>
+        <a href="#" data-filename="contact.html">Contact</a>
+    </div>
+
+    <div id="content">
+        <p>Welcome! Click on the navigation links to load content.</p>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.onclick = function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                const filename = event.target.getAttribute('data-filename');
+                loadHtmlFile(filename);
+            };
+        });
+
+        function loadHtmlFile(filename) {
+            fetch(filename)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.forcegenerated-flexipage-template .row-main > [id^=left]{width:15% !important;}
+
+.forcegenerated-flexipage-template .row-main > .grouping {width:85%;}
+
+forcegenerated-flexipage_case_lex_record_page_case__view_js .forcegenerated-flexipage-template .row-main > .grouping >[id^=middle]{width:82%!important;}
+
+forcegenerated-flexipage_case_lex_record_page_case__view_js .forcegenerated-flexipage-template .row-main > .grouping >[id^=right]{min-width:250px;width:15%}
+
+#tab-11 > slot > flexipage-component2:nth-child(2) .uiOutputText,#tab-11 > slot > flexipage-component2:nth-child(2) .uiOutputTextArea{font-size:1.3em;}
+
+
+.forcegenerated-flexipage-template .row-main > [id^=left]{width:15% !important;}
+
+.forcegenerated-flexipage-template .row-main > .grouping {width:85%;}
+
+forcegenerated-flexipage_case_lex_record_page_case__view_js .forcegenerated-flexipage-template .row-main > .grouping >[id^=middle]{width:82%!important;}
+
+forcegenerated-flexipage_case_lex_record_page_case__view_js .forcegenerated-flexipage-template .row-main > .grouping >[id^=right]{min-width:250px;width:15%}
+
+.uiOutputTextArea,.forceChatterFeedBodyText{font-size:1.3em !important;}
+
+
+div[id*=leftColumn]:has(flexipage-component2[data-component-id*="serviceConsoleCaseTimerWrapper"]) {
+    display: none;
+}
+ 
+#brandBand_3 > div > div > div > one-record-home-flexipage2 > forcegenerated-adg-rollup_component___force-generated__flexipage_-record-page___-case_-l-e-x_-record_-page___-case___-v-i-e-w > forcegenerated-flexipage_case_lex_record_page_case__view_js > record_flexipage-desktop-record-page-decorator > div.record-page-decorator > records-record-layout-event-broker > slot > slot > flexipage-record-home-three-col-header-template-desktop2 > div > div.slds-grid.slds-wrap.slds-col.slds-size_1-of-1.row.row-main > div.grouping.slds-size_1-of-1 {
+    width: 82%;
+}
+ 
+div[id*="rightColumn"]:has(flexipage-component2[data-component-id*="relatedRecord"]) {
+    width: 40% !important;
+}

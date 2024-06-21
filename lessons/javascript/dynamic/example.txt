@@ -1,0 +1,2 @@
+This is from a text file saved outside of the page that loaded it.
+The Javascript "fetched" it and display it's contents

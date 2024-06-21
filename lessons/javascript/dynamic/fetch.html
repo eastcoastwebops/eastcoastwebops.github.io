@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load HTML File</title>
+</head>
+<body>
+    <div id="content">
+        <p>Loading content...</p>
+    </div>
+
+    <script>
+        // Fetch the HTML file
+        fetch('example.html')
+            .then(response => response.text()) // Convert response to text
+            .then(data => {
+                // Display the HTML content in the content div
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => {
+                // Display error message if file not found
+                document.getElementById('content').innerText = 'Sorry, the file you requested was not found.';
+                console.error('Error loading HTML file:', error);
+            });
+    </script>
+</body>
+</html>

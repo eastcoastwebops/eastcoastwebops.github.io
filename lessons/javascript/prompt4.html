@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Input Example</title>
+</head>
+<body>
+    <label for="nameInput">What is your name:</label>
+    <input type="text" id="nameInput" name="nameInput" /><br><br>
+
+    <label for="amountOneInput">Enter Amount One:</label>
+    <input type="number" id="amountOneInput" name="amountOneInput" /><br><br>
+
+    <label for="amountTwoInput">How much again:</label>
+    <input type="number" id="amountTwoInput" name="amountTwoInput" /><br><br>
+
+    <button onclick="calculateAndDisplay()">Submit</button>
+
+    <p id="output"></p>
+    <p id="message"></p>
+
+    <script>
+        function calculateAndDisplay() {
+            
+            name = document.getElementById('nameInput').value;
+            amountOne = Number(document.getElementById('amountOneInput').value);
+            amountTwo = Number(document.getElementById('amountTwoInput').value);
+
+            addNumbers = amountOne + amountTwo;
+
+            buildphrase = `Hi ${name}, amount one: ${amountOne}... plus, amount two: ${amountTwo}... equals: ${addNumbers}`;
+
+            document.getElementById('output').innerText = buildphrase;
+
+            if (addNumbers < 100) {
+                document.getElementById('message').innerText = 'Too bad... your numbers added to less than 100';
+            } else if (addNumbers >= 100) {
+                document.getElementById('message').innerText = 'Amazing! Your numbers add up to more than 100';
+            } else {
+                document.getElementById('message').innerText = 'Neat';
+            }
+
+            console.log('Print out message: ' + buildphrase);
+        }
+    </script>
+</body>
+</html>

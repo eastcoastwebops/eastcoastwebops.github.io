@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load HTML Content</title>
+</head>
+<body>
+    <a href="#" id="loadLink" data-filename="example.html">Example page 1</a>
+    <a href="#" id="loadLink" data-filename="resume.html">Resume</a>
+
+    <div id="content"></div>
+
+    <script>
+        document.getElementById('loadLink').onclick = function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const filename = event.target.getAttribute('data-filename');
+            loadHtmlFile(filename);
+        };
+
+        function loadHtmlFile(filename) {
+            fetch(filename)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+    </script>
+</body>
+</html>

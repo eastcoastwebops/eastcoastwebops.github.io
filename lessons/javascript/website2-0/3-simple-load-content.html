@@ -1,0 +1,26 @@
+
+
+<html>
+<div id="content"></div>
+<script>
+
+// This is a very simple script to "fetch" or load content from another location and display on THIS page. 
+
+    // first line here says.. wait for "DOM" or the virtual page to before doing anything.. 
+        document.addEventListener('DOMContentLoaded', () => {
+           
+            // load from outsite this file.. the placeholder-content1.html
+            fetch('content/placeholder-content1.html')
+                .then(response => response.text())
+                .then(html => {
+
+                    // if we get a resonse/all good, then look up the div or element id="content" somewhere and 
+                    //write the content we loaded... into that place holder
+                    document.getElementById('content').innerHTML = html;
+                });
+        });
+
+      // the next step will be to load in a page, into your webste  
+    </script>
+
+ </html>

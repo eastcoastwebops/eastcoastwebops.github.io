@@ -1,0 +1,21 @@
+<script>
+
+// Laura, try to fix so that ammounts are ADDED together as numbers.. not as strings (words). 
+	// right now if you enter 20 and 24... it creates a word 2024... it's joining the amounts... Not adding
+
+name = prompt("what is your name");
+amountOne = prompt("Enter Amount One");
+amountTwo = prompt("how much again");
+
+amountOne=Number(amountOne); // convert to a Number.. not a "string / word"
+amountTwo=Number(amountTwo); // convert to a Number
+
+addNumbers = amountOne + amountTwo;
+
+buildphrase="Hi " + name + " amount one: "+amountOne+ "... plus, Amount Two: "+ amountTwo + "... equals: "+addNumbers;
+
+alert(buildphrase)
+
+console.log ('print out message:' + buildphrase);
+
+</script>

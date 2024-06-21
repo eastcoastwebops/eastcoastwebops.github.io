@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's GitHub HTML Page</title>
+    <link rel="stylesheet" href="mystylelc.css">
+</head>
+<body>
+    <div id="header">
+         <h1 style="background-color:silver;"> Welcome to Laura's GitHub HTML Page</h1>
+    </div>
+
+    <div id="navigation">
+        <!-- Dropdown Menu Button -->
+        <div class="dropdown">
+            <button class="navigationlinks dropbtn">JavaScript lessons</button>
+            <div class="dropdown-content">
+
+                <!-- Dropdown Items -->
+                <!-- we've changed these now to instead accept data-link  
+                this will be used for the script -->
+                <a href="#" data-link="content/about.html">About</a>
+                <a href="#" data-link="content/page2.html">Page 2</a>
+            </div>
+        </div>
+<!-- end of dropdown one--> 
+
+    </div>
+
+    <div id="content"></div>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load the default content
+            loadContent('content/about.html');
+
+            // Add event listeners to navigation links
+            document.querySelectorAll('.dropdown-content a').forEach(link => {
+                // for each link create a click event that's ready to load each 'data-link' file
+                //
+                    link.addEventListener('click', event => {
+                    event.preventDefault();
+                    page = event.target.getAttribute('data-link');
+                    // call the function created below loadContent and then the 'page'
+                    loadContent(page);
+                });
+            });
+        });
+
+        function loadContent(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content').innerHTML = html;
+                });
+        }
+    </script>
+</body>
+</html>
