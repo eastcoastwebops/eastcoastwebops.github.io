@@ -30,23 +30,27 @@
             border: solid 1px #ff0000;
         }
         
-
         /* Header Styles */
         #header {
             background-image: url('images/laurac-v3.jpg');
             background-size: cover; /* Ensures the image covers the entire header */
             background-position: bottom right; /* Aligns the image to the bottom right */
             background-repeat: no-repeat; /* Ensures the image doesn’t repeat */
-            height: 350px;
-            padding: 20px 20px 20px 20px; /* Adds padding around the content */
+            min-height: 350px; /* Ensures the header is at least 350 pixels tall */
+            padding: 20px; /* Adds padding around the content */
             background-color: #ffffff; /* Fallback color */
             border: solid 1px #ffff00; /* For visual debugging */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #header h1 {
             background-color: none;
             padding: 10px;
             color: #333; /* Added text color for better visibility */
+            font-size: 2em; /* Adjusted font size for better visibility */
+            text-align: center; /* Center the text horizontally */
         }
 
         /* Navigation Styles */
