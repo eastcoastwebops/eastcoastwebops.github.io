@@ -12,19 +12,22 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Container Styles */
-        #header, #footer {
-            width: 100%;
-            border: solid 1px #ffff00; /* For visual debugging */
+        /* Flexbox Styles for Body and HTML */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Main Container Styles */
-        #main-container, #footer-content {
+        #main-container {
+            flex: 1; /* Ensures the container expands to fill available space */
             max-width: 1024px;
+            min-width: 900px;
             margin: 0 auto;
-            background-color: #none;
             padding: 30px;
-            border:solid 1px #ff0000;
+            background-color: #none;
+            border: solid 1px #ff0000;
         }
 
         /* Header Styles */
@@ -34,25 +37,23 @@
             background-position: bottom right; /* Aligns the image to the bottom right */
             background-repeat: no-repeat; /* Ensures the image doesn’t repeat */
             height: 350px;
-            padding: 20px -10px 20px 20px; /* Adds extra space on the right side */
-            /* Optional: Add a slight background color to avoid image cut-off issues */
+            padding: 20px 20px 20px 20px; /* Adds padding around the content */
             background-color: #ffffff; /* Fallback color */
+            border: solid 1px #ffff00; /* For visual debugging */
         }
 
         #header h1 {
             background-color: none;
             padding: 10px;
-
+            color: #333; /* Added text color for better visibility */
         }
 
         /* Navigation Styles */
         nav {
-            background-color: #aaaaaa;
+            background-color: #eeeeee;
             padding: 6px;
-            border-radius:10px;
-        }
-        .dropdown > a:hover{
-            background:#ffff99;
+            border-radius: 10px;
+            margin: 20px 0; /* Added margin for spacing */
         }
 
         ul {
@@ -103,17 +104,17 @@
 
         /* Footer Styles */
         #footer {
-              background: linear-gradient(to bottom, #ffffff, #D3D3D3); /* Gradient from white to light grey */
-    
-    border-top: solid 1px #ffff00; /* Optional: border for visual debugging */
-}
+            background: linear-gradient(to bottom, #ffffff, #D3D3D3); /* Gradient from white to light grey */
+            border-top: solid 1px #ffff00; /* Optional: border for visual debugging */
+            padding: 10px 0; /* Add padding to the footer */
         }
 
         #footer-content {
             max-width: 1024px;
             margin: 0 auto;
             padding: 0 20px;
-            color: white; /* Ensures text is visible on dark background */
+            color: #000000; /* Ensures text is visible on dark background */
+            text-align: center; /* Center text in the footer */
         }
     </style>
 </head>
@@ -126,32 +127,28 @@
 
         <nav>
             <ul>
-                <!-- Home Button -->
                 <li class="dropdown">
                     <a href="#content/home.html">Home</a>
                     <ul class="dropdown-content">
                         <li><a href="#content/about.html">About</a></li>
                     </ul>
                 </li>
-                <!-- Dropdown Menu Button for JavaScript lessons -->
                 <li class="dropdown">
                     <a href="#">JavaScript lessons</a>
                     <ul class="dropdown-content">
                         <li><a href="#content/lesson1.html">Lesson 1</a></li>
+                        <li><a href="#content/test.html">Lesson 2 (example of page no there)</a></li>
                     </ul>
                 </li>
-                <!-- Dropdown Menu Button for My Projects -->
                 <li class="dropdown">
                     <a href="#">My Projects</a>
                     <ul class="dropdown-content">
                         <li><a href="#content/placeholder-content1.html">Place Holder Content</a></li>
-
                     </ul>
                 </li>
             </ul>
         </nav>
 
-        <!-- This is where the content will be loaded dynamically -->
         <div id="content"></div>
     </div> <!-- end main-container -->
 
@@ -163,53 +160,54 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Function to load content based on the URL hash
             function loadContentFromHash() {
                 const hash = window.location.hash.substring(1); // Remove the leading #
                 const page = hash || 'content/home.html'; // Default to home.html if no hash
-                console.log('Loading page:', page);
                 loadContent(page); // Load initial content based on the hash
             }
 
-            // Handle hash change
             window.addEventListener('hashchange', loadContentFromHash);
 
-            // Initial content load based on URL hash
             loadContentFromHash();
         });
 
-        // Function to capitalize each word
         function capitalizeWords(str) {
-            return str.replace(/(?:^|\s|-|_)\S/g, function(match) {
-                return match.toUpperCase();
-            }).replace(/[-_]/g, ' ');
+            return str.replace(/(?:^|\s|-|_)\S/g, match => match.toUpperCase())
+                      .replace(/[-_]/g, ' ');
         }
 
-        // Function to fetch and load content into the #content div
         function loadContent(page) {
             fetch(page)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Network response was not ok ${response.statusText}`);
                     }
-                    return response.text(); // Return the response body as text
+                    return response.text();
                 })
                 .then(html => {
                     const contentDiv = document.getElementById('content');
-                    contentDiv.innerHTML = html; // Set the content of #content div with fetched HTML
+                    contentDiv.innerHTML = html;
 
-                    // Check if there's an <h1> tag in the loaded content
                     if (!contentDiv.querySelector('h1')) {
-                        // Create an <h1> tag based on the last part of the link (without extension)
                         const lastPart = page.split('/').pop().split('.').shift();
                         const h1Text = capitalizeWords(lastPart);
                         const h1 = document.createElement('h1');
-                        h1.textContent = h1Text; // Set the text content with capitalized words
-                        contentDiv.prepend(h1); // Prepend the <h1> tag to the content
+                        h1.textContent = h1Text;
+                        contentDiv.prepend(h1);
                     }
                 })
                 .catch(error => {
-                    console.error('There has been a problem with your fetch operation:', error); // Log fetch errors
+                    console.error('Fetch error:', error);
+                    fetch('content/missing-page.html') // Load special content on fetch error
+                        .then(response => response.text())
+                        .then(html => {
+                            const contentDiv = document.getElementById('content');
+                            contentDiv.innerHTML = html;
+                        })
+                        .catch(err => {
+                            console.error('Error loading missing-page.html:', err);
+                            document.getElementById('content').innerHTML = '<h1>Page Not Found</h1><p>Sorry, the page you are looking for does not exist.</p>';
+                        });
                 });
         }
     </script>
