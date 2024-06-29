@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read and Display JSON Data</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Read and Display JSON Data</h1>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        fetch('data2.json')
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                const noclue="No idea";
+                data.forEach(person => {
+                    // Use nullish coalescing operator  to provide a default value of "n/a"
+                    const firstName = person.firstName || noclue;
+                    const lastName = person.lastName || 'n/a';
+                    const age = person.age || 'n/a';
+                    const city = person.city || 'n/a';
+                    const personality = person.personality || noclue;
+
+                    const personInfo = `First Name: ${firstName}, Last Name: ${lastName}, Age: ${age}, City: ${city}, Outlook: ${personality}`;
+                    resultDiv.innerHTML += `<div class="person-info">${personInfo}</div><br>`;
+                });
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    </script>
+</body>
+</html>
+
+
+
+   

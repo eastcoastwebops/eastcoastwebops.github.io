@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Read and Display JSON Data</h1>
-        <ul id="result" class="person-list"></ul>
+               <ul id="result" class="person-list"></ul>
     </div>
 
     <script>
         // Inline JSON Data with multiple entries
+        // can be var?! yes
         const jsonData = [
             { "firstName": "Laura", "lastName": "Smith" },
             { "firstName": "John", "lastName": "Doe" },
@@ -33,53 +33,11 @@
         jsonData.forEach(person => {
             const personLi = document.createElement('li');
             personLi.classList.add('person-item');
-            personLi.textContent = `First Name: ${person.firstName}, Last Name: ${person.lastName}`;
+            personLi.textContent = `${person.firstName} ${person.lastName}`;
             resultUl.appendChild(personLi);
         });
     </script>
 </body>
 </html>
 
- <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .result {
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .person {
-            margin-bottom: 10px;
-        }
-
-        .person-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .person-item {
-            margin-bottom: 5px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-    </style>
+ 

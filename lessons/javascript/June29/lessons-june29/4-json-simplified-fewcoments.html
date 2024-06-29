@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div class="container">
+        <h1>Read and Display JSON Data</h1>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        fetch('data.json')
+            .then(response => {
+                                return response.json();
+            })
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                data.forEach(person => {
+                    const personInfo = `First Name: ${person.firstName}, Last Name: ${person.lastName}, Age: ${person.age}, City: ${person.city}`;
+                    resultDiv.innerHTML += `<div class="person-info">${personInfo}</div><br>`;
+                });
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    </script>
+   
+</body>
+</html>
+
+
+
+
+ 

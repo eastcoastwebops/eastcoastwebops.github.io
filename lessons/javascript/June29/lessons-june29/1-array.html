@@ -2,16 +2,16 @@
 
 <body>
 
-
-	<div id="fullname">Full Name<br></div>
-	<hr>
-	<div id="displayfullname">display <br></div>
+	<div id="displayfullname">
+		
+	</div>
 
 </body>
 
 <script>
 
 //create array that's easier to keep data all together
+// change to const
 var username=[
 	'Lauren','McKinley',
 	'Eric','Holbrook',
@@ -25,11 +25,7 @@ for (var i = 0; i < username.length; i=i+2) {
 			firstname = username[i];lastname=username[i+1];
             fullname = firstname +" " + lastname;
             displayname = "First Name: " + firstname + " - Last Name: " + lastname + "<br/>";
-           
 
-
-//document.write (fullname)
-document.getElementById('fullname').innerHTML += fullname + "<br>";
 document.getElementById('displayfullname').innerHTML += displayname;
 }
 
@@ -37,8 +33,3 @@ document.getElementById('displayfullname').innerHTML += displayname;
 
 
 </html>
-
-<a href="#" id="showHTML">Show This Lesson's Source</a>
-<div id="myModal" class="modal"></div>
-<script src="show_html_source.js" data-remove></script>
-<link rel="stylesheet" type="text/css" href="modal.css">
