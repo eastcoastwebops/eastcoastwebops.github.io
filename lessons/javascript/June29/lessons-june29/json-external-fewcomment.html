@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Example</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Read and Display JSON Data</h1>
+        <ul id="result" class="person-list"></ul>
+    </div>
+
+    <script>
+        // Fetch JSON data from the external file
+        fetch('data.json')
+            .then(response => response.json()) // Parse JSON data
+            .then(data => {
+                const resultUl = document.getElementById('result');
+                data.forEach(person => {
+                    const personLi = document.createElement('li');
+                    personLi.className = 'person-item';
+                    personLi.textContent = `First Name: ${person.firstName}, Last Name: ${person.lastName}, Age: ${person.age}, City: ${person.city}`;
+                    resultUl.appendChild(personLi);
+                });
+            })
+            .catch(error => console.error('Fetch error:', error));
+    </script>
+</body>
+</html>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,27 +62,3 @@
             border-radius: 5px;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Read and Display JSON Data</h1>
-        <ul id="result" class="person-list"></ul>
-    </div>
-
-    <script>
-        // Fetch JSON data from the external file
-        fetch('data.json')
-            .then(response => response.json()) // Parse JSON data
-            .then(data => {
-                const resultUl = document.getElementById('result');
-                data.forEach(person => {
-                    const personLi = document.createElement('li');
-                    personLi.className = 'person-item';
-                    personLi.textContent = `First Name: ${person.firstName}, Last Name: ${person.lastName}, Age: ${person.age}, City: ${person.city}`;
-                    resultUl.appendChild(personLi);
-                });
-            })
-            .catch(error => console.error('Fetch error:', error));
-    </script>
-</body>
-</html>
