@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Content Example</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Welcome to Dynamic Content Example</h1>
+    </div>
+
+    <div id="navigation">
+        <!-- Navigation links -->
+        <ul>
+            <li><a href="#" data-href="content/home.html">Default Content</a></li>
+            <li><a href="#" data-href="content/page1.html">Load Page 1</a></li>
+            <li><a href="#" data-href="content/page2.html">Load Page 2</a></li>
+        </ul>
+    </div>
+
+    <!-- This is where the content will be loaded dynamically -->
+    <div id="content">
+        <p>Loading default content...</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Default content page to load if no other page is selected
+            const defaultPage = 'content/home.html';
+
+            // Add click event listeners to all elements with data-href attributes
+            document.querySelectorAll('[data-href]').forEach(link => {
+                link.addEventListener('click', event => {
+                    event.preventDefault(); // Prevent default link behavior
+                    const page = event.target.getAttribute('data-href'); // Get data-href attribute value
+                    loadContent(page); // Load content based on data-href value
+                });
+            });
+
+                        // Function to load content based on data-href attribute
+            function loadContent(page) {
+                fetch(page)
+                    .then(response => response.text()) // Return response body as text
+                    .then(html => {
+                        document.getElementById('content').innerHTML = html; // Update content area with fetched HTML
+                    });
+            }
+
+            // Function to handle loading default content
+            function loadDefaultContent() {
+                loadContent(defaultPage);
+            }
+
+            // Load default content initially
+            loadDefaultContent();
+        });
+    </script>
+</body>
+</html>

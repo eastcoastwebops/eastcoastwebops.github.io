@@ -1,0 +1,40 @@
+{
+  "company": {
+    "name": "Tech Solutions",
+    "location": "San Francisco",
+    "employees": [
+      {
+        "name": "John Doe",
+        "age": 30,
+        "position": "Software Engineer",
+        "skills": ["JavaScript", "React", "Node.js"]
+      },
+      {
+        "name": "Jane Smith",
+        "age": 27,
+        "position": "Project Manager",
+        "skills": ["Management", "Communication", "Leadership"]
+      },
+      {
+        "name": "Sam Brown",
+        "age": 35,
+        "position": "UX Designer",
+        "skills": ["Design", "Prototyping", "User Research"]
+      }
+    ],
+    "projects": [
+      {
+        "title": "Project Alpha",
+        "budget": 50000,
+        "duration": "6 months",
+        "team": ["John Doe", "Jane Smith"]
+      },
+      {
+        "title": "Project Beta",
+        "budget": 75000,
+        "duration": "9 months",
+        "team": ["Jane Smith", "Sam Brown"]
+      }
+    ]
+  }
+}

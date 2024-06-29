@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's GitHub HTML Page</title>
+    <style>
+        /* General Styles */
+        body, h1, nav, ul, li, a, div {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container Styles */
+        #header, #footer {
+            width: 100%;
+            border: solid 1px #ffff00; /* For visual debugging */
+        }
+
+        /* Main Container Styles */
+        #main-container, #footer-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            background-color: #none;
+            padding: 30px;
+            border:solid 1px #ff0000;
+        }
+
+        /* Header Styles */
+        #header {
+            background-image: url('images/laurac-v3.jpg');
+            background-size: cover; /* Ensures the image covers the entire header */
+            background-position: bottom right; /* Aligns the image to the bottom right */
+            background-repeat: no-repeat; /* Ensures the image doesn’t repeat */
+            height: 350px;
+            padding: 20px -10px 20px 20px; /* Adds extra space on the right side */
+            /* Optional: Add a slight background color to avoid image cut-off issues */
+            background-color: #ffffff; /* Fallback color */
+        }
+
+        #header h1 {
+            background-color: none;
+            padding: 10px;
+
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #aaaaaa;
+            padding: 6px;
+            border-radius:10px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown > a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Content Styles */
+        #content h1 {
+            font-size: 1.3em;
+            font-weight: lighter;
+            margin: 0.77em 0 0.67em;
+        }
+
+        /* Footer Styles */
+        #footer {
+              background: linear-gradient(to bottom, #ffffff, #D3D3D3); /* Gradient from white to light grey */
+    
+    border-top: solid 1px #ffff00; /* Optional: border for visual debugging */
+}
+        }
+
+        #footer-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: white; /* Ensures text is visible on dark background */
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Welcome to Laura's GitHub HTML Page</h1>
+    </div>   
+
+    <div id="main-container">
+
+        <nav>
+            <ul>
+                <!-- Home Button -->
+                <li class="dropdown">
+                    <a href="#content/home.html">Home</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#content/about.html">About</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown Menu Button for JavaScript lessons -->
+                <li class="dropdown">
+                    <a href="#">JavaScript lessons</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#js_first_steps/Lesson1.html">Java's introductory steps</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown Menu Button for My Projects -->
+                <li class="dropdown">
+                    <a href="#">My Projects</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#js_first_steps/Lesson1.html">Step One</a></li>
+                        <li><a href="#js_first_steps/Lesson2.html">Step Two</a></li>
+                        <li><a href="#js_first_steps/Lesson3.html">Step Three</a></li>
+                        <li><a href="#js_first_steps/Lesson4.html">Step Four</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- This is where the content will be loaded dynamically -->
+        <div id="content"></div>
+    </div> <!-- end main-container -->
+
+    <div id="footer">
+        <div id="footer-content">
+            <p>Footer content goes here.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to load content based on the URL hash
+            function loadContentFromHash() {
+                const hash = window.location.hash.substring(1); // Remove the leading #
+                const page = hash || 'content/home.html'; // Default to home.html if no hash
+                console.log('Loading page:', page);
+                loadContent(page); // Load initial content based on the hash
+            }
+
+            // Handle hash change
+            window.addEventListener('hashchange', loadContentFromHash);
+
+            // Initial content load based on URL hash
+            loadContentFromHash();
+        });
+
+        // Function to capitalize each word
+        function capitalizeWords(str) {
+            return str.replace(/(?:^|\s|-|_)\S/g, function(match) {
+                return match.toUpperCase();
+            }).replace(/[-_]/g, ' ');
+        }
+
+        // Function to fetch and load content into the #content div
+        function loadContent(page) {
+            fetch(page)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok ${response.statusText}`);
+                    }
+                    return response.text(); // Return the response body as text
+                })
+                .then(html => {
+                    const contentDiv = document.getElementById('content');
+                    contentDiv.innerHTML = html; // Set the content of #content div with fetched HTML
+
+                    // Check if there's an <h1> tag in the loaded content
+                    if (!contentDiv.querySelector('h1')) {
+                        // Create an <h1> tag based on the last part of the link (without extension)
+                        const lastPart = page.split('/').pop().split('.').shift();
+                        const h1Text = capitalizeWords(lastPart);
+                        const h1 = document.createElement('h1');
+                        h1.textContent = h1Text; // Set the text content with capitalized words
+                        contentDiv.prepend(h1); // Prepend the <h1> tag to the content
+                    }
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error); // Log fetch errors
+                });
+        }
+    </script>
+</body>
+</html>

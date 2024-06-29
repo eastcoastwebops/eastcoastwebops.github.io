@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read JSON Example</title>
+</head>
+<body>
+    <h1>Read JSON Example</h1>
+    <div id="output"></div>
+
+    <script>
+        // Function to fetch and read JSON file
+        async function fetchJSON() {
+            try {
+                const response = await fetch('data.json'); // Path to your JSON file in the same directory
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.json();
+                displayData(data);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+
+        // Function to display JSON data
+        function displayData(data) {
+            const outputDiv = document.getElementById('output');
+
+            let html = `<h2>Company: ${data.company.name}</h2>`;
+            html += `<p>Location: ${data.company.location}</p>`;
+
+            html += `<h3>Employees:</h3>`;
+            data.company.employees.forEach(employee => {
+                html += `<p>Name: ${employee.name}</p>`;
+                html += `<p>Age: ${employee.age}</p>`;
+                html += `<p>Position: ${employee.position}</p>`;
+                html += `<p>Skills: ${employee.skills.join(', ')}</p>`;
+                html += `<hr>`;
+            });
+
+            html += `<h3>Projects:</h3>`;
+            data.company.projects.forEach(project => {
+                html += `<p>Title: ${project.title}</p>`;
+                html += `<p>Budget: $${project.budget}</p>`;
+                html += `<p>Duration: ${project.duration}</p>`;
+                html += `<p>Team: ${project.team.join(', ')}</p>`;
+                html += `<hr>`;
+            });
+
+            outputDiv.innerHTML = html;
+        }
+
+        // Call the function to fetch and read JSON file
+        fetchJSON();
+    </script>
+</body>
+</html>
+

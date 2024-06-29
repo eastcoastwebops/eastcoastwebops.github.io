@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Example</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Read and Display JSON Data</h1>
+        <!-- The div element where we will display the list of people -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Fetch JSON data from the external file
+        fetch('data.json') // 1. Fetch data from the JSON file named 'data.json'
+            .then(response => {
+                if (!response.ok) { // 2. Check if the response status is not OK (e.g., 404 or 500 errors)
+                    throw new Error('Network response was not ok'); // 3. Throw an error if the response was not OK
+                }
+                return response.json(); // 4. Parse the response as JSON
+            })
+            .then(data => {
+                // 5. Select the 'result' div where the data will be displayed
+                const resultDiv = document.getElementById('result');
+
+                // 6. Iterate over each person in the data array
+                data.forEach(person => {
+                
+                    const personInfo = `First Name: ${person.firstName}, Last Name: ${person.lastName}, Age: ${person.age}, City: ${person.city}`;
+
+
+                    resultDiv.innerHTML += `<div class="person-info">${personInfo}</div><br>`;
+                });
+            })
+            .catch(error => {
+                // 9. Log any errors that occur during the fetch process
+                console.error('Fetch error:', error);
+            });
+    </script>
+</body>
+</html>
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0; /* Light grey background for the whole page */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background for the content area */
+            border-radius: 5px; /* Rounded corners for the content area */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the content area */
+        }
+
+        h1 {
+            font-size: 1.5em; /* Larger font size for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        .person-info {
+            margin-bottom: 10px; /* Space below each person's info */
+        }
+    </style>
