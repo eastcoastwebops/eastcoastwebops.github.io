@@ -4,5 +4,5 @@
     { "firstName": "Jane", "lastName": "Doe", "age": 30, "city": "Chicago" },
     { "firstName": "Emily", "lastName": "Johnson", "age": 25, "city": "Houston" },
     { "firstName": "Michael", "lastName": "Brown", "age": 40, "city": "Phoenix" },
-    { "firstName": "Michael", "lastName": "Brown", "age": 40, "city": "Phoenix"}
+    { "firstName": "Michael", "lastName": "Brown", "age": 40, "city": "Phoenix","personality":"silly"}
 ]
