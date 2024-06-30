@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read and Display JSON Data</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Read and Display JSON Data</h1>
+        <div id="result"></div>
+    </div>
+    <script>
+    // Define where to write the result
+    const resultDiv = document.getElementById('result');
+
+    
+   // Fetch and display JSON data from an external file. Because it's now in a file? we have to add these lines to wait for a response
+     fetch('data.json')
+        .then(response => response.json())
+        .then(thePeople => { 
+        //start then of json response and action.. which is now same as from previous lesson 3
+
+
+            // thePeople is the name of json from above... for each line/set of entries from above... basically or between { these brackets}
+            // we call each entry..  humama (we can call it anything and this is used in the loop)
+            thePeople.forEach(humama => {
+
+                // const means "construct" or build a string called personInfo.. containing ... Word + value (firstname) + words + (lastname).. 
+
+                const personInfo = `First Name: ${humama.firstName}, Last Name: ${humama.lastName}, Age: ${humama.age}, City: ${humama.city}`;
+
+                // just update the html with the next line we just builts in the const personInfo Line above
+                resultDiv.innerHTML += `<div class="person-info">${personInfo}</div><br>`;
+
+            }); // this is end of forEach statement .. 
+                //you should be able to click right near the brack to see the highligted matchung bracket above
+                //if there are MORE in thePeople set of data? then it will do another until all are done
+
+        }); // complete the entier json fetch and response loop
+
+          
+    </script>
+</body>
+
+</html>

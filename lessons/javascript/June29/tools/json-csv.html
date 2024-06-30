@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV and JSON Converter</title>
+</head>
+<body>
+    <h1>CSV and JSON Converter</h1>
+
+    <section>
+        <h2>Convert CSV to JSON</h2>
+        <input type="file" id="csvFileInput" />
+        <input type="text" id="jsonFileName" placeholder="Enter JSON file name" value="data.json" />
+        <button id="convertCsvButton">Convert CSV to JSON</button>
+        <a id="downloadJsonLink" style="display: none;">Download JSON</a>
+    </section>
+
+    <section>
+        <h2>Convert JSON to CSV</h2>
+        <input type="file" id="jsonFileInput" />
+        <input type="text" id="csvFileName" placeholder="Enter CSV file name" value="data.csv" />
+        <button id="convertJsonButton">Convert JSON to CSV</button>
+        <a id="downloadCsvLink" style="display: none;">Download CSV</a>
+    </section>
+
+    <script>
+        // Convert CSV to JSON
+        document.getElementById('convertCsvButton').addEventListener('click', () => {
+            const fileInput = document.getElementById('csvFileInput');
+            const file = fileInput.files[0];
+            const fileName = document.getElementById('jsonFileName').value || 'data.json';  // Get JSON file name or use default
+
+            if (!file) {
+                alert('Please select a CSV file.');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const csvData = event.target.result;
+                try {
+                    const jsonData = csvToJson(csvData);
+                    const jsonStr = JSON.stringify(jsonData, null, 2); // Format JSON with 2-space indentation
+
+                    // Create a blob with the JSON data
+                    const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+
+                    // Create a link element for the download
+                    const downloadLink = document.getElementById('downloadJsonLink');
+                    downloadLink.href = url;
+                    downloadLink.download = fileName;
+                    downloadLink.textContent = `Download JSON (${fileName})`;
+                    downloadLink.style.display = 'block';
+                } catch (error) {
+                    alert('Error processing CSV data: ' + error.message);
+                }
+            };
+
+            reader.readAsText(file);
+        });
+
+        /**
+         * Convert CSV data to JSON format.
+         * @param {string} csvData - The CSV data to convert.
+         * @return {Array} - The JSON formatted data.
+         */
+        function csvToJson(csvData) {
+            const lines = csvData.trim().split('\n');
+            const headers = lines[0].split(',').map(header => header.trim());
+
+            // Initialize an array to hold JSON objects
+            const jsonArray = [];
+            const allKeys = new Set(headers);
+
+            lines.slice(1).forEach(line => {
+                const values = line.split(',').map(value => value.trim());
+                const obj = {};
+
+                // Fill the object with the current line's values
+                headers.forEach((header, index) => {
+                    obj[header] = values[index] || null;  // Set missing values to null
+                });
+
+                jsonArray.push(obj);
+
+                // Add any additional keys found in this line
+                Object.keys(obj).forEach(key => {
+                    if (key !== '' && !allKeys.has(key)) {
+                        allKeys.add(key);
+                    }
+                });
+            });
+
+            // Ensure all objects have all keys
+            jsonArray.forEach(obj => {
+                allKeys.forEach(key => {
+                    if (!(key in obj)) {
+                        obj[key] = null;
+                    }
+                });
+            });
+
+            return jsonArray;
+        }
+
+        // Convert JSON to CSV
+        document.getElementById('convertJsonButton').addEventListener('click', () => {
+            const fileInput = document.getElementById('jsonFileInput');
+            const file = fileInput.files[0];
+            const fileName = document.getElementById('csvFileName').value || 'data.csv';  // Get CSV file name or use default
+
+            if (!file) {
+                alert('Please select a JSON file.');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const jsonData = event.target.result;
+                try {
+                    const dataArray = JSON.parse(jsonData);
+                    const csvData = jsonToCsv(dataArray);
+                    const csvStr = csvData.join('\n');  // Join array elements into a single string
+
+                    // Create a blob with the CSV data
+                    const blob = new Blob([csvStr], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+
+                    // Create a link element for the download
+                    const downloadLink = document.getElementById('downloadCsvLink');
+                    downloadLink.href = url;
+                    downloadLink.download = fileName;
+                    downloadLink.textContent = `Download CSV (${fileName})`;
+                    downloadLink.style.display = 'block';
+                } catch (error) {
+                    alert('Error processing JSON data: ' + error.message);
+                }
+            };
+
+            reader.readAsText(file);
+        });
+
+        /**
+         * Convert JSON data to CSV format.
+         * @param {Array} jsonData - The JSON data to convert.
+         * @return {Array} - An array of CSV formatted strings.
+         */
+        function jsonToCsv(jsonData) {
+            if (jsonData.length === 0) return [];
+
+            // Get all unique keys from all objects in the JSON data
+            const allKeys = new Set();
+            jsonData.forEach(item => {
+                Object.keys(item).forEach(key => allKeys.add(key));
+            });
+
+            const headers = Array.from(allKeys);
+            const csvRows = [];
+
+            // Add the header row
+            csvRows.push(headers.join(','));
+
+            // Add the data rows
+            jsonData.forEach(item => {
+                const row = headers.map(header => {
+                    const value = item[header] !== undefined ? item[header] : null;
+                    return `"${String(value).replace(/"/g, '""')}"`;  // Escape double quotes
+                });
+                csvRows.push(row.join(','));
+            });
+
+            return csvRows;
+        }
+    </script>
+</body>
+</html>

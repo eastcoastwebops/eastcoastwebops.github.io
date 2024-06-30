@@ -1,0 +1,8 @@
+[
+    { "firstName": "Laura", "lastName": "Smith", "age": 28, "city": "New York" },
+    { "firstName": "John", "lastName": "Doe", "age": 34, "city": "Los Angeles" },
+    { "firstName": "Jane", "lastName": "Doe", "age": 30, "city": "Chicago" },
+    { "firstName": "Emily", "lastName": "Johnson", "age": 25, "city": "Houston" },
+    { "firstName": "Michael", "lastName": "Brown", "age": 40, "city": "Phoenix","personality":"curious" }
+
+]
