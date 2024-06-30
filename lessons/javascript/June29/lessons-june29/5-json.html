@@ -29,8 +29,9 @@
             thePeople.forEach(humama => {
 
                 // const means "construct" or build a string called personInfo.. containing ... Word + value (firstname) + words + (lastname).. 
-
-                const personInfo = `First Name: ${humama.firstName}, Last Name: ${humama.lastName}, Age: ${humama.age}, City: ${humama.city}`;
+                
+                // we added Pesonality ... not all people will have this entry
+                const personInfo = `First Name: ${humama.firstName}, Last Name: ${humama.lastName}, Age: ${humama.age}, City: ${humama.city}, Outlook: ${humama.personality}`;
 
                 // just update the html with the next line we just builts in the const personInfo Line above
                 resultDiv.innerHTML += `<div class="person-info">${personInfo}</div><br>`;
