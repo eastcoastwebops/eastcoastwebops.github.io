@@ -1,0 +1,19 @@
+
+    <div id="content"></div>
+    <script>
+        // Check if "july" is part of the current URL
+        // use of includes vs = or ===
+        //Simplicity: The .includes method is designed specifically for checking the presence of a substring. It returns true if the substring exists and false if it doesn’t. This makes it a straightforward choice for this task.
+
+         //file:///F:/eastcoast-git/eastcoastwebops.github.io/lessons/javascript/july2/1B-checkurl.html
+
+        if (window.location.href.tolowercase.includes('july')) {
+
+            document.getElementById('content').innerHTML="The URL contains 'july'.";
+        } else {
+            document.getElementById('content').innerHTML='The URL does not contain "july".';
+        }
+    </script>
+
+
+

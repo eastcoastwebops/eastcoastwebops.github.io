@@ -1,0 +1,174 @@
+{
+
+  "company": {
+    "name": "MP2",
+    "employees": [
+      {
+        "id": 1,
+        "name": "M",
+        "age": 30,
+        "position": "Software Engineer",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "projects": [
+          {
+            "name": "Project Alpha",
+            "duration_months": 12,
+            "technologies": ["React", "Node.js"]
+          },
+          {
+            "name": "Project Beta",
+            "duration_months": 6,
+            "technologies": ["Vue", "Firebase"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "age": 35,
+        "position": "DevOps Engineer",
+        "skills": ["Docker", "Kubernetes", "AWS"],
+        "projects": [
+          {
+            "name": "Project Gamma",
+            "duration_months": 9,
+            "technologies": ["AWS", "Terraform"]
+          },
+          {
+            "name": "Project Delta",
+            "duration_months": 7,
+            "technologies": ["Azure", "Kubernetes"]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Carol White",
+        "age": 28,
+        "position": "UI/UX Designer",
+        "skills": ["Figma", "Sketch", "Photoshop"],
+        "projects": [
+          {
+            "name": "Project Epsilon",
+            "duration_months": 5,
+            "technologies": ["Figma", "Sketch"]
+          },
+          {
+            "name": "Project Zeta",
+            "duration_months": 8,
+            "technologies": ["Photoshop", "Illustrator"]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA"
+      },
+      {
+        "city": "New York",
+        "state": "NY",
+        "country": "USA"
+      },
+      {
+        "city": "Berlin",
+        "state": "Berlin",
+        "country": "Germany"
+      }
+    ],
+    "founded": 2010,
+    "isPublic": true,
+    "contact": {
+      "phone": "+1-800-123-4567",
+      "email": "info@techinnovators.com"
+    }
+  },
+
+  "company": {
+    "name": "Tech Innovators Inc.",
+    "employees": [
+      {
+        "id": 1,
+        "name": "Alice Johnson",
+        "age": 30,
+        "position": "Software Engineer",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "projects": [
+          {
+            "name": "Project Alpha",
+            "duration_months": 12,
+            "technologies": ["React", "Node.js"]
+          },
+          {
+            "name": "Project Beta",
+            "duration_months": 6,
+            "technologies": ["Vue", "Firebase"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "age": 35,
+        "position": "DevOps Engineer",
+        "skills": ["Docker", "Kubernetes", "AWS"],
+        "projects": [
+          {
+            "name": "Project Gamma",
+            "duration_months": 9,
+            "technologies": ["AWS", "Terraform"]
+          },
+          {
+            "name": "Project Delta",
+            "duration_months": 7,
+            "technologies": ["Azure", "Kubernetes"]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Carol White",
+        "age": 28,
+        "position": "UI/UX Designer",
+        "skills": ["Figma", "Sketch", "Photoshop"],
+        "projects": [
+          {
+            "name": "Project Epsilon",
+            "duration_months": 5,
+            "technologies": ["Figma", "Sketch"]
+          },
+          {
+            "name": "Project Zeta",
+            "duration_months": 8,
+            "technologies": ["Photoshop", "Illustrator"]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA"
+      },
+      {
+        "city": "New York",
+        "state": "NY",
+        "country": "USA"
+      },
+      {
+        "city": "Berlin",
+        "state": "Berlin",
+        "country": "Germany"
+      }
+    ],
+    "founded": 2010,
+    "isPublic": true,
+    "contact": {
+      "phone": "+1-800-123-4567",
+      "email": "info@techinnovators.com"
+    }
+  }
+}

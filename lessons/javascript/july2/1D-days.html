@@ -1,0 +1,41 @@
+
+    <p>Enter a number (1-7):</p>
+    <input type="number" id="dayNumber" min="1" max="7">
+    
+    <button id="getDayButton">Get Day</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('getDayButton').onclick = function() {
+            var dayNumber = parseInt(document.getElementById('dayNumber').value);
+            var dayName;
+
+
+            if (dayNumber === 1) {
+                dayName = "Monday";
+            } 
+            else if (dayNumber === 2) {
+                dayName = "Tuesday";
+            } 
+            else if (dayNumber === 3) {
+                dayName = "Wednesday";
+            } 
+            else if (dayNumber === 4) {
+                dayName = "Thursday";
+            } 
+            else if (dayNumber === 5) {
+                dayName = "Friday";
+            } 
+            else if (dayNumber === 6) {
+                dayName = "Saturday";
+            } 
+            else if (dayNumber === 7) {
+                dayName = "Sunday";
+            } 
+            else {
+                dayName = "Invalid day number. Please enter a number between 1 and 7.";
+            }
+
+            document.getElementById('result').textContent = "Day number " + dayNumber + " is " + dayName;
+        };
+    </script>

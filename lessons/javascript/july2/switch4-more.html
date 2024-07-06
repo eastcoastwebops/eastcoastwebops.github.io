@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day and Weather Checker</title>
+</head>
+<body>
+    <p>Enter a day of the week:</p>
+    <input type="text" id="dayInput">
+    <p>Enter the weather (sunny, cloudy):</p>
+    <input type="text" id="weatherInput">
+    <button id="checkDayButton">Check Day and Weather</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('checkDayButton').onclick = checkDay;
+        document.getElementById('dayInput').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                checkDay();
+            }
+        };
+        document.getElementById('weatherInput').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                checkDay();
+            }
+        };
+
+        function checkDay() {
+            var dayInput = document.getElementById('dayInput').value.toLowerCase();
+            var weatherInput = document.getElementById('weatherInput').value.toLowerCase();
+            var message;
+
+            switch (dayInput) {
+                case "monday":
+                    message = "It's the start of the work week!";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny but going to be a long week."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "tuesday":
+                    message = "Second day of the work week.";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "overcast": message += " The weather is cloudy."; break;
+                        case "rain": message += " rain."; break;
+
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "wednesday":
+                    message = "Midweek day.";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "thursday":
+                    message = "Almost the end of the work week.";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "friday":
+                    message = "Last work day of the week!";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "saturday":
+                    message = "Weekend starts!";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                case "sunday":
+                    message = "End of the weekend.";
+                    switch (weatherInput) {
+                        case "sunny": message += " The weather is sunny."; break;
+                        case "cloudy": message += " The weather is cloudy."; break;
+                        default: message += " Weather is unknown.";
+                    }
+                    break;
+                default:
+                    message = "Invalid day. Please enter a valid day of the week.";
+            }
+
+            document.getElementById('result').textContent = message;
+        }
+    </script>
+</body>
+</html>

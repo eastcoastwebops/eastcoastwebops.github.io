@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic JSON to Excel Exporter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+        }
+
+        section {
+            background: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #007bff;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #downloadExcelLink {
+            display: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Dynamic JSON to Excel Exporter</h1>
+
+        <section>
+            <h2>Convert JSON to Excel</h2>
+            <input type="file" id="jsonFileInput" />
+            <input type="text" id="excelFileName" placeholder="Enter Excel file name" value="data.xlsx" />
+            <input type="text" id="summarySheetName" placeholder="Enter Summary sheet name" value="Summary" />
+            <button id="convertJsonButton">Convert JSON to Excel</button>
+            <a id="downloadExcelLink">Download Excel</a>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('convertJsonButton').addEventListener('click', () => {
+            const fileInput = document.getElementById('jsonFileInput');
+            const file = fileInput.files[0];
+            const fileName = document.getElementById('excelFileName').value || 'data.xlsx';
+            const summarySheetName = document.getElementById('summarySheetName').value || 'Summary';
+
+            if (!file) {
+                alert('Please select a JSON file.');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                try {
+                    const jsonData = JSON.parse(event.target.result);
+                    const workbook = XLSX.utils.book_new();
+
+                    // Create Summary Sheet
+                    const summaryData = createSummary(jsonData);
+                    const summarySheet = XLSX.utils.json_to_sheet(summaryData);
+                    XLSX.utils.book_append_sheet(workbook, summarySheet, sanitizeSheetName(summarySheetName));
+
+                    // Process JSON Data
+                    processJsonData(jsonData, workbook);
+
+                    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+
+                    const url = URL.createObjectURL(blob);
+
+                    const downloadLink = document.getElementById('downloadExcelLink');
+                    downloadLink.href = url;
+                    downloadLink.download = fileName;
+                    downloadLink.textContent = `Download Excel (${fileName})`;
+                    downloadLink.style.display = 'block';
+                } catch (error) {
+                    alert('Error processing JSON data: ' + error.message);
+                }
+            };
+
+            reader.readAsText(file);
+        });
+
+        function sanitizeSheetName(name) {
+            return name.replace(/[\[\]\*\/\\\?\:]/g, '').slice(0, 31);
+        }
+
+        function createSummary(data, parentPath = '') {
+            const summary = [];
+
+            function processItem(item, path) {
+                if (Array.isArray(item)) {
+                    summary.push({ Path: path, Type: 'Array', Count: item.length });
+                    item.forEach((subItem, index) => processItem(subItem, `${path}[${index}]`));
+                } else if (typeof item === 'object' && item !== null) {
+                    Object.keys(item).forEach(key => {
+                        const value = item[key];
+                        const newPath = path ? `${path}.${key}` : key;
+                        const type = Array.isArray(value) ? 'Array' : typeof value;
+                        summary.push({ Path: newPath, Type: type });
+                        processItem(value, newPath);
+                    });
+                } else {
+                    summary.push({ Path: path, Type: typeof item, Value: item });
+                }
+            }
+
+            processItem(data, parentPath);
+
+            return summary;
+        }
+
+        function processJsonData(jsonData, workbook) {
+            Object.keys(jsonData).forEach(key => {
+                const data = jsonData[key];
+                const sheetName = sanitizeSheetName(key);
+
+                // Create a sheet with detailed sections
+                const sheetData = createSheetData(data);
+                const sheet = XLSX.utils.json_to_sheet(sheetData);
+                XLSX.utils.book_append_sheet(workbook, sheet, sheetName);
+            });
+        }
+
+        function createSheetData(data, parentKey = '') {
+            let result = [];
+            let sectionData = [];
+
+            function processItem(item, sectionName) {
+                if (Array.isArray(item)) {
+                    item.forEach((subItem, index) => processItem(subItem, `${sectionName} [${index}]`));
+                } else if (typeof item === 'object' && item !== null) {
+                    const flattenedItem = flattenObject(item, sectionName);
+                    sectionData.push(flattenedItem);
+                } else {
+                    sectionData.push({ Section: sectionName, Value: item });
+                }
+            }
+
+            processItem(data, parentKey);
+
+            return sectionData;
+        }
+
+        function flattenObject(obj, parentKey = '', result = {}) {
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const newKey = parentKey ? `${parentKey}.${key}` : key;
+                    if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+                        flattenObject(obj[key], newKey, result);
+                    } else {
+                        result[newKey] = obj[key];
+                    }
+                }
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+In Chrome Extensions
+
+Turn on Developer Mode
+
+Choose Load Unpacked and Choose only the Folder located here. Not INSIDE The folder.. THE folder
+
+
+Note:
+Pages that are already opened may need to be refreshed before plugin kicks in
+
+The "Nicer" case view requires the page to be loaded one time for settings to save (on or off)

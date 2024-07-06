@@ -1,0 +1,56 @@
+/* General body styles */
+body {
+  width: 320px; /* Slightly wider for better layout */
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5; /* Light gray background for a clean look */
+  color: #333; /* Darker text color for better readability */
+  margin: 0;
+  padding: 0;
+}
+
+/* Container to center content and add padding */
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  background: #ffffff; /* White background for the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Header styles */
+h1 {
+  font-size: 20px;
+  color: #007bff; /* Blue color for the header */
+  text-align: center;
+  margin-bottom: 15px; /* Space below the header */
+}
+
+/* Form styling */
+#presetForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between the radio button options */
+}
+
+/* Form radio button styling */
+#presetForm div {
+  display: flex;
+  align-items: center;
+}
+
+/* Radio button and label styling */
+input[type="radio"] {
+  accent-color: #007bff; /* Blue color for the radio button */
+  margin-right: 10px; /* Space between radio button and label */
+}
+
+label {
+  font-size: 14px;
+}
+
+/* Instructions paragraph */
+.instructions {
+  font-size: 12px;
+  color: #666; /* Light gray text for instructions */
+  text-align: center;
+  margin-top: 15px;
+}

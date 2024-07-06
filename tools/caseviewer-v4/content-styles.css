@@ -1,0 +1,33 @@
+/* General Styles */
+
+.row.row-main >.grouping{width:85%}
+
+.forcegenerated-flexipage-template .row-main > [id^=left] {
+    width: 15% !important;
+}
+
+#brandBand_3 > div > div > div .row.row-main > div.grouping.slds-size_1-of-1 {
+    border: solid 0px #ffff00;
+    width: 85%;
+}
+
+.forcegenerated-flexipage-template .row-main > .grouping > [id^=middle] {
+    width: 75% !important;
+}
+
+.forcegenerated-flexipage-template .row-main > .grouping > [id^=right] {
+    min-width: 250px;
+    width: 25% !important;
+    border: solid 0px #ff0000;
+}
+
+#tab-11 > slot > flexipage-component2:nth-child(2) .uiOutputText,
+#tab-11 > slot > flexipage-component2:nth-child(2) .uiOutputTextArea {
+    font-size: 1.3em;
+}
+
+.uiOutputTextArea,
+.forceChatterFeedBodyText {
+    font-size: 1.3em !important;
+}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Word in URL</title>
+</head>
+<body>
+    <p>Enter a word to check if it's in the URL:</p>
+    <input type="text" id="wordInput" placeholder="Enter a word">
+    <button id="checkButton">Check</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('checkButton').onclick = function() {
+            // Get the word from the input and convert it to lowercase
+            var word = document.getElementById('wordInput').value.toLowerCase();
+            
+
+            // Get the URL from the browser and convert it to lowercase
+            var url = window.location.href.toLowerCase();
+            
+            // Check if the URL contains the word
+            if (url.includes(word)) {
+                document.getElementById('result').textContent = `The URL contains "${word}".`;
+            } else {
+                document.getElementById('result').textContent = `The URL does not contain "${word}".`;
+            }
+        };
+
+        // Check for Enter key press to trigger the button click
+        document.getElementById('wordInput').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('checkButton').click();
+            }
+        };
+    </script>
+</body>
+</html>

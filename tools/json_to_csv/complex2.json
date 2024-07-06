@@ -1,0 +1,297 @@
+{
+  "company1": {
+    "name": "MP2",
+    "employees": [
+      {
+        "id": 1,
+        "name": "M",
+        "age": 30,
+        "position": "Software Engineer",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "projects": [
+          {
+            "name": "Project Alpha",
+            "duration_months": 12,
+            "technologies": ["React", "Node.js"]
+          },
+          {
+            "name": "Project Beta",
+            "duration_months": 6,
+            "technologies": ["Vue", "Firebase"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "age": 35,
+        "position": "DevOps Engineer",
+        "skills": ["Docker", "Kubernetes", "AWS"],
+        "projects": [
+          {
+            "name": "Project Gamma",
+            "duration_months": 9,
+            "technologies": ["AWS", "Terraform"]
+          },
+          {
+            "name": "Project Delta",
+            "duration_months": 7,
+            "technologies": ["Azure", "Kubernetes"]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Carol White",
+        "age": 28,
+        "position": "UI/UX Designer",
+        "skills": ["Figma", "Sketch", "Photoshop"],
+        "projects": [
+          {
+            "name": "Project Epsilon",
+            "duration_months": 5,
+            "technologies": ["Figma", "Sketch"]
+          },
+          {
+            "name": "Project Zeta",
+            "duration_months": 8,
+            "technologies": ["Photoshop", "Illustrator"]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA"
+      },
+      {
+        "city": "New York",
+        "state": "NY",
+        "country": "USA"
+      },
+      {
+        "city": "Berlin",
+        "state": "Berlin",
+        "country": "Germany"
+      }
+    ],
+    "founded": 2010,
+    "isPublic": true,
+    "contact": {
+      "phone": "+1-800-123-4567",
+      "email": "info@techinnovators.com"
+    }
+  },
+
+  "company2": {
+    "name": "Tech Innovators Inc.",
+    "employees": [
+      {
+        "id": 1,
+        "name": "Alice Johnson",
+        "age": 30,
+        "position": "Software Engineer",
+        "skills": ["JavaScript", "React", "Node.js"],
+        "projects": [
+          {
+            "name": "Project Alpha",
+            "duration_months": 12,
+            "technologies": ["React", "Node.js"]
+          },
+          {
+            "name": "Project Beta",
+            "duration_months": 6,
+            "technologies": ["Vue", "Firebase"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "age": 35,
+        "position": "DevOps Engineer",
+        "skills": ["Docker", "Kubernetes", "AWS"],
+        "projects": [
+          {
+            "name": "Project Gamma",
+            "duration_months": 9,
+            "technologies": ["AWS", "Terraform"]
+          },
+          {
+            "name": "Project Delta",
+            "duration_months": 7,
+            "technologies": ["Azure", "Kubernetes"]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Carol White",
+        "age": 28,
+        "position": "UI/UX Designer",
+        "skills": ["Figma", "Sketch", "Photoshop"],
+        "projects": [
+          {
+            "name": "Project Epsilon",
+            "duration_months": 5,
+            "technologies": ["Figma", "Sketch"]
+          },
+          {
+            "name": "Project Zeta",
+            "duration_months": 8,
+            "technologies": ["Photoshop", "Illustrator"]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "David Green",
+        "age": 40,
+        "position": "Project Manager",
+        "skills": ["Project Management", "Scrum", "Agile"],
+        "projects": [
+          {
+            "name": "Project Eta",
+            "duration_months": 10,
+            "technologies": ["Jira", "Confluence"]
+          },
+          {
+            "name": "Project Theta",
+            "duration_months": 4,
+            "technologies": ["MS Project", "Trello"]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA"
+      },
+      {
+        "city": "New York",
+        "state": "NY",
+        "country": "USA"
+      },
+      {
+        "city": "Berlin",
+        "state": "Berlin",
+        "country": "Germany"
+      }
+    ],
+    "founded": 2010,
+    "isPublic": true,
+    "contact": {
+      "phone": "+1-800-123-4567",
+      "email": "info@techinnovators.com"
+    }
+  },
+
+  "company3": {
+    "name": "Innovative Solutions LLC",
+    "employees": [
+      {
+        "id": 1,
+        "name": "Eva Adams",
+        "age": 32,
+        "position": "Full Stack Developer",
+        "skills": ["JavaScript", "Angular", "Node.js"],
+        "projects": [
+          {
+            "name": "Project Lambda",
+            "duration_months": 14,
+            "technologies": ["Angular", "Node.js"]
+          },
+          {
+            "name": "Project Mu",
+            "duration_months": 5,
+            "technologies": ["Express", "MongoDB"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Frank Moore",
+        "age": 29,
+        "position": "Data Scientist",
+        "skills": ["Python", "Machine Learning", "SQL"],
+        "projects": [
+          {
+            "name": "Project Nu",
+            "duration_months": 8,
+            "technologies": ["Python", "Pandas"]
+          },
+          {
+            "name": "Project Xi",
+            "duration_months": 6,
+            "technologies": ["R", "Tableau"]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Grace Lee",
+        "age": 33,
+        "position": "Systems Analyst",
+        "skills": ["Systems Analysis", "Business Analysis", "Jira"],
+        "projects": [
+          {
+            "name": "Project Omicron",
+            "duration_months": 11,
+            "technologies": ["Jira", "Confluence"]
+          },
+          {
+            "name": "Project Pi",
+            "duration_months": 7,
+            "technologies": ["Visio", "Balsamiq"]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Helen Brown",
+        "age": 27,
+        "position": "Marketing Specialist",
+        "skills": ["SEO", "Content Marketing", "Social Media"],
+        "projects": [
+          {
+            "name": "Project Rho",
+            "duration_months": 4,
+            "technologies": ["Google Analytics", "Hootsuite"]
+          },
+          {
+            "name": "Project Sigma",
+            "duration_months": 9,
+            "technologies": ["HubSpot", "Mailchimp"]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "city": "Austin",
+        "state": "TX",
+        "country": "USA"
+      },
+      {
+        "city": "Seattle",
+        "state": "WA",
+        "country": "USA"
+      },
+      {
+        "city": "Toronto",
+        "state": "ON",
+        "country": "Canada"
+      }
+    ],
+    "founded": 2015,
+    "isPublic": false,
+    "contact": {
+      "phone": "+1-512-555-1234",
+      "email": "contact@innovativesolutions.com"
+    }
+  }
+}

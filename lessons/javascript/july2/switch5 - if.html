@@ -1,0 +1,55 @@
+
+    <p>Enter a day of the week:</p>
+    <input type="text" id="dayInput">
+    <button id="checkDayButton">Check Day</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('checkDayButton').onclick = checkDay;
+        document.getElementById('dayInput').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                checkDay();
+            }
+        };
+
+
+        function checkDay() {
+            var dayInput = document.getElementById('dayInput').value.toLowerCase();
+            var message;
+
+            if (dayInput === "monday") {
+                message = "It's the start of the work week!";
+            } 
+
+            else if (dayInput === "tuesday") {
+                message = "Second day of the work week.";
+            } 
+
+            else if (dayInput === "wednesday") {
+                message = "Midweek day.";
+            } 
+
+            else if (dayInput === "thursday") {
+                message = "Almost the end of the work week.";
+            } 
+
+            else if (dayInput === "friday") {
+                message = "Last work day of the week!";
+            } 
+
+            else if (dayInput === "saturday") {
+                message = "Weekend starts!";
+            } 
+
+            else if (dayInput === "sunday") {
+                message = "End of the weekend.";
+            } 
+
+            else {
+                message = "Invalid day. Please enter a valid day of the week.";
+            }
+
+            document.getElementById('result').textContent = message;
+        } // end function
+    </script>
+
