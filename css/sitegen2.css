@@ -475,7 +475,7 @@ margin-top:0px;}
 		z-index: 100;
 		opacity: .3;
 		border-bottom: solid 2px #000000;
-		height: 59995px;
+		//height: 59995px;
 		overflow: hidden;
 	}
 		  .logo {border:solid 0px;
