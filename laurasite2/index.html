@@ -88,7 +88,7 @@
             margin: 0 auto;
             padding: 30px;
             background-color: none; /* Updated from #none to none */
-            border: solid 1px #ff0000;
+           border: solid 1px #ff0000;
             margin-top: 10px; /* Adjusted for space under the fixed nav */
         }
 
@@ -147,6 +147,8 @@
         }
     </style>
 </head>
+
+
 <body>
     <div id="nav">
         <div class="nav-inner">
@@ -181,7 +183,8 @@
     </div>   
 
     <div id="main-container">
-        <div id="content"></div>
+        <div id="content">
+        </div>
     </div> <!-- end main-container -->
 
     <div id="footer">
@@ -191,86 +194,84 @@
     </div>
 
     <script>
-        // This event listener runs the provided function when the DOM content is fully loaded.
         document.addEventListener('DOMContentLoaded', () => {
-            // Function to handle clicks on links
             function handleLinkClick(event) {
-                event.preventDefault(); // Prevent the default link action
-                const href = event.target.getAttribute('href'); // Get the href attribute of the clicked link
+                event.preventDefault(); 
+                const href = event.target.getAttribute('href');
                 if (href) {
-                    window.location.hash = href; // Update the hash in the URL
+                    window.location.hash = href; 
                 }
             }
 
-            // Add click event listeners to all anchor tags within the nav
             document.querySelectorAll('#nav a').forEach(link => {
                 link.addEventListener('click', handleLinkClick);
             });
 
-            // Function to load content based on the URL hash
             function loadContentFromHash() {
-                const hash = window.location.hash.substring(1); // Remove the leading #
-                const page = hash || 'content/home.html'; // Default to home.html if no hash
-                loadContent(page); // Load initial content based on the hash
+                const hash = window.location.hash.substring(1); 
+                const page = hash || 'content/home.html'; 
+                loadContent(page); 
             }
 
-            // Add event listener for hash change
             window.addEventListener('hashchange', loadContentFromHash);
-
-            // Initial content load based on the current hash
             loadContentFromHash();
         });
 
-        // This function capitalizes the first letter of each word in a string.
         function capitalizeWords(str) {
             return str
-                .replace(/(?:^|\s|-|_)\S/g, match => match.toUpperCase()) // Capitalizes the first letter of each word
-                .replace(/[-_]/g, ' '); // Replaces dashes and underscores with spaces
+                .replace(/(?:^|\s|-|_)\S/g, match => match.toUpperCase())
+                .replace(/[-_]/g, ' ');
         }
 
-        // This function loads HTML content from a specified page URL and updates the #content div.
         function loadContent(page) {
-            fetch(page) // Fetch the content from the specified page URL.
+            fetch(page) 
                 .then(response => {
                     if (!response.ok) {
-                        // If the response is not OK (e.g., 404 Not Found), throw an error.
                         throw new Error(`Network response was not ok ${response.statusText}`);
                     }
-                    return response.text(); // Parse the response as text.
+                    return response.text(); 
                 })
                 .then(html => {
-                    // Get the #content div and set its inner HTML to the fetched content.
                     const contentDiv = document.getElementById('content');
                     contentDiv.innerHTML = html;
+                    attachLinkEventListeners(); 
 
-                    // Check if the fetched content has an <h1> element.
                     if (!contentDiv.querySelector('h1')) {
-                        // If not, create a new <h1> element with a title based on the page URL.
-                        const lastPart = page.split('/').pop().split('.').shift(); // Extract the page name without extension.
-                        const h1Text = capitalizeWords(lastPart); // Capitalize the page name.
-                        const h1 = document.createElement('h1'); // Create a new <h1> element.
-                        h1.textContent = h1Text; // Set the text content of the <h1> element.
-                        contentDiv.prepend(h1); // Insert the <h1> element at the top of the #content div.
+                        const lastPart = page.split('/').pop().split('.').shift();
+                        const h1Text = capitalizeWords(lastPart);
+                        const h1 = document.createElement('h1');
+                        h1.textContent = h1Text;
+                        contentDiv.prepend(h1);
                     }
                 })
-
                 .catch(error => {
-                    // Handle any errors that occurred during the fetch operation.
                     console.error('Fetch error:', error);
-                    fetch('content/missing-page.html') // Fetch a special "missing page" content on fetch error.
-                        .then(response => response.text()) // Parse the "missing page" response as text.
+                    fetch('content/missing-page.html')
+                        .then(response => response.text())
                         .then(html => {
                             const contentDiv = document.getElementById('content');
-                            contentDiv.innerHTML = html; // Set the #content div’s HTML to the "missing page" content.
+                            contentDiv.innerHTML = html;
+                            attachLinkEventListeners(); 
                         })
                         .catch(err => {
-                            // Handle any errors that occurred while fetching the "missing page" content.
                             console.error('Error loading missing-page.html:', err);
-                            // Display a "Page Not Found" message if both the main and missing page requests fail.
                             document.getElementById('content').innerHTML = '<h1>Page Not Found</h1><p>Sorry, the page you are looking for does not exist.</p>';
                         });
                 });
         }
+
+        function attachLinkEventListeners() {
+            document.querySelectorAll('#content a').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                    const href = event.target.getAttribute('href'); 
+                    if (href) {
+                        window.location.hash = href; 
+                    }
+                });
+            });
+        }
     </script>
 </body>
+
 </html>
