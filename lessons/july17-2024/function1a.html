@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Function Calls</title>
+</head>
+<body>
+    <div id="results"></div>
+    <script>
+        // This function takes two numbers as arguments and returns their sum.
+        function addNumbers(a, b) {
+            return a + b;
+        }
+
+        // Variables for the first call
+        let number1 = 5;
+        let number2 = 3;
+        let sum1 = addNumbers(number1, number2);
+        console.log("The sum of " + number1 + " and " + number2 + " is " + sum1);
+
+        // Variables for the second call
+        let number3 = 10;
+        let number4 = 7;
+        let sum2 = addNumbers(number3, number4);
+        console.log("The sum of " + number3 + " and " + number4 + " is " + sum2);
+
+        // Variables for the third call
+        let number5 = 12;
+        let number6 = 8;
+        let sum3 = addNumbers(number5, number6);
+        console.log("The sum of " + number5 + " and " + number6 + " is " + sum3);
+
+
+
+
+        document.getElementById("results").innerHTML = `
+            <p>The sum of ${number1} and ${number2} is ${sum1}</p>
+            <p>The sum of ${number3} and ${number4} is ${sum2}</p>
+            <p>The sum of ${number5} and ${number6} is ${sum3}</p>
+        `;
+    </script>
+</body>
+</html>

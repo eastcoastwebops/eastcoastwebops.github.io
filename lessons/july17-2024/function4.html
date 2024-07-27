@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple JS Function with User Input</title>
+</head>
+<body>
+    <div id="result">here</div>
+    <script>
+        // This function takes two numbers as arguments and returns their sum.
+        function addNumbers(a, b) {
+            return a + b;
+        }
+
+        // Get user input
+        let input1 = parseFloat(prompt("Enter the first number:"));
+        let input2 = parseFloat(prompt("Enter the second number:"));
+
+        if (isNaN(input1) || isNaN(input2)) {
+            console.log("Please enter valid numbers.");
+        } else {
+            // Call the function and store the result
+            let sum = addNumbers(input1, input2);
+
+            // Display the result
+            console.log("The sum of " + input1 + " and " + input2 + " is " + sum);
+            document.write("The sum of " + input1 + " and " + input2 + " is " + sum);
+
+            // Corrected this line
+            document.getElementById("result").innerHTML = "The sum of " + input1 + " and " + input2 + " is " + sum;
+
+            alert("The sum of " + input1 + " and " + input2 + " is " + sum);
+        }
+    </script>
+</body>
+</html>
