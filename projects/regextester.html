@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Matcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    textarea, input, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      cursor: pointer;
+    }
+    .output {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .output.match {
+      color: green;
+    }
+    .output.no-match {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Regex Matcher</h1>
+  
+  <h2>Regex List</h2>
+  <p>The regex patterns are predefined:</p>
+  <pre id="regexListDisplay"></pre>
+  
+  <h2>Test a String</h2>
+  <p>Enter a string to test against the regex list:</p>
+  <input type="text" id="testStringInput" placeholder="Enter string to test...">
+  <button onclick="testString()">Test String</button>
+  
+  <div id="output" class="output"></div>
+
+  <script>
+    // Define the regex list as a single multiline string with ,\ at the end of each line
+    const regexListString = `
+\\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}\\z,\\
+\\A{,}\\z,\\
+\\A[$%#x/)(»«:]\\z,\\
+\\A\\s*\\$\\{[\\w.]+\\}\\s*\\z,\\
+\\A\\s*\\$\\{[\\w.]+\\[\\d+\\]\\}\\s*\\z,\\
+\\A\\s*\\{[a-z]+\\.[a-z]+\\}\\s*\\z,\\
+\\A\\s*\\$\\{[a-z]+\\.[A-Z]+(?:\\(\\)\\})?\\s*\\z,\\
+\\A(?:[Cc]hrome|[Ee]dge|[Ff]irefox|[Oo]pera|[Ss]afari) [0-9.]+\\z,\\
+\\Anull\\z,\\
+\\ACat\\z,\\
+\\ABasic \\w+=\\z,\\
+\\A(?:\\s|\\\\[rnt])+\\z,\\
+\\A[a-z]+(?:[A-Z][a-z]+)+\\z,\\
+`;
+
+    // Function to prepare the regex list
+    function prepareRegexListFromString(regexString) {
+      const regexLines = regexString
+        .split(/\r?\n/) // Split by newlines
+        .filter(line => line.trim() !== '') // Remove empty lines
+        .map(line => line.replace(/,\\$/, '')) // Remove ,\ from the end of each line
+        .map((regexStr, index) => {
+          const beforeConversion = regexStr; // Debugging step
+          // Dynamically unescape backslashes for JavaScript regex
+          const afterUnescape = regexStr.replace(/\\\\/g, "\\"); // Unescape \\ to \
+          const afterConversion = afterUnescape
+            .replace(/\\A/g, "^") // Replace \A with ^
+            .replace(/\\z/g, "$"); // Replace \z with $
+          
+          // Debugging log: Before and after conversion
+          console.log(`Regex #${index + 1}: Before: ${beforeConversion} | After: ${afterConversion}`);
+          return new RegExp(afterConversion); // Create RegExp object
+        });
+
+      return regexLines;
+    }
+
+    // Prepare the regex list
+    const processedRegexList = prepareRegexListFromString(regexListString);
+
+    // Display the regex list on the page
+    document.getElementById("regexListDisplay").textContent = regexListString;
+
+    // Function to test a string against the regex list
+    function testString() {
+      const testString = document.getElementById("testStringInput").value.trim(); // Trim whitespace
+      console.log(`Testing input: "${testString}"`); // Debugging
+
+      if (!testString) {
+        document.getElementById("output").textContent = "Please enter a string to test.";
+        document.getElementById("output").classList.add("no-match");
+        document.getElementById("output").classList.remove("match");
+        return;
+      }
+
+      let matchFound = false;
+
+      for (let i = 0; i < processedRegexList.length; i++) {
+        const regex = processedRegexList[i];
+        console.log(`Testing "${testString}" against regex: ${regex}`); // Debugging
+
+        if (regex.test(testString)) {
+          console.log(`Matched: ${regex}`); // Log the matched regex
+          document.getElementById("output").textContent = `Matched: ${regex}`;
+          document.getElementById("output").classList.add("match");
+          document.getElementById("output").classList.remove("no-match");
+          matchFound = true;
+          break;
+        }
+      }
+
+      if (!matchFound) {
+        console.log("No matches found."); // Log no match
+        document.getElementById("output").textContent = "No matches found.";
+        document.getElementById("output").classList.add("no-match");
+        document.getElementById("output").classList.remove("match");
+      }
+    }
+  </script>
+</body>
+</html>
