@@ -45,43 +45,139 @@
   <div id="output" class="output"></div>
 
   <script>
-    // Define the regex list as a single multiline string with ,\ at the end of each line
+    // Define the regex list as a single multiline string
     const regexListString = `
-\\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}\\z,\\
-\\A{,}\\z,\\
-\\A[$%#x/)(»«:]\\z,\\
-\\A\\s*\\$\\{[\\w.]+\\}\\s*\\z,\\
-\\A\\s*\\$\\{[\\w.]+\\[\\d+\\]\\}\\s*\\z,\\
-\\A\\s*\\{[a-z]+\\.[a-z]+\\}\\s*\\z,\\
-\\A\\s*\\$\\{[a-z]+\\.[A-Z]+(?:\\(\\)\\})?\\s*\\z,\\
-\\A(?:[Cc]hrome|[Ee]dge|[Ff]irefox|[Oo]pera|[Ss]afari) [0-9.]+\\z,\\
-\\Anull\\z,\\
-\\ACat\\z,\\
-\\ABasic \\w+=\\z,\\
-\\A(?:\\s|\\\\[rnt])+\\z,\\
-\\A[a-z]+(?:[A-Z][a-z]+)+\\z,\\
+\\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1{%2c}4}\\z
+\\A{%2C}\\z
+\\A[$%#x/)(»«:]\\z
+\\A\\s*\\$\\{[\\w.]+\\}\\s*\\z
+\\A\\s*\\$\\{[\\w.]+\\[\\d+\\]\\}\\s*\\z
+\\A\\s*\\{[a-z]+\\.[a-z]+\\}\\s*\\z
+\\A\\s*\\$\\{[a-z]+\\.[A-z]+(?:\\(\\)\\})?\\s*\\z
+\\A(?:[Cc]hrome|[Ee]dge|[Ff]irefox|[Oo]pera|[Ss]afari) [0-9.]+\\z
+\\Anull\\z
+\\ABasic \\w+=\\z
+\\A(?:\\s|\\\\[rnt])+\\z
+\\A[a-z]+(?:[A-Z][a-z]+)+\\z
+.*\\?\\?\\?\\.tmo\\.checkout\\.header\\..*
+.*updatePanel\\|ctl.*
+.*\\|hiddenField\\|.*
+\\A\\{planname[0-9]+\\}\\z
+.*(\\ï\\¿\\½|<button|else\\{|\\|areaCode_|\\|state_|[A-Z]{3}\\$).*
+\\A<(?:iframe scrolling|img class).*
+\\A(?:Ut quam |[0-9]SSXETUHX|zuPg|Vivamus |Vestibulum |Suspendi|Sed |Quisque |qCVz|Proin |Praesent |Phasellus |Nunc |Nullam |nRrYuf0PM1|Nam i|Morbi |Integer |http:|In at nibh si|F0RRu|Fusce |Etiam |Duis |Donec |Curabitur |cmwyzpv|Class aptent|Aenean |Lorem ipsum dolor sit amet).*
+\\A\\{#advlink_dlg\\..*
+\\A(?:onblur|onclick|ondblclick|onfocus|onkeydown|onkeypress|onkeyup|onmousedown|onmousemove|onmouseout|onmouseover|onmouseup)\\z
+\\A{%20}para seleccionar el.*
+\\A\\['Dev_Pop_BBy[0-9]+t(?:UpgradeCheck|Upgrade)\\]\\z
+\\A\\['Pln_Pop_PlnMinutes\\]\\z
+\\A"\\.product-card"\\);.*
+.*/content/dam/tmo/store-locator-images/.*
+.*<[a-z]+ [^>]+\\z
+.*\\[Dev_Pop_BBy\\d*UpgradeCheck.*
+\\Atmo_[A-z]+\\z
+\\ADBLOCK\\z
+\\A\\{\\{[^"'\\}]*\\}\\}\\z
+\\A(?:[\\s{%2c}\\+:\\(\\)\\$\\.]*\\{\\{[^"'\\}]*\\}\\}[\\s{%2c}\\+:\\(\\)\\$\\.]*)+\\z
+\\A\\{\\{(?:'[\\$\\d\\.]+'|[^"'\\}])*\\}\\}\\z
+\\A<!--(?:(?!-->).)*\\z
+\\A\\{\\{(?:""|[^"'\\}])*\\}\\}\\z
+\\A(?:\\$\\{(?:\\['[^']+'\\]|[^\\}"'])*\\}\\s*)+\\z
+\\A/\\S+\\.gif\\z
+\\Afalse\\z
+.*MPFIX\\z
+\\A(?:\\[[A-Z][A-Z_#\\d\\s]+\\]\\s*)+\\z
+\\A(?:cart:|cart|store-locator|verifyimei|close|email)\\z
+.*1970 00:00:00 GMT.*
+\\AYYYY \\[.*
+\\AD\\[-an de\\].*
+\\Adddd{%2C}.*
+\\Addd{%2C}.*
+.*ALBERTO.*
+\\Adddd{%2C}.*
+\\Adddd{%2C} YYYY.*
+\\ADo MMM.*
+\\AYYYY\\[.*
+\\AAsia/Damascus.*
+\\AEurope/Kaliningrad.*
+\\APacific/Rarotonga.*
+.*&#39;s Reputation\\z
+\\AChicago T-Mobile\\z
+\\AChicago\\z
+.*"\\w+":".*
+.*Asistencia de T-Mobile.*
+.*Basta de inactividad.*
+.*disponibles con servicio prepagado.*
+.*proveedor de T-Mobile.*
+\\AClientes\\z
+.*iPhone con iOS.*
+\\A[A-z0-9]{30}.*
+\\AT-Mobile Bristol & \\d+th\\z
+\\ABarceloneta.*
+\\A'vehicle_compatibility\\.\\w+.*
+\\ABarceloneta.*
+\\A\\(Ne všechna kompatibilní auta s OBD-II portem o sobě poskytují všechny informace.*
+\\ABudete muset odstranit plastový kryt pravděpodobné s pomocí plochého šroubováku.*
+\\ADo něho se pak připojuje naše OBD Zařízení.*
+\\ADo portu připojte své zařízení.*
+\\ADomů\\z
+\\AKlikněte zde\\z
+\\AKontaktujte nás\\z
+\\AMotor\\z
+\\AOBD port.*
+\\AOvěřte si.*
+\\APotřebujete pomoc s vyhledáním umístění OBD.*
+\\ASkrýt obrázek umístění OBD-II portu\\z
+\\AStále potřebujete pomoc.*
+\\AToto auto.*
+\\AVaše auto má OBD-II port\\z
+\\AVyberte svůj vůz.*
+\\AVybrat nový vůz\\z
+\\AVyjměte podložku a plastový kryt.*
+\\AVyrobeno\\z
+\\AVáš vůz má OBD-II port\\z
+\\AVětšina aut vyrobených od roku.*
+\\AZariadenie\\z
+\\AZkontrolujte si.*
+\\AZnačka\\z
+\\AZobrazit obrázek umístění OBD-II portu\\z
+.+Ehts key value map should.+
+\\AcontentLayer\\.ctaAutoPayPrimary\\.name\\z
+\\AcontentLayer\\.ctaAutoPaySave\\.name\\z
+\\AcontentLayer\\.ctaAutoPayCancel\\.name\\z
+\\AA named status for the post.*
+\\AA password to protect access to the content and excerpt.*
+\\AAn alphanumeric identifier for the post unique to its type.*
+\\AAn array of the class names for the post container element.*
+\\AArray of column names to be searched.*
+\\AContent for the post{%2c} as it exists in the database.*
+\\ACurrent page of the collection.*
+\\AEnsure result set excludes posts assigned to specific authors.*
+\\AEnsure result set excludes specific IDs.*
+\\AExcerpt for the post{%2c} as it exists in the database.*
+\\AGUID for the post{%2c} as it exists in the database.*
+\\AGUID for the post{%2c} transformed for display.*
+\\AHTML excerpt for the post{%2c} transformed for display.*
+\\AHTML title for the post{%2c} transformed for display.*
+\\Test\\z
 `;
 
     // Function to prepare the regex list
     function prepareRegexListFromString(regexString) {
-      const regexLines = regexString
-        .split(/\r?\n/) // Split by newlines
-        .filter(line => line.trim() !== '') // Remove empty lines
-        .map(line => line.replace(/,\\$/, '')) // Remove ,\ from the end of each line
-        .map((regexStr, index) => {
-          const beforeConversion = regexStr; // Debugging step
-          // Dynamically unescape backslashes for JavaScript regex
-          const afterUnescape = regexStr.replace(/\\\\/g, "\\"); // Unescape \\ to \
-          const afterConversion = afterUnescape
-            .replace(/\\A/g, "^") // Replace \A with ^
-            .replace(/\\z/g, "$"); // Replace \z with $
-          
-          // Debugging log: Before and after conversion
-          console.log(`Regex #${index + 1}: Before: ${beforeConversion} | After: ${afterConversion}`);
-          return new RegExp(afterConversion); // Create RegExp object
-        });
-
-      return regexLines;
+      const regexLines = regexString.split(/\r?\n/).filter(line => line.trim() !== '');
+      return regexLines.map((regexStr, index) => {
+        const beforeConversion = regexStr; // Debugging step
+        // Dynamically unescape backslashes for JavaScript regex
+        const afterUnescape = regexStr.replace(/\\\\/g, "\\"); // Unescape \\ to \
+        const afterConversion = afterUnescape
+          .replace(/\\A/g, "^") // Replace \A with ^
+          .replace(/\\z/g, "$"); // Replace \z with $
+        
+        // Debugging log: Before and after conversion
+        console.log(`Regex #${index + 1}: Before: ${beforeConversion} | After: ${afterConversion}`);
+        
+        return new RegExp(afterConversion); // Create RegExp object
+      });
     }
 
     // Prepare the regex list
