@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="vsimage.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+</head>
+<!--
+    All code, ideas, and concepts here are © Eric K. Holbrook
+    for information please content ekholbrook@gmail.com
+    No use or modification without express writtent consent 
+-->
+
+<body>
+    <h1>April 23, 2024 - App will not available until it can be updated to reflect new server moves</h1>
+    <div class="hideprint">
+        <div id="contentContainer">
+            <h1 style="padding:0px;margin:0px;">Victoria Secret Image Check </h1>
+            <p style="font-size:12px;padding:0px;">All code, ideas, and concepts here are © Eric K. Holbrook for information please contact ekholbrook@gmail.com. No use or modification without express writtent consent </p>
+        </div>
+        <div id="secondcontentContainer"></div>
+        <textarea id="inputId" rows="10" cols="130">
+https://www.victoriassecret.com/images/vsweb/b6d30c40-f8d2-4667-ad3d-5fe12be5c3b0/040524-Intl-Megabrand-HP-mob-FAQ-EURO.jpg
+https://www.victoriassecret.com/images/vsweb/4d01803e-dacf-423c-8243-75c7ce1c420b/092322-intl-PINK_BraFit_FQs_MOB.jpg
+https://www.victoriassecret.com/images/vsweb/00ceb33f-c173-4aed-b7a2-7bba09c1db98/041724-INTL-PINK-HP-FrankiesBikinis-logo_m__263x100-d__460x186.png
+https://www.victoriassecret.com/images/vsweb/09c9246d-e754-459e-b24d-d777346e2980/040524-Intl-Megabrand-HP-mob-FAQ-EURO.jpg
+
+        </textarea>
+        <br>
+    </div>
+    <div id="jumpContainer"></div>
+    <div id="thepage"></div>
+    <div id="bottomDropdown"></div>
+    <a href="#" rel="previous" onclick="writeBody();NiceScroll();">Back to Top</a>
+    <script>
+    var instructs = "For now... Please format the image urls to <b></b>use www </b> instead of translated \"frca\" etc. <br/> Separation by line, space, or comma is ok.<br/><br/><i>Sample Images</i>";
+    var codekey = "USD: Korean, Japanese, Spanish Universal<br>EUR: Polish, German, Italian, Spanish Castilian, French Continental<br>CAD: French Canadian<br/>MXN: Spanish Universal";
+    var jumps = "<select id='jumpDropdown'>" +
+        "<option value='' disabled selected>Select an option</option>" +
+        "<option value='' market='all'>ALL markets</option>" +
+        "<option value='' market='eur'>ONLY EUR</option>" +
+        "<option value='' market='usd'>ONLY USD</option>" +
+        "<option value='' market='cad'>ONLY CAD</option>" +
+        "<option value='' market='mxn'>ONLY MXN</option>" +
+        "</select>";
+    var market = "";
+
+    function setupContentAndDropdown(contentId, jumpId, instructs, jumps) {
+        // Create a new div element for content
+        var contentContainer = document.getElementById(contentId);
+        if (market !== "eur" && market !== "usd" && market !== "cad" && market !== "mxn") {
+            contentContainer.innerHTML += instructs;
+        }
+
+        // Create a new div element for the dropdown
+        var jumpContainer = document.getElementById(jumpId);
+        jumpContainer.innerHTML += jumps;
+
+        // Add event listener to handle dropdown selection change
+        document.getElementById('jumpDropdown').addEventListener('change', function() {
+            // Get the selected value
+            var selectedOption = this.options[this.selectedIndex];
+            market = selectedOption.getAttribute("market");
+            console.log('market' + market);
+            getInputValue();
+            writeBody();
+        });
+    }
+
+    //    All code, ideas, and concepts here are © Eric K. Holbrook
+    //    for information please contact ekholbrook@gmail.com
+    //    No use or modification without express writtent consent 
+
+
+    var allhtml = "<div id=\"paginatediv\" class=\"paginationstyle\"></div>";
+    var nicename;
+    var currentLanguageIndex = 0; // Track the current language index
+    var dropdown; // Declare dropdown as a global variable
+    var droparray = []; // Declare droparray as a global variable
+    var cname = [];
+
+    function loadImage(url, containerId) {
+        var img = new Image();
+        img.src = url;
+        img.className = 'lazy-image';
+        img.loading = 'lazy';
+
+        img.onload = function() {
+            img.classList.add('loaded');
+        };
+
+        document.getElementById(containerId).appendChild(img);
+    }
+
+    function getInputValue() {
+        dropdown = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>";
+        droparray = [];
+        allhtml = "";
+
+        let input = document.getElementById("inputId").value;
+        let links = input.split(/\s*,\s*|\s+|\n/).filter(link => link.trim() !== "");
+
+        cname = getCnameArray(market);
+
+        for (var z = 0; z < cname.length; z = z + 7) {
+            transurl = cname[z];
+            nicename = cname[z];
+
+            //    All code, ideas, and concepts here are © Eric K. Holbrook
+            //    for information please contact ekholbrook@gmail.com
+            //    No use or modification without express writtent consent 
+
+            dropdown += "<option value='" + (z / 7) + "'>" + nicename + "</option>";
+            allhtml += "<div class='newlanguage' style='display: none;'><span id='" + nicename + "'></span>";
+            allhtml += "<h2><span class='title'>" + nicename + " <span class='firstentry'>" + transurl + "</span></span></h2><br clear='all'>";
+
+            for (var i = 0; i < links.length; i++) {
+                title = links[i];
+                titleES = title.replace('www.victoriassecret.com', transurl);
+                titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + transurl + '</span>');
+                allhtml += "<div class='leftside'><br/> <img data-src='" + titleES + "' class='lazyload'><br><span class='origin'>" + titleBold + " </span></div>";
+            }
+
+            for (var i = 1; i <= 6 && (z + i) < cname.length; i++) {
+                var subdomMatch = transurl.match(/^(.+)\.victoriassecret\.com$/);
+                var subdom = (subdomMatch && subdomMatch.length > 1) ? subdomMatch[1] : null;
+
+                ipIndex = z + i;
+                ip = cname[ipIndex];
+
+                allhtml += "<hr class='separator'><div class='newip'><span class='origin'> IP #" + i + "<br/> <span class=boldcolor>" + subdom + "</span>" + ip + "</span></div>";
+
+                for (var j = 0; j < links.length; j++) {
+                    title = links[j];
+                    titleES = title.replace('www.victoriassecret.com', ip);
+                    titleBold = title.replace('www.victoriassecret.com', '<span class=boldcolor>' + ip + '</span>');
+                    allhtml += "<div class='leftside'><img data-src='" + titleES + "' class='lazyload'><br><span class='origin'><i style='font-weight:bold;font-size:1.5em;'> " + subdom + "  </i>  -  " + titleBold + " </span></div>";
+                }
+            }
+
+            allhtml += "<br style='break-after:page'></div>";
+            droparray.push(nicename);
+        }
+
+        dropdown += '</select>';
+    }
+
+    function lazyLoadImages() {
+        // Use lazysizes to handle lazy loading
+        lazySizes.init();
+    }
+
+    function writeBody() {
+        thepage.innerHTML = ""; // clear page
+        thepage.innerHTML += allhtml;
+
+        insert = droparray[currentLanguageIndex];
+        var targetElement = document.getElementById(insert);
+
+        // Check if the element exists before setting its content
+        if (targetElement) {
+            targetElement.innerHTML = dropdown;
+            document.getElementsByClassName('newlanguage')[currentLanguageIndex].style.display = 'block';
+        } else {
+            console.error("Element with ID '" + insert + "' not found.");
+        }
+
+        //    All code, ideas, and concepts here are © Eric K. Holbrook
+        //    for information please contact ekholbrook@gmail.com
+        //    No use or modification without express writtent consent 
+
+        // Populate the bottom dropdown
+        var bottomDropdownContent = "";
+        for (var i = 0; i < droparray.length; i++) {
+            bottomDropdownContent += "<option value='" + i + "'>" + droparray[i] + "</option>";
+        }
+        document.getElementById('bottomDropdown').innerHTML = "<select class='hideprint' onchange='changeLanguage(this.value)'><option value=''>Jump to Language</option>" + bottomDropdownContent + "</select>";
+
+        // Load images for the selected language
+        var selectedLanguage = droparray[currentLanguageIndex];
+        var images = document.querySelectorAll("#" + selectedLanguage + " img");
+        images.forEach(function(img) {
+            loadImage(img.src, "thepage");
+        });
+
+        // Change the content of the h1 tag based on the market
+        var h1Tag = document.querySelector("#contentContainer h1");
+        if (market === "usd") {
+            h1Tag.textContent = "USD - Korean(KO), Japanese(JA), Spanish (SP)";
+        } else if (market === "cad") {
+            h1Tag.textContent = "CAD - Canadian(FRCA)";
+        } else if (market === "eur") {
+            h1Tag.textContent = "EUR - Polish (PL), German(DE), Italian(IT), Spanish(ES), French(FR)";
+        } else if (market === "mxn") {
+            h1Tag.textContent = "MXN - (SP) / Mexico";
+        } else if (market === "all") {
+            h1Tag.textContent = "INTL - All";
+        } else {
+
+        }
+    }
+
+    function changeLanguage(index) {
+        if (index >= 0 && index < droparray.length) {
+            currentLanguageIndex = index;
+            // Set market based on the selected option
+            market = droparray[currentLanguageIndex];
+            writeBody();
+            // Scroll to the top
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        } else {
+            console.error("Invalid index: " + index);
+        }
+    }
+
+    function getCnameArray(selectedMarket) {
+        var cnameArray = [];
+
+        if (selectedMarket === "usd") {
+
+            cnameArray = [
+                'sp.victoriassecret.com',
+                'esvictoriassecret-lb-ohi1.convertlanguage.com',
+                'esvictoriassecret-lb-ohi2.convertlanguage.com',
+                'esvictoriassecret-lb-ohi3.convertlanguage.com',
+                'esvictoriassecret-lb-ohi4.convertlanguage.com',
+                'esvictoriassecret-lb-ohi5.convertlanguage.com',
+                'esvictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'ko.victoriassecret.com',
+                'kovictoriassecret-lb-ohi1.convertlanguage.com',
+                'kovictoriassecret-lb-ohi2.convertlanguage.com',
+                'kovictoriassecret-lb-ohi3.convertlanguage.com',
+                'kovictoriassecret-lb-ohi4.convertlanguage.com',
+                'kovictoriassecret-lb-ohi5.convertlanguage.com',
+                'kovictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'ja.victoriassecret.com',
+                'javictoriassecret-lb-ohi1.convertlanguage.com',
+                'javictoriassecret-lb-ohi2.convertlanguage.com',
+                'javictoriassecret-lb-ohi3.convertlanguage.com',
+                'javictoriassecret-lb-ohi4.convertlanguage.com',
+                'javictoriassecret-lb-ohi5.convertlanguage.com',
+                'javictoriassecret-lb-ohi6.convertlanguage.com',
+            ];
+        } else if (selectedMarket === "cad") {
+            cnameArray = [
+                'frca.victoriassecret.com',
+                'frcavictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi6.convertlanguage.com',
+            ];
+        } else if (selectedMarket === "eur") {
+            cnameArray = [
+                'fr.victoriassecret.com',
+                'frvictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'de.victoriassecret.com',
+                'devictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'es.victoriassecret.com',
+                'esesvictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'it.victoriassecret.com',
+                'itvictoriassecret-lb-ohi1.convertlanguage.com',
+                'itvictoriassecret-lb-ohi2.convertlanguage.com',
+                'itvictoriassecret-lb-ohi3.convertlanguage.com',
+                'itvictoriassecret-lb-ohi4.convertlanguage.com',
+                'itvictoriassecret-lb-ohi5.convertlanguage.com',
+                'itvictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'pl.victoriassecret.com',
+                'plvictoriassecret-lb-ohi1.convertlanguage.com',
+                'plvictoriassecret-lb-ohi2.convertlanguage.com',
+                'plvictoriassecret-lb-ohi3.convertlanguage.com',
+                'plvictoriassecret-lb-ohi4.convertlanguage.com',
+                'plvictoriassecret-lb-ohi5.convertlanguage.com',
+                'plvictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'nl.victoriassecret.com',
+                'nlvictoriassecret-lb-ohi1.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi2.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi3.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi4.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi5.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi6.convertlanguage.com',
+            ];
+        } else if (selectedMarket === "mxn") {
+            cnameArray = [
+                'sp.victoriassecret.com',
+                'esvictoriassecret-lb-ohi1.convertlanguage.com',
+                'esvictoriassecret-lb-ohi2.convertlanguage.com',
+                'esvictoriassecret-lb-ohi3.convertlanguage.com',
+                'esvictoriassecret-lb-ohi4.convertlanguage.com',
+                'esvictoriassecret-lb-ohi5.convertlanguage.com',
+                'esvictoriassecret-lb-ohi6.convertlanguage.com',
+            ];
+        } else if (selectedMarket === "all") {
+
+            cnameArray = [
+                'frca.victoriassecret.com',
+                'frcavictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'fr.victoriassecret.com',
+                'frvictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'frvictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'de.victoriassecret.com',
+                'devictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'devictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'es.victoriassecret.com',
+                'esesvictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'esesvictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+                'sp.victoriassecret.com',
+                'esvictoriassecret-lb-ohi1.convertlanguage.com',
+                'esvictoriassecret-lb-ohi2.convertlanguage.com',
+                'esvictoriassecret-lb-ohi3.convertlanguage.com',
+                'esvictoriassecret-lb-ohi4.convertlanguage.com',
+                'esvictoriassecret-lb-ohi5.convertlanguage.com',
+                'esvictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'ko.victoriassecret.com',
+                'kovictoriassecret-lb-ohi1.convertlanguage.com',
+                'kovictoriassecret-lb-ohi2.convertlanguage.com',
+                'kovictoriassecret-lb-ohi3.convertlanguage.com',
+                'kovictoriassecret-lb-ohi4.convertlanguage.com',
+                'kovictoriassecret-lb-ohi5.convertlanguage.com',
+                'kovictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'ja.victoriassecret.com',
+                'javictoriassecret-lb-ohi1.convertlanguage.com',
+                'javictoriassecret-lb-ohi2.convertlanguage.com',
+                'javictoriassecret-lb-ohi3.convertlanguage.com',
+                'javictoriassecret-lb-ohi4.convertlanguage.com',
+                'javictoriassecret-lb-ohi5.convertlanguage.com',
+                'javictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'it.victoriassecret.com',
+                'itvictoriassecret-lb-ohi1.convertlanguage.com',
+                'itvictoriassecret-lb-ohi2.convertlanguage.com',
+                'itvictoriassecret-lb-ohi3.convertlanguage.com',
+                'itvictoriassecret-lb-ohi4.convertlanguage.com',
+                'itvictoriassecret-lb-ohi5.convertlanguage.com',
+                'itvictoriassecret-lb-ohi6.convertlanguage.com',
+
+                'pl.victoriassecret.com',
+                'plvictoriassecret-lb-ohi1.convertlanguage.com',
+                'plvictoriassecret-lb-ohi2.convertlanguage.com',
+                'plvictoriassecret-lb-ohi3.convertlanguage.com',
+                'plvictoriassecret-lb-ohi4.convertlanguage.com',
+                'plvictoriassecret-lb-ohi5.convertlanguage.com',
+                'plvictoriassecret-lb-ohi6.convertlanguage.com',
+              
+                'nl.victoriassecret.com',
+                'nlvictoriassecret-lb-ohi1.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi2.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi3.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi4.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi5.convertlanguage.com',
+                'nlvictoriassecret-lb-ohi6.convertlanguage.com',
+            ];
+        } else {
+
+            cnameArray = [
+                'frca.victoriassecret.com',
+                'frcavictoriassecretintl-lb-ohi1.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi2.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi3.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi4.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi5.convertlanguage.com',
+                'frcavictoriassecretintl-lb-ohi6.convertlanguage.com',
+
+            ];
+        }
+
+        //    All code, ideas, and concepts here are © Eric K. Holbrook
+        //    for information please contact ekholbrook@gmail.com
+        //    No use or modification without express writtent consent 
+
+
+        console.log(selectedMarket + ' ' + cnameArray);
+        return cnameArray;
+
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setupContentAndDropdown('contentContainer', 'jumpContainer', instructs, jumps);
+    });
+    </script>
+</body>
+
+</html>
